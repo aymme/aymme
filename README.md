@@ -1,5 +1,3 @@
-
-
 # Aymme
 
 This project was generated using [Nx](https://nx.dev).
@@ -15,6 +13,85 @@ This project was generated using [Nx](https://nx.dev).
 [10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
 
 [Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+
+## Pre-installation
+
+Use Node.js LTS, you can use NVM to manage Node versions on your local
+
+### Dependencies
+
+Make sure you have `node`, `npm` and `angular/cli` installed in your machine.
+
+#### Install node and npm
+
+Must have `node` and `npm` installed, other wise its better to install them using [nvm](#Install-NPM-via-NVM).
+
+#### Install Angular/cli
+
+To install `angular/cli` run
+
+```shell
+  npm install -g @angular/cli@{{version}}
+```
+
+For Aymme we are using version `~12.0.0`, run
+
+```shell
+  npm install -g @angular/cli@~12.0.0
+```
+
+## Installation
+
+### Build the environment
+
+```shell
+  npm install
+  ng build
+```
+
+## Install NPM via NVM
+
+### Installing nvm
+
+1- Clone repository
+
+```shell
+  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+```
+
+2- Add this to your profile (`~/.bash_profile`, `~/.zshrc`, `~/.profile`, or `~/.bashrc`)
+
+```text
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+```
+
+3- Restart your machine or run
+
+```shell
+  source {{profile}}
+```
+
+profile: (`~/.bash_profile`, `~/.zshrc`, `~/.profile`, or `~/.bashrc`)
+
+Source [Node Version Manager Installation](https://github.com/nvm-sh/nvm)
+
+### Installing npm
+
+1- To get list of available versions run
+
+```shell
+  nvm ls-remote
+```
+
+2- Select version from the list and install it run, (Better to install latest LTS version)
+
+```shell
+  nvm install {{selected-version}}
+```
+
+Source [Installing Angular CLI](https://angular.io/cli#installing-angular-cli)
 
 ## Adding capabilities to your workspace
 
@@ -57,7 +134,7 @@ Libraries are shareable across libraries and applications. They can be imported 
 
 ## Development server
 
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `ng serve my-app` for a dev server. Navigate to [Localhost](http://localhost:4200). The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -86,11 +163,6 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
 
 ## ☁ Nx Cloud
 
