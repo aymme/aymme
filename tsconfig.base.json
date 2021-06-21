@@ -16,7 +16,14 @@
     "baseUrl": ".",
     "paths": {
       "@aymme/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@aymme/api/core/feature": ["libs/api/core/feature/src/index.ts"]
+      "@aymme/api/core/feature": ["libs/api/core/feature/src/index.ts"],
+      "@aymme/api/intercept/feature": [
+        "libs/api/intercept/feature/src/index.ts"
+      ],
+      "@aymme/api/endpoint/data-access": [
+        "libs/api/endpoint/data-access/src/index.ts"
+      ],
+      "@aymme/shared/data-access": ["libs/shared/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

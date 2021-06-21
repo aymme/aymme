@@ -34,6 +34,15 @@
     "client-e2e": {
       "tags": [],
       "implicitDependencies": ["client"]
+    },
+    "api-intercept-feature": {
+      "tags": []
+    },
+    "api-endpoint-data-access": {
+      "tags": []
+    },
+    "shared-data-access": {
+      "tags": []
     }
   }
 }
