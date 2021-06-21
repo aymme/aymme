@@ -1,6 +1,6 @@
 module.exports = {
   projects: [
-    '<rootDir>/apps/aymme',
+    '<rootDir>/apps/client',
     '<rootDir>/apps/api',
     '<rootDir>/libs/api/core/feature',
   ],
