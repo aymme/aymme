@@ -339,3 +339,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Misc
+database/*.sqlite
