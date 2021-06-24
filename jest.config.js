@@ -8,5 +8,7 @@ module.exports = {
     '<rootDir>/libs/shared/data-access',
     '<rootDir>/libs/api/project/data-access',
     '<rootDir>/libs/api/project/feature',
+    '<rootDir>/libs/api/project/utils',
+    '<rootDir>/libs/api/shared/data-access',
   ],
 };

@@ -26,7 +26,11 @@
       "@aymme/api/project/data-access": [
         "libs/api/project/data-access/src/index.ts"
       ],
-      "@aymme/api/project/feature": ["libs/api/project/feature/src/index.ts"]
+      "@aymme/api/project/feature": ["libs/api/project/feature/src/index.ts"],
+      "@aymme/api/project/utils": ["libs/api/project/utils/src/index.ts"],
+      "@aymme/api/shared/data-access": [
+        "libs/api/shared/data-access/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,13 +1,14 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Endpoint } from './endpoint.entity';
 import { InternalServerErrorException } from '@nestjs/common';
+import { Endpoint, Project } from '@aymme/api/shared/data-access';
 
 @EntityRepository(Endpoint)
 export class EndpointRepository extends Repository<Endpoint> {
-  async createEndpoint(path: string, method: string) {
+  async createEndpoint(path: string, method: string, project: Project) {
     const newEndpoint = new Endpoint();
     newEndpoint.path = path;
     newEndpoint.method = method;
+    newEndpoint.project = project;
 
     try {
       await newEndpoint.save();

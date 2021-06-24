@@ -46,6 +46,12 @@
     },
     "api-project-feature": {
       "tags": []
+    },
+    "api-project-utils": {
+      "tags": []
+    },
+    "api-shared-data-access": {
+      "tags": []
     }
   }
 }

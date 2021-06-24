@@ -4,10 +4,10 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
+import { Project } from '@aymme/api/shared/data-access';
+
 import { ProjectRepository } from './project.repository';
-import { Project } from './project.entity';
-import { CreateProjectDto } from './dto';
-import { UpdateProjectDto } from './dto/update-project.dto';
+import { CreateProjectDto, UpdateProjectDto } from './dto';
 
 @Injectable()
 export class ProjectService {

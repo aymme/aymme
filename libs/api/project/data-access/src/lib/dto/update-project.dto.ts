@@ -1,3 +1,7 @@
-import { CreateProjectDto } from '@aymme/api/project/data-access';
+import { IsNotEmpty, MinLength } from 'class-validator';
 
-export class UpdateProjectDto extends CreateProjectDto {}
+export class UpdateProjectDto {
+  @MinLength(3)
+  @IsNotEmpty()
+  name: string;
+}
