@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@aymme/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@aymme/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@aymme/api/intercept/feature": [
         "libs/api/intercept/feature/src/index.ts"
