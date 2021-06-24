@@ -11,7 +11,7 @@ import {
   CreateProjectDto,
   ProjectService,
 } from '@aymme/api/project/data-access';
-import { UpdateProjectDto } from '../../../data-access/src/lib/dto/update-project.dto';
+import { UpdateProjectDto } from '@aymme/api/project/data-access';
 
 @Controller('projects')
 export class ApiProjectFeatureController {
