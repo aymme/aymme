@@ -10,5 +10,6 @@ module.exports = {
     '<rootDir>/libs/api/project/feature',
     '<rootDir>/libs/api/project/utils',
     '<rootDir>/libs/api/shared/data-access',
+    '<rootDir>/libs/api/endpoint/feature',
   ],
 };

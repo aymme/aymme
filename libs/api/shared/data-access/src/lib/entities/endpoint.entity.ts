@@ -2,12 +2,15 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   RelationId,
 } from 'typeorm';
 import { IEndpoint } from '@aymme/shared/data-access';
 import { Project } from './project.entity';
+import { Response } from './response.entity';
 
 @Entity()
 export class Endpoint extends BaseEntity implements IEndpoint {
@@ -35,9 +38,17 @@ export class Endpoint extends BaseEntity implements IEndpoint {
   })
   forward: boolean;
 
-  @ManyToOne(() => Project, (project: Project) => project.endpoints)
+  @ManyToOne(() => Project, (project: Project) => project.endpoints, {
+    nullable: false,
+  })
+  @JoinColumn({ name: 'projectId' })
   project: Project;
 
-  @RelationId((endpoint: Endpoint) => endpoint.project)
+  @Column()
   public projectId: string;
+
+  @OneToMany(() => Response, (response: Response) => response.endpoint, {
+    onDelete: 'CASCADE',
+  })
+  responses: Response[];
 }

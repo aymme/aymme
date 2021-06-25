@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { EndpointRepository } from './endpoint.repository';
-import { Project } from '@aymme/api/shared/data-access';
+import { Endpoint, Project } from '@aymme/api/shared/data-access';
 
 @Injectable()
 export class EndpointService {
@@ -19,9 +19,30 @@ export class EndpointService {
     });
 
     if (found) {
-      return found.id;
+      return found;
     }
 
     return this.endpointRepository.createEndpoint(path, method, project);
+  }
+
+  async getAll(projectId: string): Promise<Endpoint[]> {
+    return this.endpointRepository.find({ projectId });
+  }
+
+  async getById(projectId: string, id: string): Promise<Endpoint> {
+    const found = await this.endpointRepository.findOne({
+      projectId,
+      id,
+    });
+
+    if (!found) {
+      throw new NotFoundException(`Endpoint with ID: ${id} not found`);
+    }
+
+    return found;
+  }
+
+  async delete(projectId: string, id: string) {
+    return this.endpointRepository.delete({ projectId, id });
   }
 }

@@ -30,7 +30,8 @@
       "@aymme/api/project/utils": ["libs/api/project/utils/src/index.ts"],
       "@aymme/api/shared/data-access": [
         "libs/api/shared/data-access/src/index.ts"
-      ]
+      ],
+      "@aymme/api/endpoint/feature": ["libs/api/endpoint/feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

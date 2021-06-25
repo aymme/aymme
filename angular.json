@@ -374,6 +374,27 @@
           }
         }
       }
+    },
+    "api-endpoint-feature": {
+      "root": "libs/api/endpoint/feature",
+      "sourceRoot": "libs/api/endpoint/feature/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/endpoint/feature/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/endpoint/feature"],
+          "options": {
+            "jestConfig": "libs/api/endpoint/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

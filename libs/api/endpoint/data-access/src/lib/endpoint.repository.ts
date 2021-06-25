@@ -11,7 +11,7 @@ export class EndpointRepository extends Repository<Endpoint> {
     newEndpoint.project = project;
 
     try {
-      await newEndpoint.save();
+      return await newEndpoint.save();
     } catch (e) {
       throw new InternalServerErrorException();
     }
