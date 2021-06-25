@@ -10,15 +10,15 @@ import { ProjectService } from '@aymme/api/project/data-access';
 export class ProjectGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    const projectId = request['headers']['aymme-project-id'];
+    const slug = request['headers']['aymme-project-id'];
 
-    if (!projectId) {
+    if (!slug) {
       throw new BadRequestException(
         'The request is missing the project ID in the header'
       );
     }
 
-    const project = await this.projectService.getById(projectId);
+    const project = await this.projectService.getBySlug(slug);
     request.project = project;
 
     return !!project;

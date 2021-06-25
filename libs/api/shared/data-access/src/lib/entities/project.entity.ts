@@ -13,8 +13,11 @@ export class Project extends BaseEntity implements IProject {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
+
+  @Column({ unique: true })
+  slug: string;
 
   @OneToMany(() => Endpoint, (endpoint: Endpoint) => endpoint.project, {
     onDelete: 'CASCADE',

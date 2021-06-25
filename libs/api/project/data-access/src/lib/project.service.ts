@@ -4,6 +4,7 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
+import slugify from 'slugify';
 import { Project } from '@aymme/api/shared/data-access';
 
 import { ProjectRepository } from './project.repository';
@@ -30,10 +31,27 @@ export class ProjectService {
     return found;
   }
 
+  async getBySlug(slug: string): Promise<Project> {
+    const found = await this.projectRepository.findOne({
+      slug,
+    });
+
+    if (!found) {
+      throw new NotFoundException();
+    }
+
+    return found;
+  }
+
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
     const { name } = createProjectDto;
     const project = this.projectRepository.create();
+
     project.name = name;
+    project.slug = slugify(name, {
+      lower: true,
+    });
+
     try {
       await project.save();
     } catch (e) {
