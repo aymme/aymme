@@ -1,12 +1,15 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
   Logger,
   Param,
   ParseUUIDPipe,
+  Put,
 } from '@nestjs/common';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
+import { UpdateEndpointDto } from '../../../data-access/src/lib/dto/update-endpoint.dto';
 
 @Controller(':projectId/endpoints')
 export class ApiEndpointFeatureController {
@@ -25,6 +28,15 @@ export class ApiEndpointFeatureController {
     @Param('id', new ParseUUIDPipe()) id: string
   ) {
     return this.endpointService.getById(projectId, id);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('projectId', new ParseUUIDPipe()) projectId: string,
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() updateEndpointDto: UpdateEndpointDto
+  ) {
+    return this.endpointService.update(projectId, id, updateEndpointDto);
   }
 
   @Delete(':id')

@@ -1,6 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { EndpointRepository } from './endpoint.repository';
 import { Endpoint, Project } from '@aymme/api/shared/data-access';
+import { UpdateEndpointDto } from './dto/update-endpoint.dto';
 
 @Injectable()
 export class EndpointService {
@@ -40,6 +45,28 @@ export class EndpointService {
     }
 
     return found;
+  }
+
+  async update(
+    projectId: string,
+    id: string,
+    updateEndpointDto: UpdateEndpointDto
+  ): Promise<Endpoint> {
+    try {
+      await this.endpointRepository.update(
+        {
+          id,
+          projectId,
+        },
+        {
+          ...updateEndpointDto,
+        }
+      );
+    } catch (e) {
+      throw new InternalServerErrorException(e);
+    }
+
+    return this.getById(projectId, id);
   }
 
   async delete(projectId: string, id: string) {

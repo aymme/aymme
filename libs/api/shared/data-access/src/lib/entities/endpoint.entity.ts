@@ -6,7 +6,6 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  RelationId,
 } from 'typeorm';
 import { IEndpoint } from '@aymme/shared/data-access';
 import { Project } from './project.entity';
