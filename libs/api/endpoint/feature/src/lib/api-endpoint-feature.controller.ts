@@ -8,8 +8,10 @@ import {
   ParseUUIDPipe,
   Put,
 } from '@nestjs/common';
-import { EndpointService } from '@aymme/api/endpoint/data-access';
-import { UpdateEndpointDto } from '../../../data-access/src/lib/dto/update-endpoint.dto';
+import {
+  EndpointService,
+  UpdateEndpointDto,
+} from '@aymme/api/endpoint/data-access';
 
 @Controller(':projectId/endpoints')
 export class ApiEndpointFeatureController {
