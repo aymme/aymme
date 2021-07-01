@@ -37,6 +37,11 @@ export class Endpoint extends BaseEntity implements IEndpoint {
   })
   forward: boolean;
 
+  @Column({
+    default: 0,
+  })
+  delay: number;
+
   @ManyToOne(() => Project, (project: Project) => project.endpoints, {
     nullable: false,
   })

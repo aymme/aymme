@@ -14,6 +14,7 @@ import { Request, Response } from 'express';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
 import { CurrentProject, ProjectGuard } from '@aymme/api/project/utils';
 import { Project } from '@aymme/api/shared/data-access';
+import * as sleep from 'sleep-promise';
 
 @Controller('intercept')
 export class ApiInterceptFeatureController {
@@ -54,6 +55,10 @@ export class ApiInterceptFeatureController {
       throw new NotFoundException(
         `Response for HTTP Status code ${endpoint.activeStatusCode} does not exist`
       );
+    }
+
+    if (endpoint.delay && endpoint.delay > 10) {
+      await sleep(endpoint.delay);
     }
 
     return res.json(JSON.parse(endpointResponse.body));

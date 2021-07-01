@@ -8,4 +8,8 @@ export class UpdateEndpointDto {
   @IsBoolean()
   @IsOptional()
   emptyArray?: boolean;
+
+  @IsNumber()
+  @IsOptional()
+  delay?: number;
 }
