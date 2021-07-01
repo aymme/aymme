@@ -34,7 +34,7 @@ export class ApiInterceptFeatureController {
     this.logger.verbose(query);
     this.logger.verbose(currentProject);
     const endpoint = await this.endpointService.intercept(
-      request.path,
+      request.url,
       query,
       body,
       request.method,
