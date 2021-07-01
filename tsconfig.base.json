@@ -31,7 +31,11 @@
       "@aymme/api/shared/data-access": [
         "libs/api/shared/data-access/src/index.ts"
       ],
-      "@aymme/api/endpoint/feature": ["libs/api/endpoint/feature/src/index.ts"]
+      "@aymme/api/endpoint/feature": ["libs/api/endpoint/feature/src/index.ts"],
+      "@aymme/api/response/feature": ["libs/api/response/feature/src/index.ts"],
+      "@aymme/api/response/data-access": [
+        "libs/api/response/data-access/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -2,6 +2,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -13,7 +14,7 @@ export class Response extends BaseEntity implements IResponse {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', default: '{ message: "Please update mocks data" }' })
   body: string;
 
   @Column()
@@ -22,5 +23,9 @@ export class Response extends BaseEntity implements IResponse {
   @ManyToOne(() => Endpoint, (endpoint: Endpoint) => endpoint.responses, {
     nullable: false,
   })
+  @JoinColumn({ name: 'endpointId' })
   endpoint: Endpoint;
+
+  @Column()
+  endpointId: string;
 }

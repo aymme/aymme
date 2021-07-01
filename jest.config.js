@@ -11,5 +11,7 @@ module.exports = {
     '<rootDir>/libs/api/project/utils',
     '<rootDir>/libs/api/shared/data-access',
     '<rootDir>/libs/api/endpoint/feature',
+    '<rootDir>/libs/api/response/feature',
+    '<rootDir>/libs/api/response/data-access',
   ],
 };

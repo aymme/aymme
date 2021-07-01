@@ -55,6 +55,12 @@
     },
     "api-endpoint-feature": {
       "tags": []
+    },
+    "api-response-feature": {
+      "tags": []
+    },
+    "api-response-data-access": {
+      "tags": []
     }
   }
 }
