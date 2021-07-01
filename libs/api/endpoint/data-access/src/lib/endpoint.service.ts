@@ -18,10 +18,15 @@ export class EndpointService {
     method: string,
     project: Project
   ) {
-    const found = await this.endpointRepository.findOne({
-      path,
-      project,
-    });
+    const found = await this.endpointRepository.findOne(
+      {
+        path,
+        project,
+      },
+      {
+        relations: ['responses'],
+      }
+    );
 
     if (found) {
       return found;

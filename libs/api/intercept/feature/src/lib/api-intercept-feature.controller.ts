@@ -8,6 +8,7 @@ import {
   Query,
   Body,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
@@ -39,7 +40,23 @@ export class ApiInterceptFeatureController {
       currentProject
     );
 
-    return response.status(200).json(endpoint);
+    const res = response.status(endpoint.activeStatusCode);
+
+    if (endpoint.emptyArray) {
+      return res.json([]);
+    }
+
+    const endpointResponse = endpoint.responses.find(
+      (value) => value.statusCode === endpoint.activeStatusCode
+    );
+
+    if (!endpointResponse) {
+      throw new NotFoundException(
+        `Response for HTTP Status code ${endpoint.activeStatusCode} does not exist`
+      );
+    }
+
+    return res.json(JSON.parse(endpointResponse.body));
   }
 
   constructor(private endpointService: EndpointService) {}
