@@ -8,16 +8,20 @@ import {
 } from 'typeorm';
 import { IResponse } from '@aymme/shared/data-access';
 import { Endpoint } from '@aymme/api/shared/data-access';
+import { HttpStatus } from '@nestjs/common';
 
 @Entity()
 export class Response extends BaseEntity implements IResponse {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'text', default: '{ message: "Please update mocks data" }' })
+  @Column({
+    type: 'text',
+    default: '{ "message": "Please update mocks data" }',
+  })
   body: string;
 
-  @Column()
+  @Column({ default: HttpStatus.INTERNAL_SERVER_ERROR })
   statusCode: number;
 
   @ManyToOne(() => Endpoint, (endpoint: Endpoint) => endpoint.responses, {

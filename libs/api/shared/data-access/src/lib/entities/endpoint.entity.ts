@@ -48,6 +48,7 @@ export class Endpoint extends BaseEntity implements IEndpoint {
 
   @OneToMany(() => Response, (response: Response) => response.endpoint, {
     onDelete: 'CASCADE',
+    cascade: true,
   })
   responses: Response[];
 }
