@@ -69,7 +69,7 @@ export class EndpointService {
     return this.getById(projectId, id);
   }
 
-  async delete(projectId: string, id: string) {
-    return this.endpointRepository.delete({ projectId, id });
+  async delete(projectId: string, id: string): Promise<void> {
+    await this.endpointRepository.delete({ projectId, id });
   }
 }
