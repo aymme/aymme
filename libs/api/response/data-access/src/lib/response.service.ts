@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   HttpStatus,
   Injectable,
@@ -82,6 +83,12 @@ export class ResponseService {
     id: string,
     data: UpdateResponseDto
   ): Promise<Response> {
+    if (!Object.keys(data).length) {
+      throw new BadRequestException(
+        "It looks like your request doesn't contain a body"
+      );
+    }
+
     const { body } = data;
     const response = await this.getById(endpointId, id);
 

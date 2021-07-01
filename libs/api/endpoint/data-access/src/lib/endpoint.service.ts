@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
@@ -57,6 +58,12 @@ export class EndpointService {
     id: string,
     updateEndpointDto: UpdateEndpointDto
   ): Promise<Endpoint> {
+    if (!Object.keys(updateEndpointDto).length) {
+      throw new BadRequestException(
+        "It looks like your request doesn't contain a body"
+      );
+    }
+
     try {
       await this.endpointRepository.update(
         {
