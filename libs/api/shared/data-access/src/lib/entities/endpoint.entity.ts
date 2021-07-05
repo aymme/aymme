@@ -10,6 +10,7 @@ import {
 import { IEndpoint } from '@aymme/shared/data-access';
 import { Project } from './project.entity';
 import { Response } from './response.entity';
+import { Header } from './header.entity';
 
 @Entity()
 export class Endpoint extends BaseEntity implements IEndpoint {
@@ -52,8 +53,13 @@ export class Endpoint extends BaseEntity implements IEndpoint {
   public projectId: string;
 
   @OneToMany(() => Response, (response: Response) => response.endpoint, {
-    onDelete: 'CASCADE',
     cascade: true,
   })
   responses: Response[];
+
+  @OneToMany(() => Header, (header: Header) => header.endpoint, {
+    cascade: true,
+    eager: true,
+  })
+  headers?: Header[];
 }
