@@ -23,6 +23,7 @@ export class EndpointService {
       {
         path,
         project,
+        method,
       },
       {
         relations: ['responses'],
