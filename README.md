@@ -42,6 +42,14 @@ For Aymme we are using version `~12.0.0`, run
 
 ## Installation
 
+### Create the database
+In the root of the workspace, you will find a folder with the name `database`. You should create the SQLite database file here
+```shell  
+  touch aymme.sqlite
+```
+
+Later, this file should be created in the user's Application directory
+
 ### Build the environment
 
 ```shell

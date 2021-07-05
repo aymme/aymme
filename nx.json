@@ -19,20 +19,47 @@
     }
   },
   "projects": {
-    "aymme": {
-      "tags": []
-    },
-    "aymme-e2e": {
-      "tags": [],
-      "implicitDependencies": ["aymme"]
-    },
     "api": {
       "tags": []
     },
-    "api-interfaces": {
+    "api-core-feature": {
       "tags": []
     },
-    "api-core-feature": {
+    "client": {
+      "tags": []
+    },
+    "client-e2e": {
+      "tags": [],
+      "implicitDependencies": ["client"]
+    },
+    "api-intercept-feature": {
+      "tags": []
+    },
+    "api-endpoint-data-access": {
+      "tags": []
+    },
+    "shared-data-access": {
+      "tags": []
+    },
+    "api-project-data-access": {
+      "tags": []
+    },
+    "api-project-feature": {
+      "tags": []
+    },
+    "api-project-utils": {
+      "tags": []
+    },
+    "api-shared-data-access": {
+      "tags": []
+    },
+    "api-endpoint-feature": {
+      "tags": []
+    },
+    "api-response-feature": {
+      "tags": []
+    },
+    "api-response-data-access": {
       "tags": []
     }
   }
