@@ -1,6 +1,16 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { InternalServerErrorException, Logger } from '@nestjs/common';
-import { Endpoint, Project, Response } from '@aymme/api/shared/data-access';
+import {
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
+import {
+  Endpoint,
+  Header,
+  Project,
+  Response,
+} from '@aymme/api/shared/data-access';
+import { UpdateEndpointDto } from './dto/update-endpoint.dto';
 
 @EntityRepository(Endpoint)
 export class EndpointRepository extends Repository<Endpoint> {
@@ -19,5 +29,46 @@ export class EndpointRepository extends Repository<Endpoint> {
       this.logger.error(e.message, e.stack);
       throw new InternalServerErrorException();
     }
+  }
+
+  async updateEndpoint(
+    id: string,
+    projectId: string,
+    updateEndpointDto: UpdateEndpointDto
+  ) {
+    const endpoint = await this.findOne({
+      id,
+      projectId,
+    });
+
+    if (!endpoint) {
+      throw new NotFoundException(`Endpoint with ID: ${id} not found`);
+    }
+
+    const { headers, activeStatusCode, delay, emptyArray } = updateEndpointDto;
+
+    if (headers) {
+      endpoint.headers = headers as Header[];
+    }
+
+    if (activeStatusCode) {
+      endpoint.activeStatusCode = activeStatusCode;
+    }
+
+    if (delay) {
+      endpoint.delay = delay;
+    }
+
+    if (emptyArray) {
+      endpoint.emptyArray = emptyArray;
+    }
+
+    try {
+      await endpoint.save();
+    } catch (e) {
+      throw new InternalServerErrorException(e);
+    }
+
+    return endpoint;
   }
 }

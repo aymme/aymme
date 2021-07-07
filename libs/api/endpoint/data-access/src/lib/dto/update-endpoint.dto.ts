@@ -1,4 +1,12 @@
-import { IsBoolean, IsNumber, IsOptional } from 'class-validator';
+import {
+  IsArray,
+  IsBoolean,
+  IsNumber,
+  IsOptional,
+  ValidateNested,
+} from 'class-validator';
+import { Type } from 'class-transformer';
+import { HeaderDto } from './header.dto';
 
 export class UpdateEndpointDto {
   @IsNumber()
@@ -12,4 +20,10 @@ export class UpdateEndpointDto {
   @IsNumber()
   @IsOptional()
   delay?: number;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => HeaderDto)
+  headers?: HeaderDto[];
 }

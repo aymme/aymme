@@ -1,7 +1,6 @@
 import {
   BadRequestException,
   Injectable,
-  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { EndpointRepository } from './endpoint.repository';
@@ -23,6 +22,7 @@ export class EndpointService {
       {
         path,
         project,
+        method,
       },
       {
         relations: ['responses'],
@@ -41,10 +41,13 @@ export class EndpointService {
   }
 
   async getById(projectId: string, id: string): Promise<Endpoint> {
-    const found = await this.endpointRepository.findOne({
-      projectId,
-      id,
-    });
+    const found = await this.endpointRepository.findOne(
+      {
+        projectId,
+        id,
+      },
+      { relations: ['responses'] }
+    );
 
     if (!found) {
       throw new NotFoundException(`Endpoint with ID: ${id} not found`);
@@ -64,21 +67,11 @@ export class EndpointService {
       );
     }
 
-    try {
-      await this.endpointRepository.update(
-        {
-          id,
-          projectId,
-        },
-        {
-          ...updateEndpointDto,
-        }
-      );
-    } catch (e) {
-      throw new InternalServerErrorException(e);
-    }
-
-    return this.getById(projectId, id);
+    return this.endpointRepository.updateEndpoint(
+      id,
+      projectId,
+      updateEndpointDto
+    );
   }
 
   async delete(projectId: string, id: string): Promise<void> {
