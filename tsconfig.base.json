@@ -35,6 +35,15 @@
       "@aymme/api/response/feature": ["libs/api/response/feature/src/index.ts"],
       "@aymme/api/response/data-access": [
         "libs/api/response/data-access/src/index.ts"
+      ],
+      "@aymme/client/shared/ui": ["libs/client/shared/ui/src/index.ts"],
+      "@aymme/client/shell/feature": ["libs/client/shell/feature/src/index.ts"],
+      "@aymme/client/shell/ui": ["libs/client/shell/ui/src/index.ts"],
+      "@aymme/client/projects/feature": [
+        "libs/client/projects/feature/src/index.ts"
+      ],
+      "@aymme/client/shell/ui/layout": [
+        "libs/client/shell/ui/layout/src/index.ts"
       ]
     }
   },

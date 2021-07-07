@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
-  selector: 'aymme-root',
-  templateUrl: './app.component.html',
+  selector: 'ay-root',
+  template: `<router-outlet></router-outlet>`,
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {

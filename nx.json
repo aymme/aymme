@@ -61,6 +61,21 @@
     },
     "api-response-data-access": {
       "tags": []
+    },
+    "client-shared-ui": {
+      "tags": []
+    },
+    "client-shell-feature": {
+      "tags": []
+    },
+    "client-shell-ui": {
+      "tags": []
+    },
+    "client-projects-feature": {
+      "tags": []
+    },
+    "client-shell-ui-layout": {
+      "tags": []
     }
   }
 }

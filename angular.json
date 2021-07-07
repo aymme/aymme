@@ -109,7 +109,7 @@
       "projectType": "application",
       "root": "apps/client",
       "sourceRoot": "apps/client/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -436,6 +436,131 @@
           "options": {
             "jestConfig": "libs/api/response/data-access/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-shared-ui": {
+      "projectType": "library",
+      "root": "libs/client/shared/ui",
+      "sourceRoot": "libs/client/shared/ui/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/ui"],
+          "options": {
+            "jestConfig": "libs/client/shared/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/ui/src/**/*.ts",
+              "libs/client/shared/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-feature": {
+      "projectType": "library",
+      "root": "libs/client/shell/feature",
+      "sourceRoot": "libs/client/shell/feature/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/feature"],
+          "options": {
+            "jestConfig": "libs/client/shell/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/feature/src/**/*.ts",
+              "libs/client/shell/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui",
+      "sourceRoot": "libs/client/shell/ui/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/src/**/*.ts",
+              "libs/client/shell/ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-feature": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature",
+      "sourceRoot": "libs/client/projects/feature/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/src/**/*.ts",
+              "libs/client/projects/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-layout": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/layout",
+      "sourceRoot": "libs/client/shell/ui/layout/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/layout"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/layout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/layout/src/**/*.ts",
+              "libs/client/shell/ui/layout/src/**/*.html"
+            ]
           }
         }
       }
