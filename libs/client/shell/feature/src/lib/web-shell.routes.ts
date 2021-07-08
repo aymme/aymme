@@ -7,7 +7,7 @@ export const webShellRoutes: Route[] = [
     component: LayoutComponent,
     children: [
       {
-        path: 'test',
+        path: '',
         loadChildren: async () => (await import('@aymme/client/projects/feature')).ProjectsModule
       },
     ]

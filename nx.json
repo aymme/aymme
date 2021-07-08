@@ -68,13 +68,13 @@
     "client-shell-feature": {
       "tags": []
     },
-    "client-shell-ui": {
-      "tags": []
-    },
     "client-projects-feature": {
       "tags": []
     },
     "client-shell-ui-layout": {
+      "tags": []
+    },
+    "client-shell-ui-top-bar": {
       "tags": []
     }
   }

@@ -44,6 +44,9 @@
       ],
       "@aymme/client/shell/ui/layout": [
         "libs/client/shell/ui/layout/src/index.ts"
+      ],
+      "@aymme/client/shell/ui/top-bar": [
+        "libs/client/shell/ui/top-bar/src/index.ts"
       ]
     }
   },
