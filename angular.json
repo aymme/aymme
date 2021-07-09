@@ -126,7 +126,8 @@
               "apps/client/src/styles.scss",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeflex/primeflex.css"
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/primeng/resources/themes/bootstrap4-dark-blue/theme.css"
             ],
             "scripts": []
           },

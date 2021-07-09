@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class ThemeSwitcherService {
+  private _isDarkTheme = true;
 
   public set isDarkTheme(isDarkTheme: boolean) {
     this._isDarkTheme = isDarkTheme;
@@ -13,8 +14,6 @@ export class ThemeSwitcherService {
   public get isDarkTheme(): boolean {
     return this._isDarkTheme;
   }
-
-  private _isDarkTheme = true;
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
