@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout.component';
 
-import { RouterModule } from '@angular/router';
+import { TopBarModule } from '@aymme/client/shell/ui/top-bar';
+import { LogoModule } from '@aymme/client/shell/ui/logo';
 
+import { RouterModule } from '@angular/router';
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TopBarModule, LogoModule],
   declarations: [
     LayoutComponent
   ],
@@ -13,4 +15,4 @@ import { RouterModule } from '@angular/router';
     LayoutComponent
   ],
 })
-export class LayoutModule {}
+export class LayoutModule { }

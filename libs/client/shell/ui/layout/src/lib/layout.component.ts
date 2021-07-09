@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'aymme-layout',
+  selector: 'ay-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+
 
   ngOnInit(): void {
+    console.log('layout')
   }
 
 }

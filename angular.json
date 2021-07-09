@@ -493,7 +493,7 @@
       "projectType": "library",
       "root": "libs/client/projects/feature",
       "sourceRoot": "libs/client/projects/feature/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -518,7 +518,7 @@
       "projectType": "library",
       "root": "libs/client/shell/ui/layout",
       "sourceRoot": "libs/client/shell/ui/layout/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -543,7 +543,7 @@
       "projectType": "library",
       "root": "libs/client/shell/ui/top-bar",
       "sourceRoot": "libs/client/shell/ui/top-bar/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -559,6 +559,56 @@
             "lintFilePatterns": [
               "libs/client/shell/ui/top-bar/src/**/*.ts",
               "libs/client/shell/ui/top-bar/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-logo": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/logo",
+      "sourceRoot": "libs/client/shell/ui/logo/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/logo"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/logo/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/logo/src/**/*.ts",
+              "libs/client/shell/ui/logo/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-theme-switcher": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/theme-switcher",
+      "sourceRoot": "libs/client/shell/ui/theme-switcher/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/theme-switcher"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/theme-switcher/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/theme-switcher/src/**/*.ts",
+              "libs/client/shell/ui/theme-switcher/src/**/*.html"
             ]
           }
         }

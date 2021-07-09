@@ -47,6 +47,10 @@
       ],
       "@aymme/client/shell/ui/top-bar": [
         "libs/client/shell/ui/top-bar/src/index.ts"
+      ],
+      "@aymme/client/shell/ui/logo": ["libs/client/shell/ui/logo/src/index.ts"],
+      "@aymme/client/shell/ui/theme-switcher": [
+        "libs/client/shell/ui/theme-switcher/src/index.ts"
       ]
     }
   },

@@ -76,6 +76,12 @@
     },
     "client-shell-ui-top-bar": {
       "tags": []
+    },
+    "client-shell-ui-logo": {
+      "tags": []
+    },
+    "client-shell-ui-theme-switcher": {
+      "tags": []
     }
   }
 }

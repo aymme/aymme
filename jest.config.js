@@ -19,5 +19,7 @@ module.exports = {
     '<rootDir>/libs/client/projects/feature',
     '<rootDir>/libs/client/shell/ui/layout',
     '<rootDir>/libs/client/shell/ui/top-bar',
+    '<rootDir>/libs/client/shell/ui/logo',
+    '<rootDir>/libs/client/shell/ui/theme-switcher',
   ],
 };

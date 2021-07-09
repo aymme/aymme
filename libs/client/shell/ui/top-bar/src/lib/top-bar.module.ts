@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { TopBarComponent } from './top-bar.component';
+
+import { MenubarModule } from 'primeng/menubar';
+import { LogoModule } from '@aymme/client/shell/ui/logo';
+import { ThemeSwitcherModule } from '@aymme/client/shell/ui/theme-switcher';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, MenubarModule, LogoModule, ThemeSwitcherModule],
   declarations: [
     TopBarComponent
   ],
@@ -11,4 +15,4 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     TopBarComponent
   ],
 })
-export class TopBarModule {}
+export class TopBarModule { }

@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
+import {MenuItem} from 'primeng/api';
+
 @Component({
-  selector: 'aymme-top-bar',
+  selector: 'ay-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() { }
+  items!: MenuItem[];
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.items = [
+      {
+        label: 'Projects',
+        icon: 'pi pi-fw pi-book',
+      }
+    ];
   }
-
 }
