@@ -17,3 +17,11 @@ body {
     margin-bottom: 0;
   }
 }
+
+.light-theme {
+  background-color: map-get($colors , ay-light-background);
+}
+
+.dark-theme {
+  background-color: map-get($colors , ay-dark-background);
+}
