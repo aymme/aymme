@@ -25,7 +25,7 @@ export class ThemeSwitcherService {
   }
 
   public changeTheme(isDarkTheme: boolean = this.isDarkTheme): void {
-    const themeName: string = isDarkTheme ? 'arya' : 'saga';
+    const themeName: string = isDarkTheme ? 'dark' : 'light';
     const themeHref: string = `./assets/themes/${themeName}-blue.css`;
     const head: HTMLHeadElement = this.document.getElementsByTagName('head')[0];
     const themeLink: HTMLLinkElement = <HTMLLinkElement>this.document.getElementById('theme');

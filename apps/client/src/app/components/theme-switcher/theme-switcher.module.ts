@@ -1,10 +1,10 @@
+import { InputSwitchModule } from 'primeng/inputswitch';
+
 import { CommonModule } from '@angular/common';
 import { NgModule, Provider } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InputSwitchModule } from 'primeng/inputswitch';
 
-import { ComponentsType, ModulesType } from '@Types/module.types';
-
+import { ComponentsType, ModulesType } from '../../shared/types/module.types';
 import { ThemeSwitcherService } from './services/theme-switcher.service';
 import { ThemeSwitcherComponent } from './theme-switcher.component';
 

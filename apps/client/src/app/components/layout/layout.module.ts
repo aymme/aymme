@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 import { MenubarModule } from 'primeng/menubar';
 
-import { LanguageSwitcherModule } from '@Components/language-switcher/language-switcher.module';
-import { ThemeSwitcherModule } from '@Components/theme-switcher/theme-switcher.module';
-import { ComponentsType, ModulesType } from '@Types/module.types';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { ComponentsType, ModulesType } from '../../shared/types/module.types';
+import { LanguageSwitcherModule } from '../language-switcher/language-switcher.module';
+import { ThemeSwitcherModule } from '../theme-switcher/theme-switcher.module';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { LayoutComponent } from './layout.component';
 
@@ -19,7 +18,6 @@ const modules: ModulesType = [
   CommonModule,
   ThemeSwitcherModule,
   LanguageSwitcherModule,
-  TranslateModule.forChild({}),
 ];
 
 const components: ComponentsType = [

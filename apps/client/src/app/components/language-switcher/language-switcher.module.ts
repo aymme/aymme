@@ -1,10 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 
-import { ComponentsType, ModulesType } from '@Types/module.types';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { ComponentsType, ModulesType } from '../../shared/types/module.types';
 import { LanguageSwitcherComponent } from './language-switcher.component';
 
 const components: ComponentsType = [
@@ -18,7 +17,6 @@ const primeNgModules: ModulesType = [
 const modules: ModulesType = [
   ...primeNgModules,
   CommonModule,
-  TranslateModule.forChild({}),
 ];
 
 @NgModule({
