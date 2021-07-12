@@ -80,10 +80,10 @@
     "client-shell-ui-top-bar": {
       "tags": []
     },
-    "shared-data-access": {
+    "client-shell-ui-footer": {
       "tags": []
     },
-    "client-shell-ui-footer": {
+    "shared-data-access": {
       "tags": []
     }
   },

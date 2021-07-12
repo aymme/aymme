@@ -618,7 +618,7 @@
       "projectType": "library",
       "root": "libs/client/shell/ui/footer",
       "sourceRoot": "libs/client/shell/ui/footer/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
