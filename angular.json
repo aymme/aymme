@@ -613,6 +613,31 @@
           }
         }
       }
+    },
+    "client-shell-ui-footer": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/footer",
+      "sourceRoot": "libs/client/shell/ui/footer/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/footer"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/footer/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/footer/src/**/*.ts",
+              "libs/client/shell/ui/footer/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

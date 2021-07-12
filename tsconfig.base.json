@@ -51,6 +51,9 @@
       "@aymme/client/shell/ui/logo": ["libs/client/shell/ui/logo/src/index.ts"],
       "@aymme/client/shell/ui/theme-switcher": [
         "libs/client/shell/ui/theme-switcher/src/index.ts"
+      ],
+      "@aymme/client/shell/ui/footer": [
+        "libs/client/shell/ui/footer/src/index.ts"
       ]
     }
   },

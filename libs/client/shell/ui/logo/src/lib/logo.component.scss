@@ -1,4 +1,36 @@
 
 .ay-logo {
   font-size: 1.6rem;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  font-weight: 800;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+
+  &-title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-sub-title {
+    margin-top: 3px;
+    font-size: .7rem;
+    color: rgba(255,255,255,.4);
+    font-weight: 500;
+  }
+
+  &-icon {
+    display: inline-block;
+    font-size: 3rem;
+    color: rgb(204, 204, 204);
+    margin: -6px 8px 0 0;
+    font-weight: 500;
+
+    &-alt {
+      margin-left: 10px;
+      color: rgb(165, 165, 165);
+    }
+  }
 }

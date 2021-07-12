@@ -1,0 +1,9 @@
+
+a, a:hover, a:link, a:visited, a:focus {
+  text-decoration: none;
+  color: map-get($colors , ay-text-color);
+}
+
+ul, ol, ul li, ol li, ul ul {
+  list-style-type: none;
+}

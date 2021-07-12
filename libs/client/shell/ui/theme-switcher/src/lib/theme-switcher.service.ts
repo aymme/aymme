@@ -26,7 +26,6 @@ export class ThemeSwitcherService {
 
   public initializeTheme(): void {
     this.isDarkTheme = localStorage.getItem('theme') === 'true';
-
     this.changeTheme();
   }
 

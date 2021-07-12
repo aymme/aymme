@@ -82,6 +82,9 @@
     },
     "client-shell-ui-theme-switcher": {
       "tags": []
+    },
+    "client-shell-ui-footer": {
+      "tags": []
     }
   }
 }

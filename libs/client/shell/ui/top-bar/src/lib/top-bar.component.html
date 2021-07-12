@@ -3,14 +3,25 @@
     <div class="p-col-2">
       <ay-logo></ay-logo>
     </div>
-    <div class="p-col-6">
-      <nav class="card">
-        <ul>
-          <li>Projects</li>
+    <div class="p-col-8">
+      <nav class="ay-primary-menu">
+        <ul class="p-d-flex">
+          <li>
+            <a routerLink="/projects">
+              <i class="fa fa-tasks"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="" class="ay-disabled-cursor">
+              <i class="fad fa-acorn"></i>
+              <span>Experiences</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
-    <div class="p-col-4 p-grid">
+    <div class="p-col-2 p-grid">
       <section class="theme-switcher-wrapper p-ml-auto">
         <ay-theme-switcher></ay-theme-switcher>
       </section>
