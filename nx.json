@@ -25,20 +25,13 @@
     "api-core-feature": {
       "tags": []
     },
-    "client": {
-      "tags": []
-    },
-    "client-e2e": {
-      "tags": [],
-      "implicitDependencies": ["client"]
-    },
-    "api-intercept-feature": {
-      "tags": []
-    },
     "api-endpoint-data-access": {
       "tags": []
     },
-    "shared-data-access": {
+    "api-endpoint-feature": {
+      "tags": []
+    },
+    "api-intercept-feature": {
       "tags": []
     },
     "api-project-data-access": {
@@ -50,16 +43,23 @@
     "api-project-utils": {
       "tags": []
     },
-    "api-shared-data-access": {
-      "tags": []
-    },
-    "api-endpoint-feature": {
+    "api-response-data-access": {
       "tags": []
     },
     "api-response-feature": {
       "tags": []
     },
-    "api-response-data-access": {
+    "api-shared-data-access": {
+      "tags": []
+    },
+    "client": {
+      "tags": []
+    },
+    "client-e2e": {
+      "tags": [],
+      "implicitDependencies": ["client"]
+    },
+    "client-projects-feature": {
       "tags": []
     },
     "client-shared-ui": {
@@ -68,13 +68,7 @@
     "client-shell-feature": {
       "tags": []
     },
-    "client-projects-feature": {
-      "tags": []
-    },
     "client-shell-ui-layout": {
-      "tags": []
-    },
-    "client-shell-ui-top-bar": {
       "tags": []
     },
     "client-shell-ui-logo": {
@@ -83,8 +77,22 @@
     "client-shell-ui-theme-switcher": {
       "tags": []
     },
+    "client-shell-ui-top-bar": {
+      "tags": []
+    },
+    "shared-data-access": {
+      "tags": []
+    },
     "client-shell-ui-footer": {
       "tags": []
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }
