@@ -1,1 +1,25 @@
-<p>projects works!</p>
+<section class="p-grid">
+  <div class="p-col-6 p-offset-3">
+    <article class="card p-shadow-1">
+      <header class="p-d-flex p-ai-center">
+        <h6 class="p-m-0">Current Projects</h6>
+
+        <button class="p-ml-auto" pButton type="button" (click)="showDialog()" label="Add Project"></button>
+      </header>
+
+      <p-divider></p-divider>
+    </article>
+  </div>
+
+  <p-dialog header="Title" [(visible)]="display" position="top">
+    <ng-template pTemplate="header">
+      Add New Project
+    </ng-template>
+
+    Please provide your project name.
+
+    <p-footer>
+      <button class="" pButton type="button" label="Save project"></button>
+    </p-footer>
+  </p-dialog>
+</section>

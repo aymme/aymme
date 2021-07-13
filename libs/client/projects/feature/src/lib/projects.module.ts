@@ -1,11 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProjectsComponent } from './projects.component';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { ProjectsComponent } from './projects.component';
+
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild([
+  imports: [CommonModule, FormsModule, ButtonModule, DividerModule, DialogModule, RouterModule.forChild([
     {
       path: '',
       component: ProjectsComponent
@@ -18,4 +23,4 @@ import { RouterModule } from '@angular/router';
     ProjectsComponent
   ],
 })
-export class ProjectsModule {}
+export class ProjectsModule { }

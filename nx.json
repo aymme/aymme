@@ -59,6 +59,9 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
+    "client-projects-data-access": {
+      "tags": []
+    },
     "client-projects-feature": {
       "tags": []
     },
@@ -66,6 +69,9 @@
       "tags": []
     },
     "client-shell-feature": {
+      "tags": []
+    },
+    "client-shell-ui-footer": {
       "tags": []
     },
     "client-shell-ui-layout": {
@@ -78,9 +84,6 @@
       "tags": []
     },
     "client-shell-ui-top-bar": {
-      "tags": []
-    },
-    "client-shell-ui-footer": {
       "tags": []
     },
     "shared-data-access": {

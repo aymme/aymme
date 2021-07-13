@@ -35,12 +35,21 @@
       "@aymme/api/shared/data-access": [
         "libs/api/shared/data-access/src/index.ts"
       ],
+      "@aymme/client/projects/data-access": [
+        "libs/client/projects/data-access/src/index.ts"
+      ],
+      "@aymme/client/projects/data-access/data-access": [
+        "libs/client/projects/data-access/data-access/src/index.ts"
+      ],
       "@aymme/client/projects/feature": [
         "libs/client/projects/feature/src/index.ts"
       ],
       "@aymme/client/shared/ui": ["libs/client/shared/ui/src/index.ts"],
       "@aymme/client/shell/feature": ["libs/client/shell/feature/src/index.ts"],
       "@aymme/client/shell/ui": ["libs/client/shell/ui/src/index.ts"],
+      "@aymme/client/shell/ui/footer": [
+        "libs/client/shell/ui/footer/src/index.ts"
+      ],
       "@aymme/client/shell/ui/layout": [
         "libs/client/shell/ui/layout/src/index.ts"
       ],
@@ -50,9 +59,6 @@
       ],
       "@aymme/client/shell/ui/top-bar": [
         "libs/client/shell/ui/top-bar/src/index.ts"
-      ],
-      "@aymme/client/shell/ui/footer": [
-        "libs/client/shell/ui/footer/src/index.ts"
       ],
       "@aymme/shared/data-access": ["libs/shared/data-access/src/index.ts"]
     }

@@ -1,4 +1,8 @@
 
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
 a, a:hover, a:link, a:visited, a:focus {
   text-decoration: none;
   color: map-get($colors , ay-text-color);
@@ -6,4 +10,19 @@ a, a:hover, a:link, a:visited, a:focus {
 
 ul, ol, ul li, ol li, ul ul {
   list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+}
+
+h1 {
+  font-weight: 300;
+}
+
+h6 {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: calc(1rem * 1.5);
 }
