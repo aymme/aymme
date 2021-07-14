@@ -468,6 +468,81 @@
         }
       }
     },
+    "client-projects-feature-projects": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/projects",
+      "sourceRoot": "libs/client/projects/feature/projects/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/projects"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/projects/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/projects/src/**/*.ts",
+              "libs/client/projects/feature/projects/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-feature-shell": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/shell",
+      "sourceRoot": "libs/client/projects/feature/shell/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/shell"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/shell/src/**/*.ts",
+              "libs/client/projects/feature/shell/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-app-config": {
+      "projectType": "library",
+      "root": "libs/client/shared/app-config",
+      "sourceRoot": "libs/client/shared/app-config/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/app-config"],
+          "options": {
+            "jestConfig": "libs/client/shared/app-config/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/app-config/src/**/*.ts",
+              "libs/client/shared/app-config/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-ui": {
       "projectType": "library",
       "root": "libs/client/shared/ui",

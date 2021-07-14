@@ -22,7 +22,9 @@ module.exports = {
     '<rootDir>/libs/client/shell/ui/logo',
     '<rootDir>/libs/client/shell/ui/theme-switcher',
     '<rootDir>/libs/client/shell/ui/footer',
-    '<rootDir>/libs/client/projects/data-access/data-access',
     '<rootDir>/libs/client/projects/data-access',
+    '<rootDir>/libs/client/shared/app-config',
+    '<rootDir>/libs/client/projects/feature/shell',
+    '<rootDir>/libs/client/projects/feature/projects',
   ],
 };

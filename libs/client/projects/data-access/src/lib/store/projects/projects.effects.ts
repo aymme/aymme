@@ -1,9 +1,11 @@
+import { delay, map } from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 
+import { ProjectsService } from '../../services/projects.service';
 import * as ProjectsActions from './projects.actions';
-import * as ProjectsFeature from './projects.reducer';
 
 @Injectable()
 export class ProjectsEffects {
@@ -12,9 +14,13 @@ export class ProjectsEffects {
       ofType(ProjectsActions.init),
       fetch({
         run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return ProjectsActions.loadProjectsSuccess({ projects: [] });
+          return this.projectsService.getProjects()
+            .pipe(
+              delay(1500),
+              map(projects => ProjectsActions.loadProjectsSuccess({ projects }))
+            );
         },
+
         onError: (action, error) => {
           console.error('Error', error);
           return ProjectsActions.loadProjectsFailure({ error });
@@ -23,5 +29,5 @@ export class ProjectsEffects {
     )
   );
 
-  constructor(private readonly actions$: Actions) {}
+  constructor(private readonly actions$: Actions, private projectsService: ProjectsService) {}
 }

@@ -10,12 +10,19 @@ import { RouterModule } from '@angular/router';
 import { ProjectsComponent } from './projects.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, ButtonModule, DividerModule, DialogModule, RouterModule.forChild([
-    {
-      path: '',
-      component: ProjectsComponent
-    }
-  ]),],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ButtonModule,
+    DividerModule,
+    DialogModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: ProjectsComponent
+      }
+    ]),
+  ],
   declarations: [
     ProjectsComponent
   ],

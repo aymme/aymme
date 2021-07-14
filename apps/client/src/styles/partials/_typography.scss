@@ -1,6 +1,8 @@
 
 body {
+  font-family: 'Josefin Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+  font-size: 16px;
 }
 
 a, a:hover, a:link, a:visited, a:focus {
@@ -16,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-h1 {
+h1, h2, h3 {
   font-weight: 300;
 }
 

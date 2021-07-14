@@ -38,11 +38,17 @@
       "@aymme/client/projects/data-access": [
         "libs/client/projects/data-access/src/index.ts"
       ],
-      "@aymme/client/projects/data-access/data-access": [
-        "libs/client/projects/data-access/data-access/src/index.ts"
-      ],
       "@aymme/client/projects/feature": [
         "libs/client/projects/feature/src/index.ts"
+      ],
+      "@aymme/client/projects/feature/projects": [
+        "libs/client/projects/feature/projects/src/index.ts"
+      ],
+      "@aymme/client/projects/feature/shell": [
+        "libs/client/projects/feature/shell/src/index.ts"
+      ],
+      "@aymme/client/shared/app-config": [
+        "libs/client/shared/app-config/src/index.ts"
       ],
       "@aymme/client/shared/ui": ["libs/client/shared/ui/src/index.ts"],
       "@aymme/client/shell/feature": ["libs/client/shell/feature/src/index.ts"],

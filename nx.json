@@ -65,6 +65,15 @@
     "client-projects-feature": {
       "tags": []
     },
+    "client-projects-feature-projects": {
+      "tags": []
+    },
+    "client-projects-feature-shell": {
+      "tags": []
+    },
+    "client-shared-app-config": {
+      "tags": []
+    },
     "client-shared-ui": {
       "tags": []
     },

@@ -1,5 +1,5 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as ProjectsActions from './projects.actions';
 import { ProjectsEntity } from './projects.models';
@@ -20,11 +20,10 @@ export const projectsAdapter: EntityAdapter<ProjectsEntity> =
   createEntityAdapter<ProjectsEntity>();
 
 export const initialState: State = projectsAdapter.getInitialState({
-  // set initial required properties
   loaded: false,
 });
 
-const projectsReducer = createReducer(
+export const projectsReducer = createReducer(
   initialState,
   on(ProjectsActions.init, (state) => ({
     ...state,
@@ -39,7 +38,3 @@ const projectsReducer = createReducer(
     error,
   }))
 );
-
-export function reducer(state: State | undefined, action: Action) {
-  return projectsReducer(state, action);
-}
