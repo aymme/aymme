@@ -5,6 +5,7 @@ import { ApiInterceptFeatureModule } from '@aymme/api/intercept/feature';
 import { ApiProjectFeatureModule } from '@aymme/api/project/feature';
 import { ApiEndpointFeatureModule } from '@aymme/api/endpoint/feature';
 import { ApiResponseFeatureModule } from '@aymme/api/response/feature';
+import { ApiCollectionFeatureModule } from '@aymme/api/collection/feature';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,6 +17,7 @@ import { AppService } from './app.service';
     ApiProjectFeatureModule,
     ApiEndpointFeatureModule,
     ApiResponseFeatureModule,
+    ApiCollectionFeatureModule,
   ],
   controllers: [AppController],
   providers: [AppService],

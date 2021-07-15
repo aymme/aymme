@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { IProject } from '@aymme/shared/data-access';
 import { Endpoint } from './endpoint.entity';
+import { Collection } from './collection.entity';
 
 @Entity()
 export class Project extends BaseEntity implements IProject {
@@ -23,4 +24,9 @@ export class Project extends BaseEntity implements IProject {
     onDelete: 'CASCADE',
   })
   endpoints: Endpoint[];
+
+  @OneToMany(() => Collection, (collection: Collection) => collection.project, {
+    onDelete: 'CASCADE',
+  })
+  collections: Collection[];
 }

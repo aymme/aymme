@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { IHeader } from '@aymme/shared/data-access';
-import { Endpoint } from '@aymme/api/shared/data-access';
+import { Endpoint } from './endpoint.entity';
 
 @Entity()
 export class Header extends BaseEntity implements IHeader {

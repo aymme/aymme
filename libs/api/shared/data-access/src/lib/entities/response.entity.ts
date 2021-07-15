@@ -26,6 +26,7 @@ export class Response extends BaseEntity implements IResponse {
 
   @ManyToOne(() => Endpoint, (endpoint: Endpoint) => endpoint.responses, {
     nullable: false,
+    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'endpointId' })
   endpoint: Endpoint;
