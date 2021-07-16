@@ -7,7 +7,12 @@
   letter-spacing: 1px;
   font-weight: 800;
   margin: 0;
+  min-width: 220px;
   -webkit-font-smoothing: antialiased;
+
+  > a {
+    display: inline-flex;
+  }
 
   &-title {
     display: flex;
@@ -15,21 +20,23 @@
   }
 
   &-sub-title {
-    margin-top: 3px;
-    font-size: .8rem;
+    margin-top: 2px;
+    font-size: .9rem;
     color: rgba(255,255,255,.4);
     font-weight: 500;
   }
 
   &-icon {
     display: inline-block;
-    font-size: 3rem;
+    font-size: 3.2rem;
     color: rgb(204, 204, 204);
-    margin: -6px 8px 0 0;
-    font-weight: 500;
+    margin: 0 8px 0 0;
+    position: relative;
+    top: -2px;
+    font-weight: 600;
 
     &-alt {
-      margin-left: 10px;
+      margin-left: 8px;
       color: rgb(165, 165, 165);
     }
   }
