@@ -1,0 +1,19 @@
+@import '_variables';
+@import './primeng/_index';
+
+// partials
+@import "./partials/_layout";
+@import "./partials/_typography";
+@import "./partials/helpers";
+
+// theme
+@import "./partials/theme";
+
+
+* { // sass-lint:disable-line no-universal-selectors
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -65,13 +65,28 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
+    "client-projects-data-access": {
+      "tags": []
+    },
     "client-projects-feature": {
+      "tags": []
+    },
+    "client-projects-feature-projects": {
+      "tags": []
+    },
+    "client-projects-feature-shell": {
+      "tags": []
+    },
+    "client-shared-app-config": {
       "tags": []
     },
     "client-shared-ui": {
       "tags": []
     },
     "client-shell-feature": {
+      "tags": []
+    },
+    "client-shell-ui-footer": {
       "tags": []
     },
     "client-shell-ui-layout": {

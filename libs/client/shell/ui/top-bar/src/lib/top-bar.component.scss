@@ -1,4 +1,37 @@
 
 header {
-  min-height: 80px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  padding: 0 20px;
+
+  > div {
+    height: 100px;
+  }
+}
+
+.ay-primary-menu {
+  font-size: 1.1rem;
+
+  li {
+    > a {
+      display: inline-block;
+      padding: 10px 20px;
+      transition: all .2s ease-in-out;
+      line-height: 26px;
+
+      &:hover span {
+        opacity: .8;
+      }
+
+      > i {
+        position: relative;
+        top: 2px;
+        color: rgba(255,255,255,.5);
+        font-size: 1.6rem;
+      }
+
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
 }

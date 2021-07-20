@@ -460,6 +460,31 @@
         }
       }
     },
+    "client-projects-data-access": {
+      "projectType": "library",
+      "root": "libs/client/projects/data-access",
+      "sourceRoot": "libs/client/projects/data-access/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/data-access"],
+          "options": {
+            "jestConfig": "libs/client/projects/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/data-access/src/**/*.ts",
+              "libs/client/projects/data-access/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-feature": {
       "projectType": "library",
       "root": "libs/client/projects/feature",
@@ -480,6 +505,81 @@
             "lintFilePatterns": [
               "libs/client/projects/feature/src/**/*.ts",
               "libs/client/projects/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-feature-projects": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/projects",
+      "sourceRoot": "libs/client/projects/feature/projects/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/projects"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/projects/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/projects/src/**/*.ts",
+              "libs/client/projects/feature/projects/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-projects-feature-shell": {
+      "projectType": "library",
+      "root": "libs/client/projects/feature/shell",
+      "sourceRoot": "libs/client/projects/feature/shell/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/feature/shell"],
+          "options": {
+            "jestConfig": "libs/client/projects/feature/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/feature/shell/src/**/*.ts",
+              "libs/client/projects/feature/shell/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shared-app-config": {
+      "projectType": "library",
+      "root": "libs/client/shared/app-config",
+      "sourceRoot": "libs/client/shared/app-config/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/app-config"],
+          "options": {
+            "jestConfig": "libs/client/shared/app-config/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/app-config/src/**/*.ts",
+              "libs/client/shared/app-config/src/**/*.html"
             ]
           }
         }
@@ -530,6 +630,31 @@
             "lintFilePatterns": [
               "libs/client/shell/feature/src/**/*.ts",
               "libs/client/shell/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-shell-ui-footer": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/footer",
+      "sourceRoot": "libs/client/shell/ui/footer/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/footer"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/footer/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/footer/src/**/*.ts",
+              "libs/client/shell/ui/footer/src/**/*.html"
             ]
           }
         }
