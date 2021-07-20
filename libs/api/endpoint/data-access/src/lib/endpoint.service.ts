@@ -4,12 +4,16 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { EndpointRepository } from './endpoint.repository';
-import { Endpoint, Project } from '@aymme/api/shared/data-access';
+import { Collection, Endpoint, Project } from '@aymme/api/shared/data-access';
 import { UpdateEndpointDto } from './dto/update-endpoint.dto';
+import { CollectionRepository } from '@aymme/api/collection/data-access';
 
 @Injectable()
 export class EndpointService {
-  constructor(private endpointRepository: EndpointRepository) {}
+  constructor(
+    private endpointRepository: EndpointRepository,
+    private collectionRepository: CollectionRepository
+  ) {}
 
   async intercept(
     path: string,
@@ -33,11 +37,24 @@ export class EndpointService {
       return found;
     }
 
-    return this.endpointRepository.createEndpoint(path, method, project);
+    const defaultCategory = await this.collectionRepository.findOrCreate(
+      'default',
+      project.id
+    );
+
+    return this.endpointRepository.createEndpoint(
+      path,
+      method,
+      project,
+      defaultCategory
+    );
   }
 
-  async getAll(projectId: string): Promise<Endpoint[]> {
-    return this.endpointRepository.find({ projectId });
+  async getAll(projectId: string): Promise<[Endpoint[], number]> {
+    const found = this.endpointRepository.findAndCount({
+      where: { projectId },
+    });
+    return found;
   }
 
   async getById(projectId: string, id: string): Promise<Endpoint> {

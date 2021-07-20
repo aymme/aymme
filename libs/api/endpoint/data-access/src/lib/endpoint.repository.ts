@@ -1,10 +1,11 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, QueryFailedError, Repository } from 'typeorm';
 import {
   InternalServerErrorException,
   Logger,
   NotFoundException,
 } from '@nestjs/common';
 import {
+  Collection,
   Endpoint,
   Header,
   Project,
@@ -15,13 +16,19 @@ import { UpdateEndpointDto } from './dto/update-endpoint.dto';
 @EntityRepository(Endpoint)
 export class EndpointRepository extends Repository<Endpoint> {
   private logger = new Logger(EntityRepository.name);
-  async createEndpoint(path: string, method: string, project: Project) {
+  async createEndpoint(
+    path: string,
+    method: string,
+    project: Project,
+    collection: Collection
+  ) {
     const endpoint = new Endpoint();
     const response = new Response();
     endpoint.path = path;
     endpoint.method = method;
     endpoint.project = project;
     endpoint.responses = [response];
+    endpoint.collection = collection;
 
     try {
       return await endpoint.save();
@@ -45,7 +52,8 @@ export class EndpointRepository extends Repository<Endpoint> {
       throw new NotFoundException(`Endpoint with ID: ${id} not found`);
     }
 
-    const { headers, activeStatusCode, delay, emptyArray } = updateEndpointDto;
+    const { headers, activeStatusCode, delay, emptyArray, collectionId } =
+      updateEndpointDto;
 
     if (headers) {
       endpoint.headers = headers as Header[];
@@ -61,6 +69,10 @@ export class EndpointRepository extends Repository<Endpoint> {
 
     if (emptyArray) {
       endpoint.emptyArray = emptyArray;
+    }
+
+    if (collectionId) {
+      endpoint.collectionId = collectionId;
     }
 
     try {

@@ -1,6 +1,7 @@
 import { IProject } from './project.interface';
 import { IResponse } from './response.interface';
 import { IHeader } from './header.interface';
+import { ICollection } from './collection.interface';
 
 export interface IEndpoint {
   id: string;
@@ -12,4 +13,5 @@ export interface IEndpoint {
   project?: IProject;
   responses?: IResponse[];
   headers?: IHeader[];
+  category?: ICollection;
 }
