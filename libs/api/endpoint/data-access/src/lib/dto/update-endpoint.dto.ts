@@ -3,6 +3,7 @@ import {
   IsBoolean,
   IsNumber,
   IsOptional,
+  IsUUID,
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
@@ -26,4 +27,8 @@ export class UpdateEndpointDto {
   @ValidateNested({ each: true })
   @Type(() => HeaderDto)
   headers?: HeaderDto[];
+
+  @IsOptional()
+  @IsUUID()
+  collectionId?: string;
 }

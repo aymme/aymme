@@ -1,4 +1,4 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, QueryFailedError, Repository } from 'typeorm';
 import {
   InternalServerErrorException,
   Logger,
@@ -52,7 +52,8 @@ export class EndpointRepository extends Repository<Endpoint> {
       throw new NotFoundException(`Endpoint with ID: ${id} not found`);
     }
 
-    const { headers, activeStatusCode, delay, emptyArray } = updateEndpointDto;
+    const { headers, activeStatusCode, delay, emptyArray, collectionId } =
+      updateEndpointDto;
 
     if (headers) {
       endpoint.headers = headers as Header[];
@@ -68,6 +69,10 @@ export class EndpointRepository extends Repository<Endpoint> {
 
     if (emptyArray) {
       endpoint.emptyArray = emptyArray;
+    }
+
+    if (collectionId) {
+      endpoint.collectionId = collectionId;
     }
 
     try {
