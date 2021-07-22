@@ -57,6 +57,13 @@ export class ApiInterceptFeatureController {
       );
     }
 
+    if (endpoint.headers.length) {
+      const headers = endpoint.headers.reduce((obj, header) => {
+        return { ...obj, [header.name]: header.value };
+      }, {});
+      res.set(headers);
+    }
+
     if (endpoint.delay && endpoint.delay > 10) {
       await sleep(endpoint.delay);
     }
