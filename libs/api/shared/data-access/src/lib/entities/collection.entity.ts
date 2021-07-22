@@ -19,7 +19,7 @@ export class Collection extends BaseEntity implements ICollection {
   @Column()
   name: string;
 
-  @OneToMany(() => Endpoint, (endpoint: Endpoint) => endpoint.project, {
+  @OneToMany(() => Endpoint, (endpoint: Endpoint) => endpoint.collection, {
     nullable: true,
     cascade: true,
   })
