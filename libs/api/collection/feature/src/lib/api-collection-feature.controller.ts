@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Param,
   ParseUUIDPipe,
   Patch,
@@ -16,6 +17,11 @@ import { CreateProjectDto } from '@aymme/api/project/data-access';
 @Controller('projects/:projectId/collections')
 export class ApiCollectionFeatureController {
   constructor(private collectionService: CollectionService) {}
+
+  @Get()
+  async getAll(@Param('projectId', new ParseUUIDPipe()) projectId: string) {
+    return this.collectionService.getAllByProjectID(projectId);
+  }
 
   @Post()
   async create(

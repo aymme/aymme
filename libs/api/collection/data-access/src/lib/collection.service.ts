@@ -15,6 +15,13 @@ export class CollectionService {
 
   constructor(private categoryRepository: CollectionRepository) {}
 
+  async getAllByProjectID(projectId: string): Promise<Collection[]> {
+    return this.categoryRepository.find({
+      where: { projectId },
+      relations: ['endpoints'],
+    });
+  }
+
   async getById(id: string, projectId: string): Promise<Collection> {
     const found = await this.categoryRepository.findOne({ id, projectId });
 
