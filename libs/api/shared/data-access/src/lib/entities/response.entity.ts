@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { IResponse } from '@aymme/shared/data-access';
-import { Endpoint } from '@aymme/api/shared/data-access';
+import { Endpoint } from './endpoint.entity';
 import { HttpStatus } from '@nestjs/common';
 
 @Entity()
