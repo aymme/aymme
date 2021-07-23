@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { IResponse } from '@aymme/shared/data-access';
-import { Endpoint } from '@aymme/api/shared/data-access';
+import { Endpoint } from './endpoint.entity';
 import { HttpStatus } from '@nestjs/common';
 
 @Entity()
@@ -26,6 +26,7 @@ export class Response extends BaseEntity implements IResponse {
 
   @ManyToOne(() => Endpoint, (endpoint: Endpoint) => endpoint.responses, {
     nullable: false,
+    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'endpointId' })
   endpoint: Endpoint;

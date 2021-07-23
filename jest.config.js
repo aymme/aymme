@@ -13,6 +13,8 @@ module.exports = {
     '<rootDir>/libs/api/endpoint/feature',
     '<rootDir>/libs/api/response/feature',
     '<rootDir>/libs/api/response/data-access',
+    '<rootDir>/libs/api/category/data-access',
+    '<rootDir>/libs/api/category/feature',
     '<rootDir>/libs/client/shared/ui',
     '<rootDir>/libs/client/shell/feature',
     '<rootDir>/libs/client/shell/ui',

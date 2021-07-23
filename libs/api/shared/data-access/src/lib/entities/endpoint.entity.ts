@@ -11,6 +11,7 @@ import { IEndpoint } from '@aymme/shared/data-access';
 import { Project } from './project.entity';
 import { Response } from './response.entity';
 import { Header } from './header.entity';
+import { Collection } from './collection.entity';
 
 @Entity()
 export class Endpoint extends BaseEntity implements IEndpoint {
@@ -62,4 +63,17 @@ export class Endpoint extends BaseEntity implements IEndpoint {
     eager: true,
   })
   headers?: Header[];
+
+  @ManyToOne(
+    () => Collection,
+    (collection: Collection) => collection.endpoints,
+    {
+      onDelete: 'CASCADE',
+    }
+  )
+  @JoinColumn({ name: 'collectionId' })
+  collection?: Collection;
+
+  @Column({ nullable: true })
+  collectionId?: string;
 }

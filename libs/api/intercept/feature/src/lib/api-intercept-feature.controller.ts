@@ -11,10 +11,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import sleep from 'sleep-promise';
+
 import { EndpointService } from '@aymme/api/endpoint/data-access';
 import { CurrentProject, ProjectGuard } from '@aymme/api/project/utils';
 import { Project } from '@aymme/api/shared/data-access';
-import * as sleep from 'sleep-promise';
 
 @Controller('intercept')
 export class ApiInterceptFeatureController {
@@ -31,8 +32,7 @@ export class ApiInterceptFeatureController {
     @CurrentProject() currentProject: Project
   ) {
     this.logger.verbose(request.path);
-    this.logger.verbose(query);
-    this.logger.verbose(currentProject);
+    this.logger.verbose(currentProject.name);
     const endpoint = await this.endpointService.intercept(
       request.url,
       query,
@@ -55,6 +55,13 @@ export class ApiInterceptFeatureController {
       throw new NotFoundException(
         `Response for HTTP Status code ${endpoint.activeStatusCode} does not exist`
       );
+    }
+
+    if (endpoint.headers.length) {
+      const headers = endpoint.headers.reduce((obj, header) => {
+        return { ...obj, [header.name]: header.value };
+      }, {});
+      res.set(headers);
     }
 
     if (endpoint.delay && endpoint.delay > 10) {

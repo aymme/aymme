@@ -22,6 +22,12 @@
     "api": {
       "tags": []
     },
+    "api-collection-data-access": {
+      "tags": []
+    },
+    "api-collection-feature": {
+      "tags": []
+    },
     "api-core-feature": {
       "tags": []
     },
