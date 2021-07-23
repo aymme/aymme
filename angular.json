@@ -518,6 +518,31 @@
         }
       }
     },
+    "client-projects-ui-projects-list": {
+      "projectType": "library",
+      "root": "libs/client/projects/ui/projects-list",
+      "sourceRoot": "libs/client/projects/ui/projects-list/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/projects/ui/projects-list"],
+          "options": {
+            "jestConfig": "libs/client/projects/ui/projects-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/projects/ui/projects-list/src/**/*.ts",
+              "libs/client/projects/ui/projects-list/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-shared-app-config": {
       "projectType": "library",
       "root": "libs/client/shared/app-config",

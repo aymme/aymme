@@ -1,9 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  PROJECTS_FEATURE_KEY,
-  State,
-  projectsAdapter,
-} from './projects.reducer';
+
+import { PROJECTS_FEATURE_KEY, projectsAdapter, State } from './projects.reducer';
 
 // Lookup the 'Projects' feature state managed by NgRx
 export const getProjectsState =

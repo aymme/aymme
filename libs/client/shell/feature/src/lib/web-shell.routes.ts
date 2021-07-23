@@ -7,6 +7,11 @@ export const webShellRoutes: Route[] = [
     component: LayoutComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'projects',
+        pathMatch: 'full'
+      },
+      {
         path: 'projects',
         loadChildren: async () => (await import('@aymme/client/projects/feature/shell')).ShellModule
       },

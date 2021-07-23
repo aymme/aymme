@@ -47,6 +47,9 @@
       "@aymme/client/projects/feature/shell": [
         "libs/client/projects/feature/shell/src/index.ts"
       ],
+      "@aymme/client/projects/ui/projects-list": [
+        "libs/client/projects/ui/projects-list/src/index.ts"
+      ],
       "@aymme/client/shared/app-config": [
         "libs/client/shared/app-config/src/index.ts"
       ],

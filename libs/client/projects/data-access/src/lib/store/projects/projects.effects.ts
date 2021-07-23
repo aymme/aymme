@@ -13,10 +13,10 @@ export class ProjectsEffects {
     this.actions$.pipe(
       ofType(ProjectsActions.init),
       fetch({
-        run: (action) => {
+        run: () => {
           return this.projectsService.getProjects()
             .pipe(
-              delay(1500),
+              delay(500),
               map(projects => ProjectsActions.loadProjectsSuccess({ projects }))
             );
         },

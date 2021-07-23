@@ -26,5 +26,6 @@ module.exports = {
     '<rootDir>/libs/client/shared/app-config',
     '<rootDir>/libs/client/projects/feature/shell',
     '<rootDir>/libs/client/projects/feature/projects',
+    '<rootDir>/libs/client/projects/ui/projects-list',
   ],
 };
