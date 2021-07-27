@@ -1,185 +1,53 @@
-# Aymme
+# AYMME
 
-This project was generated using [Nx](https://nx.dev).
+*AMMYE is currently in develop. If you want to contribute please reach out.*
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+AYMME stands for "Are You Mocking ME?" and makes mocking data easier when using "ng serve". Angular CLI already covers the instant feedback when code changes, but when you need to test multiple scenarios using different data or error responses or you need to change the structure of your Experience. AYMME is able to manage this for you.
 
-🔎 **Smart, Extensible Build Framework**
+This project was generated using [Nx](https://nx.dev). AYMME follows a mix of NX folder structure and best practices for splitting features per domain.
 
-## Quick Start & Documentation
+Following a cheatsheet for AYMME working in the NX framework. Please note that some commands will create a structure of the components that is not always reflecting the AYMME structure. Please have a look at other “features” to see the structure. There will be examples further in this cheatsheet. 
 
-[Nx Documentation](https://nx.dev/angular)
+---
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
+> Use —dry-run flag in order to verify the output of the command before executing it. 
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+---
 
-## Pre-installation
+/Please Note: In the project the prefix: “ay” is used for all components, directives, pipes, services. Automatically the prefix “Aymme” is set by NX. Inside the new module you will need to change this “prefix” to: “prefix”: “ay”/ 
 
-Use Node.js LTS, you can use NVM to manage Node versions on your local
+Prefix example: 
 
-### Dependencies
+file: *.eslintrc.json*: "prefix": "ay" (there are 2 occurrences)
 
-Make sure you have `node`, `npm` and `angular/cli` installed in your machine.
 
-#### Install node and npm
+#### Create a FEATURE library 
 
-Must have `node` and `npm` installed, other wise its better to install them using [nvm](#Install-NPM-via-NVM).
+*How to:*
 
-#### Install Angular/cli
+`npx nx g @nrwl/angular:lib --directory=directory --name=feature-name  --simpleModuleName`
 
-To install `angular/cli` run
+*Example:* 
 
-```shell
-  npm install -g @angular/cli@{{version}}
-```
+`npx nx g @nrwl/angular:lib --directory=client/profile --name=profile  --simpleModuleName`
 
-For Aymme we are using version `~12.0.0`, run
 
-```shell
-  npm install -g @angular/cli@~12.0.0
-```
+#### Create a COMPONENT
 
-## Installation
+*How to:*
 
-### Create the database
-In the root of the workspace, you will find a folder with the name `database`. You should create the SQLite database file here
-```shell  
-  touch aymme.sqlite
-```
+`npx nx g component componentName --project=projectName --export`
 
-Later, this file should be created in the user's Application directory
+*Example:*
 
-### Build the environment
+`npx nx g component projects-list --project=client-projects-ui-projects-list --export`
 
-```shell
-  npm install
-  ng build
-```
+#### Create a SERVICE
 
-## Install NPM via NVM
+*How To* 
 
-### Installing nvm
+`nx generate @nrwl/angular:service --project=projectName --name serviceName`
 
-1- Clone repository
+*Example* 
 
-```shell
-  wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-```
-
-2- Add this to your profile (`~/.bash_profile`, `~/.zshrc`, `~/.profile`, or `~/.bashrc`)
-
-```text
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-```
-
-3- Restart your machine or run
-
-```shell
-  source {{profile}}
-```
-
-profile: (`~/.bash_profile`, `~/.zshrc`, `~/.profile`, or `~/.bashrc`)
-
-Source [Node Version Manager Installation](https://github.com/nvm-sh/nvm)
-
-### Installing npm
-
-1- To get list of available versions run
-
-```shell
-  nvm ls-remote
-```
-
-2- Select version from the list and install it run, (Better to install latest LTS version)
-
-```shell
-  nvm install {{selected-version}}
-```
-
-Source [Installing Angular CLI](https://angular.io/cli#installing-angular-cli)
-
-## Adding capabilities to your workspace
-
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
-
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
-
-Below are our core plugins:
-
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
-
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
-
-## Generate an application
-
-Run `ng g @nrwl/angular:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@aymme/mylib`.
-
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to [Localhost](http://localhost:4200). The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+`nx generate @nrwl/angular:service --project=client-projects-data-access --name projects`
