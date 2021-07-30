@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IProject } from '@aymme/shared/data-access';
 
 @Component({
-  selector: 'aymme-projects-list',
+  selector: 'ay-projects-list',
   templateUrl: './projects-list.component.html',
-  styleUrls: ['./projects-list.component.scss']
+  styleUrls: ['./projects-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjectsListComponent implements OnInit {
+export class ProjectsListComponent {
 
-  constructor() { }
+  @Input() projects!: IProject[] | null;
+  @Output() deleteProject = new EventEmitter<IProject>();
 
-  ngOnInit(): void {
+  onDeleteProject(project: IProject): void{
+    this.deleteProject.emit(project);
   }
 
 }

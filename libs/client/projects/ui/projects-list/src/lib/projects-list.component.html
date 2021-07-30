@@ -1,1 +1,10 @@
-<p>projects-list works!</p>
+<ng-container *ngIf="projects">
+  <ul class="projects-list">
+    <li *ngFor="let project of projects; index as i">
+      <h5>
+        {{project.name}}
+        <i class="fas fa-trash ml-auto" (click)="onDeleteProject(project)"></i>
+      </h5>
+    </li>
+  </ul>
+</ng-container>

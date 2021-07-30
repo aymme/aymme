@@ -19,4 +19,8 @@ export class ProjectsComponent {
   showDialog() {
     this.display = true;
   }
+
+  deleteProject() {
+    console.warn('TODO: delete project');
+  }
 }
