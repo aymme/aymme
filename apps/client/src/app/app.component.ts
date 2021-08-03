@@ -1,5 +1,5 @@
-import { ThemeSwitcherService } from 'libs/client/shell/ui/theme-switcher/src/lib/theme-switcher.service';
 import { PrimeNGConfig } from 'primeng/api';
+import { ThemeSwitcherService } from '@aymme/client/shell/ui/theme-switcher';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -11,9 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   constructor(
     private readonly primengConfig: PrimeNGConfig,
-    private readonly themeSwitcherService: ThemeSwitcherService,
-  ) {
-  }
+    private readonly themeSwitcherService: ThemeSwitcherService
+  ) {}
 
   ngOnInit() {
     this.primengConfig.ripple = true;
