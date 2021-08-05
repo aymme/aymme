@@ -2,6 +2,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { InputTextModule } from 'primeng/inputtext';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { ProjectsComponent } from './projects.component';
     DividerModule,
     DialogModule,
     InputTextModule,
+    ProgressBarModule,
     RouterModule.forChild([
       {
         path: '',

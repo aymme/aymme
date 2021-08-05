@@ -1,10 +1,20 @@
 <ng-container *ngIf="projects">
   <ul class="projects-list">
-    <li *ngFor="let project of projects; index as i">
-      <h5>
-        {{project.name}}
-        <i class="fas fa-trash ml-auto" (click)="onDeleteProject(project)"></i>
-      </h5>
+    <li
+      class="projects-list__item"
+      *ngFor="let project of projects; index as i"
+    >
+      <h4 class="projects-list__name">
+        {{ project.name }}
+      </h4>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Delete"
+        class="projects-list__icon p-button-sm p-button-outlined"
+        (click)="onDeleteProject(project)"
+      ></button>
     </li>
   </ul>
 </ng-container>

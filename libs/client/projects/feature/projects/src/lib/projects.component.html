@@ -9,7 +9,8 @@
           pButton
           type="button"
           (click)="showDialog()"
-          label="Add Project"
+          icon="pi pi-plus"
+          label="New project"
         ></button>
       </header>
 
@@ -26,7 +27,7 @@
   <p-dialog header="Add a new Project" [(visible)]="display" position="top">
     <article>
       <div class="p-field">
-        <label for="projectName">Project name</label>
+        <label for="projectName">Name</label>
         <input
           id="projectName"
           type="text"
@@ -43,7 +44,7 @@
         class=""
         pButton
         type="button"
-        label="Save project"
+        label="Confirm"
         (click)="createNewProject()"
       ></button>
     </p-footer>
@@ -51,7 +52,7 @@
 </section>
 
 <ng-template #loadingProjects>
-  <div class="loader-wrapper">loading...</div>
+  <p-progressBar mode="indeterminate"></p-progressBar>
 </ng-template>
 
 <ng-template #loadedProjects>
