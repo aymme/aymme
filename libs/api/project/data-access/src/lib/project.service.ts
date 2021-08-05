@@ -88,4 +88,8 @@ export class ProjectService {
 
     return project;
   }
+
+  async delete(id: string): Promise<void> {
+    await this.projectRepository.delete({ id });
+  }
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseUUIDPipe,
@@ -10,8 +11,8 @@ import {
 import {
   CreateProjectDto,
   ProjectService,
+  UpdateProjectDto,
 } from '@aymme/api/project/data-access';
-import { UpdateProjectDto } from '@aymme/api/project/data-access';
 
 @Controller('projects')
 export class ApiProjectFeatureController {
@@ -38,5 +39,10 @@ export class ApiProjectFeatureController {
     @Body() updateProjectDto: UpdateProjectDto
   ) {
     return this.projectService.update(id, updateProjectDto);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.projectService.delete(id);
   }
 }
