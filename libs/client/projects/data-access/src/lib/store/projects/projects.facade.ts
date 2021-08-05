@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import * as ProjectsActions from './projects.actions';
-import * as ProjectsFeature from './projects.reducer';
 import * as ProjectsSelectors from './projects.selectors';
 
 @Injectable()
@@ -23,5 +22,13 @@ export class ProjectsFacade {
    */
   init() {
     this.store.dispatch(ProjectsActions.init());
+  }
+
+  createNewProject(name: string) {
+    this.store.dispatch(ProjectsActions.createNewProject({ name }));
+  }
+
+  deleteProject(projectId: string) {
+    this.store.dispatch(ProjectsActions.deleteProject({ projectId }));
   }
 }

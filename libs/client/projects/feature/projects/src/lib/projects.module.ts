@@ -1,6 +1,7 @@
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -17,19 +18,16 @@ import { ProjectsComponent } from './projects.component';
     ButtonModule,
     DividerModule,
     DialogModule,
+    InputTextModule,
     RouterModule.forChild([
       {
         path: '',
-        component: ProjectsComponent
-      }
+        component: ProjectsComponent,
+      },
     ]),
-    ProjectsListModule
+    ProjectsListModule,
   ],
-  declarations: [
-    ProjectsComponent
-  ],
-  exports: [
-    ProjectsComponent
-  ],
+  declarations: [ProjectsComponent],
+  exports: [ProjectsComponent],
 })
-export class ProjectsModule { }
+export class ProjectsModule {}

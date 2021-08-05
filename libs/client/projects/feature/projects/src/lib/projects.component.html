@@ -4,37 +4,61 @@
       <header class="p-d-flex p-ai-center">
         <h2 class="p-m-0">Current <strong>Projects</strong></h2>
 
-        <button class="p-ml-auto" pButton type="button" (click)="showDialog()" label="Add Project"></button>
+        <button
+          class="p-ml-auto"
+          pButton
+          type="button"
+          (click)="showDialog()"
+          label="Add Project"
+        ></button>
       </header>
 
       <p-divider></p-divider>
 
       <section>
-        <ng-container *ngIf="loaded$ | async; then loadedProjects else loadingProjects"></ng-container>
+        <ng-container
+          *ngIf="loaded$ | async; then loadedProjects; else loadingProjects"
+        ></ng-container>
       </section>
     </article>
   </div>
 
   <p-dialog header="Add a new Project" [(visible)]="display" position="top">
-
     <article>
-      ...
+      <div class="p-field">
+        <label for="projectName">Project name</label>
+        <input
+          id="projectName"
+          type="text"
+          aria-describedby="projectName-help"
+          pInputText
+          [(ngModel)]="newProjectName"
+          autofocus
+        />
+      </div>
     </article>
 
     <p-footer>
-      <button class="" pButton type="button" label="Save project"></button>
+      <button
+        class=""
+        pButton
+        type="button"
+        label="Save project"
+        (click)="createNewProject()"
+      ></button>
     </p-footer>
   </p-dialog>
 </section>
 
 <ng-template #loadingProjects>
-  <div class="loader-wrapper">
-    loading...
-  </div>
+  <div class="loader-wrapper">loading...</div>
 </ng-template>
 
 <ng-template #loadedProjects>
   <ng-container *ngIf="projects$ | async as projects">
-    <ay-projects-list [projects]="projects" (deleteProject)="deleteProject()"></ay-projects-list>
+    <ay-projects-list
+      [projects]="projects"
+      (deleteProject)="deleteProject($event)"
+    ></ay-projects-list>
   </ng-container>
 </ng-template>

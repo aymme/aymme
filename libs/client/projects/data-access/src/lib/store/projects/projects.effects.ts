@@ -11,14 +11,17 @@ import * as ProjectsActions from './projects.actions';
 export class ProjectsEffects {
   init$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProjectsActions.init),
+      ofType(
+        ProjectsActions.init,
+        ProjectsActions.createNewProjectSuccess,
+        ProjectsActions.deleteProjectSuccess
+      ),
       fetch({
         run: () => {
-          return this.projectsService.getProjects()
-            .pipe(
-              delay(500),
-              map(projects => ProjectsActions.loadProjectsSuccess({ projects }))
-            );
+          return this.projectsService.getProjects().pipe(
+            delay(500),
+            map((projects) => ProjectsActions.loadProjectsSuccess({ projects }))
+          );
         },
 
         onError: (action, error) => {
@@ -29,5 +32,41 @@ export class ProjectsEffects {
     )
   );
 
-  constructor(private readonly actions$: Actions, private projectsService: ProjectsService) {}
+  createNewProject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectsActions.createNewProject),
+      fetch({
+        run: ({ name }) => {
+          return this.projectsService
+            .createNewProject(name)
+            .pipe(
+              map((project) =>
+                ProjectsActions.createNewProjectSuccess({ project })
+              )
+            );
+        },
+        onError: (_, error) => {
+          return ProjectsActions.createNewProjectFailure({ error });
+        },
+      })
+    )
+  );
+
+  deleteProject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectsActions.deleteProject),
+      fetch({
+        run: ({ projectId }) =>
+          this.projectsService
+            .deleteProject(projectId)
+            .pipe(map(() => ProjectsActions.deleteProjectSuccess())),
+        onError: (_, error) => ProjectsActions.deleteProjectFailure(error),
+      })
+    )
+  );
+
+  constructor(
+    private readonly actions$: Actions,
+    private projectsService: ProjectsService
+  ) {}
 }
