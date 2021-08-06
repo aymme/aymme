@@ -7,9 +7,9 @@
     ".eslintrc.json": "*"
   },
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
-  "npmScope": "aymme",
+  "npmScope": "ay",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
