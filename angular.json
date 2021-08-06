@@ -1,7 +1,7 @@
 {
   "version": 1,
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
   },
   "defaultProject": "client",
   "schematics": {
@@ -456,6 +456,56 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "client-endpoints-feature-endpoints": {
+      "projectType": "library",
+      "root": "libs/client/endpoints/feature/endpoints",
+      "sourceRoot": "libs/client/endpoints/feature/endpoints/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/endpoints/feature/endpoints"],
+          "options": {
+            "jestConfig": "libs/client/endpoints/feature/endpoints/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/endpoints/feature/endpoints/src/**/*.ts",
+              "libs/client/endpoints/feature/endpoints/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "client-endpoints-feature-shell": {
+      "projectType": "library",
+      "root": "libs/client/endpoints/feature/shell",
+      "sourceRoot": "libs/client/endpoints/feature/shell/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/endpoints/feature/shell"],
+          "options": {
+            "jestConfig": "libs/client/endpoints/feature/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/endpoints/feature/shell/src/**/*.ts",
+              "libs/client/endpoints/feature/shell/src/**/*.html"
+            ]
           }
         }
       }

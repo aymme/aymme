@@ -9,18 +9,24 @@ export const webShellRoutes: Route[] = [
       {
         path: '',
         redirectTo: 'projects',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'projects',
-        loadChildren: async () => (await import('@aymme/client/projects/feature/shell')).ShellModule
+        loadChildren: async () =>
+          (await import('@aymme/client/projects/feature/shell')).ShellModule,
       },
-    ]
+      {
+        path: 'projects/:projectId/endpoints',
+        loadChildren: async () =>
+          (await import('@aymme/client/endpoints/feature/shell')).ShellModule,
+      },
+    ],
   },
   {
     path: '',
     redirectTo: 'projects',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
-  { path: '**', redirectTo: '/projects' }
-]
+  { path: '**', redirectTo: '/projects' },
+];

@@ -42,6 +42,12 @@
       "@aymme/api/shared/data-access": [
         "libs/api/shared/data-access/src/index.ts"
       ],
+      "@aymme/client/endpoints/feature/endpoints": [
+        "libs/client/endpoints/feature/endpoints/src/index.ts"
+      ],
+      "@aymme/client/endpoints/feature/shell": [
+        "libs/client/endpoints/feature/shell/src/index.ts"
+      ],
       "@aymme/client/projects/data-access": [
         "libs/client/projects/data-access/src/index.ts"
       ],

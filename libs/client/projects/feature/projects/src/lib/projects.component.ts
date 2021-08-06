@@ -3,6 +3,7 @@ import {
   ProjectsEntity,
   ProjectsFacade,
 } from '@aymme/client/projects/data-access';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ay-projects',
@@ -17,7 +18,10 @@ export class ProjectsComponent {
 
   newProjectName = '';
 
-  constructor(private projectsFacade: ProjectsFacade) {
+  constructor(
+    private projectsFacade: ProjectsFacade,
+    private readonly router: Router
+  ) {
     this.projectsFacade.init();
   }
 
@@ -33,5 +37,9 @@ export class ProjectsComponent {
     this.projectsFacade.createNewProject(this.newProjectName);
     this.newProjectName = '';
     this.display = false;
+  }
+
+  openProject({ id }: { id: string }) {
+    this.router.navigate([`projects/${id}/endpoints`]);
   }
 }

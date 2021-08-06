@@ -65,6 +65,12 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
+    "client-endpoints-feature-endpoints": {
+      "tags": []
+    },
+    "client-endpoints-feature-shell": {
+      "tags": []
+    },
     "client-projects-data-access": {
       "tags": []
     },
