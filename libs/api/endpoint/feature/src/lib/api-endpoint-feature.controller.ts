@@ -13,7 +13,7 @@ import {
   UpdateEndpointDto,
 } from '@aymme/api/endpoint/data-access';
 
-@Controller(':projectId/endpoints')
+@Controller('projects/:projectId/endpoints')
 export class ApiEndpointFeatureController {
   private logger = new Logger(ApiEndpointFeatureController.name);
 

@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { EndpointRepository } from './endpoint.repository';
-import { Collection, Endpoint, Project } from '@aymme/api/shared/data-access';
+import { Endpoint, Project } from '@aymme/api/shared/data-access';
 import { UpdateEndpointDto } from './dto/update-endpoint.dto';
 import { CollectionRepository } from '@aymme/api/collection/data-access';
 
@@ -50,11 +50,11 @@ export class EndpointService {
     );
   }
 
-  async getAll(projectId: string): Promise<[Endpoint[], number]> {
-    const found = this.endpointRepository.findAndCount({
+  async getAll(projectId: string): Promise<Endpoint[]> {
+    const [endpoints] = await this.endpointRepository.findAndCount({
       where: { projectId },
     });
-    return found;
+    return endpoints;
   }
 
   async getById(projectId: string, id: string): Promise<Endpoint> {

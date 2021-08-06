@@ -1,0 +1,17 @@
+<ng-container *ngIf="collection"
+  ><p-panel [header]="collection.name" [toggleable]="true">
+    <ng-template pTemplate="icons">
+      <button
+        pButton
+        class="p-panel-header-icon p-link"
+        icon="pi pi-cog"
+        (click)="menu.toggle($event)"
+      ></button>
+      <p-menu #menu id="config_menu" [model]="items" [popup]="true"></p-menu>
+    </ng-template>
+    <ay-endpoint-link
+      *ngFor="let endpoint of collection.endpoints"
+      [endpoint]="endpoint"
+      (openEndpoint)="openEndpoint.emit($event)"
+    ></ay-endpoint-link> </p-panel
+></ng-container>

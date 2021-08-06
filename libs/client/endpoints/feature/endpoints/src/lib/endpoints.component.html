@@ -1,1 +1,17 @@
-<p>endpoints works!</p>
+<section class="p-grid">
+  <div class="p-col-5">
+    <ng-container *ngIf="loaded$ | async; then loaded; else loading">
+    </ng-container>
+  </div>
+  <div class="p-col-7">Right</div>
+</section>
+
+<ng-template #loading> Loading... </ng-template>
+
+<ng-template #loaded>
+  <ay-collections-list
+    *ngFor="let collection of collections$ | async"
+    [collection]="collection"
+    (openEndpoint)="openEndpoint($event)"
+  ></ay-collections-list>
+</ng-template>
