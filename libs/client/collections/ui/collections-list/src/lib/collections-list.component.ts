@@ -10,8 +10,12 @@ import { CollectionsEntity } from '@aymme/client/collections/data-access';
 export class CollectionsListComponent implements OnInit {
   @Input() collection: CollectionsEntity | undefined;
 
-  @Output() renameProject = new EventEmitter();
-  @Output() deleteProject = new EventEmitter();
+  @Output() renameCollection: EventEmitter<{
+    collectionId: string;
+  }> = new EventEmitter<{ collectionId: string }>();
+  @Output() deleteCollection: EventEmitter<{
+    collectionId: string;
+  }> = new EventEmitter<{ collectionId: string }>();
   @Output() openEndpoint: EventEmitter<{ endpointId: string }> =
     new EventEmitter<{ endpointId: string }>();
 
@@ -26,14 +30,22 @@ export class CollectionsListComponent implements OnInit {
             label: 'Rename',
             icon: 'pi pi-pencil',
             command: () => {
-              this.renameProject.emit();
+              if (this.collection?.id) {
+                this.renameCollection.emit({
+                  collectionId: this.collection.id,
+                });
+              }
             },
           },
           {
             label: 'Delete',
             icon: 'pi pi-trash',
             command: () => {
-              this.deleteProject.emit();
+              if (this.collection?.id) {
+                this.deleteCollection.emit({
+                  collectionId: this.collection.id,
+                });
+              }
             },
           },
         ],
