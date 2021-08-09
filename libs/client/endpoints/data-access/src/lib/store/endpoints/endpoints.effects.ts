@@ -8,22 +8,22 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EndpointsEffects {
-  init$ = createEffect(() =>
+  getEndpointById$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(EndpointsActions.init),
+      ofType(EndpointsActions.openEndpoint),
       fetch({
-        run: (action) => {
+        run: ({ projectId, endpointId }) => {
           return this.endpointsService
-            .getAllEndpoints(action.projectId)
+            .getById(projectId, endpointId)
             .pipe(
-              map((endpoints) =>
-                EndpointsActions.loadEndpointsSuccess({ endpoints })
+              map((endpoint) =>
+                EndpointsActions.loadEndpointSuccess({ endpoint })
               )
             );
         },
-        onError: (action, error) => {
+        onError: (_, error) => {
           console.error('Error', error);
-          return EndpointsActions.loadEndpointsFailure({ error });
+          return EndpointsActions.loadEndpointFailure({ error });
         },
       })
     )

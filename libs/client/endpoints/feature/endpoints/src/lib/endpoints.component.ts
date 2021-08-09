@@ -5,6 +5,10 @@ import {
   CollectionsEntity,
   CollectionsFacade,
 } from '@aymme/client/collections/data-access';
+import {
+  EndpointsEntity,
+  EndpointsFacade,
+} from '@aymme/client/endpoints/data-access';
 
 @Component({
   selector: 'ay-endpoints',
@@ -15,16 +19,21 @@ export class EndpointsComponent implements OnInit {
   loaded$: Observable<boolean> = this.collectionsFacade.loaded$;
   collections$: Observable<CollectionsEntity[] | undefined> =
     this.collectionsFacade.allCollections$;
+  endpoints$: Observable<EndpointsEntity | undefined> =
+    this.endpointsFacade.selectedEndpoint$;
+
+  projectId = this.route.snapshot.paramMap.get('projectId') as string;
 
   constructor(
     private collectionsFacade: CollectionsFacade,
+    private endpointsFacade: EndpointsFacade,
     private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.collectionsFacade.init(
-      this.route.snapshot.paramMap.get('projectId') as string
-    );
+    this.collectionsFacade.init(this.projectId);
+
+    this.endpoints$.subscribe((value) => console.log({ value }));
   }
 
   rename() {
@@ -36,6 +45,6 @@ export class EndpointsComponent implements OnInit {
   }
 
   openEndpoint({ endpointId }: { endpointId: string }) {
-    console.log({ endpointId });
+    this.endpointsFacade.openEndpoint(this.projectId, endpointId);
   }
 }

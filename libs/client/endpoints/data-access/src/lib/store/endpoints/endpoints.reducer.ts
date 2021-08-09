@@ -1,13 +1,12 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-
-import * as EndpointsActions from './endpoints.actions';
 import { EndpointsEntity } from './endpoints.models';
+import { EndpointsActions } from '@aymme/client/endpoints/data-access';
 
 export const ENDPOINTS_FEATURE_KEY = 'endpoints';
 
-export interface State extends EntityState<EndpointsEntity> {
-  selectedId?: string | number; // which Endpoints record has been selected
+export interface State {
+  endpoint?: EndpointsEntity;
   loaded: boolean; // has the Endpoints list been loaded
   error?: unknown; // last known error (if any)
 }
@@ -19,24 +18,22 @@ export interface EndpointsPartialState {
 export const endpointsAdapter: EntityAdapter<EndpointsEntity> =
   createEntityAdapter<EndpointsEntity>();
 
-export const initialState: State = endpointsAdapter.getInitialState({
+export const initialState: State = {
   // set initial required properties
   loaded: false,
-});
+};
 
 const endpointsReducer = createReducer(
   initialState,
-  on(EndpointsActions.init, (state) => ({
+  on(EndpointsActions.openEndpoint, (state) => ({
     ...state,
     loaded: false,
-    error: null,
+    endpoint: undefined,
   })),
-  on(EndpointsActions.loadEndpointsSuccess, (state, { endpoints }) =>
-    endpointsAdapter.setAll(endpoints, { ...state, loaded: true })
-  ),
-  on(EndpointsActions.loadEndpointsFailure, (state, { error }) => ({
+  on(EndpointsActions.loadEndpointSuccess, (state, { endpoint }) => ({
     ...state,
-    error,
+    loaded: true,
+    endpoint,
   }))
 );
 
