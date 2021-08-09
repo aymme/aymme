@@ -1,17 +1,17 @@
 import { createAction, props } from '@ngrx/store';
 import { EndpointsEntity } from './endpoints.models';
 
-export const init = createAction(
-  '[Endpoints Page] Init',
-  props<{ projectId: string }>()
+export const openEndpoint = createAction(
+  '[Collection/Endpoints/List] Open endpoint',
+  props<{ projectId: string; endpointId: string }>()
 );
 
-export const loadEndpointsSuccess = createAction(
-  '[Endpoints/API] Load Endpoints Success',
-  props<{ endpoints: EndpointsEntity[] }>()
+export const loadEndpointSuccess = createAction(
+  '[Endpoints/API] Load Endpoint Success',
+  props<{ endpoint: EndpointsEntity }>()
 );
 
-export const loadEndpointsFailure = createAction(
-  '[Endpoints/API] Load Endpoints Failure',
+export const loadEndpointFailure = createAction(
+  '[Endpoints/API] Load Endpoint Failure',
   props<{ error: unknown }>()
 );

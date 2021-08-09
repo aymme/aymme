@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-
-import * as EndpointsActions from './endpoints.actions';
 import * as EndpointsSelectors from './endpoints.selectors';
+import { EndpointsActions } from '../../../index';
 
 @Injectable()
 export class EndpointsFacade {
@@ -11,16 +10,15 @@ export class EndpointsFacade {
    * and expose them as observables through the facade.
    */
   loaded$ = this.store.pipe(select(EndpointsSelectors.getEndpointsLoaded));
-  allEndpoints$ = this.store.pipe(select(EndpointsSelectors.getAllEndpoints));
-  selectedEndpoint$ = this.store.pipe(select(EndpointsSelectors.getSelected));
+  selectedEndpoint$ = this.store.pipe(
+    select(EndpointsSelectors.getSelectedEndpoint)
+  );
 
   constructor(private readonly store: Store) {}
 
-  /**
-   * Use the initialization action to perform one
-   * or more tasks in your Effects.
-   */
-  init(projectId: string) {
-    this.store.dispatch(EndpointsActions.init({ projectId }));
+  openEndpoint(projectId: string, endpointId: string) {
+    this.store.dispatch(
+      EndpointsActions.openEndpoint({ projectId, endpointId })
+    );
   }
 }

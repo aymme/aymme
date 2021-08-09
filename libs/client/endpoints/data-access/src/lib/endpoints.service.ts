@@ -14,4 +14,10 @@ export class EndpointsService {
       `/api/projects/${projectId}/endpoints`
     );
   }
+
+  getById(projectId: string, endpointId: string): Observable<EndpointsEntity> {
+    return this.http.get<EndpointsEntity>(
+      `/api/projects/${projectId}/endpoints/${endpointId}`
+    );
+  }
 }
