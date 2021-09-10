@@ -42,23 +42,11 @@
       "@aymme/api/shared/data-access": [
         "libs/api/shared/data-access/src/index.ts"
       ],
-      "@aymme/client/collections/data-access": [
-        "libs/client/collections/data-access/src/index.ts"
-      ],
-      "@aymme/client/collections/ui/collections-list": [
-        "libs/client/collections/ui/collections-list/src/index.ts"
-      ],
-      "@aymme/client/endpoints/data-access": [
-        "libs/client/endpoints/data-access/src/index.ts"
-      ],
       "@aymme/client/endpoints/feature/endpoints": [
         "libs/client/endpoints/feature/endpoints/src/index.ts"
       ],
       "@aymme/client/endpoints/feature/shell": [
         "libs/client/endpoints/feature/shell/src/index.ts"
-      ],
-      "@aymme/client/endpoints/ui/endpoint-link": [
-        "libs/client/endpoints/ui/endpoint-link/src/index.ts"
       ],
       "@aymme/client/projects/data-access": [
         "libs/client/projects/data-access/src/index.ts"

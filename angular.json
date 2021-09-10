@@ -434,56 +434,6 @@
         }
       }
     },
-    "client-collections-data-access": {
-      "projectType": "library",
-      "root": "libs/client/collections/data-access",
-      "sourceRoot": "libs/client/collections/data-access/src",
-      "prefix": "aymme",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/collections/data-access"],
-          "options": {
-            "jestConfig": "libs/client/collections/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/collections/data-access/src/**/*.ts",
-              "libs/client/collections/data-access/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-collections-ui-collections-list": {
-      "projectType": "library",
-      "root": "libs/client/collections/ui/collections-list",
-      "sourceRoot": "libs/client/collections/ui/collections-list/src",
-      "prefix": "aymme",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/collections/ui/collections-list"],
-          "options": {
-            "jestConfig": "libs/client/collections/ui/collections-list/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/collections/ui/collections-list/src/**/*.ts",
-              "libs/client/collections/ui/collections-list/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "client-e2e": {
       "root": "apps/client-e2e",
       "sourceRoot": "apps/client-e2e/src",
@@ -506,31 +456,6 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "client-endpoints-data-access": {
-      "projectType": "library",
-      "root": "libs/client/endpoints/data-access",
-      "sourceRoot": "libs/client/endpoints/data-access/src",
-      "prefix": "ay",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/endpoints/data-access"],
-          "options": {
-            "jestConfig": "libs/client/endpoints/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/endpoints/data-access/src/**/*.ts",
-              "libs/client/endpoints/data-access/src/**/*.html"
-            ]
           }
         }
       }
@@ -580,31 +505,6 @@
             "lintFilePatterns": [
               "libs/client/endpoints/feature/shell/src/**/*.ts",
               "libs/client/endpoints/feature/shell/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "client-endpoints-ui-endpoint-link": {
-      "projectType": "library",
-      "root": "libs/client/endpoints/ui/endpoint-link",
-      "sourceRoot": "libs/client/endpoints/ui/endpoint-link/src",
-      "prefix": "aymme",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/endpoints/ui/endpoint-link"],
-          "options": {
-            "jestConfig": "libs/client/endpoints/ui/endpoint-link/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/endpoints/ui/endpoint-link/src/**/*.ts",
-              "libs/client/endpoints/ui/endpoint-link/src/**/*.html"
             ]
           }
         }

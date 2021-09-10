@@ -15,5 +15,6 @@ import { RouterModule } from '@angular/router';
       },
     ]),
   ],
+  declarations: [],
 })
 export class ShellModule {}
