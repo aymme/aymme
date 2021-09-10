@@ -61,26 +61,14 @@
     "client": {
       "tags": []
     },
-    "client-collections-data-access": {
-      "tags": []
-    },
-    "client-collections-ui-collections-list": {
-      "tags": []
-    },
     "client-e2e": {
       "tags": [],
       "implicitDependencies": ["client"]
-    },
-    "client-endpoints-data-access": {
-      "tags": []
     },
     "client-endpoints-feature-endpoints": {
       "tags": []
     },
     "client-endpoints-feature-shell": {
-      "tags": []
-    },
-    "client-endpoints-ui-endpoint-link": {
       "tags": []
     },
     "client-projects-data-access": {
