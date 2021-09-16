@@ -48,6 +48,7 @@
       "@aymme/client/endpoints/feature/shell": [
         "libs/client/endpoints/feature/shell/src/index.ts"
       ],
+      "@aymme/client/mock/feature": ["libs/client/mock/feature/src/index.ts"],
       "@aymme/client/projects/data-access": [
         "libs/client/projects/data-access/src/index.ts"
       ],

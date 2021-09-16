@@ -354,9 +354,11 @@
             "inlineStyleLanguage": "scss",
             "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
             "styles": [
+              "node_modules/normalize.css/normalize.css",
               "apps/client/src/styles.scss",
-              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeflex/primeflex.css"
             ],
             "scripts": []
@@ -510,11 +512,36 @@
         }
       }
     },
+    "client-mock-feature": {
+      "projectType": "library",
+      "root": "libs/client/mock/feature",
+      "sourceRoot": "libs/client/mock/feature/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/mock/feature"],
+          "options": {
+            "jestConfig": "libs/client/mock/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/mock/feature/src/**/*.ts",
+              "libs/client/mock/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "client-projects-data-access": {
       "projectType": "library",
       "root": "libs/client/projects/data-access",
       "sourceRoot": "libs/client/projects/data-access/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -639,7 +666,7 @@
       "projectType": "library",
       "root": "libs/client/shared/app-config",
       "sourceRoot": "libs/client/shared/app-config/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -789,7 +816,7 @@
       "projectType": "library",
       "root": "libs/client/shell/ui/theme-switcher",
       "sourceRoot": "libs/client/shell/ui/theme-switcher/src",
-      "prefix": "aymme",
+      "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
