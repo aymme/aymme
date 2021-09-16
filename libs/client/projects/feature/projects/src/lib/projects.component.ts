@@ -40,6 +40,6 @@ export class ProjectsComponent {
   }
 
   openProject({ id }: { id: string }) {
-    this.router.navigate([`projects/${id}/endpoints`]);
+    this.router.navigate([`projects/${id}/mock`]);
   }
 }

@@ -71,6 +71,9 @@
     "client-endpoints-feature-shell": {
       "tags": []
     },
+    "client-mock-feature": {
+      "tags": []
+    },
     "client-projects-data-access": {
       "tags": []
     },
