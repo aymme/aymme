@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
-import {MenuItem} from 'primeng/api';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'ay-top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.scss']
+  styleUrls: ['./top-bar.component.scss'],
 })
-export class TopBarComponent {
-}
+export class TopBarComponent {}
