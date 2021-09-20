@@ -433,10 +433,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/client/src/**/*.ts",
-              "apps/client/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/client/src/**/*.ts", "apps/client/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         },
@@ -446,6 +443,53 @@
           "options": {
             "jestConfig": "apps/client/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-collection-data-access": {
+      "root": "libs/client/collection/data-access",
+      "sourceRoot": "libs/client/collection/data-access/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/client/collection/data-access/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/collection/data-access"],
+          "options": {
+            "jestConfig": "libs/client/collection/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-collection-ui-collection-panel": {
+      "projectType": "library",
+      "root": "libs/client/collection/ui/collection-panel",
+      "sourceRoot": "libs/client/collection/ui/collection-panel/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/collection/ui/collection-panel"],
+          "options": {
+            "jestConfig": "libs/client/collection/ui/collection-panel/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/collection/ui/collection-panel/src/**/*.ts",
+              "libs/client/collection/ui/collection-panel/src/**/*.html"
+            ]
           }
         }
       }
@@ -474,6 +518,31 @@
             "lintFilePatterns": ["apps/client-e2e/**/*.{js,ts}"]
           },
           "outputs": ["{options.outputFile}"]
+        }
+      }
+    },
+    "client-endpoint-ui-endpoint-link": {
+      "projectType": "library",
+      "root": "libs/client/endpoint/ui/endpoint-link",
+      "sourceRoot": "libs/client/endpoint/ui/endpoint-link/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/endpoint/ui/endpoint-link"],
+          "options": {
+            "jestConfig": "libs/client/endpoint/ui/endpoint-link/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/endpoint/ui/endpoint-link/src/**/*.ts",
+              "libs/client/endpoint/ui/endpoint-link/src/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -546,10 +615,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/mock/feature/src/**/*.ts",
-              "libs/client/mock/feature/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/mock/feature/src/**/*.ts", "libs/client/mock/feature/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         }
@@ -728,10 +794,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shared/ui/src/**/*.ts",
-              "libs/client/shared/ui/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shared/ui/src/**/*.ts", "libs/client/shared/ui/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         }
@@ -754,10 +817,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/feature/src/**/*.ts",
-              "libs/client/shell/feature/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/feature/src/**/*.ts", "libs/client/shell/feature/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         }
@@ -780,10 +840,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/ui/footer/src/**/*.ts",
-              "libs/client/shell/ui/footer/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/ui/footer/src/**/*.ts", "libs/client/shell/ui/footer/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         }
@@ -806,10 +863,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/ui/layout/src/**/*.ts",
-              "libs/client/shell/ui/layout/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/ui/layout/src/**/*.ts", "libs/client/shell/ui/layout/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         }
@@ -832,10 +886,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/client/shell/ui/logo/src/**/*.ts",
-              "libs/client/shell/ui/logo/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/client/shell/ui/logo/src/**/*.ts", "libs/client/shell/ui/logo/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
         }

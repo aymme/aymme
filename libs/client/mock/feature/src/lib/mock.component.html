@@ -1,4 +1,23 @@
 <div class="flex">
-  <div class="col-5 surface-100 sidebar p-0 pt-1">Left</div>
+  <div class="col-5 surface-100 sidebar p-0 pt-1">
+    <div class="flex flex-row align-items-center border-bottom-1 py-2 px-3 justify-content-between border-gray-300">
+      <span>Project name</span>
+      <div>
+        <span class="p-buttonset">
+          <button pButton type="button" label="Import" class="p-button-outlined"></button>
+          <button pButton type="button" label="Export" class="p-button-outlined"></button>
+        </span>
+      </div>
+    </div>
+    <div class="p-3">
+      <ay-collection-panel [name]="collection.name" *ngFor="let collection of collections$ | async">
+        <ay-endpoint-link
+          *ngFor="let endpoint of collection.endpoints"
+          [method]="endpoint.method"
+          [path]="endpoint.path"
+        ></ay-endpoint-link>
+      </ay-collection-panel>
+    </div>
+  </div>
   <div class="col flex flex-column p-0 pt-1">Right</div>
 </div>

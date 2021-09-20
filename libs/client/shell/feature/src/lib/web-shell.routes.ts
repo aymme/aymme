@@ -19,7 +19,7 @@ export const webShellRoutes: Route[] = [
       {
         path: 'projects/:projectId/mock',
         loadChildren: async () =>
-          (await import('@aymme/client/mock/feature')).FeatureModule,
+          (await import('@aymme/client/mock/feature')).MockModule,
       },
     ],
   },
