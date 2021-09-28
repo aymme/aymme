@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import * as ProjectsActions from './projects.actions';
 import { ProjectsEntity } from './projects.models';
@@ -16,8 +16,7 @@ export interface ProjectsPartialState {
   readonly [PROJECTS_FEATURE_KEY]: State;
 }
 
-export const projectsAdapter: EntityAdapter<ProjectsEntity> =
-  createEntityAdapter<ProjectsEntity>();
+export const projectsAdapter: EntityAdapter<ProjectsEntity> = createEntityAdapter<ProjectsEntity>();
 
 export const initialState: State = projectsAdapter.getInitialState({
   loaded: false,
@@ -29,6 +28,10 @@ export const projectsReducer = createReducer(
     ...state,
     loaded: false,
     error: null,
+  })),
+  on(ProjectsActions.selectProject, (state, { projectId }) => ({
+    ...state,
+    selectedId: projectId,
   })),
   on(ProjectsActions.loadProjectsSuccess, (state, { projects }) =>
     projectsAdapter.setAll(projects, { ...state, loaded: true })

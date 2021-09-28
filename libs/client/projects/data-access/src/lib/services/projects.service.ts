@@ -14,10 +14,7 @@ export class ProjectsService {
   private apiFeatureKey = '/projects';
   private apiURL = this.appConfig.baseURL + this.apiFeatureKey;
 
-  constructor(
-    @Inject(APP_CONFIG) private appConfig: AppConfig,
-    private http: HttpClient
-  ) {}
+  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig, private http: HttpClient) {}
 
   getProjects() {
     return this.http.get<ProjectsEntity[]>(`${this.apiURL}`).pipe(
@@ -25,6 +22,10 @@ export class ProjectsService {
         return response;
       })
     );
+  }
+
+  getProjectById(projectId: string) {
+    return this.http.get<ProjectsEntity>(`${this.apiURL}/${projectId}`);
   }
 
   createNewProject(name: string): Observable<ProjectsEntity> {

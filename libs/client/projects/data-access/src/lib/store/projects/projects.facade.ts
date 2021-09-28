@@ -12,7 +12,7 @@ export class ProjectsFacade {
    */
   loaded$ = this.store.pipe(select(ProjectsSelectors.getProjectsLoaded));
   allProjects$ = this.store.pipe(select(ProjectsSelectors.getAllProjects));
-  selectedProjects$ = this.store.pipe(select(ProjectsSelectors.getSelected));
+  selectedProject$ = this.store.pipe(select(ProjectsSelectors.getSelected));
 
   constructor(private readonly store: Store) {}
 
@@ -30,5 +30,9 @@ export class ProjectsFacade {
 
   deleteProject(projectId: string) {
     this.store.dispatch(ProjectsActions.deleteProject({ projectId }));
+  }
+
+  selectProject(projectId: string) {
+    this.store.dispatch(ProjectsActions.selectProject({ projectId }));
   }
 }

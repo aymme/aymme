@@ -3,6 +3,7 @@ import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/d
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 
 @Component({
   selector: 'ay-mock',
@@ -11,15 +12,17 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class MockComponent {
-  projectId: string = this.route.snapshot.params.projectId;
+  projectId: string = this.route.snapshot.parent?.parent?.params.projectId;
 
   loaded$: Observable<boolean> = this.collectionsFacade.loaded$;
   collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$;
+  selectedProject$: Observable<ProjectsEntity | undefined> = this.projectsFacade.selectedProject$;
 
   constructor(
     private collectionsFacade: CollectionsFacade,
     private route: ActivatedRoute,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private projectsFacade: ProjectsFacade
   ) {
     this.collectionsFacade.init(this.projectId);
   }
