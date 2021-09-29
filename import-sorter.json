@@ -1,0 +1,56 @@
+{
+  "generalConfiguration": {
+    "configurationFilePath": "./import-sorter.json",
+    "exclude": [],
+    "sortImportsInDirectory": true,
+    "sortOnBeforeSave": true
+  },
+  "importStringConfiguration": {
+    "hasSemicolon": true,
+    "maximumNumberOfImportExpressionsPerLine": {
+      "count": 140,
+      "type": "newLineEachExpressionAfterCountLimit"
+    },
+    "numberOfEmptyLinesAfterAllImports": 1,
+    "quoteMark": "single",
+    "spacingPerImportExpression": {
+      "afterComma": 1,
+      "afterStartingBracket": 1,
+      "beforeComma": 0,
+      "beforeEndingBracket": 1
+    },
+    "tabSize": 2,
+    "tabType": "space",
+    "trailingComma": "multiLine"
+  },
+  "sortConfiguration": {
+    "customOrderingRules": {
+      "defaultNumberOfEmptyLinesAfterGroup": 1,
+      "defaultOrderLevel": 10,
+      "disableDefaultOrderSort": true,
+      "rules": [
+        {
+          "regex": "^[@]",
+          "orderLevel": 10
+        },
+        {
+          "regex": "^[@]()",
+          "orderLevel": 20
+        },
+        {
+          "regex": "^[.]{1, 2}",
+          "orderLevel": 30
+        }
+      ]
+    },
+    "importMembers": {
+      "direction": "asc",
+      "order": "caseInsensitive"
+    },
+    "importPaths": {
+      "direction": "asc",
+      "order": "caseInsensitive"
+    },
+    "joinImportPaths": true
+  }
+}

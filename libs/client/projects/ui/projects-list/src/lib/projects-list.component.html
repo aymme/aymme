@@ -1,0 +1,21 @@
+<ng-container *ngIf="projects">
+  <ul class="projects-list">
+    <li
+      class="projects-list__item"
+      *ngFor="let project of projects; index as i"
+      (click)="onClick(project)"
+    >
+      <h4 class="projects-list__name">
+        {{ project.name }}
+      </h4>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Delete"
+        class="projects-list__icon p-button-sm p-button-outlined"
+        (click)="onDeleteProject(project, $event)"
+      ></button>
+    </li>
+  </ul>
+</ng-container>

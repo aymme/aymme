@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "declaration": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
+  },
+  "include": ["**/*.ts"]
+}

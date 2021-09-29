@@ -1,0 +1,137 @@
+{
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "main"
+  },
+  "npmScope": "aymme",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "api": {
+      "tags": []
+    },
+    "api-collection-data-access": {
+      "tags": []
+    },
+    "api-collection-feature": {
+      "tags": []
+    },
+    "api-core-feature": {
+      "tags": []
+    },
+    "api-endpoint-data-access": {
+      "tags": []
+    },
+    "api-endpoint-feature": {
+      "tags": []
+    },
+    "api-intercept-feature": {
+      "tags": []
+    },
+    "api-project-data-access": {
+      "tags": []
+    },
+    "api-project-feature": {
+      "tags": []
+    },
+    "api-project-utils": {
+      "tags": []
+    },
+    "api-response-data-access": {
+      "tags": []
+    },
+    "api-response-feature": {
+      "tags": []
+    },
+    "api-shared-data-access": {
+      "tags": []
+    },
+    "client": {
+      "tags": []
+    },
+    "client-collection-data-access": {
+      "tags": []
+    },
+    "client-collection-ui-collection-panel": {
+      "tags": []
+    },
+    "client-e2e": {
+      "tags": [],
+      "implicitDependencies": ["client"]
+    },
+    "client-endpoint-ui-endpoint-link": {
+      "tags": []
+    },
+    "client-endpoints-feature-endpoints": {
+      "tags": []
+    },
+    "client-endpoints-feature-shell": {
+      "tags": []
+    },
+    "client-mock-feature": {
+      "tags": []
+    },
+    "client-projects-data-access": {
+      "tags": []
+    },
+    "client-projects-feature": {
+      "tags": []
+    },
+    "client-projects-feature-projects": {
+      "tags": []
+    },
+    "client-projects-feature-shell": {
+      "tags": []
+    },
+    "client-projects-ui-projects-list": {
+      "tags": []
+    },
+    "client-shared-app-config": {
+      "tags": []
+    },
+    "client-shared-ui": {
+      "tags": []
+    },
+    "client-shell-feature": {
+      "tags": []
+    },
+    "client-shell-ui-footer": {
+      "tags": []
+    },
+    "client-shell-ui-layout": {
+      "tags": []
+    },
+    "client-shell-ui-logo": {
+      "tags": []
+    },
+    "client-shell-ui-theme-switcher": {
+      "tags": []
+    },
+    "client-shell-ui-top-bar": {
+      "tags": []
+    },
+    "shared-data-access": {
+      "tags": []
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  }
+}

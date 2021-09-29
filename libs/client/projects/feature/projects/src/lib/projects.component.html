@@ -1,0 +1,66 @@
+<section class="p-grid">
+  <div class="p-col-8 p-offset-2">
+    <article class="card">
+      <header class="p-d-flex p-ai-center">
+        <h2 class="p-m-0">Current <strong>Projects</strong></h2>
+
+        <button
+          class="p-ml-auto"
+          pButton
+          type="button"
+          (click)="showDialog()"
+          icon="pi pi-plus"
+          label="New project"
+        ></button>
+      </header>
+
+      <p-divider></p-divider>
+
+      <section>
+        <ng-container
+          *ngIf="loaded$ | async; then loadedProjects; else loadingProjects"
+        ></ng-container>
+      </section>
+    </article>
+  </div>
+
+  <p-dialog header="Add a new Project" [(visible)]="display" position="top">
+    <article>
+      <div class="p-field">
+        <label for="projectName">Name</label>
+        <input
+          id="projectName"
+          type="text"
+          aria-describedby="projectName-help"
+          pInputText
+          [(ngModel)]="newProjectName"
+          autofocus
+        />
+      </div>
+    </article>
+
+    <p-footer>
+      <button
+        class=""
+        pButton
+        type="button"
+        label="Confirm"
+        (click)="createNewProject()"
+      ></button>
+    </p-footer>
+  </p-dialog>
+</section>
+
+<ng-template #loadingProjects>
+  <p-progressBar mode="indeterminate"></p-progressBar>
+</ng-template>
+
+<ng-template #loadedProjects>
+  <ng-container *ngIf="projects$ | async as projects">
+    <ay-projects-list
+      [projects]="projects"
+      (deleteProject)="deleteProject($event)"
+      (openProject)="openProject($event)"
+    ></ay-projects-list>
+  </ng-container>
+</ng-template>

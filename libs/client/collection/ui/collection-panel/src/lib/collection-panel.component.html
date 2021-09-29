@@ -1,0 +1,7 @@
+<p-panel class="block" [toggleable]="true" [header]="name">
+  <ng-template pTemplate="icons">
+    <button pButton class="p-panel-header-icon p-link" icon="pi pi-cog" (click)="menu.toggle($event)"></button>
+    <p-menu #menu id="config_menu" [model]="items" [popup]="true"></p-menu>
+  </ng-template>
+  <ng-content></ng-content>
+</p-panel>
