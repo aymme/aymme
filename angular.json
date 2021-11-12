@@ -1,36 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "defaultProject": "client",
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
-  },
   "projects": {
     "api": {
       "root": "apps/api",
@@ -83,7 +52,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-collection-data-access": {
       "root": "libs/api/collection/data-access",
@@ -105,7 +75,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-collection-feature": {
       "root": "libs/api/collection/feature",
@@ -127,7 +98,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-core-feature": {
       "root": "libs/api/core/feature",
@@ -149,7 +121,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-endpoint-data-access": {
       "root": "libs/api/endpoint/data-access",
@@ -171,7 +144,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-endpoint-feature": {
       "root": "libs/api/endpoint/feature",
@@ -193,7 +167,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-intercept-feature": {
       "root": "libs/api/intercept/feature",
@@ -215,7 +190,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-project-data-access": {
       "root": "libs/api/project/data-access",
@@ -237,7 +213,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-project-feature": {
       "root": "libs/api/project/feature",
@@ -259,7 +236,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-project-utils": {
       "root": "libs/api/project/utils",
@@ -281,7 +259,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-response-data-access": {
       "root": "libs/api/response/data-access",
@@ -303,7 +282,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-response-feature": {
       "root": "libs/api/response/feature",
@@ -325,7 +305,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-shared-data-access": {
       "root": "libs/api/shared/data-access",
@@ -347,7 +328,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "client": {
       "projectType": "application",
@@ -445,7 +427,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "client-collection-data-access": {
       "root": "libs/client/collection/data-access",
@@ -467,7 +450,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "client-collection-ui-collection-panel": {
       "projectType": "library",
@@ -492,7 +476,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "client-e2e": {
       "root": "apps/client-e2e",
@@ -519,7 +504,9 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["client"]
     },
     "client-endpoint-ui-endpoint-link": {
       "projectType": "library",
@@ -544,7 +531,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "client-endpoints-feature-endpoints": {
       "projectType": "library",
@@ -570,7 +558,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-endpoints-feature-shell": {
       "projectType": "library",
@@ -596,7 +585,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-mock-feature": {
       "projectType": "library",
@@ -619,7 +609,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-projects-data-access": {
       "projectType": "library",
@@ -645,7 +636,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-projects-feature": {
       "projectType": "library",
@@ -671,7 +663,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-projects-feature-projects": {
       "projectType": "library",
@@ -697,7 +690,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-projects-feature-shell": {
       "projectType": "library",
@@ -723,7 +717,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-projects-ui-projects-list": {
       "projectType": "library",
@@ -749,7 +744,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shared-app-config": {
       "projectType": "library",
@@ -775,7 +771,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shared-ui": {
       "projectType": "library",
@@ -798,7 +795,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shell-feature": {
       "projectType": "library",
@@ -821,7 +819,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shell-ui-footer": {
       "projectType": "library",
@@ -844,7 +843,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shell-ui-layout": {
       "projectType": "library",
@@ -867,7 +867,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shell-ui-logo": {
       "projectType": "library",
@@ -890,7 +891,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shell-ui-theme-switcher": {
       "projectType": "library",
@@ -916,7 +918,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "client-shell-ui-top-bar": {
       "projectType": "library",
@@ -942,7 +945,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "shared-data-access": {
       "root": "libs/shared/data-access",
@@ -964,7 +968,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     }
   }
 }
