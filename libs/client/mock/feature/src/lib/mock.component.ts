@@ -42,4 +42,8 @@ export class MockComponent {
       detail: 'Data Deleted',
     });
   }
+
+  onEndpointSelect(id: string) {
+    console.log('Selected Endpoint ID: ', id);
+  }
 }

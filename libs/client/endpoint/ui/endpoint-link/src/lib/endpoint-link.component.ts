@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'ay-endpoint-link',
@@ -8,4 +8,10 @@ import { Component, Input } from '@angular/core';
 export class EndpointLinkComponent {
   @Input() method = '';
   @Input() path = '';
+  @Output() selectEndpoint = new EventEmitter();
+
+  @HostListener('click')
+  onClick() {
+    console.log('I was clicked');
+  }
 }

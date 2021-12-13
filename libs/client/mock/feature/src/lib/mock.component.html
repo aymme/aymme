@@ -15,6 +15,7 @@
           *ngFor="let endpoint of collection.endpoints"
           [method]="endpoint.method"
           [path]="endpoint.path"
+          (selectEndpoint)="onEndpointSelect(endpoint.id)"
         ></ay-endpoint-link>
       </ay-collection-panel>
     </div>
