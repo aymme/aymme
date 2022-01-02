@@ -21,7 +21,7 @@ import { Project } from '@aymme/api/shared/data-access';
 export class ApiInterceptFeatureController {
   private logger = new Logger(ApiInterceptFeatureController.name);
 
-  @All()
+  @All('*')
   @UseGuards(ProjectGuard)
   async intercept(
     @Body() body,
@@ -33,8 +33,9 @@ export class ApiInterceptFeatureController {
   ) {
     this.logger.verbose(request.path);
     this.logger.verbose(currentProject.name);
+
     const endpoint = await this.endpointService.intercept(
-      request.url,
+      request.params[0],
       query,
       body,
       request.method,
@@ -57,7 +58,7 @@ export class ApiInterceptFeatureController {
       );
     }
 
-    if (endpoint.headers.length) {
+    if (endpoint.headers && endpoint.headers.length) {
       const headers = endpoint.headers.reduce((obj, header) => {
         return { ...obj, [header.name]: header.value };
       }, {});
