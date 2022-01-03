@@ -12,6 +12,6 @@ export class EndpointLinkComponent {
 
   @HostListener('click')
   onClick() {
-    console.log('I was clicked');
+    this.selectEndpoint.emit();
   }
 }

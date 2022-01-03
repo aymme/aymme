@@ -33,6 +33,7 @@
       "@aymme/client/endpoint/ui/endpoint-link": ["libs/client/endpoint/ui/endpoint-link/src/index.ts"],
       "@aymme/client/endpoints/feature/endpoints": ["libs/client/endpoints/feature/endpoints/src/index.ts"],
       "@aymme/client/endpoints/feature/shell": ["libs/client/endpoints/feature/shell/src/index.ts"],
+      "@aymme/client/mock/data-access": ["libs/client/mock/data-access/src/index.ts"],
       "@aymme/client/mock/feature": ["libs/client/mock/feature/src/index.ts"],
       "@aymme/client/projects/data-access": ["libs/client/projects/data-access/src/index.ts"],
       "@aymme/client/projects/feature": ["libs/client/projects/feature/src/index.ts"],

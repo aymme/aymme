@@ -11,6 +11,7 @@ import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { EndpointLinkModule } from '@aymme/client/endpoint/ui/endpoint-link';
 import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-panel';
+import { ClientMockDataAccessModule } from '@aymme/client/mock/data-access';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-pa
     BadgeModule,
     EndpointLinkModule,
     CollectionPanelModule,
+    ClientMockDataAccessModule,
   ],
   declarations: [MockComponent],
   providers: [CollectionsFacade],

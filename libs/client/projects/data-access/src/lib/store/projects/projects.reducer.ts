@@ -7,7 +7,7 @@ import { ProjectsEntity } from './projects.models';
 export const PROJECTS_FEATURE_KEY = 'projects';
 
 export interface State extends EntityState<ProjectsEntity> {
-  selectedId?: string | number; // which Projects record has been selected
+  selectedId?: string; // which Projects record has been selected
   loaded: boolean; // has the Projects list been loaded
   error?: string | null; // last known error (if any)
 }

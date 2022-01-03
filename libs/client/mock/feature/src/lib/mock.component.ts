@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
+import { EndpointFacade } from '@aymme/client/mock/data-access';
 
 @Component({
   selector: 'ay-mock',
@@ -22,7 +23,8 @@ export class MockComponent {
     private collectionsFacade: CollectionsFacade,
     private route: ActivatedRoute,
     private messageService: MessageService,
-    private projectsFacade: ProjectsFacade
+    private projectsFacade: ProjectsFacade,
+    private endpointFacade: EndpointFacade
   ) {
     this.collectionsFacade.init(this.projectId);
   }
@@ -44,6 +46,6 @@ export class MockComponent {
   }
 
   onEndpointSelect(id: string) {
-    console.log('Selected Endpoint ID: ', id);
+    this.endpointFacade.loadEndpoint(id);
   }
 }

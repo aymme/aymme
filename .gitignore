@@ -343,3 +343,5 @@ $RECYCLE.BIN/
 
 # Misc
 database/*.sqlite
+
+.angular

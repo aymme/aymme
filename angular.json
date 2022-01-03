@@ -588,6 +588,32 @@
       },
       "tags": []
     },
+    "client-mock-data-access": {
+      "projectType": "library",
+      "root": "libs/client/mock/data-access",
+      "sourceRoot": "libs/client/mock/data-access/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/mock/data-access"],
+          "options": {
+            "jestConfig": "libs/client/mock/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/mock/data-access/src/**/*.ts",
+              "libs/client/mock/data-access/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "client-mock-feature": {
       "projectType": "library",
       "root": "libs/client/mock/feature",
