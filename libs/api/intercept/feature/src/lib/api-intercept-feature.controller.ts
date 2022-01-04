@@ -1,15 +1,4 @@
-import {
-  All,
-  Controller,
-  Req,
-  Headers,
-  Res,
-  Logger,
-  Query,
-  Body,
-  UseGuards,
-  NotFoundException,
-} from '@nestjs/common';
+import { All, Body, Controller, Headers, Logger, NotFoundException, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import sleep from 'sleep-promise';
 
@@ -34,13 +23,7 @@ export class ApiInterceptFeatureController {
     this.logger.verbose(request.path);
     this.logger.verbose(currentProject.name);
 
-    const endpoint = await this.endpointService.intercept(
-      request.params[0],
-      query,
-      body,
-      request.method,
-      currentProject
-    );
+    const endpoint = await this.endpointService.intercept(request.url, query, body, request.method, currentProject);
 
     const res = response.status(endpoint.activeStatusCode);
 
@@ -48,14 +31,10 @@ export class ApiInterceptFeatureController {
       return res.json([]);
     }
 
-    const endpointResponse = endpoint.responses.find(
-      (value) => value.statusCode === endpoint.activeStatusCode
-    );
+    const endpointResponse = endpoint.responses.find((value) => value.statusCode === endpoint.activeStatusCode);
 
     if (!endpointResponse) {
-      throw new NotFoundException(
-        `Response for HTTP Status code ${endpoint.activeStatusCode} does not exist`
-      );
+      throw new NotFoundException(`Response for HTTP Status code ${endpoint.activeStatusCode} does not exist`);
     }
 
     if (endpoint.headers && endpoint.headers.length) {

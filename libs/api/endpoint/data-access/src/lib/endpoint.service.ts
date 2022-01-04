@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { EndpointRepository } from './endpoint.repository';
 import { Endpoint, Project } from '@aymme/api/shared/data-access';
 import { UpdateEndpointDto } from './dto/update-endpoint.dto';
@@ -10,18 +6,10 @@ import { CollectionRepository } from '@aymme/api/collection/data-access';
 
 @Injectable()
 export class EndpointService {
-  constructor(
-    private endpointRepository: EndpointRepository,
-    private collectionRepository: CollectionRepository
-  ) {}
+  constructor(private endpointRepository: EndpointRepository, private collectionRepository: CollectionRepository) {}
 
-  async intercept(
-    path: string,
-    query: { [key: string]: string },
-    body: string,
-    method: string,
-    project: Project
-  ) {
+  async intercept(uri: string, query: { [key: string]: string }, body: string, method: string, project: Project) {
+    const path = uri.replace('/api/intercept/', '/');
     const found = await this.endpointRepository.findOne(
       {
         path,
@@ -37,17 +25,9 @@ export class EndpointService {
       return found;
     }
 
-    const defaultCategory = await this.collectionRepository.findOrCreate(
-      'default',
-      project.id
-    );
+    const defaultCategory = await this.collectionRepository.findOrCreate('default', project.id);
 
-    return this.endpointRepository.createEndpoint(
-      path,
-      method,
-      project,
-      defaultCategory
-    );
+    return this.endpointRepository.createEndpoint(path, method, project, defaultCategory);
   }
 
   async getAll(projectId: string): Promise<Endpoint[]> {
@@ -73,22 +53,12 @@ export class EndpointService {
     return found;
   }
 
-  async update(
-    projectId: string,
-    id: string,
-    updateEndpointDto: UpdateEndpointDto
-  ): Promise<Endpoint> {
+  async update(projectId: string, id: string, updateEndpointDto: UpdateEndpointDto): Promise<Endpoint> {
     if (!Object.keys(updateEndpointDto).length) {
-      throw new BadRequestException(
-        "It looks like your request doesn't contain a body"
-      );
+      throw new BadRequestException("It looks like your request doesn't contain a body");
     }
 
-    return this.endpointRepository.updateEndpoint(
-      id,
-      projectId,
-      updateEndpointDto
-    );
+    return this.endpointRepository.updateEndpoint(id, projectId, updateEndpointDto);
   }
 
   async delete(projectId: string, id: string): Promise<void> {
