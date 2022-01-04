@@ -1,13 +1,14 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { EndpointLinkComponent } from './endpoint-link.component';
+import { BadgeModule } from 'primeng/badge';
 
 export default {
   title: 'EndpointLinkComponent',
   component: EndpointLinkComponent,
   decorators: [
     moduleMetadata({
-      imports: [],
-    })
+      imports: [BadgeModule],
+    }),
   ],
 } as Meta<EndpointLinkComponent>;
 
@@ -16,9 +17,8 @@ const Template: Story<EndpointLinkComponent> = (args: EndpointLinkComponent) => 
   props: args,
 });
 
-
 export const Primary = Template.bind({});
 Primary.args = {
-    method:  '',
-    path:  '',
-}
+  method: 'GET',
+  path: '/api/arrangement-manager/client-api/v2/productsummary',
+};
