@@ -530,9 +530,68 @@
               "libs/client/endpoint/ui/endpoint-link/src/**/*.html"
             ]
           }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/client/endpoint/ui/endpoint-link/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/client-endpoint-ui-endpoint-link",
+            "config": {
+              "configFolder": "libs/client/endpoint/ui/endpoint-link/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         }
       },
       "tags": []
+    },
+    "client-endpoint-ui-endpoint-link-e2e": {
+      "root": "apps/client-endpoint-ui-endpoint-link-e2e",
+      "sourceRoot": "apps/client-endpoint-ui-endpoint-link-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-endpoint-ui-endpoint-link-e2e/cypress.json",
+            "devServerTarget": "client-endpoint-ui-endpoint-link:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "client-endpoint-ui-endpoint-link:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/client-endpoint-ui-endpoint-link-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["client-endpoint-ui-endpoint-link"]
     },
     "client-endpoints-feature-endpoints": {
       "projectType": "library",
@@ -796,6 +855,63 @@
             ]
           },
           "outputs": ["{options.outputFile}"]
+        }
+      },
+      "tags": []
+    },
+    "client-shared-storybook": {
+      "projectType": "library",
+      "root": "libs/client/shared/storybook",
+      "sourceRoot": "libs/client/shared/storybook/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shared/storybook"],
+          "options": {
+            "jestConfig": "libs/client/shared/storybook/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shared/storybook/src/**/*.ts",
+              "libs/client/shared/storybook/src/**/*.html"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/client/shared/storybook/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/client-shared-storybook",
+            "config": {
+              "configFolder": "libs/client/shared/storybook/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         }
       },
       "tags": []
