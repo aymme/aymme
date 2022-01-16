@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
+import { EndpointEntity, IAvailableStatusCode } from '@aymme/client/mock/model';
 
 @Component({
   selector: 'ay-mock',
@@ -18,10 +19,13 @@ export class MockComponent {
   loaded$: Observable<boolean> = this.collectionsFacade.loaded$;
   collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$;
   selectedProject$: Observable<ProjectsEntity | undefined> = this.projectsFacade.selectedProject$;
+  availableStatusCodes$: Observable<IAvailableStatusCode[]> = this.endpointFacade.availableStatusCodes$;
+  activeStatusCode$: Observable<IAvailableStatusCode | undefined> = this.endpointFacade.activeStatusCode$;
+  endpoint$: Observable<EndpointEntity | undefined> = this.endpointFacade.endpoint$;
 
   constructor(
-    private collectionsFacade: CollectionsFacade,
     private route: ActivatedRoute,
+    private collectionsFacade: CollectionsFacade,
     private messageService: MessageService,
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade
@@ -29,12 +33,15 @@ export class MockComponent {
     this.collectionsFacade.init(this.projectId);
   }
 
-  update() {
+  onUpdate(data: Partial<EndpointEntity>) {
+    console.log({ data });
     this.messageService.add({
       severity: 'success',
       summary: 'Success',
       detail: 'Data Updated',
     });
+
+    this.endpointFacade.updateEndpoint(data);
   }
 
   delete() {

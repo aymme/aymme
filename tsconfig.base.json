@@ -31,10 +31,12 @@
       "@aymme/client/collection/data-access": ["libs/client/collection/data-access/src/index.ts"],
       "@aymme/client/collection/ui/collection-panel": ["libs/client/collection/ui/collection-panel/src/index.ts"],
       "@aymme/client/endpoint/ui/endpoint-link": ["libs/client/endpoint/ui/endpoint-link/src/index.ts"],
+      "@aymme/client/endpoint/ui/endpoint-options": ["libs/client/endpoint/ui/endpoint-options/src/index.ts"],
       "@aymme/client/endpoints/feature/endpoints": ["libs/client/endpoints/feature/endpoints/src/index.ts"],
       "@aymme/client/endpoints/feature/shell": ["libs/client/endpoints/feature/shell/src/index.ts"],
       "@aymme/client/mock/data-access": ["libs/client/mock/data-access/src/index.ts"],
       "@aymme/client/mock/feature": ["libs/client/mock/feature/src/index.ts"],
+      "@aymme/client/mock/model": ["libs/client/mock/model/src/index.ts"],
       "@aymme/client/projects/data-access": ["libs/client/projects/data-access/src/index.ts"],
       "@aymme/client/projects/feature": ["libs/client/projects/feature/src/index.ts"],
       "@aymme/client/projects/feature/projects": ["libs/client/projects/feature/projects/src/index.ts"],
@@ -50,7 +52,8 @@
       "@aymme/client/shell/ui/logo": ["libs/client/shell/ui/logo/src/index.ts"],
       "@aymme/client/shell/ui/theme-switcher": ["libs/client/shell/ui/theme-switcher/src/index.ts"],
       "@aymme/client/shell/ui/top-bar": ["libs/client/shell/ui/top-bar/src/index.ts"],
-      "@aymme/shared/data-access": ["libs/shared/data-access/src/index.ts"]
+      "@aymme/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@aymme/shared/model": ["libs/shared/model/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

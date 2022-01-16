@@ -10,7 +10,7 @@ export interface IEndpoint {
   emptyArray: boolean;
   method: string;
   forward: boolean;
-  delay: number;
+  delay: string;
   project?: IProject;
   responses?: IResponse[];
   headers?: IHeader[];

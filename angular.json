@@ -593,6 +593,63 @@
       "tags": [],
       "implicitDependencies": ["client-endpoint-ui-endpoint-link"]
     },
+    "client-endpoint-ui-endpoint-options": {
+      "projectType": "library",
+      "root": "libs/client/endpoint/ui/endpoint-options",
+      "sourceRoot": "libs/client/endpoint/ui/endpoint-options/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/endpoint/ui/endpoint-options"],
+          "options": {
+            "jestConfig": "libs/client/endpoint/ui/endpoint-options/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/endpoint/ui/endpoint-options/src/**/*.ts",
+              "libs/client/endpoint/ui/endpoint-options/src/**/*.html"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/client/endpoint/ui/endpoint-options/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/client-endpoint-ui-endpoint-options",
+            "config": {
+              "configFolder": "libs/client/endpoint/ui/endpoint-options/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "tags": []
+    },
     "client-endpoints-feature-endpoints": {
       "projectType": "library",
       "root": "libs/client/endpoints/feature/endpoints",
@@ -693,6 +750,29 @@
             "lintFilePatterns": ["libs/client/mock/feature/src/**/*.ts", "libs/client/mock/feature/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
+        }
+      },
+      "tags": []
+    },
+    "client-mock-model": {
+      "root": "libs/client/mock/model",
+      "sourceRoot": "libs/client/mock/model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/client/mock/model/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/mock/model"],
+          "options": {
+            "jestConfig": "libs/client/mock/model/jest.config.js",
+            "passWithNoTests": true
+          }
         }
       },
       "tags": []
@@ -1107,6 +1187,29 @@
           "outputs": ["coverage/libs/shared/data-access"],
           "options": {
             "jestConfig": "libs/shared/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared-model": {
+      "root": "libs/shared/model",
+      "sourceRoot": "libs/shared/model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/model/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/model"],
+          "options": {
+            "jestConfig": "libs/shared/model/jest.config.js",
             "passWithNoTests": true
           }
         }

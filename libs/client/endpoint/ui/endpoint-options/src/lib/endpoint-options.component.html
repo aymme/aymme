@@ -1,0 +1,64 @@
+<div class="flex flex-row align-items-center border-bottom-1 py-2 px-3 justify-content-between border-gray-300">
+  <span>DETAILS</span>
+  <button pButton type="button" label="Update" (click)="updateEndpoint()"></button>
+</div>
+<p-tabView [formGroup]="form">
+  <p-tabPanel header="Configuration">
+    <div class="formgrid grid p-2">
+      <div class="field col-4">
+        <label class="block">Active Status</label>
+        <p-dropdown
+          *ngIf="availableStatusCodes"
+          inputId="activeStatus"
+          [options]="availableStatusCodes"
+          formControlName="activeStatusCode"
+          optionLabel="statusCode"
+          optionValue="id"
+          [style]="{ width: '100%' }"
+        >
+        </p-dropdown>
+      </div>
+      <div class="field col-4">
+        <label for="delay" class="block">Delay</label>
+        <input type="text" id="delay" pInputText pKeyFilter="pnum" class="w-full" formControlName="delay" />
+      </div>
+      <div class="field col-2">
+        <label class="flex align-items-center">
+          Empty
+          <i
+            class="ml-1 pi pi-question-circle"
+            pTooltip="If enabled it will return an empty array"
+            tooltipPosition="top"
+          ></i>
+        </label>
+        <p-inputSwitch formControlName="emptyArray"></p-inputSwitch>
+      </div>
+      <div class="field col-2">
+        <label class="flex align-items-center"
+          >Forward
+          <i
+            class="ml-1 pi pi-question-circle"
+            pTooltip="Forward the request to the original service"
+            tooltipPosition="top"
+          ></i>
+        </label>
+        <p-inputSwitch
+          pTooltip="[WIP] Forward the request to the original service"
+          tooltipPosition="top"
+          [disabled]="true"
+        ></p-inputSwitch>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Headers">
+    <div class="formgroup-inline">
+      <div class="field">
+        <input type="text" id="header-name-1" pInputText placeholder="Header name" />
+      </div>
+      <div class="field">
+        <input type="text" id="header-value-1" pInputText placeholder="Header value" />
+      </div>
+      <button pButton type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+    </div>
+  </p-tabPanel>
+</p-tabView>

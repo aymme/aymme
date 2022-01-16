@@ -1,6 +1,6 @@
-import { EndpointEntity } from './endpoint.models';
 import { endpointAdapter, EndpointPartialState, initialState } from './endpoint.reducer';
 import * as EndpointSelectors from './endpoint.selectors';
+import { EndpointEntity } from '@aymme/client/mock/model';
 
 describe('Endpoint Selectors', () => {
   const ERROR_MSG = 'No Error Available';

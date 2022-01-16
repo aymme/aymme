@@ -20,5 +20,13 @@
       </ay-collection-panel>
     </div>
   </div>
-  <div class="col flex flex-column p-0 pt-1">Right</div>
+  <div class="col flex flex-column p-0 pt-1">
+    <ay-endpoint-options
+      *ngIf="endpoint$ | async as endpoint"
+      [availableStatusCodes]="availableStatusCodes$ | async"
+      [activeStatusCode]="activeStatusCode$ | async"
+      [endpoint]="endpoint"
+      (update)="onUpdate($event)"
+    ></ay-endpoint-options>
+  </div>
 </div>

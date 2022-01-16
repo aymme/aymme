@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { NxModule } from '@nrwl/angular';
 import { readFirst } from '@nrwl/angular/testing';
 
 import * as EndpointActions from './endpoint.actions';
 import { EndpointEffects } from './endpoint.effects';
 import { EndpointFacade } from './endpoint.facade';
-import { EndpointEntity } from './endpoint.models';
-import { ENDPOINT_FEATURE_KEY, State, initialState, reducer } from './endpoint.reducer';
-import * as EndpointSelectors from './endpoint.selectors';
+import { ENDPOINT_FEATURE_KEY, reducer, State } from './endpoint.reducer';
+import { EndpointEntity } from '@aymme/client/mock/model';
 
 interface TestSchema {
   endpoint: State;

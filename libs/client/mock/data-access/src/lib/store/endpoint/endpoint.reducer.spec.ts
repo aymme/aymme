@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
 import * as EndpointActions from './endpoint.actions';
-import { EndpointEntity } from './endpoint.models';
-import { State, initialState, reducer } from './endpoint.reducer';
+import { initialState, reducer, State } from './endpoint.reducer';
+import { EndpointEntity } from '@aymme/client/mock/model';
 
 describe('Endpoint Reducer', () => {
   const createEndpointEntity = (id: string, name = ''): EndpointEntity => ({
