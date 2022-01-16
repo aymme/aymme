@@ -1,12 +1,5 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { IHeader } from '@aymme/shared/data-access';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { IHeader } from '@aymme/shared/model';
 import { Endpoint } from './endpoint.entity';
 
 @Entity()

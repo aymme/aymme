@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
-import { IProject } from '@aymme/shared/data-access';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { IProject } from '@aymme/shared/model';
 
 @Component({
   selector: 'ay-projects-list',

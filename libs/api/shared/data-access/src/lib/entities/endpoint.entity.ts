@@ -1,13 +1,5 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { IEndpoint } from '@aymme/shared/data-access';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { IEndpoint } from '@aymme/shared/model';
 import { Project } from './project.entity';
 import { Response } from './response.entity';
 import { Header } from './header.entity';
@@ -64,13 +56,9 @@ export class Endpoint extends BaseEntity implements IEndpoint {
   })
   headers?: Header[];
 
-  @ManyToOne(
-    () => Collection,
-    (collection: Collection) => collection.endpoints,
-    {
-      onDelete: 'CASCADE',
-    }
-  )
+  @ManyToOne(() => Collection, (collection: Collection) => collection.endpoints, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'collectionId' })
   collection?: Collection;
 

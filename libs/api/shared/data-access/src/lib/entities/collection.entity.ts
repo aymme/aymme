@@ -1,13 +1,5 @@
-import {
-  BaseEntity,
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { ICollection } from '@aymme/shared/data-access';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ICollection } from '@aymme/shared/model';
 import { Endpoint } from './endpoint.entity';
 import { Project } from './project.entity';
 
