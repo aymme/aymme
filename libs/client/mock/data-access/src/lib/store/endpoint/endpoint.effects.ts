@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
+import { fetch, pessimisticUpdate } from '@nrwl/angular';
 import { Store } from '@ngrx/store';
-import { catchError, concatMap, filter, map, of, withLatestFrom } from 'rxjs';
+import { filter, map, withLatestFrom } from 'rxjs';
 
 import { getSelectedId as getSelectedProjectId } from '@aymme/client/projects/data-access';
 import * as EndpointActions from './endpoint.actions';
@@ -39,11 +39,15 @@ export class EndpointEffects {
         this.store.select(EndpointSelectors.getSelectedId),
         this.store.select(getSelectedProjectId),
       ]),
-      concatMap(([action, endpointId, projectId]) => {
-        return this.endpointService.updateEndpoint(endpointId || '', projectId || '', action.data).pipe(
-          map(() => EndpointActions.updateEndpointSuccess()),
-          catchError((error) => of(EndpointActions.updateEndpointFailure({ error })))
-        );
+      pessimisticUpdate({
+        run: (action, endpointId, projectId) => {
+          return this.endpointService
+            .updateEndpoint(endpointId || '', projectId || '', action.data)
+            .pipe(map(() => EndpointActions.updateEndpointSuccess()));
+        },
+        onError: (action, error) => {
+          return EndpointActions.updateEndpointFailure({ error });
+        },
       })
     )
   );
