@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { fetch, pessimisticUpdate } from '@nrwl/angular';
 import { Store } from '@ngrx/store';
-import { filter, map, withLatestFrom } from 'rxjs';
+import { filter, map, tap, withLatestFrom } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 import { getSelectedId as getSelectedProjectId } from '@aymme/client/projects/data-access';
 import * as EndpointActions from './endpoint.actions';
@@ -41,9 +42,16 @@ export class EndpointEffects {
       ]),
       pessimisticUpdate({
         run: (action, endpointId, projectId) => {
-          return this.endpointService
-            .updateEndpoint(endpointId || '', projectId || '', action.data)
-            .pipe(map(() => EndpointActions.updateEndpointSuccess()));
+          return this.endpointService.updateEndpoint(endpointId || '', projectId || '', action.data).pipe(
+            map(() => EndpointActions.updateEndpointSuccess()),
+            tap(() => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Endpoint successfully updated',
+              });
+            })
+          );
         },
         onError: (action, error) => {
           return EndpointActions.updateEndpointFailure({ error });
@@ -52,5 +60,10 @@ export class EndpointEffects {
     )
   );
 
-  constructor(private readonly actions$: Actions, private store: Store, private endpointService: EndpointService) {}
+  constructor(
+    private readonly actions$: Actions,
+    private store: Store,
+    private endpointService: EndpointService,
+    private messageService: MessageService
+  ) {}
 }
