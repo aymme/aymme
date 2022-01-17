@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { EndpointEntity, IAvailableStatusCode } from '@aymme/client/mock/model';
+import { EndpointEntity, IAvailableStatusCode, UpdateEndpointDto } from '@aymme/client/mock/model';
 
 import * as EndpointActions from './endpoint.actions';
 import * as EndpointSelectors from './endpoint.selectors';
@@ -32,7 +32,7 @@ export class EndpointFacade {
     this.store.dispatch(EndpointActions.loadEndpoint({ endpointId }));
   }
 
-  updateEndpoint(data: Partial<EndpointEntity>) {
+  updateEndpoint(data: UpdateEndpointDto) {
     this.store.dispatch(EndpointActions.updateEndpoint({ data }));
   }
 }

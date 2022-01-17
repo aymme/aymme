@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
-import { EndpointEntity, IAvailableStatusCode } from '@aymme/client/mock/model';
+import { EndpointEntity, IAvailableStatusCode, UpdateEndpointDto } from '@aymme/client/mock/model';
 
 @Component({
   selector: 'ay-mock',
@@ -33,7 +33,7 @@ export class MockComponent {
     this.collectionsFacade.init(this.projectId);
   }
 
-  onUpdate(data: Partial<EndpointEntity>) {
+  onUpdate(data: UpdateEndpointDto) {
     console.log({ data });
     this.messageService.add({
       severity: 'success',

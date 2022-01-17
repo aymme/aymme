@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { EndpointEntity, IAvailableStatusCode } from '@aymme/client/mock/model';
+import { EndpointEntity, IAvailableStatusCode, UpdateEndpointDto } from '@aymme/client/mock/model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ export class EndpointOptionsComponent implements OnInit, OnChanges {
   @Input() activeStatusCode: IAvailableStatusCode | null | undefined;
   @Input() endpoint: EndpointEntity | undefined;
 
-  @Output() update = new EventEmitter<Partial<EndpointEntity>>();
+  @Output() update = new EventEmitter<UpdateEndpointDto>();
 
   form: FormGroup = this.fb.group({
     delay: null,
