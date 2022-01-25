@@ -1,11 +1,11 @@
-<section class="p-grid">
-  <div class="p-col-8 p-offset-2">
+<section class="grid">
+  <div class="col-8 col-offset-2">
     <article class="card">
-      <header class="p-d-flex p-ai-center">
-        <h2 class="p-m-0">Current <strong>Projects</strong></h2>
+      <header class="flex align-items-center">
+        <h2 class="m-0">Current <strong>Projects</strong></h2>
 
         <button
-          class="p-ml-auto"
+          class="ml-auto"
           pButton
           type="button"
           (click)="showDialog()"
@@ -17,21 +17,20 @@
       <p-divider></p-divider>
 
       <section>
-        <ng-container
-          *ngIf="loaded$ | async; then loadedProjects; else loadingProjects"
-        ></ng-container>
+        <ng-container *ngIf="loaded$ | async; then loadedProjects; else loadingProjects"></ng-container>
       </section>
     </article>
   </div>
 
-  <p-dialog header="Add a new Project" [(visible)]="display" position="top">
+  <p-dialog header="Add a new Project" [(visible)]="display" position="top" [style]="{ width: '50vw' }" [modal]="true">
     <article>
-      <div class="p-field">
+      <div class="field">
         <label for="projectName">Name</label>
         <input
           id="projectName"
           type="text"
           aria-describedby="projectName-help"
+          class="w-full"
           pInputText
           [(ngModel)]="newProjectName"
           autofocus
@@ -40,13 +39,7 @@
     </article>
 
     <p-footer>
-      <button
-        class=""
-        pButton
-        type="button"
-        label="Confirm"
-        (click)="createNewProject()"
-      ></button>
+      <button class="" pButton type="button" label="Confirm" (click)="createNewProject()"></button>
     </p-footer>
   </p-dialog>
 </section>
