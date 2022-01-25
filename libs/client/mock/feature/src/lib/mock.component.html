@@ -1,7 +1,7 @@
 <div class="flex" *ngIf="selectedProject$ | async as project">
   <div class="col-5 surface-100 sidebar p-0 pt-1">
     <div class="flex flex-row align-items-center border-bottom-1 py-2 px-3 justify-content-between border-gray-300">
-      <span>{{ project.name }}</span>
+      <span class="text-base">{{ project.name }}</span>
       <div>
         <span class="p-buttonset">
           <button pButton type="button" label="Import" class="p-button-outlined"></button>
