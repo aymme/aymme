@@ -538,7 +538,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/client/endpoint/ui/endpoint-link/.storybook"
-            }
+            },
+            "projectBuildConfig": "client-endpoint-ui-endpoint-link:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -554,7 +555,8 @@
             "outputPath": "dist/storybook/client-endpoint-ui-endpoint-link",
             "config": {
               "configFolder": "libs/client/endpoint/ui/endpoint-link/.storybook"
-            }
+            },
+            "projectBuildConfig": "client-endpoint-ui-endpoint-link:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -623,7 +625,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/client/endpoint/ui/endpoint-options/.storybook"
-            }
+            },
+            "projectBuildConfig": "client-endpoint-ui-endpoint-options:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -639,7 +642,8 @@
             "outputPath": "dist/storybook/client-endpoint-ui-endpoint-options",
             "config": {
               "configFolder": "libs/client/endpoint/ui/endpoint-options/.storybook"
-            }
+            },
+            "projectBuildConfig": "client-endpoint-ui-endpoint-options:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -915,7 +919,8 @@
             "port": 4400,
             "config": {
               "configFolder": "libs/client/shared/storybook/.storybook"
-            }
+            },
+            "projectBuildConfig": "client-shared-storybook:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -931,7 +936,8 @@
             "outputPath": "dist/storybook/client-shared-storybook",
             "config": {
               "configFolder": "libs/client/shared/storybook/.storybook"
-            }
+            },
+            "projectBuildConfig": "client-shared-storybook:build-storybook"
           },
           "configurations": {
             "ci": {
