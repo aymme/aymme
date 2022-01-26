@@ -52,6 +52,8 @@
     "@nrwl/angular": "13.5.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.1",
+    "monaco-editor": "^0.31.1",
+    "ngx-monaco-editor": "^12.0.0",
     "normalize.css": "^8.0.1",
     "primeflex": "^3.1.2",
     "primeicons": "^5.0.0",
@@ -114,4 +116,3 @@
     "webpack-node-externals": "^3.0.0"
   }
 }
-

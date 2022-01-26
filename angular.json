@@ -347,7 +347,15 @@
             "polyfills": "apps/client/src/polyfills.ts",
             "tsConfig": "apps/client/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+            "assets": [
+              "apps/client/src/favicon.ico",
+              "apps/client/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor",
+                "output": "assets/monaco-editor"
+              }
+            ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
               "apps/client/src/styles.scss",
@@ -948,26 +956,28 @@
       },
       "tags": []
     },
-    "client-shared-ui": {
+    "client-shared-ui-editor": {
       "projectType": "library",
-      "root": "libs/client/shared/ui",
-      "sourceRoot": "libs/client/shared/ui/src",
+      "root": "libs/client/shared/ui/editor",
+      "sourceRoot": "libs/client/shared/ui/editor/src",
       "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/shared/ui"],
+          "outputs": ["coverage/libs/client/shared/ui/editor"],
           "options": {
-            "jestConfig": "libs/client/shared/ui/jest.config.js",
+            "jestConfig": "libs/client/shared/ui/editor/jest.config.js",
             "passWithNoTests": true
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/client/shared/ui/src/**/*.ts", "libs/client/shared/ui/src/**/*.html"]
-          },
-          "outputs": ["{options.outputFile}"]
+            "lintFilePatterns": [
+              "libs/client/shared/ui/editor/src/**/*.ts",
+              "libs/client/shared/ui/editor/src/**/*.html"
+            ]
+          }
         }
       },
       "tags": []

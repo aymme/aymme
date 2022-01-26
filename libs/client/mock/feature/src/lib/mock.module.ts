@@ -13,6 +13,7 @@ import { EndpointLinkModule } from '@aymme/client/endpoint/ui/endpoint-link';
 import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-panel';
 import { ClientMockDataAccessModule } from '@aymme/client/mock/data-access';
 import { EndpointOptionsModule } from '@aymme/client/endpoint/ui/endpoint-options';
+import { EditorModule } from '@aymme/client/shared/ui/editor';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { EndpointOptionsModule } from '@aymme/client/endpoint/ui/endpoint-option
     CollectionPanelModule,
     ClientMockDataAccessModule,
     EndpointOptionsModule,
+    EditorModule,
   ],
   declarations: [MockComponent],
   providers: [CollectionsFacade],

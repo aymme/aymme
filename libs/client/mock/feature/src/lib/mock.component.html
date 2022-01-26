@@ -21,12 +21,16 @@
     </div>
   </div>
   <div class="col flex flex-column p-0 pt-1">
-    <ay-endpoint-options
-      *ngIf="endpoint$ | async as endpoint"
-      [availableStatusCodes]="availableStatusCodes$ | async"
-      [activeStatusCode]="activeStatusCode$ | async"
-      [endpoint]="endpoint"
-      (update)="onUpdate($event)"
-    ></ay-endpoint-options>
+    <ng-container *ngIf="endpoint$ | async as endpoint">
+      <ay-endpoint-options
+        [availableStatusCodes]="availableStatusCodes$ | async"
+        [activeStatusCode]="activeStatusCode$ | async"
+        [endpoint]="endpoint"
+        (update)="onUpdate($event)"
+      ></ay-endpoint-options>
+      <div style="height: 600px">
+        <ay-editor style="height: 100%"></ay-editor>
+      </div>
+    </ng-container>
   </div>
 </div>
