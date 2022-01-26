@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { EndpointEntity, IAvailableStatusCode, UpdateEndpointDto } from '@aymme/client/mock/model';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ay-endpoint-options',
@@ -19,6 +19,7 @@ export class EndpointOptionsComponent implements OnInit, OnChanges {
     delay: null,
     activeStatusCode: null,
     emptyArray: null,
+    headers: this.fb.array([]),
   });
 
   constructor(private fb: FormBuilder) {}
@@ -34,6 +35,17 @@ export class EndpointOptionsComponent implements OnInit, OnChanges {
         activeStatusCode: this.activeStatusCode,
         emptyArray: this.endpoint.emptyArray,
       });
+
+      this.headersControl.clear();
+
+      this.endpoint.headers?.forEach((header) =>
+        this.headersControl.push(
+          this.fb.group({
+            name: [header.name, [Validators.required]],
+            value: [header.value, [Validators.required]],
+          })
+        )
+      );
     }
   }
 
@@ -45,11 +57,28 @@ export class EndpointOptionsComponent implements OnInit, OnChanges {
     });
   }
 
+  addNewHeader() {
+    this.headersControl.push(
+      this.fb.group({
+        name: [null, [Validators.required]],
+        value: [null, [Validators.required]],
+      })
+    );
+  }
+
+  removeExistingHeader(index: number) {
+    this.headersControl.removeAt(index);
+  }
+
   get activeStatusCodeControl(): FormControl {
     return this.form.get('activeStatusCode') as FormControl;
   }
 
   get delayControl(): FormControl {
     return this.form.get('delay') as FormControl;
+  }
+
+  get headersControl(): FormArray {
+    return this.form.get('headers') as FormArray;
   }
 }

@@ -51,14 +51,34 @@
     </div>
   </p-tabPanel>
   <p-tabPanel header="Headers">
-    <div class="formgroup-inline">
-      <div class="field">
-        <input type="text" id="header-name-1" pInputText placeholder="Header name" />
-      </div>
-      <div class="field">
-        <input type="text" id="header-value-1" pInputText placeholder="Header value" />
-      </div>
-      <button pButton type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text"></button>
+    <ng-container formArrayName="headers">
+      <ng-container *ngFor="let _ of headersControl.controls; index as i">
+        <div class="formgroup-inline" [formGroupName]="i">
+          <div class="field">
+            <input type="text" [id]="'header-name-' + i" pInputText placeholder="Header name" formControlName="name" />
+          </div>
+          <div class="field">
+            <input type="text" id="header-value-1" pInputText placeholder="Header value" formControlName="value" />
+          </div>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-times"
+            class="p-button-rounded p-button-danger p-button-text"
+            (click)="removeExistingHeader(i)"
+          ></button>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div>
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-plus"
+        class="p-button-secondary p-button-text w-full"
+        (click)="addNewHeader()"
+      ></button>
     </div>
   </p-tabPanel>
 </p-tabView>

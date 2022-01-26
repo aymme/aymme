@@ -11,6 +11,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { TabViewModule } from 'primeng/tabview';
+import { RippleModule } from 'primeng/ripple';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { TabViewModule } from 'primeng/tabview';
     InputSwitchModule,
     TabViewModule,
     ReactiveFormsModule,
+    RippleModule,
   ],
   declarations: [EndpointOptionsComponent],
   exports: [EndpointOptionsComponent],
