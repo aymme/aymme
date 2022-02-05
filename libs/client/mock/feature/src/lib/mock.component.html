@@ -22,14 +22,30 @@
   </div>
   <div class="col flex flex-column p-0 pt-1">
     <ng-container *ngIf="endpoint$ | async as endpoint">
+      <div class="flex flex-row align-items-center border-bottom-1 py-2 px-3 justify-content-between border-gray-300">
+        <span>DETAILS</span>
+        <button pButton type="button" label="Update" (click)="updateEndpoint()"></button>
+      </div>
       <ay-endpoint-options
-        [availableStatusCodes]="availableStatusCodes$ | async"
+        *ngIf="availableStatusCodes$ | async as availableStatusCodes"
+        [availableStatusCodes]="availableStatusCodes"
         [activeStatusCode]="activeStatusCode$ | async"
         [endpoint]="endpoint"
-        (update)="onUpdate($event)"
+        [configurationForm]="configurationForm"
       ></ay-endpoint-options>
+      <ay-response-list
+        *ngIf="availableStatusCodes$ | async as availableStatusCodes"
+        [availableStatusCodes]="availableStatusCodes"
+        [activeStatusCode]="activeStatusCode$ | async"
+        [responseArrayForm]="responseArrayForm"
+        (viewResponseBody)="onViewResponseBody($event)"
+      ></ay-response-list>
       <div style="height: 600px">
-        <ay-editor style="height: 100%"></ay-editor>
+        <ay-editor
+          style="height: 100%"
+          [content]="selectedResponseBody || ''"
+          (contentChange)="onUpdateResponse($event)"
+        ></ay-editor>
       </div>
     </ng-container>
   </div>

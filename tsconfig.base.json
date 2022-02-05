@@ -35,6 +35,7 @@
       "@aymme/client/mock/data-access": ["libs/client/mock/data-access/src/index.ts"],
       "@aymme/client/mock/feature": ["libs/client/mock/feature/src/index.ts"],
       "@aymme/client/mock/model": ["libs/client/mock/model/src/index.ts"],
+      "@aymme/client/mock/ui/response-list": ["libs/client/mock/ui/response-list/src/index.ts"],
       "@aymme/client/projects/data-access": ["libs/client/projects/data-access/src/index.ts"],
       "@aymme/client/projects/feature": ["libs/client/projects/feature/src/index.ts"],
       "@aymme/client/projects/feature/projects": ["libs/client/projects/feature/projects/src/index.ts"],

@@ -1,13 +1,7 @@
-import {
-  IsArray,
-  IsBoolean,
-  IsNumber,
-  IsOptional,
-  IsUUID,
-  ValidateNested,
-} from 'class-validator';
+import { IsArray, IsBoolean, IsNumber, IsOptional, IsUUID, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { HeaderDto } from './header.dto';
+import { ResponseDto } from './response.dto';
 
 export class UpdateEndpointDto {
   @IsNumber()
@@ -31,4 +25,10 @@ export class UpdateEndpointDto {
   @IsOptional()
   @IsUUID()
   collectionId?: string;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ResponseDto)
+  responses?: ResponseDto[];
 }

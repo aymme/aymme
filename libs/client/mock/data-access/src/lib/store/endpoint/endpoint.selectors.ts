@@ -12,6 +12,6 @@ export const getSelectedId = createSelector(getEndpointState, (state: State) => 
 
 export const getSelectedEndpoint = createSelector(getEndpointState, (state: State) => state.endpoint);
 
-export const getAvailableStatusCodes = createSelector(getEndpointState, (state: State) => state.availableStatuses);
+export const getAvailableStatusCodes = createSelector(getSelectedEndpoint, (endpoint) => endpoint?.responses);
 
 export const getActiveStatusCode = createSelector(getEndpointState, (state: State) => state.activeStatusCode);

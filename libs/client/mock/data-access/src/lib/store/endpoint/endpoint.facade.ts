@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { EndpointEntity, IAvailableStatusCode, UpdateEndpointDto } from '@aymme/client/mock/model';
+import { EndpointEntity, ResponseEntity, UpdateEndpointDto } from '@aymme/client/mock/model';
 
 import * as EndpointActions from './endpoint.actions';
 import * as EndpointSelectors from './endpoint.selectors';
@@ -14,10 +14,10 @@ export class EndpointFacade {
    * and expose them as observables through the facade.
    */
   loaded$: Observable<boolean> = this.store.pipe(select(EndpointSelectors.getEndpointLoaded));
-  availableStatusCodes$: Observable<IAvailableStatusCode[]> = this.store.pipe(
+  availableStatusCodes$: Observable<ResponseEntity[] | undefined> = this.store.pipe(
     select(EndpointSelectors.getAvailableStatusCodes)
   );
-  activeStatusCode$: Observable<IAvailableStatusCode | undefined> = this.store.pipe(
+  activeStatusCode$: Observable<ResponseEntity | undefined> = this.store.pipe(
     select(EndpointSelectors.getActiveStatusCode)
   );
   endpoint$: Observable<EndpointEntity | undefined> = this.store.pipe(select(EndpointSelectors.getSelectedEndpoint));

@@ -1,8 +1,4 @@
-<div class="flex flex-row align-items-center border-bottom-1 py-2 px-3 justify-content-between border-gray-300">
-  <span>DETAILS</span>
-  <button pButton type="button" label="Update" (click)="updateEndpoint()"></button>
-</div>
-<p-tabView [formGroup]="form">
+<p-tabView *ngIf="configurationForm" [formGroup]="configurationForm">
   <p-tabPanel header="Configuration">
     <div class="formgrid grid p-2">
       <div class="field col-4">

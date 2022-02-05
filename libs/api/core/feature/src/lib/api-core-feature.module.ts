@@ -18,7 +18,7 @@ import databaseConfig from './config/database.config';
         database: configService.get<string>('database.name'),
         synchronize: configService.get<boolean>('database.synchronize'),
         entities: getMetadataArgsStorage().tables.map((tbl) => tbl.target),
-        logging: true,
+        logging: false,
       }),
       inject: [ConfigService],
     }),

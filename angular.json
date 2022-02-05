@@ -735,6 +735,32 @@
       },
       "tags": []
     },
+    "client-mock-ui-response-list": {
+      "projectType": "library",
+      "root": "libs/client/mock/ui/response-list",
+      "sourceRoot": "libs/client/mock/ui/response-list/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/mock/ui/response-list"],
+          "options": {
+            "jestConfig": "libs/client/mock/ui/response-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/mock/ui/response-list/src/**/*.ts",
+              "libs/client/mock/ui/response-list/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "client-projects-data-access": {
       "projectType": "library",
       "root": "libs/client/projects/data-access",

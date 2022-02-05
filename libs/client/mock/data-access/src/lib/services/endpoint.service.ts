@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EndpointEntity, UpdateEndpointDto } from '@aymme/client/mock/model';
+import { EndpointEntity, NewResponseDto, ResponseEntity, UpdateEndpointDto } from '@aymme/client/mock/model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,5 +15,9 @@ export class EndpointService {
 
   updateEndpoint(id: string, projectId: string, data: UpdateEndpointDto) {
     return this.http.put<EndpointEntity>(`/api/projects/${projectId}/endpoints/${id}`, data);
+  }
+
+  addNewResponse(id: string, projectId: string, data: NewResponseDto) {
+    return this.http.post<ResponseEntity>(`/api/endpoints/${id}/responses`, data);
   }
 }

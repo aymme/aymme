@@ -1,0 +1,25 @@
+<p-tabMenu *ngIf="activeItem" [model]="responses" [activeItem]="activeItem"></p-tabMenu>
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <p-listbox
+      [options]="availableStatuses"
+      [metaKeySelection]="false"
+      [group]="true"
+      [filter]="true"
+      [listStyle]="{ 'max-height': '250px' }"
+      [(ngModel)]="selectedStatusCode"
+    >
+    </p-listbox>
+    <div class="text-right">
+      <button
+        pButton
+        type="button"
+        label="Add"
+        icon="pi pi-plus"
+        class="p-button-sm mt-1"
+        (click)="addNewResponse()"
+        [disabled]="!selectedStatusCode"
+      ></button>
+    </div>
+  </ng-template>
+</p-overlayPanel>

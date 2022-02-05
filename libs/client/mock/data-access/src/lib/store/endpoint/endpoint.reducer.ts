@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { EndpointEntity, IAvailableStatusCode } from '@aymme/client/mock/model';
+import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
 
 import * as EndpointActions from './endpoint.actions';
 
@@ -11,8 +11,8 @@ export interface State {
   loaded: boolean;
   error?: string | null;
   endpoint?: EndpointEntity | undefined;
-  availableStatuses: IAvailableStatusCode[];
-  activeStatusCode?: IAvailableStatusCode;
+  activeStatusCode?: ResponseEntity;
+  selectedStatusCodeBody?: string;
 }
 
 export interface EndpointPartialState {
@@ -22,17 +22,13 @@ export interface EndpointPartialState {
 export const initialState: State = {
   // set initial required properties
   loaded: false,
-  availableStatuses: [],
+  endpoint: undefined,
 };
 
 const endpointReducer = createReducer(
   initialState,
   on(EndpointActions.loadEndpoint, (state) => ({ ...state, loaded: false, error: null })),
   on(EndpointActions.loadEndpointSuccess, (state, { endpoint }) => {
-    const availableStatuses = endpoint.responses
-      ? endpoint.responses.map((response) => ({ id: response.id, statusCode: response.statusCode }))
-      : [];
-
     const activeStatusCode = endpoint.responses
       ? endpoint.responses.find((response) => response.statusCode === endpoint.activeStatusCode)
       : undefined;
@@ -41,10 +37,8 @@ const endpointReducer = createReducer(
       ...state,
       endpoint,
       selectedId: endpoint.id,
-      availableStatuses,
-      activeStatusCode: activeStatusCode
-        ? { id: activeStatusCode.id, statusCode: activeStatusCode.statusCode }
-        : undefined,
+      activeStatusCode: activeStatusCode || undefined,
+      selectedStatusCodeBody: activeStatusCode?.body,
     };
   }),
   on(EndpointActions.loadEndpointFailure, (state, { error }) => ({ ...state, error }))
