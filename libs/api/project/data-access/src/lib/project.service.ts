@@ -47,9 +47,9 @@ export class ProjectService {
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
     const { name } = createProjectDto;
 
-    const isProjectExist = await this.projectRepository.findOne({ name });
+    let project = await this.projectRepository.findOne({ name });
 
-    if (isProjectExist) {
+    if (project) {
       this.logger.error(
         `Project already exist "${name}". DTO: ${JSON.stringify(
           createProjectDto
@@ -59,7 +59,7 @@ export class ProjectService {
       throw new ConflictException('Project already exist');
     }
 
-    const project = this.projectRepository.create();
+    project = this.projectRepository.create();
 
     project.name = name;
     project.slug = slugify(name, {
