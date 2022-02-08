@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { MockModule } from 'ng-mocks';
-import { ButtonModule } from 'primeng/button';
 import { of } from 'rxjs';
 
 import { SupportedLanguages } from '@Enums/supported-languages.enum';
@@ -23,7 +22,6 @@ describe('LanguageSwitcherComponent', (): void => {
     await TestBed.configureTestingModule({
       imports: [
         TranslateTestingModule,
-        MockModule(ButtonModule),
       ],
       declarations: [
         LanguageSwitcherComponent,

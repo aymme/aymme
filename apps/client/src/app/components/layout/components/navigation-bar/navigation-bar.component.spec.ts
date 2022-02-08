@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockComponent, MockModule } from 'ng-mocks';
-import { MenubarModule } from 'primeng/menubar';
-
 import { LanguageSwitcherComponent } from '@Components/language-switcher/language-switcher.component';
 import { ThemeSwitcherModule } from '@Components/theme-switcher/theme-switcher.module';
 
@@ -14,8 +12,7 @@ describe('NavigationBarComponent', (): void => {
   beforeEach(async(): Promise<void> => {
     await TestBed.configureTestingModule({
       imports: [
-        MockModule(ThemeSwitcherModule),
-        MockModule(MenubarModule),
+        MockModule(ThemeSwitcherModule)
       ],
       declarations: [
         NavigationBarComponent,

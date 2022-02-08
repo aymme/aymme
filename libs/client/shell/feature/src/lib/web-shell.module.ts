@@ -7,7 +7,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { webShellRoutes } from './web-shell.routes';
-import { MessageService } from 'primeng/api';
 
 @NgModule({
   imports: [
@@ -22,6 +21,6 @@ import { MessageService } from 'primeng/api';
   ],
   exports: [RouterModule],
   declarations: [],
-  providers: [MessageService],
+  providers: [],
 })
 export class ClientShellFeatureModule {}

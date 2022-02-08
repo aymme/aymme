@@ -1,17 +1,17 @@
 # AYMME
 
-*AMMYE is currently in develop. If you want to contribute please reach out.*
+*AMMYE is currently in development. If you want to contribute please reach out.*
 
-AYMME stands for "Are You Mocking ME?" and makes mocking data easier when using "ng serve". Angular CLI already covers the instant feedback when code changes, but when you need to test multiple scenarios using different data or error responses or you need to change the structure of your Experience. AYMME is able to manage this for you.
+AYMME stands for "Are You Mocking ME?" and makes mocking data easier when using "ng serve". Angular CLI already covers the instant feedback when code changes, but when you need to test multiple scenarios using different data or error responses this can be a hassle. AYMME is able to provide you an easy why to configure mock data.
 
-This project was generated using [Nx](https://nx.dev). AYMME follows a mix of NX folder structure and best practices for splitting features per domain.
+<em>This project was generated using [Nx](https://nx.dev). AYMME follows a mix of NX folder structure and best practices for splitting features per domain.</em>
+
+### Developing (cheatsheet)
 
 Following a cheatsheet for AYMME working in the NX framework. Please note that some commands will create a structure of the components that is not always reflecting the AYMME structure. Please have a look at other “features” to see the structure. There will be examples further in this cheatsheet. 
 
 ---
-
 > Use —dry-run flag in order to verify the output of the command before executing it. 
-
 ---
 
 /Please Note: In the project the prefix: “ay” is used for all components, directives, pipes, services. Automatically the prefix “Aymme” is set by NX. Inside the new module you will need to change this “prefix” to: “prefix”: “ay”/ 

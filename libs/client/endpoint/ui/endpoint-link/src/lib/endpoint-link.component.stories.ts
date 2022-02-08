@@ -1,13 +1,12 @@
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { EndpointLinkComponent } from './endpoint-link.component';
-import { BadgeModule } from 'primeng/badge';
 
 export default {
   title: 'EndpointLinkComponent',
   component: EndpointLinkComponent,
   decorators: [
     moduleMetadata({
-      imports: [BadgeModule],
+      imports: [],
     }),
   ],
 } as Meta<EndpointLinkComponent>;

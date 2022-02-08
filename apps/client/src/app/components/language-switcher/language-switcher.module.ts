@@ -1,5 +1,3 @@
-import { ButtonModule } from 'primeng/button';
-
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -10,12 +8,7 @@ const components: ComponentsType = [
   LanguageSwitcherComponent,
 ];
 
-const primeNgModules: ModulesType = [
-  ButtonModule,
-];
-
 const modules: ModulesType = [
-  ...primeNgModules,
   CommonModule,
 ];
 

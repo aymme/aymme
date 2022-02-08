@@ -1,6 +1,6 @@
 {
   "name": "aymme",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -55,10 +55,6 @@
     "class-validator": "^0.13.1",
     "monaco-editor": "^0.31.1",
     "ngx-monaco-editor": "^12.0.0",
-    "normalize.css": "^8.0.1",
-    "primeflex": "^3.1.2",
-    "primeicons": "^5.0.0",
-    "primeng": "^13.0.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "sleep-promise": "^9.1.0",

@@ -14,15 +14,13 @@
         ></button>
       </header>
 
-      <p-divider></p-divider>
-
       <section>
         <ng-container *ngIf="loaded$ | async; then loadedProjects; else loadingProjects"></ng-container>
       </section>
     </article>
   </div>
 
-  <p-dialog header="Add a new Project" [(visible)]="display" position="top" [style]="{ width: '50vw' }" [modal]="true">
+  <!-- <p-dialog header="Add a new Project" [(visible)]="display" position="top" [style]="{ width: '50vw' }" [modal]="true">
     <article>
       <div class="field">
         <label for="projectName">Name</label>
@@ -41,11 +39,11 @@
     <p-footer>
       <button class="" pButton type="button" label="Confirm" (click)="createNewProject()"></button>
     </p-footer>
-  </p-dialog>
+  </p-dialog> -->
 </section>
 
 <ng-template #loadingProjects>
-  <p-progressBar mode="indeterminate"></p-progressBar>
+  loading projects...
 </ng-template>
 
 <ng-template #loadedProjects>

@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'ay-collection-panel',
@@ -8,28 +7,6 @@ import { MenuItem } from 'primeng/api';
 })
 export class CollectionPanelComponent {
   @Input() name = '';
-
-  items: MenuItem[] = [
-    {
-      label: 'Options',
-      items: [
-        {
-          label: 'Rename',
-          icon: 'pi pi-edit',
-          command: () => {
-            this.update();
-          },
-        },
-        {
-          label: 'Delete',
-          icon: 'pi pi-times',
-          command: () => {
-            this.delete();
-          },
-        },
-      ],
-    },
-  ];
 
   update() {
     console.log(`Update ${this.name}`);

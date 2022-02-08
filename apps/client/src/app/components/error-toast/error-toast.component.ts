@@ -1,4 +1,3 @@
-import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
@@ -17,19 +16,13 @@ export class ErrorToastComponent implements OnInit, OnDestroy {
 
   public constructor(
     private readonly errorFacade: ErrorFacade,
-    private readonly messageService: MessageService,
   ) {
   }
 
   public ngOnInit(): void {
     this.errorSubscription = this.errorFacade.errors$.subscribe((errors: ErrorsState): void => {
       errors.forEach((error: Error): void => {
-        this.messageService.add({
-          severity: 'error',
-          summary: `${error.status}`,
-          detail: error.statusText,
-          closable: true,
-        });
+        console.log('//TODO: log this?')
       });
     });
   }

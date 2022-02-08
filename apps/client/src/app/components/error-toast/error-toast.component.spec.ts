@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MockModule } from 'ng-mocks';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
 import { of, Subject } from 'rxjs';
 
 import { MOCKED_ERROR, MOCKED_ERROR_STATE } from '@Mocks/state/error.mock';

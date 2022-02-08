@@ -10,7 +10,6 @@ import {
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ShellComponent } from './shell.component';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -32,8 +31,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
       },
     ]),
     StoreModule.forFeature(PROJECTS_FEATURE_KEY, projectsReducer),
-    EffectsModule.forFeature([ProjectsEffects]),
-    ProgressSpinnerModule,
+    EffectsModule.forFeature([ProjectsEffects])
   ],
   providers: [ProjectsFacade],
   declarations: [ShellComponent],

@@ -1,5 +1,4 @@
 @import '_variables';
-@import './primeng/_index';
 
 // partials
 @import "./partials/_layout";
@@ -16,4 +15,8 @@
   &:focus {
     outline: none;
   }
+}
+
+a, a:visited, a:hover {
+  text-decoration: none;
 }

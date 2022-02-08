@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'ay-shell-component',
   template: `<router-outlet *ngIf="selectedProject$ | async; else isLoading"></router-outlet>
     <ng-template #isLoading>
-      <div class="align-items-center flex justify-content-center"><p-progressSpinner></p-progressSpinner></div>
+      <div class="align-items-center flex justify-content-center"></div>
     </ng-template> `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,

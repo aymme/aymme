@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeSwitcherComponent } from './theme-switcher.component';
 
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, InputSwitchModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   declarations: [
     ThemeSwitcherComponent
   ],

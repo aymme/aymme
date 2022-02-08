@@ -1,18 +1,8 @@
 <p-tabView *ngIf="configurationForm" [formGroup]="configurationForm">
-  <p-tabPanel header="Configuration">
+
     <div class="formgrid grid p-2">
       <div class="field col-4">
         <label class="block">Active Status</label>
-        <p-dropdown
-          *ngIf="availableStatusCodes"
-          inputId="activeStatus"
-          [options]="availableStatusCodes"
-          formControlName="activeStatusCode"
-          optionLabel="statusCode"
-          optionValue="id"
-          [style]="{ width: '100%' }"
-        >
-        </p-dropdown>
       </div>
       <div class="field col-4">
         <label for="delay" class="block">Delay</label>
@@ -38,15 +28,10 @@
             tooltipPosition="top"
           ></i>
         </label>
-        <p-inputSwitch
-          pTooltip="[WIP] Forward the request to the original service"
-          tooltipPosition="top"
-          [disabled]="true"
-        ></p-inputSwitch>
+
       </div>
     </div>
-  </p-tabPanel>
-  <p-tabPanel header="Headers">
+
     <ng-container formArrayName="headers">
       <ng-container *ngFor="let _ of headersControl.controls; index as i">
         <div class="formgroup-inline" [formGroupName]="i">
@@ -76,5 +61,3 @@
         (click)="addNewHeader()"
       ></button>
     </div>
-  </p-tabPanel>
-</p-tabView>

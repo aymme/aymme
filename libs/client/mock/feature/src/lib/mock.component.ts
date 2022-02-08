@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, tap } from 'rxjs';
-import { MessageService } from 'primeng/api';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
@@ -12,7 +11,7 @@ import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
   selector: 'ay-mock',
   templateUrl: './mock.component.html',
   styleUrls: ['./mock.component.scss'],
-  providers: [MessageService],
+  providers: [],
 })
 export class MockComponent {
   projectId: string = this.route.snapshot.parent?.parent?.params.projectId;
@@ -42,7 +41,6 @@ export class MockComponent {
   constructor(
     private route: ActivatedRoute,
     private collectionsFacade: CollectionsFacade,
-    private messageService: MessageService,
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade,
     private fb: FormBuilder
@@ -55,14 +53,6 @@ export class MockComponent {
       ...this.configurationForm.value,
       delay: Number(this.configurationForm.value['delay']),
       responses: [...this.responseArrayForm.value],
-    });
-  }
-
-  delete() {
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Delete',
-      detail: 'Data Deleted',
     });
   }
 
