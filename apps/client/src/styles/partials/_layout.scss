@@ -1,7 +1,14 @@
+
+html.light {
+  --ay-bg-color: white;
+  --ay-text-color: #003543;
+}
+
 body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-  background-color: #0F052F;
+  background-color: var(--ay-bg-color);
+  color: var(--a-text-color);
 }

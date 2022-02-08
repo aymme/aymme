@@ -1,64 +1,50 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 
+export enum THEMES {
+  Light = 'light',
+  Dark = 'dark'
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeSwitcherService {
-  private _isDarkTheme = true;
-
-  public set isDarkTheme(isDarkTheme: boolean) {
-    this._isDarkTheme = isDarkTheme;
-  }
-
-  public get isDarkTheme(): boolean {
-    return this._isDarkTheme;
-  }
+  private _theme: THEMES = THEMES.Dark;
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
   ) {
-  }
-
-  private static getClassName(isDarkTheme: boolean): string {
-    return isDarkTheme ? 'dark-theme' : 'light-theme';
+    this.initializeTheme();
   }
 
   public initializeTheme(): void {
-    this.isDarkTheme = localStorage.getItem('theme') === 'true';
-    this.changeTheme();
+    this._theme = localStorage.getItem('theme') === 'light' ? THEMES.Light : THEMES.Dark;
   }
 
-  public changeTheme(isDarkTheme: boolean = this.isDarkTheme): void {
-    const themeName: string = isDarkTheme ? 'dark' : 'light';
-    const themeHref = `./assets/themes/${themeName}-blue.css`;
-    const head: HTMLHeadElement = this.document.getElementsByTagName('head')[0];
-    const themeLink: HTMLLinkElement = <HTMLLinkElement>this.document.getElementById('theme');
-
-    this.isDarkTheme = isDarkTheme;
-
-    if (themeLink?.id) {
-      themeLink.href = themeHref;
-    } else {
-      const style: HTMLLinkElement = this.document.createElement('link');
-
-      style.id = 'client-theme';
-      style.rel = 'stylesheet';
-      style.href = `${themeHref}`;
-
-      head.appendChild(style);
-    }
-
-    localStorage.setItem('theme', `${isDarkTheme}`);
-
-    this.setBodyThemeClass(isDarkTheme);
+  get theme() {
+    return this._theme;
   }
 
-  private setBodyThemeClass(isDarkTheme: boolean): void {
-    const addedClass: string = ThemeSwitcherService.getClassName(isDarkTheme);
-    const removedClass: string = ThemeSwitcherService.getClassName(!isDarkTheme);
+  set theme(theme: THEMES) {
+    this._theme = theme;
+  }
 
-    this.document.body.classList.add(addedClass);
-    this.document.body.classList.remove(removedClass);
+  public changeTheme(theme: THEMES): void {
+
+    localStorage.setItem('theme', `${theme}`);
+    this.setBodyThemeClass(theme);
+
+    this.removeBodyThemeClass(this.theme);
+
+    this.theme = theme;
+  }
+
+  private setBodyThemeClass(theme: THEMES): void {
+    this.document.documentElement.classList.add(theme.toString());
+  }
+
+  private removeBodyThemeClass(theme: THEMES) {
+    this.document.documentElement.classList.remove(theme.toString());
   }
 }
