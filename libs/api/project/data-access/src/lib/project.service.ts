@@ -1,8 +1,9 @@
 import {
+  ConflictException,
   Injectable,
   InternalServerErrorException,
   Logger,
-  NotFoundException,
+  NotFoundException
 } from '@nestjs/common';
 import slugify from 'slugify';
 import { Project } from '@aymme/api/shared/data-access';
@@ -45,6 +46,19 @@ export class ProjectService {
 
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
     const { name } = createProjectDto;
+
+    const isProjectExist = await this.projectRepository.findOne({ name });
+
+    if (isProjectExist) {
+      this.logger.error(
+        `Project already exist "${name}". DTO: ${JSON.stringify(
+          createProjectDto
+        )}`
+      );
+
+      throw new ConflictException('Project already exist');
+    }
+
     const project = this.projectRepository.create();
 
     project.name = name;
