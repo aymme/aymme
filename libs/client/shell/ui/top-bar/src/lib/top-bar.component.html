@@ -1,34 +1,40 @@
-<header class="layout-topbar flex justify-between">
+<header class="layout-topbar flex justify-between text-sm">
   <div class="">
     <a href="/">
       <ay-logo></ay-logo>
     </a>
   </div>
-  <div class="flex flex-row">
-    <nav class="ay-primary-menu">
-      <ul class="flex flex-row justify-between w-60 items-center h-full">
+  <div class="flex flex-row w-1/2">
+    <nav class="ay-primary-menu w-3/5">
+      <ul class="flex flex-row justify-between items-center h-full">
         <li>
-          <a routerLink="/projects">
-            <i class="fa fa-tasks"></i>
+          <a routerLink="/projects" class="hover:cursor-pointer hover:pb-2">
+            <i class="fa fa-tasks-alt mr-2 opacity-80"></i>
             <span>Projects</span>
           </a>
         </li>
         <li>
-          <a routerLink="" class="ay-disabled-cursor">
-            <i class="fad fa-acorn"></i>
+          <a routerLink="" class="hover:cursor-pointer hover:pb-2">
+            <i class="fa fa-cog mr-2 opacity-80"></i>
             <span>Settings</span>
           </a>
         </li>
         <li>
-          <a routerLink="" class="ay-disabled-cursor">
-            <i class="fad fa-user"></i>
+          <a routerLink="" class="hover:cursor-pointer hover:pb-2">
+            <i class="fa fa-user mr-2 opacity-80"></i>
             <span>Profile</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="" class="hover:cursor-pointer hover:pb-2">
+            <i class="fa fa-books mr-2 opacity-80"></i>
+            <span>Docs</span>
           </a>
         </li>
       </ul>
     </nav>
 
-    <section class="theme-switcher-wrapper">
+    <section class="theme-switcher-wrapper flex h-full items-center ml-6">
       <ay-theme-switcher></ay-theme-switcher>
     </section>
   </div>

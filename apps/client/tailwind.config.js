@@ -4,19 +4,18 @@ const { join } = require('path');
 module.exports = {
   content: [join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'), ...createGlobPatternsForDependencies(__dirname)],
   theme: {
+    darkMode: 'class',
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
     colors: {
-      primary: {
-        light: '#5eead4',
-        DEFAULT: '#14b8a6',
-        dark: '#0f766e',
-      },
-      secondary: {
-        light: '#bae6fd',
-        DEFAULT: '#0ea5e9',
-        dark: '#0369a1',
-      },
-      white: '#ffffff',
-      black: '#000000',
+      'light': '#5eead4',
+      'dark': '#0f766e',
+      'white': '#ffffff',
+      'black': '#000000',
     },
     fontFamily: {
       sans: ["'Inter', sans-serif"],
@@ -28,6 +27,20 @@ module.exports = {
         lg: '1.5rem',
         xl: '2rem',
       },
+      colors: {
+        gray: {
+          50: "#F4F4F4",
+          100: "#F9F9F9",
+          200: "#C9C9C9",
+          300: "#A9A9A9",
+          400: "#2E2E30",
+          500: "#282828",
+          600: "#242424",
+          700: "#161616",
+          800: "#121212",
+          900: "#0C0C0C",
+        },
+      }
     },
   },
   plugins: [],
