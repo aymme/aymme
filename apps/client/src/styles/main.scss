@@ -11,12 +11,10 @@
 
 * { // sass-lint:disable-line no-universal-selectors
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   &:focus {
     outline: none;
   }
-}
-
-a, a:visited, a:hover {
-  text-decoration: none;
 }
