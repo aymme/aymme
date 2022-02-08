@@ -19,7 +19,8 @@ export class ThemeSwitcherService {
   }
 
   public initializeTheme(): void {
-    this._theme = localStorage.getItem('theme') === 'light' ? THEMES.Light : THEMES.Dark;
+    this.theme = localStorage.getItem('theme') === 'light' ? THEMES.Light : THEMES.Dark;
+    this.changeTheme(this.theme);
   }
 
   get theme() {
@@ -31,12 +32,10 @@ export class ThemeSwitcherService {
   }
 
   public changeTheme(theme: THEMES): void {
+    this.removeBodyThemeClass(this.theme);
 
     localStorage.setItem('theme', `${theme}`);
     this.setBodyThemeClass(theme);
-
-    this.removeBodyThemeClass(this.theme);
-
     this.theme = theme;
   }
 
