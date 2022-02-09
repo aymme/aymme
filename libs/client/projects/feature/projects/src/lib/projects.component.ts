@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import {
-  ProjectsEntity,
-  ProjectsFacade,
-} from '@aymme/client/projects/data-access';
+import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { Router } from '@angular/router';
+import { from, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'ay-projects',
@@ -18,10 +16,7 @@ export class ProjectsComponent {
 
   newProjectName = '';
 
-  constructor(
-    private projectsFacade: ProjectsFacade,
-    private readonly router: Router
-  ) {
+  constructor(private projectsFacade: ProjectsFacade, private readonly router: Router) {
     this.projectsFacade.init();
   }
 

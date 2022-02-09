@@ -3,8 +3,18 @@
   --ay-brand: #57B7ED !important;
   --ay-brand-light: #57B7ED !important;
   --ay-tip: #57B7ED !important;
-  --ay-bg-color: #012A35;
+  --ay-bg-color: #003341;
   --ay-text-color: white;
 
+  --ay-loader-color: rgba(255, 255, 255, .5);
+  --ay-border-color: rgba(255, 255, 255, .05);
+
   scroll-behavior: smooth;
+}
+
+html.light {
+  --ay-bg-color: white;
+  --ay-text-color: #003543;
+  --ay-loader-color: rgba(0, 0, 0, .5);
+  --ay-border-color: rgba(0, 0, 0, .1);
 }

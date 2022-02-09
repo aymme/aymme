@@ -3,8 +3,8 @@ const { join } = require('path');
 
 module.exports = {
   content: [join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'), ...createGlobPatternsForDependencies(__dirname)],
+  darkMode: 'class',
   theme: {
-    darkMode: 'class',
     screens: {
       sm: '480px',
       md: '768px',
@@ -28,9 +28,13 @@ module.exports = {
         xl: '2rem',
       },
       colors: {
+        blend: {
+          500: 'rgba(255, 255, 255, 0.5)',
+          50: 'rgba(255, 255, 255, .05)',
+        },
         gray: {
           50: '#F4F4F4',
-          100: '#F9F9F9',
+          100: '#f0f0f0',
           200: '#C9C9C9',
           300: '#A9A9A9',
           400: '#2E2E30',

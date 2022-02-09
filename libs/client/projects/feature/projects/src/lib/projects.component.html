@@ -1,24 +1,17 @@
-<section class="grid">
-  <div class="col-8 col-offset-2">
-    <article class="card">
-      <header class="flex align-items-center">
-        <h2 class="m-0">Current <strong>Projects</strong></h2>
+<section class="flex flex-col items-center pt-10">
+  <article class="w-1/2 rounded-md">
+    <header class="border-bp-5 mb-5 flex flex-row items-center justify-center p-5">
+      <h2 class="m-0 text-lg font-extralight">Current <strong>Projects</strong></h2>
 
-        <button
-          class="ml-auto"
-          pButton
-          type="button"
-          (click)="showDialog()"
-          icon="pi pi-plus"
-          label="New project"
-        ></button>
-      </header>
+      <button class="ml-auto" type="button" (click)="showDialog()" icon="pi pi-plus" label="New project">
+        <i class="fas fa-plus"></i>
+      </button>
+    </header>
 
-      <section>
-        <ng-container *ngIf="loaded$ | async; then loadedProjects; else loadingProjects"></ng-container>
-      </section>
-    </article>
-  </div>
+    <section>
+      <ng-container *ngIf="loaded$ | async; then loadedProjects; else loadingProjects"></ng-container>
+    </section>
+  </article>
 
   <!-- <p-dialog header="Add a new Project" [(visible)]="display" position="top" [style]="{ width: '50vw' }" [modal]="true">
     <article>
@@ -43,7 +36,9 @@
 </section>
 
 <ng-template #loadingProjects>
-  loading projects...
+  <section class="p-5 pt-7 text-center text-sm">
+    <ay-loader><p>Loading projects..</p></ay-loader>
+  </section>
 </ng-template>
 
 <ng-template #loadedProjects>

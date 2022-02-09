@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ProjectsListModule } from '@aymme/client/projects/ui/projects-list';
 
 import { ProjectsComponent } from './projects.component';
+import { LoaderModule } from '@aymme/client/shell/ui/loader';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ProjectsComponent } from './projects.component';
       },
     ]),
     ProjectsListModule,
+    LoaderModule,
   ],
   declarations: [ProjectsComponent],
   exports: [ProjectsComponent],

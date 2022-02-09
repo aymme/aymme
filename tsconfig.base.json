@@ -48,6 +48,7 @@
       "@aymme/client/shell/ui": ["libs/client/shell/ui/src/index.ts"],
       "@aymme/client/shell/ui/footer": ["libs/client/shell/ui/footer/src/index.ts"],
       "@aymme/client/shell/ui/layout": ["libs/client/shell/ui/layout/src/index.ts"],
+      "@aymme/client/shell/ui/loader": ["libs/client/shell/ui/loader/src/index.ts"],
       "@aymme/client/shell/ui/logo": ["libs/client/shell/ui/logo/src/index.ts"],
       "@aymme/client/shell/ui/theme-switcher": ["libs/client/shell/ui/theme-switcher/src/index.ts"],
       "@aymme/client/shell/ui/top-bar": ["libs/client/shell/ui/top-bar/src/index.ts"],

@@ -5,11 +5,8 @@
 @import "./partials/_typography";
 @import "./partials/helpers";
 
-// theme
-@import "./partials/theme";
-
-
-* { // sass-lint:disable-line no-universal-selectors
+* {
+  // sass-lint:disable-line no-universal-selectors
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
