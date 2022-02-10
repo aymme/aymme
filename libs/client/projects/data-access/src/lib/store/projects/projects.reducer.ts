@@ -9,7 +9,8 @@ export const PROJECTS_FEATURE_KEY = 'projects';
 export interface State extends EntityState<ProjectsEntity> {
   selectedId?: string; // which Projects record has been selected
   loaded: boolean; // has the Projects list been loaded
-  error?: string | null; // last known error (if any)
+  error?: Response | null; // last known error (if any)
+  project?: ProjectsEntity | null;
 }
 
 export interface ProjectsPartialState {
@@ -37,6 +38,15 @@ export const projectsReducer = createReducer(
     projectsAdapter.setAll(projects, { ...state, loaded: true })
   ),
   on(ProjectsActions.loadProjectsFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
+  on(ProjectsActions.createNewProjectSuccess, (state, { project }) => ({
+    ...state,
+    project: project,
+    loaded: false,
+  })),
+  on(ProjectsActions.createNewProjectFailure, (state, { error }) => ({
     ...state,
     error,
   }))

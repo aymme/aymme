@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { Router } from '@angular/router';
-import { from, Observable, of } from 'rxjs';
+import { BehaviorSubject, skip, take, takeLast } from 'rxjs';
 
 @Component({
   selector: 'ay-projects',
@@ -9,10 +9,13 @@ import { from, Observable, of } from 'rxjs';
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent {
-  display = false;
-
   loaded$ = this.projectsFacade.loaded$;
   projects$ = this.projectsFacade.allProjects$;
+  error$ = this.projectsFacade.error$;
+  createdNewProject$ = this.projectsFacade.createdNewProject$;
+
+  displayAddNewProject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  showError$: BehaviorSubject<boolean | string> = new BehaviorSubject<boolean | string>(false);
 
   newProjectName = '';
 
@@ -21,7 +24,12 @@ export class ProjectsComponent {
   }
 
   showDialog() {
-    this.display = true;
+    this.displayAddNewProject$.next(true);
+  }
+
+  hideDialog() {
+    this.displayAddNewProject$.next(false);
+    this.showError$.next(false);
   }
 
   deleteProject(project: ProjectsEntity) {
@@ -29,9 +37,12 @@ export class ProjectsComponent {
   }
 
   createNewProject() {
+    if (!this.newProjectName.length) {
+      this.showError$.next('Please specify a project name.');
+      return;
+    }
+
     this.projectsFacade.createNewProject(this.newProjectName);
-    this.newProjectName = '';
-    this.display = false;
   }
 
   openProject({ id }: { id: string }) {

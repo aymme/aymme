@@ -20,7 +20,7 @@ export const createNewProjectSuccess = createAction(
 
 export const createNewProjectFailure = createAction(
   '[Projects/API] Create new Project Failure',
-  props<{ error: unknown }>()
+  props<{ error: Response | null | undefined }>()
 );
 
 export const deleteProject = createAction('[Projects/API] Delete Project', props<{ projectId: string }>());

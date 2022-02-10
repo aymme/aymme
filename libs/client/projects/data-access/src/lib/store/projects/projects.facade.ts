@@ -13,6 +13,8 @@ export class ProjectsFacade {
   loaded$ = this.store.pipe(select(ProjectsSelectors.getProjectsLoaded));
   allProjects$ = this.store.pipe(select(ProjectsSelectors.getAllProjects));
   selectedProject$ = this.store.pipe(select(ProjectsSelectors.getSelected));
+  error$ = this.store.pipe(select(ProjectsSelectors.getProjectsError));
+  createdNewProject$ = this.store.pipe(select(ProjectsSelectors.getNewProject));
 
   constructor(private readonly store: Store) {}
 

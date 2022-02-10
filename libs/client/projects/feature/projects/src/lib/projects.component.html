@@ -1,4 +1,4 @@
-<section class="flex flex-col items-center pt-10">
+<section class="relative flex flex-col items-center pt-10">
   <article class="w-1/2 rounded-md">
     <header class="border-bp-5 mb-5 flex flex-row items-center justify-center p-5">
       <h2 class="m-0 text-lg font-extralight">Current <strong>Projects</strong></h2>
@@ -13,26 +13,47 @@
     </section>
   </article>
 
-  <!-- <p-dialog header="Add a new Project" [(visible)]="display" position="top" [style]="{ width: '50vw' }" [modal]="true">
-    <article>
-      <div class="field">
-        <label for="projectName">Name</label>
-        <input
-          id="projectName"
-          type="text"
-          aria-describedby="projectName-help"
-          class="w-full"
-          pInputText
-          [(ngModel)]="newProjectName"
-          autofocus
-        />
-      </div>
-    </article>
+  <article
+    class="dark:bg-background absolute min-h-full w-1/2 rounded-lg bg-white"
+    *ngIf="displayAddNewProject$ | async"
+  >
+    <header class="mb-5 flex flex-col items-center justify-center pb-5">
+      <h3 class="mb-5 pt-3 text-lg">
+        Add a new project
+        <button class="absolute right-1 top-0 p-2" (click)="hideDialog()"><i class="fa fa-times"></i></button>
+      </h3>
+      <p class="text-center text-base leading-6">
+        Add a new project by providing the project name. <br />
+        <em class="text-sm">You cannot have multiple projects with the same name.</em>
+      </p>
+    </header>
 
-    <p-footer>
-      <button class="" pButton type="button" label="Confirm" (click)="createNewProject()"></button>
-    </p-footer>
-  </p-dialog> -->
+    <div class="mb-5 flex flex-col items-center">
+      <label class="mb-2 font-bold" for="projectName">Name</label>
+      <input
+        id="projectName"
+        type="text"
+        aria-describedby="projectName-help"
+        class="mb-3 rounded-md"
+        [(ngModel)]="newProjectName"
+        autofocus
+        placeholder="project name.."
+      />
+
+      <p class="text-sm text-red-500" *ngIf="showError$ | async as error">{{ error }}</p>
+    </div>
+
+    <footer class="flex flex-row items-center justify-center">
+      <button
+        class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-3 hover:bg-gray-100"
+        type="button"
+        label="Confirm"
+        (click)="createNewProject()"
+      >
+        Create Project
+      </button>
+    </footer>
+  </article>
 </section>
 
 <ng-template #loadingProjects>

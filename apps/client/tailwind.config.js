@@ -16,6 +16,7 @@ module.exports = {
       dark: '#0f766e',
       white: '#ffffff',
       black: '#000000',
+      background: '#003341',
     },
     fontFamily: {
       sans: ["'Inter', sans-serif"],
@@ -29,8 +30,12 @@ module.exports = {
       },
       colors: {
         blend: {
+          100: 'rgba(255, 255, 255, 0.1)',
           500: 'rgba(255, 255, 255, 0.5)',
           50: 'rgba(255, 255, 255, .05)',
+        },
+        red: {
+          500: 'rgb(239 68 68);',
         },
         gray: {
           50: '#F4F4F4',

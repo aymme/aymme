@@ -1,0 +1,13 @@
+input {
+  background-color: transparent;
+  border: 1px solid var(--ay-border-color);
+  min-width: 300px;
+  padding: 10px 15px;
+  color: var(--ay-text-color);
+  font-size: 1rem;
+
+  &::placeholder {
+    font-size: .8rem;
+    color: var(--ay-text-color-placeholder);
+  }
+}
