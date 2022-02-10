@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject, takeUntil, tap } from 'rxjs';
@@ -11,7 +11,7 @@ const FILL_IN_PROJECT_NAME = 'Please specify a project name.';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnDestroy {
+export class ProjectsComponent implements OnInit, OnDestroy {
   unsubscribe$: Subject<void> = new Subject();
 
   loaded$ = this.projectsFacade.loaded$;
@@ -37,7 +37,9 @@ export class ProjectsComponent implements OnDestroy {
 
   constructor(private projectsFacade: ProjectsFacade, private readonly router: Router) {
     this.projectsFacade.init();
+  }
 
+  ngOnInit(): void {
     this.error$.subscribe();
   }
 
