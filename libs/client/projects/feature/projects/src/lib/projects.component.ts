@@ -23,7 +23,7 @@ export class ProjectsComponent implements OnDestroy {
         this.displayError$.next(PROJECT_ALREADY_EXITS);
       }
 
-      if (err === null) {
+      if (!err) {
         this.hideDialog();
         this.resetFormInput();
       }

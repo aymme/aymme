@@ -44,7 +44,7 @@ export const projectsReducer = createReducer(
     ...state,
     project: project,
     loaded: false,
-    error: null,
+    error: undefined,
   })),
   on(ProjectsActions.createNewProjectFailure, (state, { error }) => ({
     ...state,
