@@ -1,35 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { Router } from '@angular/router';
-import { BehaviorSubject, skip, take, takeLast } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil, tap } from 'rxjs';
+
+const PROJECT_ALREADY_EXITS = 'Project name already exists.';
+const FILL_IN_PROJECT_NAME = 'Please specify a project name.';
 
 @Component({
   selector: 'ay-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnDestroy {
+  unsubscribe$: Subject<void> = new Subject();
+
   loaded$ = this.projectsFacade.loaded$;
   projects$ = this.projectsFacade.allProjects$;
-  error$ = this.projectsFacade.error$;
-  createdNewProject$ = this.projectsFacade.createdNewProject$;
+  error$ = this.projectsFacade.error$.pipe(
+    takeUntil(this.unsubscribe$),
+    tap((err) => {
+      if (err?.status === 409) {
+        this.displayError$.next(PROJECT_ALREADY_EXITS);
+      }
+
+      if (err === null) {
+        this.hideDialog();
+        this.resetFormInput();
+      }
+    })
+  );
 
   displayAddNewProject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  showError$: BehaviorSubject<boolean | string> = new BehaviorSubject<boolean | string>(false);
+  displayError$: BehaviorSubject<boolean | string> = new BehaviorSubject<boolean | string>(false);
 
   newProjectName = '';
 
   constructor(private projectsFacade: ProjectsFacade, private readonly router: Router) {
     this.projectsFacade.init();
+
+    this.error$.subscribe();
   }
 
   showDialog() {
     this.displayAddNewProject$.next(true);
   }
 
+  resetFormInput() {
+    this.newProjectName = '';
+  }
+
   hideDialog() {
     this.displayAddNewProject$.next(false);
-    this.showError$.next(false);
+    this.displayError$.next(false);
   }
 
   deleteProject(project: ProjectsEntity) {
@@ -38,7 +60,7 @@ export class ProjectsComponent {
 
   createNewProject() {
     if (!this.newProjectName.length) {
-      this.showError$.next('Please specify a project name.');
+      this.displayError$.next(FILL_IN_PROJECT_NAME);
       return;
     }
 
@@ -47,5 +69,10 @@ export class ProjectsComponent {
 
   openProject({ id }: { id: string }) {
     this.router.navigate([`projects/${id}/mock`]);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

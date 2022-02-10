@@ -10,7 +10,6 @@ export interface State extends EntityState<ProjectsEntity> {
   selectedId?: string; // which Projects record has been selected
   loaded: boolean; // has the Projects list been loaded
   error?: Response | null; // last known error (if any)
-  project?: ProjectsEntity | null;
 }
 
 export interface ProjectsPartialState {
@@ -45,6 +44,7 @@ export const projectsReducer = createReducer(
     ...state,
     project: project,
     loaded: false,
+    error: null,
   })),
   on(ProjectsActions.createNewProjectFailure, (state, { error }) => ({
     ...state,

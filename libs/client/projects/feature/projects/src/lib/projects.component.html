@@ -40,7 +40,9 @@
         placeholder="project name.."
       />
 
-      <p class="text-sm text-red-500" *ngIf="showError$ | async as error">{{ error }}</p>
+      <p class="text-sm text-red-500" *ngIf="displayError$ | async as error">
+        {{ error }}
+      </p>
     </div>
 
     <footer class="flex flex-row items-center justify-center">
