@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api-project-utils',
+  displayName: 'api-utils',
   preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/api/project/utils',
+  coverageDirectory: '../../../../coverage/libs/api/core/utils',
 };
