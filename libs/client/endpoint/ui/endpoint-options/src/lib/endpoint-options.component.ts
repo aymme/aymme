@@ -29,6 +29,12 @@ export class EndpointOptionsComponent {
     );
   }
 
+  setActiveStatusCode(activeStatusCode: ResponseEntity | null | undefined) {
+    console.log('this', activeStatusCode?.statusCode);
+
+    this.configurationForm?.patchValue({ activeStatusCode: activeStatusCode?.statusCode });
+  }
+
   setActiveTab(tabNumber: number) {
     this.activeTab$.next(tabNumber);
   }

@@ -1,1 +1,22 @@
-<p>dropdown works!</p>
+<div class="relative flex flex flex-row flex-col items-center" ayClickAway (clickOutside)="hideDropdown()">
+  <header
+    class="dark:border-blend-50 flex w-full cursor-pointer flex-row items-center border border-gray-100 px-5 py-3"
+    (click)="toggleDropdown()"
+  >
+    <span class="text-xs">{{ selectedItem$ | async }}</span>
+    <i class="fa fa-caret-down ml-auto block"></i>
+  </header>
+  <section
+    class="dark:border-blend-50 left text-gray dark:bg-background absolute top-10 hidden w-full border border-b-0 border-gray-100 bg-white dark:text-white"
+    [ngClass]="{ 'dropdown-open': showDropdown$ | async }"
+  >
+    <ul class="">
+      <li (click)="selectItem(option)" class="block w-full" *ngFor="let option of options; let i = index">
+        <a
+          class="hover:dark:bg-blend-50 dark:border-blend-50 block cursor-pointer border-b border-gray-100 px-7 py-3 hover:bg-gray-100"
+          >{{ option.statusCode }}</a
+        >
+      </li>
+    </ul>
+  </section>
+</div>

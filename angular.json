@@ -1025,6 +1025,32 @@
       },
       "tags": []
     },
+    "client-shell-ui-clickaway": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/clickaway",
+      "sourceRoot": "libs/client/shell/ui/clickaway/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/clickaway"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/clickaway/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/clickaway/src/**/*.ts",
+              "libs/client/shell/ui/clickaway/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "client-shell-ui-dropdown": {
       "projectType": "library",
       "root": "libs/client/shell/ui/dropdown",

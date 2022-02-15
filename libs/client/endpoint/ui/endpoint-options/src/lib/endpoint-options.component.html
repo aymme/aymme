@@ -31,6 +31,12 @@
     <div class="grid grid-cols-6 gap-4 text-sm">
       <div class="col-span-2">
         <label class="mb-1 block">Active Status</label>
+
+        <ay-dropdown
+          [selected]="activeStatusCode"
+          [options]="availableStatusCodes"
+          (onSelectItem)="setActiveStatusCode($event)"
+        ></ay-dropdown>
       </div>
       <div class="col-span-2">
         <label for="delay" class="mb-1 block">Delay</label>
