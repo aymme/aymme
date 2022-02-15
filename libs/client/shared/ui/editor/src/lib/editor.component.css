@@ -1,3 +1,9 @@
-:host {
-  display: block;
+
+/* Styling for Monaco json editor */
+.margin-view-overlays {
+  border-right: 1px solid rgba(0, 0, 0, .1);
+}
+
+.lines-content {
+  left: 10px!important;
 }

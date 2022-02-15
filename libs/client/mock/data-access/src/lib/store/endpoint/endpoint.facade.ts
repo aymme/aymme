@@ -9,25 +9,20 @@ import * as EndpointSelectors from './endpoint.selectors';
 
 @Injectable()
 export class EndpointFacade {
-  /**
-   * Combine pieces of state using createSelector,
-   * and expose them as observables through the facade.
-   */
-  loaded$: Observable<boolean> = this.store.pipe(select(EndpointSelectors.getEndpointLoaded));
+  loaded$: Observable<boolean | null> = this.store.pipe(select(EndpointSelectors.getEndpointLoaded));
+
   availableStatusCodes$: Observable<ResponseEntity[] | undefined> = this.store.pipe(
     select(EndpointSelectors.getAvailableStatusCodes)
   );
+
   activeStatusCode$: Observable<ResponseEntity | undefined> = this.store.pipe(
     select(EndpointSelectors.getActiveStatusCode)
   );
+
   endpoint$: Observable<EndpointEntity | undefined> = this.store.pipe(select(EndpointSelectors.getSelectedEndpoint));
 
   constructor(private readonly store: Store) {}
 
-  /**
-   * Use the initialization action to perform one
-   * or more tasks in your Effects.
-   */
   loadEndpoint(endpointId: string) {
     this.store.dispatch(EndpointActions.loadEndpoint({ endpointId }));
   }

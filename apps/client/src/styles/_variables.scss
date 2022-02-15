@@ -10,6 +10,8 @@
   --ay-loader-color: rgba(255, 255, 255, .5);
   --ay-border-color: rgba(255, 255, 255, .05);
 
+  --ay-active-color: rgba(255, 255, 255, .2);
+
   scroll-behavior: smooth;
 }
 
@@ -19,4 +21,5 @@ html.light {
   --ay-text-color-placeholder: #acacac;
   --ay-loader-color: rgba(0, 0, 0, .5);
   --ay-border-color: rgba(0, 0, 0, .1);
+  --ay-active-color: rgb(220, 220, 220);
 }

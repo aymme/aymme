@@ -32,39 +32,9 @@
       </div>
     </div>
     <div class="">
-      <ng-container *ngIf="endpoint$ | async as endpoint">
-        <div class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3">
-          <span class="font-bold">Details</span>
-          <button
-            class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white"
-            label="Update"
-            (click)="updateEndpoint()"
-          >
-            Update
-          </button>
-        </div>
-        <ay-endpoint-options
-          *ngIf="availableStatusCodes$ | async as availableStatusCodes"
-          [availableStatusCodes]="availableStatusCodes"
-          [activeStatusCode]="activeStatusCode$ | async"
-          [endpoint]="endpoint"
-          [configurationForm]="configurationForm"
-        ></ay-endpoint-options>
-        <ay-response-list
-          *ngIf="availableStatusCodes$ | async as availableStatusCodes"
-          [availableStatusCodes]="availableStatusCodes"
-          [activeStatusCode]="activeStatusCode$ | async"
-          [responseArrayForm]="responseArrayForm"
-          (viewResponseBody)="onViewResponseBody($event)"
-        ></ay-response-list>
-        <div style="height: 600px">
-          <ay-editor
-            style="height: 100%"
-            [content]="selectedResponseBody || ''"
-            (contentChange)="onUpdateResponse($event)"
-          ></ay-editor>
-        </div>
-      </ng-container>
+      <ng-container
+        *ngIf="endpointLoaded$ | async as loading; then loadedEndpoint; else loadingEndpoint"
+      ></ng-container>
     </div>
   </div>
 </div>
@@ -85,4 +55,48 @@
 
 <ng-template #noCollectionsFound>
   <p class="text-sm">No endpoints found.</p>
+</ng-template>
+
+<ng-template #loadingEndpoint let-loading>
+  <section class="p-5 pt-7 text-center text-sm">
+    <ng-container *ngIf="loading === null">
+      <p class="text-xs">Please select an endpoint on the left.</p>
+    </ng-container>
+
+    <ng-container *ngIf="isBoolean(loading)">
+      <ay-loader></ay-loader>
+    </ng-container>
+  </section>
+</ng-template>
+
+<ng-template #loadedEndpoint>
+  <ng-container *ngIf="endpoint$ | async as endpoint">
+    <div class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3">
+      <span class="font-bold">Details</span>
+      <button class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white" label="Update" (click)="updateEndpoint()">
+        Update
+      </button>
+    </div>
+    <ay-endpoint-options
+      *ngIf="availableStatusCodes$ | async as availableStatusCodes"
+      [availableStatusCodes]="availableStatusCodes"
+      [activeStatusCode]="activeStatusCode$ | async"
+      [endpoint]="endpoint"
+      [configurationForm]="configurationForm"
+    ></ay-endpoint-options>
+    <ay-response-list
+      *ngIf="availableStatusCodes$ | async as availableStatusCodes"
+      [availableStatusCodes]="availableStatusCodes"
+      [activeStatusCode]="activeStatusCode$ | async"
+      [responseArrayForm]="responseArrayForm"
+      (viewResponseBody)="onViewResponseBody($event)"
+    ></ay-response-list>
+    <div style="height: 600px">
+      <ay-editor
+        style="height: 100%"
+        [content]="selectedResponseBody || ''"
+        (contentChange)="onUpdateResponse($event)"
+      ></ay-editor>
+    </div>
+  </ng-container>
 </ng-template>

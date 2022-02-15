@@ -11,6 +11,7 @@ import { ClientMockDataAccessModule } from '@aymme/client/mock/data-access';
 import { EndpointOptionsModule } from '@aymme/client/endpoint/ui/endpoint-options';
 import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { ResponseListModule } from '@aymme/client/mock/ui/response-list';
+import { LoaderModule } from '@aymme/client/shell/ui/loader';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ResponseListModule } from '@aymme/client/mock/ui/response-list';
     EndpointOptionsModule,
     EditorModule,
     ResponseListModule,
+    LoaderModule,
   ],
   declarations: [MockComponent],
   providers: [CollectionsFacade],

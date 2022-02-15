@@ -36,6 +36,8 @@ export class MockComponent {
     tap((endpoint) => this._initializeForm(endpoint))
   );
 
+  endpointLoaded$: Observable<boolean | null> = this.endpointFacade.loaded$;
+
   selectedResponseBody: string | undefined;
   selectedResponseId: string | number | undefined;
 
@@ -116,5 +118,9 @@ export class MockComponent {
         );
       });
     }
+  }
+
+  isBoolean(val: any): boolean {
+    return typeof val === 'boolean';
   }
 }

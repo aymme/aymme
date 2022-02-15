@@ -30,8 +30,7 @@ export class EndpointOptionsComponent {
   }
 
   setActiveStatusCode(activeStatusCode: ResponseEntity | null | undefined) {
-    console.log('this', activeStatusCode?.statusCode);
-
+    this.activeStatusCode = activeStatusCode;
     this.configurationForm?.patchValue({ activeStatusCode: activeStatusCode?.statusCode });
   }
 

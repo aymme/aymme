@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { fetch, pessimisticUpdate } from '@nrwl/angular';
 import { Store } from '@ngrx/store';
-import { filter, map, tap, withLatestFrom } from 'rxjs';
+import { delay, filter, map, tap, withLatestFrom } from 'rxjs';
 
 import { getSelectedId as getSelectedProjectId } from '@aymme/client/projects/data-access';
 import * as EndpointActions from './endpoint.actions';
@@ -22,7 +22,10 @@ export class EndpointEffects {
         run: (action, projectId) => {
           return this.endpointService
             .getEndpointDetails(action.endpointId, projectId || '') // TODO: Fix the condition
-            .pipe(map((endpoint) => EndpointActions.loadEndpointSuccess({ endpoint })));
+            .pipe(
+              delay(600),
+              map((endpoint) => EndpointActions.loadEndpointSuccess({ endpoint }))
+            );
         },
         onError: (action: ReturnType<typeof EndpointActions.loadEndpoint>, error) => {
           console.error('Error', error);
@@ -44,7 +47,7 @@ export class EndpointEffects {
           return this.endpointService.updateEndpoint(endpointId || '', projectId || '', action.data).pipe(
             map(() => EndpointActions.updateEndpointSuccess()),
             tap(() => {
-              console.log('TODO: message service?')
+              console.log('TODO: implement message service.');
             })
           );
         },
@@ -55,9 +58,5 @@ export class EndpointEffects {
     )
   );
 
-  constructor(
-    private readonly actions$: Actions,
-    private store: Store,
-    private endpointService: EndpointService
-  ) {}
+  constructor(private readonly actions$: Actions, private store: Store, private endpointService: EndpointService) {}
 }

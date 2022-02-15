@@ -18,7 +18,7 @@
     </ul>
   </header>
 
-  <section class="tabs dark:border-blend-50 border border-gray-100 p-4" *ngIf="activeTab$ | async as activeTab">
+  <section class="tabs dark:border-blend-50 mb-4 border border-gray-100 p-4" *ngIf="activeTab$ | async as activeTab">
     <ng-container *ngIf="activeTab === 1">
       <ng-container *ngTemplateOutlet="configuration"></ng-container>
     </ng-container>
@@ -36,6 +36,7 @@
           [selected]="activeStatusCode"
           [options]="availableStatusCodes"
           (onSelectItem)="setActiveStatusCode($event)"
+          optionValue="statusCode"
         ></ay-dropdown>
       </div>
       <div class="col-span-2">

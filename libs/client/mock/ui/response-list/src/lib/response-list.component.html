@@ -1,3 +1,24 @@
+<section>
+  <ul class="flex flex-row items-center">
+    <li
+      *ngFor="let response of responses; index as i"
+      (click)="showMockFor(i)"
+      [ngClass]="{ active: response.label === activeItem.label }"
+    >
+      <a
+        class="hover:dark:bg-blend-50 dark:border-blend-50 inline-block h-full cursor-pointer rounded-t border border-gray-100 px-4 py-2 text-sm hover:bg-gray-100"
+        >{{ response.label }}</a
+      >
+    </li>
+
+    <li>
+      <button class="cursor-pointer px-4 py-2" (click)="addNewResponse()" [disabled]="!selectedStatusCode">
+        <i class="fa fa-plus"></i>
+      </button>
+    </li>
+  </ul>
+</section>
+
 <!-- <p-tabMenu *ngIf="activeItem" [model]="responses" [activeItem]="activeItem"></p-tabMenu>
 <p-overlayPanel #op>
   <ng-template pTemplate>

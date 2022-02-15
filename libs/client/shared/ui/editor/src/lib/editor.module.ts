@@ -5,7 +5,6 @@ import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { EditorComponent } from './editor.component';
 
 export function onMonacoLoad() {
-  console.log((window as any).monaco);
   // (window as any).monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
   //   validate: true,
   // });
@@ -16,11 +15,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    MonacoEditorModule.forRoot(monacoConfig),
-  ],
+  imports: [CommonModule, FormsModule, MonacoEditorModule.forRoot(monacoConfig)],
   declarations: [EditorComponent],
   exports: [EditorComponent],
 })

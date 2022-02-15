@@ -2,3 +2,7 @@
   display: block;
   position: relative;
 }
+
+li.active a {
+ background-color: var(--ay-active-color);
+}

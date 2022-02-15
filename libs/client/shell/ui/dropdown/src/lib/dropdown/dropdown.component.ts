@@ -7,18 +7,13 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent {
   @Input() options!: any;
   @Input() selected!: any;
+  @Input() optionValue!: any;
   @Output() onSelectItem = new EventEmitter<any>();
 
-  selectedItem$: BehaviorSubject<string> = new BehaviorSubject<string>('Select an option');
   showDropdown$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  ngOnInit(): void {
-    // TODO: make 'statuscode' dynamic
-    this.selectedItem$.next(this.selected?.statusCode);
-  }
 
   toggleDropdown(): void {
     this.showDropdown$.next(!this.showDropdown$.value);
@@ -26,13 +21,10 @@ export class DropdownComponent implements OnInit {
 
   selectItem(item: any): void {
     this.onSelectItem.emit(item);
-    // TODO: make 'statuscode' dynamic
-    this.selectedItem$.next(item.statusCode);
     this.showDropdown$.next(false);
   }
 
   hideDropdown(): void {
-    console.log('xx');
     this.showDropdown$.next(false);
   }
 }

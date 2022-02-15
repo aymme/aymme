@@ -3,7 +3,7 @@
     class="dark:border-blend-50 flex w-full cursor-pointer flex-row items-center border border-gray-100 px-5 py-3"
     (click)="toggleDropdown()"
   >
-    <span class="text-xs">{{ selectedItem$ | async }}</span>
+    <span class="text-xs">{{ selected[optionValue] }}</span>
     <i class="fa fa-caret-down ml-auto block"></i>
   </header>
   <section

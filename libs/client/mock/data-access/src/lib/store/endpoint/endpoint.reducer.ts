@@ -8,7 +8,7 @@ export const ENDPOINT_FEATURE_KEY = 'endpoint';
 
 export interface State {
   selectedId?: string;
-  loaded: boolean;
+  loaded: boolean | null;
   error?: string | null;
   endpoint?: EndpointEntity | undefined;
   activeStatusCode?: ResponseEntity;
@@ -20,8 +20,7 @@ export interface EndpointPartialState {
 }
 
 export const initialState: State = {
-  // set initial required properties
-  loaded: false,
+  loaded: null,
   endpoint: undefined,
 };
 
@@ -39,6 +38,7 @@ const endpointReducer = createReducer(
       selectedId: endpoint.id,
       activeStatusCode: activeStatusCode || undefined,
       selectedStatusCodeBody: activeStatusCode?.body,
+      loaded: true,
     };
   }),
   on(EndpointActions.loadEndpointFailure, (state, { error }) => ({ ...state, error }))

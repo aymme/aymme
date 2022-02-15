@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { NgxEditorModel } from 'ngx-monaco-editor';
 import { debounceTime, Subject } from 'rxjs';
 
@@ -7,10 +7,10 @@ import { debounceTime, Subject } from 'rxjs';
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class EditorComponent {
   @Input() set content(data: string) {
-    console.log({ data });
     this.code = data;
   }
   @Input() debounce = 500;
@@ -53,13 +53,12 @@ export class EditorComponent {
   }
 
   save() {
-    console.log(this.code);
-    console.log(JSON.parse(this.code));
-    console.log(JSON.stringify(this.code, null, 2));
+    // console.log(this.code);
+    // console.log(JSON.parse(this.code));
+    // console.log(JSON.stringify(this.code, null, 2));
   }
 
   onChange() {
-    console.log(this.code);
     this.content$.next(this.code);
   }
 }

@@ -1,17 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Logger,
-  Param,
-  ParseUUIDPipe,
-  Put,
-} from '@nestjs/common';
-import {
-  EndpointService,
-  UpdateEndpointDto,
-} from '@aymme/api/endpoint/data-access';
+import { Body, Controller, Delete, Get, Logger, Param, ParseUUIDPipe, Put } from '@nestjs/common';
+import { EndpointService, UpdateEndpointDto } from '@aymme/api/endpoint/data-access';
 
 @Controller('projects/:projectId/endpoints')
 export class ApiEndpointFeatureController {
