@@ -1,52 +1,88 @@
-<div class="flex" *ngIf="selectedProject$ | async as project">
-  <div class="col-5 surface-100 sidebar p-0 pt-1">
-    <div class="flex flex-row align-items-center border-bottom-1 py-2 px-3 justify-content-between border-gray-300">
-      <span class="text-base">{{ project.name }}</span>
-      <div>
-        <span class="p-buttonset">
-          <button pButton type="button" label="Import" class="p-button-outlined"></button>
-          <button pButton type="button" label="Export" class="p-button-outlined"></button>
-        </span>
+<div class="md:container">
+  <div class="grid grid-cols-2 gap-6 pt-10" *ngIf="selectedProject$ | async as project">
+    <div>
+      <header class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3">
+        <h2><strong>Project</strong>: {{ project.name | titlecase }}</h2>
+        <div class="ml-auto">
+          <button
+            type="button"
+            label="Import"
+            class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
+          >
+            Import
+          </button>
+          <button
+            type="button"
+            label="Export"
+            class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
+          >
+            Export
+          </button>
+        </div>
+      </header>
+      <div class="py-5">
+        <ng-container *ngIf="collections$ | async as collections">
+          <ng-container
+            *ngTemplateOutlet="
+              collections.length ? collectionPanel : noCollectionsFound;
+              context: { collections: this.collections }
+            "
+          ></ng-container>
+        </ng-container>
       </div>
     </div>
-    <div class="p-3">
-      <ay-collection-panel [name]="collection.name" *ngFor="let collection of collections$ | async">
-        <ay-endpoint-link
-          *ngFor="let endpoint of collection.endpoints"
-          [method]="endpoint.method"
-          [path]="endpoint.path"
-          (selectEndpoint)="onEndpointSelect(endpoint.id)"
-        ></ay-endpoint-link>
-      </ay-collection-panel>
+    <div class="">
+      <ng-container *ngIf="endpoint$ | async as endpoint">
+        <div class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3">
+          <span class="font-bold">Details</span>
+          <button
+            class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white"
+            label="Update"
+            (click)="updateEndpoint()"
+          >
+            Update
+          </button>
+        </div>
+        <ay-endpoint-options
+          *ngIf="availableStatusCodes$ | async as availableStatusCodes"
+          [availableStatusCodes]="availableStatusCodes"
+          [activeStatusCode]="activeStatusCode$ | async"
+          [endpoint]="endpoint"
+          [configurationForm]="configurationForm"
+        ></ay-endpoint-options>
+        <ay-response-list
+          *ngIf="availableStatusCodes$ | async as availableStatusCodes"
+          [availableStatusCodes]="availableStatusCodes"
+          [activeStatusCode]="activeStatusCode$ | async"
+          [responseArrayForm]="responseArrayForm"
+          (viewResponseBody)="onViewResponseBody($event)"
+        ></ay-response-list>
+        <div style="height: 600px">
+          <ay-editor
+            style="height: 100%"
+            [content]="selectedResponseBody || ''"
+            (contentChange)="onUpdateResponse($event)"
+          ></ay-editor>
+        </div>
+      </ng-container>
     </div>
-  </div>
-  <div class="col flex flex-column p-0 pt-1">
-    <ng-container *ngIf="endpoint$ | async as endpoint">
-      <div class="flex flex-row align-items-center border-bottom-1 py-2 px-3 justify-content-between border-gray-300">
-        <span>DETAILS</span>
-        <button pButton type="button" label="Update" (click)="updateEndpoint()"></button>
-      </div>
-      <ay-endpoint-options
-        *ngIf="availableStatusCodes$ | async as availableStatusCodes"
-        [availableStatusCodes]="availableStatusCodes"
-        [activeStatusCode]="activeStatusCode$ | async"
-        [endpoint]="endpoint"
-        [configurationForm]="configurationForm"
-      ></ay-endpoint-options>
-      <ay-response-list
-        *ngIf="availableStatusCodes$ | async as availableStatusCodes"
-        [availableStatusCodes]="availableStatusCodes"
-        [activeStatusCode]="activeStatusCode$ | async"
-        [responseArrayForm]="responseArrayForm"
-        (viewResponseBody)="onViewResponseBody($event)"
-      ></ay-response-list>
-      <div style="height: 600px">
-        <ay-editor
-          style="height: 100%"
-          [content]="selectedResponseBody || ''"
-          (contentChange)="onUpdateResponse($event)"
-        ></ay-editor>
-      </div>
-    </ng-container>
   </div>
 </div>
+
+<ng-template #collectionPanel let-collections="collections">
+  <ay-collection-panel [name]="collection.name" *ngFor="let collection of collections">
+    <ul class="text-sm">
+      <ay-endpoint-link
+        [isSelected]="endpoint.id === (selectedEndpoint$ | async)"
+        *ngFor="let endpoint of collection.endpoints"
+        [method]="endpoint.method"
+        [path]="endpoint.path"
+        (selectEndpoint)="onEndpointSelect(endpoint.id)"
+      ></ay-endpoint-link>
+    </ul>
+  </ay-collection-panel>
+</ng-template>
+
+<ng-template #noCollectionsFound>
+  <p class="text-sm">No endpoints found.</p>
+</ng-template>

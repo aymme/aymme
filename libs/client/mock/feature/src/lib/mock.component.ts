@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
@@ -29,8 +29,9 @@ export class MockComponent {
   loaded$: Observable<boolean> = this.collectionsFacade.loaded$;
   collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$;
   selectedProject$: Observable<ProjectsEntity | undefined> = this.projectsFacade.selectedProject$;
-  availableStatusCodes$: Observable<ResponseEntity[] | undefined> = this.endpointFacade.availableStatusCodes$.pipe();
+  availableStatusCodes$: Observable<ResponseEntity[] | undefined> = this.endpointFacade.availableStatusCodes$;
   activeStatusCode$: Observable<ResponseEntity | undefined> = this.endpointFacade.activeStatusCode$;
+  selectedEndpoint$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   endpoint$: Observable<EndpointEntity | undefined> = this.endpointFacade.endpoint$.pipe(
     tap((endpoint) => this._initializeForm(endpoint))
   );
@@ -48,6 +49,10 @@ export class MockComponent {
     this.collectionsFacade.init(this.projectId);
   }
 
+  isEndpointSelected() {
+    return true;
+  }
+
   updateEndpoint() {
     this.endpointFacade.updateEndpoint({
       ...this.configurationForm.value,
@@ -57,6 +62,7 @@ export class MockComponent {
   }
 
   onEndpointSelect(id: string) {
+    this.selectedEndpoint$.next(id);
     this.endpointFacade.loadEndpoint(id);
   }
 

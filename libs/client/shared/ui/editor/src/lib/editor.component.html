@@ -1,13 +1,8 @@
-<div class="flex justify-content-end bg-white border-top-1 border-gray-300 py-1">
-  <button
-    pButton
-    pRipple
-    type="button"
-    icon="pi pi-code"
-    class="p-button-rounded p-button-info p-button-text"
-    (click)="format()"
-    pTooltip="Format the code"
-  ></button>
+<div class="">
+  <button class="text-sm" (click)="format()">
+    <i class="fa fa-chevron-left mr-1"></i>
+    <i class="fa fa-chevron-right"></i>
+  </button>
 </div>
 <ngx-monaco-editor
   style="height: 100%"

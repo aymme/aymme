@@ -1025,6 +1025,32 @@
       },
       "tags": []
     },
+    "client-shell-ui-dropdown": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/dropdown",
+      "sourceRoot": "libs/client/shell/ui/dropdown/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/dropdown"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/dropdown/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/dropdown/src/**/*.ts",
+              "libs/client/shell/ui/dropdown/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "client-shell-ui-footer": {
       "projectType": "library",
       "root": "libs/client/shell/ui/footer",

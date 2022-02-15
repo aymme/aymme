@@ -5,6 +5,9 @@ module.exports = {
   content: [join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'), ...createGlobPatternsForDependencies(__dirname)],
   darkMode: 'class',
   theme: {
+    container: {
+      center: true,
+    },
     screens: {
       sm: '480px',
       md: '768px',
@@ -48,6 +51,12 @@ module.exports = {
           700: '#161616',
           800: '#121212',
           900: '#0C0C0C',
+        },
+        orange: {
+          500: '#ea580c',
+        },
+        blue: {
+          500: '#4287f5',
         },
       },
     },

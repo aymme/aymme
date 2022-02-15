@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'ay-endpoint-options',
@@ -15,6 +16,8 @@ export class EndpointOptionsComponent {
 
   @Input() configurationForm: FormGroup | undefined;
 
+  activeTab$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
+
   constructor(private fb: FormBuilder) {}
 
   addNewHeader() {
@@ -24,6 +27,14 @@ export class EndpointOptionsComponent {
         value: [null, [Validators.required]],
       })
     );
+  }
+
+  setActiveTab(tabNumber: number) {
+    this.activeTab$.next(tabNumber);
+  }
+
+  get currentTab() {
+    return this.activeTab$.value;
   }
 
   removeExistingHeader(index: number) {

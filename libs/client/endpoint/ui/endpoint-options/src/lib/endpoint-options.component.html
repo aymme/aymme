@@ -1,63 +1,68 @@
-<p-tabView *ngIf="configurationForm" [formGroup]="configurationForm">
+<div *ngIf="configurationForm" [formGroup]="configurationForm">
+  <header class="mt-4">
+    <ul class="flex flex-row text-sm font-medium">
+      <li
+        class="dark:border-blend-50 dark:border-blend-50 cursor-pointer rounded-t border border-b-0 border-gray-100 p-3"
+        (click)="setActiveTab(1)"
+        [ngClass]="{ 'active-tab': currentTab === 1 }"
+      >
+        Configuration
+      </li>
+      <li
+        class="dark:border-blend-50 dark:border-blend-50 cursor-pointer rounded-t border border-b-0 border-l-0 border-gray-100 p-3"
+        (click)="setActiveTab(2)"
+        [ngClass]="{ 'active-tab': currentTab === 2 }"
+      >
+        Headers
+      </li>
+    </ul>
+  </header>
 
-    <div class="formgrid grid p-2">
-      <div class="field col-4">
-        <label class="block">Active Status</label>
-      </div>
-      <div class="field col-4">
-        <label for="delay" class="block">Delay</label>
-        <input type="text" id="delay" pInputText pKeyFilter="pnum" class="w-full" formControlName="delay" />
-      </div>
-      <div class="field col-2">
-        <label class="flex align-items-center">
-          Empty
-          <i
-            class="ml-1 pi pi-question-circle"
-            pTooltip="If enabled it will return an empty array"
-            tooltipPosition="top"
-          ></i>
-        </label>
-        <p-inputSwitch formControlName="emptyArray"></p-inputSwitch>
-      </div>
-      <div class="field col-2">
-        <label class="flex align-items-center"
-          >Forward
-          <i
-            class="ml-1 pi pi-question-circle"
-            pTooltip="Forward the request to the original service"
-            tooltipPosition="top"
-          ></i>
-        </label>
+  <section class="tabs dark:border-blend-50 border border-gray-100 p-4" *ngIf="activeTab$ | async as activeTab">
+    <ng-container *ngIf="activeTab === 1">
+      <ng-container *ngTemplateOutlet="configuration"></ng-container>
+    </ng-container>
+    <ng-container *ngIf="activeTab === 2">
+      <ng-container *ngTemplateOutlet="headers"></ng-container>
+    </ng-container>
+  </section>
 
+  <ng-template #configuration>
+    <div class="grid grid-cols-6 gap-4 text-sm">
+      <div class="col-span-2">
+        <label class="mb-1 block">Active Status</label>
+      </div>
+      <div class="col-span-2">
+        <label for="delay" class="mb-1 block">Delay</label>
+        <input type="text" id="delay" class="rounded-md" formControlName="delay" />
+      </div>
+      <div class="col-span-1 flex flex-col">
+        <label class="mb-1 block">Empty</label>
+        <input type="checkbox" formControlName="emptyArray" />
+      </div>
+      <div class="col-span-1 flex flex-col">
+        <label class="">Forward <i class="fa fa-question-mark"></i></label>
+        <input type="checkbox" id="delay" class="" />
       </div>
     </div>
+  </ng-template>
 
-    <ng-container formArrayName="headers">
-      <ng-container *ngFor="let _ of headersControl.controls; index as i">
-        <div class="formgroup-inline" [formGroupName]="i">
-          <div class="field">
-            <input type="text" [id]="'header-name-' + i" pInputText placeholder="Header name" formControlName="name" />
-          </div>
-          <div class="field">
-            <input type="text" id="header-value-1" pInputText placeholder="Header value" formControlName="value" />
-          </div>
-          <button
-            pButton
-            type="button"
-            icon="pi pi-times"
-            class="p-button-rounded p-button-danger p-button-text"
-            (click)="removeExistingHeader(i)"
-          ></button>
+  <ng-template #headers formArrayName="headers">
+    <ng-container *ngFor="let _ of headersControl.controls; index as i">
+      <div class="formgroup-inline" [formGroupName]="i">
+        <div class="field">
+          <input type="text" [id]="'header-name-' + i" placeholder="Header name" formControlName="name" />
         </div>
-      </ng-container>
+        <div class="field">
+          <input type="text" id="header-value-1" placeholder="Header value" formControlName="value" />
+        </div>
+        <button class="" (click)="removeExistingHeader(i)">
+          <i class="fa fa-minus"></i>
+        </button>
+      </div>
     </ng-container>
     <div>
-      <button
-        pButton
-        pRipple
-        type="button"
-        icon="pi pi-plus"
-        class="p-button-secondary p-button-text w-full"
-        (click)="addNewHeader()"
-      ></button>
+      <button class="" (click)="addNewHeader()"><i class="fa fa-plus"></i></button>
     </div>
+  </ng-template>
+</div>
