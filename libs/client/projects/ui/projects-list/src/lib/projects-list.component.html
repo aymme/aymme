@@ -1,7 +1,7 @@
 <ng-container *ngIf="projects">
   <ul class="projects-list">
     <li
-      class="hover:dark:bg-blend-50 flex cursor-pointer flex-row items-center rounded-lg p-10 hover:bg-gray-100"
+      class="hover:dark:bg-blend-50 flex cursor-pointer flex-row items-center rounded-lg p-10 transition-all ease-in-out hover:bg-gray-100"
       *ngFor="let project of projects; index as i"
       (click)="onClick(project)"
     >

@@ -13,7 +13,6 @@ export class EndpointOptionsComponent {
   @Input() availableStatusCodes: ResponseEntity[] | null = [];
   @Input() activeStatusCode: ResponseEntity | null | undefined;
   @Input() endpoint: EndpointEntity | undefined;
-
   @Input() configurationForm: FormGroup | undefined;
 
   activeTab$: BehaviorSubject<number> = new BehaviorSubject<number>(1);

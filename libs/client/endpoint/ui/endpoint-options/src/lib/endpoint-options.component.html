@@ -55,21 +55,39 @@
   </ng-template>
 
   <ng-template #headers formArrayName="headers">
+    <header class="flex flex-row items-center">
+      <ng-container *ngIf="!headersControl.length"
+        ><p class="inline text-xs">No headers found, add the first header.</p></ng-container
+      >
+      <ng-container *ngIf="headersControl.length">
+        <p class="mb-2 inline text-sm">Active headers</p>
+      </ng-container>
+      <button class="ml-auto" (click)="addNewHeader()"><i class="fa fa-plus"></i></button>
+    </header>
     <ng-container *ngFor="let _ of headersControl.controls; index as i">
-      <div class="formgroup-inline" [formGroupName]="i">
-        <div class="field">
-          <input type="text" [id]="'header-name-' + i" placeholder="Header name" formControlName="name" />
+      <div class="mb-2 flex flex-row" [formGroupName]="i">
+        <div>
+          <input
+            class="mr-2 rounded text-sm"
+            type="text"
+            [id]="'header-name-' + i"
+            placeholder="header name"
+            formControlName="name"
+          />
         </div>
-        <div class="field">
-          <input type="text" id="header-value-1" placeholder="Header value" formControlName="value" />
+        <div>
+          <input
+            class="mr-2 rounded text-sm"
+            type="text"
+            id="header-value-1"
+            placeholder="header value"
+            formControlName="value"
+          />
         </div>
-        <button class="" (click)="removeExistingHeader(i)">
+        <button class="p-2 hover:opacity-90" (click)="removeExistingHeader(i)">
           <i class="fa fa-minus"></i>
         </button>
       </div>
     </ng-container>
-    <div>
-      <button class="" (click)="addNewHeader()"><i class="fa fa-plus"></i></button>
-    </div>
   </ng-template>
 </div>
