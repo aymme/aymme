@@ -64,6 +64,10 @@ export class MockComponent {
   }
 
   onEndpointSelect(id: string) {
+    if (id === this.selectedEndpoint$.value) {
+      return;
+    }
+
     this.selectedEndpoint$.next(id);
     this.endpointFacade.loadEndpoint(id);
   }
