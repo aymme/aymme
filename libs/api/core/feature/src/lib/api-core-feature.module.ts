@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getMetadataArgsStorage } from 'typeorm';
+
+import { HttpExceptionFilter } from '@aymme/api/core/utils';
 
 import databaseConfig from './config/database.config';
 
@@ -23,5 +26,11 @@ import databaseConfig from './config/database.config';
       inject: [ConfigService],
     }),
   ],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ]
 })
 export class ApiCoreFeatureModule {}
