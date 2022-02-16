@@ -31,7 +31,6 @@
     <div class="grid grid-cols-6 gap-4 text-sm">
       <div class="col-span-2">
         <label class="mb-1 block">Active Status</label>
-
         <ay-dropdown
           [selected]="activeStatusCode"
           [options]="availableStatusCodes"
@@ -48,8 +47,8 @@
         <input type="checkbox" formControlName="emptyArray" />
       </div>
       <div class="col-span-1 flex flex-col">
-        <label class="">Forward <i class="fa fa-question-mark"></i></label>
-        <input type="checkbox" id="delay" class="" />
+        <label class="mb-1 block">Forward <i class="fa fa-question-mark"></i></label>
+        <input type="checkbox" id="forward" formControlName="forward" />
       </div>
     </div>
   </ng-template>

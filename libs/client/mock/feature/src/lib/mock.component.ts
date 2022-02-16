@@ -21,6 +21,7 @@ export class MockComponent {
       emptyArray: null,
       activeStatusCode: null,
       headers: this.fb.array([]),
+      forward: null,
     }),
 
     responses: this.fb.array([]),
@@ -96,6 +97,7 @@ export class MockComponent {
       this.configurationForm.patchValue({
         delay: endpoint?.delay,
         emptyArray: endpoint?.emptyArray,
+        forward: endpoint?.forward,
         activeStatusCode: endpoint?.activeStatusCode,
       });
 
