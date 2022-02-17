@@ -1,13 +1,10 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import projectsData from '../seed-data/projects';
 
 dotenv.config();
 
 export default (on: any, config: any) => {
   config.env.ENVIRONMENT = 'testing';
-
-  console.log('xx', projectsData);
 
   const testDataApiEndpoint = `${process.env.API_URL}/`;
 
@@ -22,7 +19,7 @@ export default (on: any, config: any) => {
 
   on('task', {
     async 'db:seed:projects'() {
-      const { data } = await axios.post(`http://localhost:3333/api/projects`, params, axiosConfig);
+      const { data } = await axios.post(`${testDataApiEndpoint}/api/projects`, params, axiosConfig);
       return data;
     },
   });
