@@ -33,9 +33,9 @@ export const projectsReducer = createReducer(
     ...state,
     selectedId: projectId,
   })),
-  on(ProjectsActions.loadProjectsSuccess, (state, { projects }) =>
-    projectsAdapter.setAll(projects, { ...state, loaded: true })
-  ),
+  on(ProjectsActions.loadProjectsSuccess, (state, { projects }) => {
+    return projectsAdapter.setAll(projects, { ...state, loaded: true });
+  }),
   on(ProjectsActions.loadProjectsFailure, (state, { error }) => ({
     ...state,
     error,

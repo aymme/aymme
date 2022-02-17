@@ -17,7 +17,7 @@ export class ProjectsService {
   constructor(@Inject(APP_CONFIG) private appConfig: AppConfig, private http: HttpClient) {}
 
   getProjects() {
-    return this.http.get<ProjectsEntity[]>(`${this.apiURL}`).pipe(
+    return this.http.get<ProjectsEntity[]>(`/api${this.apiFeatureKey}`).pipe(
       map((response) => {
         return response;
       })
@@ -29,7 +29,7 @@ export class ProjectsService {
   }
 
   createNewProject(name: string): Observable<ProjectsEntity> {
-    return this.http.post<ProjectsEntity>(`/api/${this.apiFeatureKey}`, {
+    return this.http.post<ProjectsEntity>(`/api${this.apiFeatureKey}`, {
       name,
     });
   }

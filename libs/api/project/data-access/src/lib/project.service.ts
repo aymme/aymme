@@ -1,10 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  NotFoundException
-} from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import slugify from 'slugify';
 import { Project } from '@aymme/api/shared/data-access';
 
@@ -50,11 +44,7 @@ export class ProjectService {
     let project = await this.projectRepository.findOne({ name });
 
     if (project) {
-      this.logger.error(
-        `Project already exist "${name}". DTO: ${JSON.stringify(
-          createProjectDto
-        )}`
-      );
+      this.logger.error(`Project already exist "${name}". DTO: ${JSON.stringify(createProjectDto)}`);
 
       throw new ConflictException('Project already exist');
     }
@@ -69,21 +59,14 @@ export class ProjectService {
     try {
       await project.save();
     } catch (e) {
-      this.logger.error(
-        `Failed creating the project "${name}". DTO: ${JSON.stringify(
-          createProjectDto
-        )}`
-      );
+      this.logger.error(`Failed creating the project "${name}". DTO: ${JSON.stringify(createProjectDto)}`);
       throw new InternalServerErrorException();
     }
 
     return project;
   }
 
-  async update(
-    id: string,
-    updateProjectDto: UpdateProjectDto
-  ): Promise<Project> {
+  async update(id: string, updateProjectDto: UpdateProjectDto): Promise<Project> {
     const { name } = updateProjectDto;
     const project = await this.getById(id);
 
@@ -92,11 +75,7 @@ export class ProjectService {
     try {
       await project.save();
     } catch (e) {
-      this.logger.error(
-        `Failed update the project with ID "${
-          project.id
-        }". DTO: ${JSON.stringify(updateProjectDto)}`
-      );
+      this.logger.error(`Failed update the project with ID "${project.id}". DTO: ${JSON.stringify(updateProjectDto)}`);
       throw new InternalServerErrorException();
     }
 

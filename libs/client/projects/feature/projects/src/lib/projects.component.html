@@ -1,9 +1,16 @@
-<section class="relative flex flex-col items-center pt-10">
+<section data-cy="projects-list-container" class="relative flex flex-col items-center pt-10">
   <article class="w-1/2 rounded-md">
     <header class="mb-5 flex flex-row items-center justify-center border-b p-5 p-5">
-      <h2 class="m-0 text-lg font-extralight">Current <strong>Projects</strong></h2>
+      <h2 data-cy="projects-list-title" class="m-0 text-lg font-extralight">Current <strong>Projects</strong></h2>
 
-      <button class="ml-auto" type="button" (click)="showDialog()" icon="pi pi-plus" label="New project">
+      <button
+        data-cy="projects-list-add-new-project"
+        class="ml-auto"
+        type="button"
+        (click)="showDialog()"
+        icon="pi pi-plus"
+        label="New project"
+      >
         <i class="fas fa-plus"></i>
       </button>
     </header>
@@ -16,37 +23,44 @@
   <article
     class="dark:bg-background absolute min-h-full w-1/2 rounded-lg bg-white"
     *ngIf="displayAddNewProject$ | async"
+    data-cy="add-new-project-form"
   >
     <header class="mb-5 flex flex-col items-center justify-center pb-5">
-      <h3 class="mb-5 pt-3 text-lg">
+      <h3 class="mb-5 pt-3 text-lg" data-cy="add-new-project-title">
         Add a new project
-        <button class="absolute right-1 top-0 p-2" (click)="hideDialog()"><i class="fa fa-times"></i></button>
+        <button data-cy="add-new-project-close-button" class="absolute right-1 top-0 p-2" (click)="hideDialog()">
+          <i class="fa fa-times"></i>
+        </button>
       </h3>
-      <p class="text-center text-base leading-6">
+      <p data-cy="add-new-project-intro" class="text-center text-base leading-6">
         Add a new project by providing the project name. <br />
         <em class="text-sm">You cannot have multiple projects with the same name.</em>
       </p>
     </header>
 
-    <div class="mb-5 flex flex-col items-center">
-      <label class="mb-2 font-bold" for="projectName">Name</label>
-      <input
-        id="projectName"
-        type="text"
-        aria-describedby="projectName-help"
-        class="mb-3 rounded-md"
-        [(ngModel)]="newProjectName"
-        autofocus
-        placeholder="project name.."
-      />
-
-      <p class="text-sm text-red-500" *ngIf="displayError$ | async as error">
-        {{ error }}
-      </p>
+    <div class="mb-5">
+      <form class="flex flex-col items-center" data-cy="add-new-project-form">
+        <label class="mb-2 font-bold" for="projectName">Name</label>
+        <input
+          data-cy="add-new-project-form-input-name"
+          id="projectName"
+          type="text"
+          aria-describedby="projectName-help"
+          class="mb-3 rounded-md"
+          [(ngModel)]="newProjectName"
+          autofocus
+          name="projectName"
+          placeholder="project name.."
+        />
+        <p data-cy="add-new-project-error" class="text-sm text-red-500" *ngIf="displayError$ | async as error">
+          {{ error }}
+        </p>
+      </form>
     </div>
 
     <footer class="flex flex-row items-center justify-center">
       <button
+        data-cy="add-new-project-submit"
         class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-3 hover:bg-gray-100"
         type="button"
         label="Confirm"
@@ -67,9 +81,14 @@
 <ng-template #loadedProjects>
   <ng-container *ngIf="projects$ | async as projects">
     <ay-projects-list
+      *ngIf="projects"
       [projects]="projects"
       (deleteProject)="deleteProject($event)"
       (openProject)="openProject($event)"
     ></ay-projects-list>
+
+    <ng-container *ngIf="!projects.length">
+      <p data-cy="no-projects" class="text-sm">There are no projects found. Create a project first.</p>
+    </ng-container>
   </ng-container>
 </ng-template>

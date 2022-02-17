@@ -1,1 +1,7 @@
-<div><button *ngIf="theme === THEMES.Dark" (click)="changeTheme(THEMES.Light)"><i class="fas fa-sun"></i></button><button *ngIf="theme === THEMES.Light"  (click)="changeTheme(THEMES.Dark)"><i class="fas fa-moon"></i></button></div>
+<div data-cy="theme-switcher" class="theme-switcher">
+  <button data-cy="theme-switcher-light" *ngIf="theme === THEMES.Dark" (click)="changeTheme(THEMES.Light)">
+    <i class="fas fa-sun"></i></button
+  ><button data-cy="theme-switcher-dark" *ngIf="theme === THEMES.Light" (click)="changeTheme(THEMES.Dark)">
+    <i class="fas fa-moon"></i>
+  </button>
+</div>

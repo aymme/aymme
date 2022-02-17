@@ -1,12 +1,18 @@
 <ng-container *ngIf="projects">
-  <ul class="projects-list">
+  <ul data-cy="projects-list" class="projects-list">
     <li
       class="hover:dark:bg-blend-50 flex cursor-pointer flex-row items-center rounded-lg p-10 transition-all ease-in-out hover:bg-gray-100"
       *ngFor="let project of projects; index as i"
       (click)="onClick(project)"
     >
       <h4 class="font-medium"><i class="fa fa-project-diagram mr-2 opacity-40"></i>{{ project.name | titlecase }}</h4>
-      <button type="button" label="Delete" class="ml-auto p-2" (click)="onDeleteProject(project, $event)">
+      <button
+        data-cy="projects-delete-project"
+        type="button"
+        label="Delete"
+        class="ml-auto p-2"
+        (click)="onDeleteProject(project, $event)"
+      >
         <i class="fa fa-times text-gray dark:text-blend"></i>
       </button>
     </li>

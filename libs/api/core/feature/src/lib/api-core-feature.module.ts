@@ -31,6 +31,6 @@ import databaseConfig from './config/database.config';
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
     },
-  ]
+  ],
 })
 export class ApiCoreFeatureModule {}
