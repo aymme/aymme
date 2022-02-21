@@ -1,9 +1,6 @@
 const path = require('path');
 const envConfig = require('dotenv').config({
-  path: path.resolve(
-    __dirname,
-    `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}`
-  ),
+  path: path.resolve(__dirname, `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ''}`),
 });
 
 function env(key) {
@@ -14,9 +11,11 @@ console.log(path.resolve('./database/migrations'));
 
 const baseConfig = {
   type: 'sqlite',
-  database: env('DATABASE_NAME'),
+  database: path.join(__dirname, env('DATABASE_NAME')),
   entities: [path.join(__dirname, './libs/api/**/*.entity{.ts,.js}')],
   migrations: [path.join(__dirname, './database/migrations/**/*.ts')],
+  seeds: [path.join(__dirname, './libs/api/**/seeds/*{.ts,.js}')],
+  factories: [path.join(__dirname, './libs/api/**/factories/*{.ts,.js}')],
   logger: 'advanced-console',
   logging: ['warn', 'error'],
   cli: {
