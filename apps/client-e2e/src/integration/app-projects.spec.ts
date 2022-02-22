@@ -1,5 +1,3 @@
-import { contains } from 'cypress/types/jquery';
-
 describe('App/Projects', () => {
   const PROJECT_NAME = 'Test: New Project 1';
   const API_URL = 'http://localhost:4200/api/projects';

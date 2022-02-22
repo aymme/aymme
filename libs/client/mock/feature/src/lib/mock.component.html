@@ -1,10 +1,11 @@
-<div class="xs:container px-10 md:mx-auto">
+<div data-cy="mock-wrapper" class="xs:container px-10 md:mx-auto">
   <div class="grid grid-cols-2 gap-6 pt-10" *ngIf="selectedProject$ | async as project">
     <div>
       <header class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3">
-        <h2><strong>Project</strong>: {{ project.name | titlecase }}</h2>
+        <h2 data-cy="mock-project-name"><strong>Project</strong>: {{ project.name | titlecase }}</h2>
         <div class="ml-auto">
           <button
+            data-cy="mock-import-bottom"
             type="button"
             label="Import"
             class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
@@ -12,6 +13,7 @@
             Import
           </button>
           <button
+            data-cy="mock-export-bottom"
             type="button"
             label="Export"
             class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
@@ -54,13 +56,13 @@
 </ng-template>
 
 <ng-template #noCollectionsFound>
-  <p class="text-sm">No endpoints found.</p>
+  <p data-cy="endpoints-no-endpoints-found" class="text-sm">No endpoints found.</p>
 </ng-template>
 
 <ng-template #loadingEndpoint let-loading>
   <section class="p-5 pt-7 text-center text-sm">
     <ng-container *ngIf="loading === null">
-      <p class="text-xs">Please select an endpoint on the left.</p>
+      <p data-cy="endpoints-no-endpoint-selected" class="text-xs">Please select an endpoint on the left.</p>
     </ng-container>
 
     <ng-container *ngIf="isBoolean(loading)">
