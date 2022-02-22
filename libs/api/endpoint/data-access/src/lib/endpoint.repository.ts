@@ -33,7 +33,7 @@ export class EndpointRepository extends Repository<Endpoint> {
       throw new NotFoundException(`Endpoint with ID: ${id} not found`);
     }
 
-    const { headers, activeStatusCode, delay, emptyArray, collectionId, responses } = updateEndpointDto;
+    const { headers, activeStatusCode, delay, emptyArray, collectionId, responses, forward } = updateEndpointDto;
 
     if (headers) {
       endpoint.headers = headers as Header[];
@@ -47,8 +47,12 @@ export class EndpointRepository extends Repository<Endpoint> {
       endpoint.delay = delay;
     }
 
-    if (emptyArray) {
+    if (updateEndpointDto.hasOwnProperty("emptyArray")) {
       endpoint.emptyArray = emptyArray;
+    }
+
+    if (updateEndpointDto.hasOwnProperty("forward")) {
+      endpoint.forward = forward;
     }
 
     if (collectionId) {
