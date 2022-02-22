@@ -12,6 +12,10 @@ export class UpdateEndpointDto {
   @IsOptional()
   emptyArray?: boolean;
 
+  @IsBoolean()
+  @IsOptional()
+  forward?: boolean;
+
   @IsNumber()
   @IsOptional()
   delay?: number;
