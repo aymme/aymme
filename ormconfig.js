@@ -19,7 +19,7 @@ const baseConfig = {
   logger: 'advanced-console',
   logging: ['warn', 'error'],
   cli: {
-    migrationsDir: 'database/migrations',
+    migrationsDir: path.join(__dirname, './database/migrations'),
   },
 };
 

@@ -27,10 +27,17 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "migrate:generate": "ts-node --project tsconfig.typeorm.json ./node_modules/typeorm/cli.js migration:generate",
+    "typeorm": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/typeorm/cli.js",
+    "migration:show": "yarn typeorm migration:show",
+    "migration:generate": "yarn typeorm migration:generate -n",
+    "migration:run": "yarn typeorm migration:run",
+    "migration:revert": "yarn typeorm migration:revert",
     "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json",
     "seed:config": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/typeorm-seeding/dist/cli.js config",
-    "seed:run": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/typeorm-seeding/dist/cli.js seed"
+    "seed:run": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/typeorm-seeding/dist/cli.js seed",
+    "schema:sync": "yarn typeorm schema:sync",
+    "schema:log": "yarn typeorm schema:log",
+    "schema:drop": "yarn typeorm schema:drop"
   },
   "private": true,
   "dependencies": {
