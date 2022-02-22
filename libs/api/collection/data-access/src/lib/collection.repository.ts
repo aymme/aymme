@@ -13,7 +13,9 @@ export class CollectionRepository extends Repository<Collection> {
       return found;
     }
 
-    const collection = new Collection(name, projectId);
+    const collection = new Collection();
+    collection.name = name;
+    collection.projectId = projectId;
 
     try {
       return await collection.save();

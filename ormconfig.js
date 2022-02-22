@@ -14,8 +14,9 @@ const baseConfig = {
   database: path.join(__dirname, env('DATABASE_NAME')),
   entities: [path.join(__dirname, './libs/api/**/*.entity{.ts,.js}')],
   migrations: [path.join(__dirname, './database/migrations/**/*.ts')],
-  seeds: [path.join(__dirname, './libs/api/**/seeds/*{.ts,.js}')],
+  seeders: [path.join(__dirname, './libs/api/**/seeds/*{.ts,.js}')],
   factories: [path.join(__dirname, './libs/api/**/factories/*{.ts,.js}')],
+  defaultSeeder: 'RootSeeder',
   logger: 'advanced-console',
   logging: ['warn', 'error'],
   cli: {
