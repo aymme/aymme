@@ -47,11 +47,11 @@ export class EndpointRepository extends Repository<Endpoint> {
       endpoint.delay = delay;
     }
 
-    if (updateEndpointDto.hasOwnProperty('emptyArray')) {
+    if (typeof emptyArray !== 'undefined') {
       endpoint.emptyArray = emptyArray;
     }
 
-    if (updateEndpointDto.hasOwnProperty('forward')) {
+    if (typeof forward !== 'undefined') {
       endpoint.forward = forward;
     }
 
