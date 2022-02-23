@@ -532,17 +532,17 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
-    "client-endpoint-ui-endpoint-link": {
+    "client-mock-ui-endpoint-link": {
       "projectType": "library",
-      "root": "libs/client/endpoint/ui/endpoint-link",
-      "sourceRoot": "libs/client/endpoint/ui/endpoint-link/src",
+      "root": "libs/client/mock/ui/endpoint-link",
+      "sourceRoot": "libs/client/mock/ui/endpoint-link/src",
       "prefix": "ay",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/endpoint/ui/endpoint-link"],
+          "outputs": ["coverage/libs/client/mock/ui/endpoint-link"],
           "options": {
-            "jestConfig": "libs/client/endpoint/ui/endpoint-link/jest.config.js",
+            "jestConfig": "libs/client/mock/ui/endpoint-link/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -550,8 +550,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/endpoint/ui/endpoint-link/src/**/*.ts",
-              "libs/client/endpoint/ui/endpoint-link/src/**/*.html"
+              "libs/client/mock/ui/endpoint-link/src/**/*.ts",
+              "libs/client/mock/ui/endpoint-link/src/**/*.html"
             ]
           }
         },
@@ -561,9 +561,9 @@
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
-              "configFolder": "libs/client/endpoint/ui/endpoint-link/.storybook"
+              "configFolder": "libs/client/mock/ui/endpoint-link/.storybook"
             },
-            "projectBuildConfig": "client-endpoint-ui-endpoint-link:build-storybook"
+            "projectBuildConfig": "client-mock-ui-endpoint-link:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -576,11 +576,11 @@
           "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/client-endpoint-ui-endpoint-link",
+            "outputPath": "dist/storybook/client-mock-ui-endpoint-link",
             "config": {
-              "configFolder": "libs/client/endpoint/ui/endpoint-link/.storybook"
+              "configFolder": "libs/client/mock/ui/endpoint-link/.storybook"
             },
-            "projectBuildConfig": "client-endpoint-ui-endpoint-link:build-storybook"
+            "projectBuildConfig": "client-mock-ui-endpoint-link:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -591,20 +591,20 @@
       },
       "tags": []
     },
-    "client-endpoint-ui-endpoint-link-e2e": {
-      "root": "apps/client-endpoint-ui-endpoint-link-e2e",
-      "sourceRoot": "apps/client-endpoint-ui-endpoint-link-e2e/src",
+    "client-mock-ui-endpoint-link-e2e": {
+      "root": "apps/client-mock-ui-endpoint-link-e2e",
+      "sourceRoot": "apps/client-mock-ui-endpoint-link-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/client-endpoint-ui-endpoint-link-e2e/cypress.json",
-            "devServerTarget": "client-endpoint-ui-endpoint-link:storybook"
+            "cypressConfig": "apps/client-mock-ui-endpoint-link-e2e/cypress.json",
+            "devServerTarget": "client-mock-ui-endpoint-link:storybook"
           },
           "configurations": {
             "ci": {
-              "devServerTarget": "client-endpoint-ui-endpoint-link:storybook:ci"
+              "devServerTarget": "client-mock-ui-endpoint-link:storybook:ci"
             }
           }
         },
@@ -612,24 +612,24 @@
           "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["apps/client-endpoint-ui-endpoint-link-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["apps/client-mock-ui-endpoint-link-e2e/**/*.{js,ts}"]
           }
         }
       },
       "tags": [],
-      "implicitDependencies": ["client-endpoint-ui-endpoint-link"]
+      "implicitDependencies": ["client-mock-ui-endpoint-link"]
     },
-    "client-endpoint-ui-endpoint-options": {
+    "client-mock-ui-endpoint-options": {
       "projectType": "library",
-      "root": "libs/client/endpoint/ui/endpoint-options",
-      "sourceRoot": "libs/client/endpoint/ui/endpoint-options/src",
+      "root": "libs/client/mock/ui/endpoint-options",
+      "sourceRoot": "libs/client/mock/ui/endpoint-options/src",
       "prefix": "aymme",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/endpoint/ui/endpoint-options"],
+          "outputs": ["coverage/libs/client/mock/ui/endpoint-options"],
           "options": {
-            "jestConfig": "libs/client/endpoint/ui/endpoint-options/jest.config.js",
+            "jestConfig": "libs/client/mock/ui/endpoint-options/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -637,8 +637,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/client/endpoint/ui/endpoint-options/src/**/*.ts",
-              "libs/client/endpoint/ui/endpoint-options/src/**/*.html"
+              "libs/client/mock/ui/endpoint-options/src/**/*.ts",
+              "libs/client/mock/ui/endpoint-options/src/**/*.html"
             ]
           }
         },
@@ -648,9 +648,9 @@
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
-              "configFolder": "libs/client/endpoint/ui/endpoint-options/.storybook"
+              "configFolder": "libs/client/mock/ui/endpoint-options/.storybook"
             },
-            "projectBuildConfig": "client-endpoint-ui-endpoint-options:build-storybook"
+            "projectBuildConfig": "client-mock-ui-endpoint-options:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -663,11 +663,11 @@
           "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/client-endpoint-ui-endpoint-options",
+            "outputPath": "dist/storybook/client-mock-ui-endpoint-options",
             "config": {
-              "configFolder": "libs/client/endpoint/ui/endpoint-options/.storybook"
+              "configFolder": "libs/client/mock/ui/endpoint-options/.storybook"
             },
-            "projectBuildConfig": "client-endpoint-ui-endpoint-options:build-storybook"
+            "projectBuildConfig": "client-mock-ui-endpoint-options:build-storybook"
           },
           "configurations": {
             "ci": {

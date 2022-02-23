@@ -5,12 +5,12 @@ import { MockComponent } from './mock.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CollectionsEffects, CollectionsFacade, CollectionsFeature } from '@aymme/client/collection/data-access';
-import { EndpointLinkModule } from '@aymme/client/endpoint/ui/endpoint-link';
-import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-panel';
+import { EndpointLinkModule } from '@aymme/client/mock/ui/endpoint-link';
 import { ClientMockDataAccessModule } from '@aymme/client/mock/data-access';
-import { EndpointOptionsModule } from '@aymme/client/endpoint/ui/endpoint-options';
-import { EditorModule } from '@aymme/client/shared/ui/editor';
+import { EndpointOptionsModule } from '@aymme/client/mock/ui/endpoint-options';
+import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-panel';
 import { ResponseListModule } from '@aymme/client/mock/ui/response-list';
+import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
 
 @NgModule({

@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-endpoint-ui-endpoint-link',
+  displayName: 'client-mock-ui-endpoint-link',
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../../coverage/libs/client/endpoint/ui/endpoint-link',
+  coverageDirectory: '../../../../../coverage/libs/client/mock/ui/endpoint-link',
   transform: {
     '^.+.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
