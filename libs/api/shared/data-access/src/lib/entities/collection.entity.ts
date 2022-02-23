@@ -26,10 +26,10 @@ export class Collection extends BaseEntity implements ICollection {
   @Column()
   public projectId: string;
 
-  constructor(name: string, projectId: string) {
-    super();
-
-    this.name = name;
-    this.projectId = projectId;
-  }
+  // constructor(name: string, projectId: string) {
+  //   super();
+  //
+  //   this.name = name;
+  //   this.projectId = projectId;
+  // }
 }
