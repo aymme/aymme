@@ -532,6 +532,79 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
+    "client-mock-data-access": {
+      "projectType": "library",
+      "root": "libs/client/mock/data-access",
+      "sourceRoot": "libs/client/mock/data-access/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/mock/data-access"],
+          "options": {
+            "jestConfig": "libs/client/mock/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/mock/data-access/src/**/*.ts",
+              "libs/client/mock/data-access/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "client-mock-feature": {
+      "projectType": "library",
+      "root": "libs/client/mock/feature",
+      "sourceRoot": "libs/client/mock/feature/src",
+      "prefix": "ay",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/mock/feature"],
+          "options": {
+            "jestConfig": "libs/client/mock/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/client/mock/feature/src/**/*.ts", "libs/client/mock/feature/src/**/*.html"]
+          },
+          "outputs": ["{options.outputFile}"]
+        }
+      },
+      "tags": []
+    },
+    "client-mock-model": {
+      "root": "libs/client/mock/model",
+      "sourceRoot": "libs/client/mock/model/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/client/mock/model/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/mock/model"],
+          "options": {
+            "jestConfig": "libs/client/mock/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "client-mock-ui-endpoint-link": {
       "projectType": "library",
       "root": "libs/client/mock/ui/endpoint-link",
@@ -673,79 +746,6 @@
             "ci": {
               "quiet": true
             }
-          }
-        }
-      },
-      "tags": []
-    },
-    "client-mock-data-access": {
-      "projectType": "library",
-      "root": "libs/client/mock/data-access",
-      "sourceRoot": "libs/client/mock/data-access/src",
-      "prefix": "aymme",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/mock/data-access"],
-          "options": {
-            "jestConfig": "libs/client/mock/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/client/mock/data-access/src/**/*.ts",
-              "libs/client/mock/data-access/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": []
-    },
-    "client-mock-feature": {
-      "projectType": "library",
-      "root": "libs/client/mock/feature",
-      "sourceRoot": "libs/client/mock/feature/src",
-      "prefix": "ay",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/mock/feature"],
-          "options": {
-            "jestConfig": "libs/client/mock/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/client/mock/feature/src/**/*.ts", "libs/client/mock/feature/src/**/*.html"]
-          },
-          "outputs": ["{options.outputFile}"]
-        }
-      },
-      "tags": []
-    },
-    "client-mock-model": {
-      "root": "libs/client/mock/model",
-      "sourceRoot": "libs/client/mock/model/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/client/mock/model/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/client/mock/model"],
-          "options": {
-            "jestConfig": "libs/client/mock/model/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -1191,6 +1191,32 @@
             "lintFilePatterns": ["libs/client/shell/ui/logo/src/**/*.ts", "libs/client/shell/ui/logo/src/**/*.html"]
           },
           "outputs": ["{options.outputFile}"]
+        }
+      },
+      "tags": []
+    },
+    "client-shell-ui-overlay-panel": {
+      "projectType": "library",
+      "root": "libs/client/shell/ui/overlay-panel",
+      "sourceRoot": "libs/client/shell/ui/overlay-panel/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/shell/ui/overlay-panel"],
+          "options": {
+            "jestConfig": "libs/client/shell/ui/overlay-panel/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/shell/ui/overlay-panel/src/**/*.ts",
+              "libs/client/shell/ui/overlay-panel/src/**/*.html"
+            ]
+          }
         }
       },
       "tags": []

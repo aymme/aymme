@@ -1,0 +1,10 @@
+<ul *ngIf="isOpen" class="dark:bg-background absolute z-50">
+  <li *ngFor="let group of groupedOptions">
+    {{ group.label }}
+    <ul>
+      <li *ngFor="let item of group.items" (click)="selectItem(item)">
+        {{ item.label }}
+      </li>
+    </ul>
+  </li>
+</ul>

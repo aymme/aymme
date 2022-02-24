@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ResponseEntity } from '@aymme/client/mock/model';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { availableStatusCodes } from './available-status-codes';
+import { OverlayOption } from '@aymme/client/shell/ui/overlay-panel';
 
 @Component({
   selector: 'ay-response-list',
@@ -16,14 +17,15 @@ export class ResponseListComponent {
   @Input()
   set availableStatusCodes(data: ResponseEntity[] | null) {
     if (data) {
-      this.responses = data.map((response, index) => ({
+      this.responses = data.map((response) => ({
         id: response.id,
-        label: response.statusCode.toString(),
-        command: () => {
-          this.showMockFor(index);
-        },
+        statusCode: response.statusCode.toString(),
       }));
-      this.activeItem = this.responses[0];
+
+      // const activeStatusCodeIndex = this.responses.findIndex(
+      //   (response: any) => response.statusCode == this.activeStatusCode
+      // );
+
       this.showMockFor(0);
     }
   }
@@ -34,29 +36,41 @@ export class ResponseListComponent {
   activeItem: any;
   selectedStatusCode!: number;
   availableStatuses = availableStatusCodes;
+  showOverlayPanel = false;
 
   addNewResponse(): void {
     this.responseArrayForm?.push(
       new FormGroup({
         statusCode: new FormControl(this.selectedStatusCode),
-        body: new FormControl(''),
+        body: new FormControl('{ "are-you-mocking-me": "yes" }'),
       })
     );
 
-    const tempArr = [...this.responses];
-
-    tempArr.splice(this.responses.length - 1, 0, {
-      label: this.selectedStatusCode.toString(),
-      command: () => {
-        this.showMockFor(this.responseArrayForm?.value.length - 1);
-      },
-    });
-
-    this.responses = [...tempArr];
+    this.responses = [
+      ...this.responses,
+      { statusCode: this.selectedStatusCode, body: '{ "are-you-mocking-me": "yes" }' },
+    ];
   }
 
   showMockFor(index: number): void {
     this.activeItem = this.responses[index];
     this.viewResponseBody.emit(index);
+  }
+
+  showOverlayPanelClick(): void {
+    this.showOverlayPanel = true;
+  }
+
+  onSelectedStatusCode(item: OverlayOption): void {
+    if (this.getResponseByStatusCode(item.value)) return;
+
+    this.selectedStatusCode = item.value;
+    this.addNewResponse();
+    this.showOverlayPanel = false;
+    this.showMockFor(this.responses.length - 1);
+  }
+
+  private getResponseByStatusCode(statusCode: number): any {
+    return this.responses.find((response: any) => response.statusCode == statusCode);
   }
 }
