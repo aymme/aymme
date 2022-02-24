@@ -5,7 +5,10 @@
       *ngFor="let project of projects; index as i"
       (click)="onClick(project)"
     >
-      <h4 class="font-medium"><i class="fa fa-project-diagram mr-2 opacity-40"></i>{{ project.name | titlecase }}</h4>
+      <h4 class="font-medium">
+        <i class="fa fa-project-diagram mr-2 opacity-40"></i>{{ project.name | titlecase }}
+        <small>({{ project.slug }})</small>
+      </h4>
       <button
         data-cy="projects-delete-project"
         type="button"

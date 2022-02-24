@@ -2,7 +2,10 @@
   <div class="grid grid-cols-2 gap-6 pt-10" *ngIf="selectedProject$ | async as project">
     <div>
       <header class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3">
-        <h2 data-cy="mock-project-name"><strong>Project</strong>: {{ project.name | titlecase }}</h2>
+        <h2 data-cy="mock-project-name">
+          <strong>Project</strong>: {{ project.name | titlecase }}
+          <small data-cy="mock-project-nam-slug">(slug: {{ project.slug }})</small>
+        </h2>
         <div class="ml-auto">
           <button
             data-cy="mock-import-bottom"
