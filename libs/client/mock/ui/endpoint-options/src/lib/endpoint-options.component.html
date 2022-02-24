@@ -1,6 +1,6 @@
-<div class="py-5" *ngIf="configurationForm" [formGroup]="configurationForm">
+<div data-cy="endpoint-details-configuration" class="py-5" *ngIf="configurationForm" [formGroup]="configurationForm">
   <header class="mt-4">
-    <ul class="flex flex-row text-sm font-medium">
+    <ul data-cy="endpoint-details-configuration-tabs" class="flex flex-row text-sm font-medium">
       <li
         class="dark:border-blend-50 dark:border-blend-50 cursor-pointer rounded-t border border-b-0 border-gray-100 p-3"
         (click)="setActiveTab(1)"
@@ -29,7 +29,7 @@
 
   <ng-template #configuration>
     <div class="grid grid-cols-6 gap-4">
-      <div class="col-span-2">
+      <div data-cy="endpoint-details-configuration-active-status" class="col-span-2">
         <label class="mb-1 block">Active Status</label>
         <ay-dropdown
           [selected]="activeStatusCode"
@@ -38,15 +38,15 @@
           optionValue="statusCode"
         ></ay-dropdown>
       </div>
-      <div class="col-span-2">
+      <div data-cy="endpoint-details-configuration-delay" class="col-span-2">
         <label for="delay" class="mb-1 block">Delay</label>
         <input type="text" id="delay" class="rounded-md text-sm" formControlName="delay" />
       </div>
-      <div class="col-span-1 flex flex-col">
+      <div data-cy="endpoint-details-configuration-empty" class="col-span-1 flex flex-col">
         <label class="mb-1 block">Empty</label>
         <input type="checkbox" formControlName="emptyArray" />
       </div>
-      <div class="col-span-1 flex flex-col">
+      <div data-cy="endpoint-details-configuration-forward" class="col-span-1 flex flex-col">
         <label class="mb-1 block">Forward <i class="fa fa-question-mark"></i></label>
         <input type="checkbox" id="forward" formControlName="forward" />
       </div>
@@ -56,12 +56,16 @@
   <ng-template #headers formArrayName="headers">
     <header class="flex flex-row items-center">
       <ng-container *ngIf="!headersControl.length"
-        ><p class="inline text-xs">No headers found, add the first header.</p></ng-container
+        ><p data-cy="endpoint-details-configuration-headers-not-found" class="inline text-xs">
+          No headers found, add the first header.
+        </p></ng-container
       >
       <ng-container *ngIf="headersControl.length">
         <p class="mb-2 inline text-sm">Active headers</p>
       </ng-container>
-      <button class="ml-auto" (click)="addNewHeader()"><i class="fa fa-plus"></i></button>
+      <button data-cy="endpoint-details-configuration-add-new-header" class="ml-auto" (click)="addNewHeader()">
+        <i class="fa fa-plus"></i>
+      </button>
     </header>
     <ng-container *ngFor="let _ of headersControl.controls; index as i">
       <div class="mb-2 flex flex-row" [formGroupName]="i">

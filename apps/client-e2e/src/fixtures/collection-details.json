@@ -1,0 +1,20 @@
+{
+  "id": "c53974ca-e244-4abe-8034-ef3aee6f1d40",
+  "path": "/test-endpoint-path-71",
+  "activeStatusCode": 500,
+  "emptyArray": false,
+  "method": "GET",
+  "forward": false,
+  "delay": 0,
+  "projectId": "8baad4c1-58f2-4178-98b4-2cd76395d384",
+  "collectionId": "2b1eebce-5915-4667-aa1a-75e6d57ae19e",
+  "responses": [
+    {
+      "id": "44bf9cd2-40cf-4488-8a03-6ffdaa9b0627",
+      "body": "{ \"message\": \"Please update mocks data\" }",
+      "statusCode": 500,
+      "endpointId": "c53974ca-e244-4abe-8034-ef3aee6f1d40"
+    }
+  ],
+  "headers": []
+}

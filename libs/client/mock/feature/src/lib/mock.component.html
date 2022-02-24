@@ -43,7 +43,7 @@
 
 <ng-template #collectionPanel let-collections="collections">
   <ay-collection-panel [name]="collection.name" *ngFor="let collection of collections">
-    <ul class="text-sm">
+    <ul data-cy="endpoints-list" class="text-sm">
       <ay-endpoint-link
         [isSelected]="endpoint.id === (selectedEndpoint$ | async)"
         *ngFor="let endpoint of collection.endpoints"
@@ -73,9 +73,17 @@
 
 <ng-template #loadedEndpoint>
   <ng-container *ngIf="endpoint$ | async as endpoint">
-    <div class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3">
+    <div
+      data-cy="endpoint-details-screen"
+      class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3"
+    >
       <span class="font-bold">Details</span>
-      <button class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white" label="Update" (click)="updateEndpoint()">
+      <button
+        data-cy="endpoint-details-update-button"
+        class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white"
+        label="Update"
+        (click)="updateEndpoint()"
+      >
         Update
       </button>
     </div>

@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "nx e2e client-e2e",
-    "e2e-watch": " nx e2e client-e2e --watch",
+    "e2e:watch": " nx e2e client-e2e --watch",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -35,6 +35,7 @@
     "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json",
     "seed:config": "typeorm-seeding config",
     "seed:run": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/.bin/typeorm-seeding seed",
+    "seed:fresh": "rm ./database/db-test.sqlite && yarn run migration:run && yarn run seed:run",
     "schema:sync": "yarn typeorm schema:sync",
     "schema:log": "yarn typeorm schema:log",
     "schema:drop": "yarn typeorm schema:drop"

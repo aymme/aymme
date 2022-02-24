@@ -1,0 +1,88 @@
+[
+  {
+    "name": "default",
+    "projectId": "b15eb4db-2eb5-4a6d-9121-b6a861cdcdfa",
+    "endpoints": [
+      {
+        "id": "c154f341-96bf-4263-abca-4d712cdd0cc4",
+        "path": "/api/notifications-service/client-api/v2/notifications/unread-count",
+        "activeStatusCode": 500,
+        "emptyArray": false,
+        "method": "GET",
+        "forward": false,
+        "delay": 0,
+        "projectId": "fd0dffa5-dc40-4459-a3ff-d77d02e32b82",
+        "collectionId": "c29919a8-6919-4393-a912-947b59a47c53",
+        "headers": []
+      },
+      {
+        "id": "316db600-89c0-4022-b459-796195a5c3e5",
+        "path": "/api/user-manager/client-api/v2/users/me",
+        "activeStatusCode": 500,
+        "emptyArray": true,
+        "method": "GET",
+        "forward": false,
+        "delay": 1000,
+        "projectId": "fd0dffa5-dc40-4459-a3ff-d77d02e32b82",
+        "collectionId": "c29919a8-6919-4393-a912-947b59a47c53",
+        "headers": [
+          {
+            "id": "8f264a35-4e72-4d60-a845-240f19cbaa28",
+            "name": "test",
+            "value": "123",
+            "endpointId": "316db600-89c0-4022-b459-796195a5c3e5"
+          }
+        ]
+      },
+      {
+        "id": "7f952da7-57e6-42f6-ab1e-9eae494e4e3a",
+        "path": "/api/payment-order-service/client-api/v2/payment-orders/customer-profile/details",
+        "activeStatusCode": 500,
+        "emptyArray": false,
+        "method": "GET",
+        "forward": false,
+        "delay": 300,
+        "projectId": "fd0dffa5-dc40-4459-a3ff-d77d02e32b82",
+        "collectionId": "c29919a8-6919-4393-a912-947b59a47c53",
+        "headers": []
+      },
+      {
+        "id": "3eda6d49-9431-49b6-8801-ca22ff187eef",
+        "path": "/api/messages-service/client-api/v4/message-center/messages/unread-conversation-count",
+        "activeStatusCode": 300,
+        "emptyArray": true,
+        "method": "GET",
+        "forward": false,
+        "delay": 500,
+        "projectId": "fd0dffa5-dc40-4459-a3ff-d77d02e32b82",
+        "collectionId": "c29919a8-6919-4393-a912-947b59a47c53",
+        "headers": [
+          {
+            "id": "76faba15-c76d-40f8-a01c-474c7e619b3d",
+            "name": "h2",
+            "value": "0002",
+            "endpointId": "3eda6d49-9431-49b6-8801-ca22ff187eef"
+          },
+          {
+            "id": "94b62fee-0c03-4d50-8e19-127ed61a6a71",
+            "name": "h1",
+            "value": "0001",
+            "endpointId": "3eda6d49-9431-49b6-8801-ca22ff187eef"
+          }
+        ]
+      },
+      {
+        "id": "56bc7697-682a-48f6-bf05-22041926b383",
+        "path": "/api/arrangement-manager/client-api/v2/productsummary",
+        "activeStatusCode": 500,
+        "emptyArray": true,
+        "method": "GET",
+        "forward": false,
+        "delay": 0,
+        "projectId": "fd0dffa5-dc40-4459-a3ff-d77d02e32b82",
+        "collectionId": "c29919a8-6919-4393-a912-947b59a47c53",
+        "headers": []
+      }
+    ]
+  }
+]

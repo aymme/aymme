@@ -1,21 +1,12 @@
 describe('App/Projects', () => {
   const PROJECT_NAME = 'Test: New Project 1';
-  const API_URL = 'http://localhost:4200/api/projects';
+  const PROJECT_URL = 'http://localhost:4200/api/projects';
   const PROJECT_NAME_EXISTS_ERROR = 'Project name already exists';
 
-  before(() => {
-    cy.visit('/');
-  });
-
   describe('Project: display a list of projects', () => {
-    before(() => {
-      cy.intercept(
-        {
-          method: 'GET',
-          url: API_URL,
-        },
-        []
-      ).as('projects');
+    beforeEach(() => {
+      cy.intercept('GET', PROJECT_URL, []).as('getProjects');
+      cy.visit('/');
     });
 
     it('should show', () => {
@@ -33,13 +24,7 @@ describe('App/Projects', () => {
 
   describe('Projects: add new project form', () => {
     beforeEach(() => {
-      cy.intercept(
-        {
-          method: 'GET',
-          url: API_URL,
-        },
-        []
-      );
+      cy.intercept('GET', PROJECT_URL, []).as('getProjects');
     });
 
     it('should have a add new project button', () => {
@@ -76,7 +61,7 @@ describe('App/Projects', () => {
 
   describe('Projects: adding a new project', () => {
     it('should create a new project if the name is provided in the form', () => {
-      cy.intercept('POST', API_URL, {
+      cy.intercept('POST', PROJECT_URL, {
         statusCode: 200,
         body: {
           name: 'Test: New Project 1',
@@ -85,7 +70,7 @@ describe('App/Projects', () => {
         },
       });
 
-      cy.intercept('GET', API_URL, { fixture: 'new-project.json', statusCode: 200 }).as('getProjects');
+      cy.intercept('GET', PROJECT_URL, { fixture: 'new-project.json', statusCode: 200 }).as('getProjects');
 
       // reset form
       cy.visit('/');
@@ -108,6 +93,7 @@ describe('App/Projects', () => {
 
   describe('Projects: should delete a project', () => {
     it('should delete a project', () => {
+      cy.intercept('GET', PROJECT_URL, []).as('getProjects');
       const projectListElement = cy.getBySel('projects-list');
       projectListElement.children().should('have.length', 1);
       projectListElement.eq(0).getBySel('projects-delete-project').click();
@@ -118,7 +104,7 @@ describe('App/Projects', () => {
 
   describe('Projects: add a project with a name that already exists', () => {
     before(() => {
-      cy.intercept('POST', API_URL, {
+      cy.intercept('POST', PROJECT_URL, {
         statusCode: 409,
       });
     });
@@ -131,7 +117,7 @@ describe('App/Projects', () => {
     });
 
     it('should allow a new project when the name is changed', () => {
-      cy.intercept('POST', API_URL, {
+      cy.intercept('POST', PROJECT_URL, {
         statusCode: 200,
         body: {
           name: 'Test: New Project 2',

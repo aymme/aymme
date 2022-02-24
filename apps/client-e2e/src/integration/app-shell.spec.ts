@@ -68,7 +68,7 @@ describe('Aymme', () => {
     });
 
     it('should display author', () => {
-      cy.getBySel('footer').get('p').eq(2).should('contain', 'Created by creative people.');
+      cy.getBySel('footer').children().eq(1).should('contain', 'Created by creative people.');
     });
   });
 });
