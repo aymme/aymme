@@ -1,10 +1,30 @@
-<ul *ngIf="isOpen" class="dark:bg-background absolute z-50">
-  <li *ngFor="let group of groupedOptions">
-    {{ group.label }}
-    <ul>
-      <li *ngFor="let item of group.items" (click)="selectItem(item)">
-        {{ item.label }}
+<section *ngIf="isOpen" class="absolute top-12 left-12 z-50">
+  <span class="top arrow-up absolute"></span>
+
+  <section
+    class="dark:border-blend-50 text-gray dark:bg-background h-96 w-56 overflow-scroll rounded border border-b-0 border-gray-100 bg-white p-4 shadow-xl dark:text-white"
+  >
+    <header class="relative mb-4">
+      <input class="ng-untouched rounded-md text-sm" type="text" [formControl]="filter" placeholder="filter" />
+      <span class="absolute right-3 top-2"><i class="fa fa-search"></i></span>
+    </header>
+
+    <ul class="" *ngIf="filteredOptions$ | async as listItems">
+      <li
+        class="dark:border-blend-50 mb-3 border-b border-gray-100 transition ease-in-out"
+        *ngFor="let group of listItems"
+      >
+        <span class="font-bold">{{ group.label }}</span>
+        <ul class="mt-1 pl-2">
+          <li
+            class="hover:dark:bg-blend-50 cursor-pointer px-2 py-2 text-sm hover:bg-gray-100"
+            *ngFor="let item of group.items"
+            (click)="selectItem(item)"
+          >
+            {{ item.label }}
+          </li>
+        </ul>
       </li>
     </ul>
-  </li>
-</ul>
+  </section>
+</section>

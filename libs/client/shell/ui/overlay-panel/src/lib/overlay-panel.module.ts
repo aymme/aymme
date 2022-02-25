@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OverlayPanelComponent } from './overlay-panel/overlay-panel.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export type OverlayOption = {
   label: string;
@@ -8,7 +9,7 @@ export type OverlayOption = {
 };
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   declarations: [OverlayPanelComponent],
   exports: [OverlayPanelComponent],
 })

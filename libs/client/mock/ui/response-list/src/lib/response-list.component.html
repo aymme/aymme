@@ -1,4 +1,4 @@
-<section>
+<section class="relative">
   <ul class="flex flex-row items-center">
     <li
       *ngFor="let response of responses; index as i"
@@ -11,15 +11,18 @@
       >
     </li>
 
-    <ay-overlay-panel
-      [isOpen]="showOverlayPanel"
-      [groupedOptions]="availableStatuses"
-      (itemSelected)="onSelectedStatusCode($event)"
-    ></ay-overlay-panel>
     <li>
       <button class="cursor-pointer px-4 py-2" (click)="showOverlayPanelClick()">
         <i class="fa fa-plus"></i>
       </button>
     </li>
   </ul>
+
+  <section>
+    <ay-overlay-panel
+      [isOpen]="showOverlayPanel"
+      [groupedOptions]="availableStatuses"
+      (itemSelected)="onSelectedStatusCode($event)"
+    ></ay-overlay-panel>
+  </section>
 </section>

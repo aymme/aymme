@@ -3,6 +3,7 @@ import { ResponseEntity } from '@aymme/client/mock/model';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { availableStatusCodes } from './available-status-codes';
 import { OverlayOption } from '@aymme/client/shell/ui/overlay-panel';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'ay-response-list',
@@ -61,8 +62,15 @@ export class ResponseListComponent {
     this.showOverlayPanel = true;
   }
 
+  hideOverlayPanel() {
+    console.log('hi?');
+    this.showOverlayPanel = false;
+  }
+
   onSelectedStatusCode(item: OverlayOption): void {
     if (this.getResponseByStatusCode(item.value)) return;
+
+    // TODO: update "Active Status" list with newly added status code.
 
     this.selectedStatusCode = item.value;
     this.addNewResponse();
