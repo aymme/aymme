@@ -1,9 +1,9 @@
 import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import slugify from 'slugify';
-import { Project } from '@aymme/api/shared/data-access';
+import { Project, ProjectConfiguration } from '@aymme/api/shared/data-access';
 
 import { ProjectRepository } from './project.repository';
-import { CreateProjectDto, UpdateProjectDto } from './dto';
+import { CreateProjectDto, UpdateProjectConfigurationDto, UpdateProjectDto } from './dto';
 
 @Injectable()
 export class ProjectService {
@@ -41,25 +41,28 @@ export class ProjectService {
   async create(createProjectDto: CreateProjectDto): Promise<Project> {
     const { name } = createProjectDto;
 
-    let project = await this.projectRepository.findOne({ name });
+    // TODO: Maybe by name is not a good choice, maybe we need to find it by slug?
+    const found = await this.projectRepository.findOne({ name });
 
-    if (project) {
+    if (found) {
       this.logger.error(`Project already exist "${name}". DTO: ${JSON.stringify(createProjectDto)}`);
 
       throw new ConflictException('Project already exist');
     }
 
-    project = this.projectRepository.create();
+    const project = this.projectRepository.create();
 
     project.name = name;
     project.slug = slugify(name, {
       lower: true,
     });
+    project.configuration = new ProjectConfiguration();
 
     try {
       await project.save();
     } catch (e) {
       this.logger.error(`Failed creating the project "${name}". DTO: ${JSON.stringify(createProjectDto)}`);
+      this.logger.error(e.message);
       throw new InternalServerErrorException();
     }
 
@@ -76,12 +79,34 @@ export class ProjectService {
       await project.save();
     } catch (e) {
       this.logger.error(`Failed update the project with ID "${project.id}". DTO: ${JSON.stringify(updateProjectDto)}`);
+      this.logger.error(e.message);
       throw new InternalServerErrorException();
     }
 
     return project;
   }
 
+  async updateConfiguration(id: string, updateConfigurationDto: UpdateProjectConfigurationDto) {
+    const { ignoreParams } = updateConfigurationDto;
+    const project = await this.getById(id);
+
+    project.configuration.ignoreParams = ignoreParams;
+
+    try {
+      await project.save();
+    } catch (e) {
+      this.logger.error(
+        `Failed update the project configuration with Project ID "${project.id}". DTO: ${JSON.stringify(
+          updateConfigurationDto
+        )}`
+      );
+      this.logger.error(e.message);
+
+      throw new InternalServerErrorException();
+    }
+
+    return project;
+  }
   async delete(id: string): Promise<void> {
     await this.projectRepository.delete({ id });
   }

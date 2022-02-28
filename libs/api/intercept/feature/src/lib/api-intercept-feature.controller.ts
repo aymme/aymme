@@ -23,7 +23,10 @@ export class ApiInterceptFeatureController {
     this.logger.verbose(request.path);
     this.logger.verbose(currentProject.name);
 
-    const endpoint = await this.endpointService.intercept(request.url, query, body, request.method, currentProject);
+    this.logger.verbose(request.url);
+    this.logger.verbose(query);
+
+    const endpoint = await this.endpointService.intercept(request.path, query, body, request.method, currentProject);
 
     const res = response.status(endpoint.activeStatusCode);
 
