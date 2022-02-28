@@ -1,5 +1,6 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
@@ -7,10 +8,12 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
 import {
   CreateProjectDto,
   ProjectService,
+  UpdateProjectConfigurationDto,
   UpdateProjectDto,
 } from '@aymme/api/project/data-access';
 
@@ -18,11 +21,13 @@ import {
 export class ApiProjectFeatureController {
   constructor(private projectService: ProjectService) {}
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   async getAll() {
     return this.projectService.getAll();
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   async getById(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.projectService.getById(id);
@@ -34,11 +39,16 @@ export class ApiProjectFeatureController {
   }
 
   @Put(':id')
-  async update(
-    @Param('id', new ParseUUIDPipe()) id: string,
-    @Body() updateProjectDto: UpdateProjectDto
-  ) {
+  async update(@Param('id', new ParseUUIDPipe()) id: string, @Body() updateProjectDto: UpdateProjectDto) {
     return this.projectService.update(id, updateProjectDto);
+  }
+
+  @Put(':id/configuration')
+  async updateConfiguration(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() updateProjectConfigurationDto: UpdateProjectConfigurationDto
+  ) {
+    return this.projectService.updateConfiguration(id, updateProjectConfigurationDto);
   }
 
   @Delete(':id')

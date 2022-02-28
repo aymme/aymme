@@ -1,7 +1,8 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { IProject } from '@aymme/shared/model';
 import { Endpoint } from './endpoint.entity';
 import { Collection } from './collection.entity';
+import { ProjectConfiguration } from './project-configuration.entity';
 
 @Entity()
 export class Project extends BaseEntity implements IProject {
@@ -23,4 +24,12 @@ export class Project extends BaseEntity implements IProject {
     onDelete: 'CASCADE',
   })
   collections: Collection[];
+
+  @OneToOne(() => ProjectConfiguration, {
+    onDelete: 'CASCADE',
+    cascade: true,
+    eager: true,
+  })
+  @JoinColumn()
+  configuration: ProjectConfiguration;
 }

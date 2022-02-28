@@ -1,18 +1,31 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { EndpointRepository } from './endpoint.repository';
-import { Endpoint, Project } from '@aymme/api/shared/data-access';
-import { UpdateEndpointDto } from './dto/update-endpoint.dto';
+import { URLSearchParams } from 'url';
 import { CollectionRepository } from '@aymme/api/collection/data-access';
+import { Endpoint, Project } from '@aymme/api/shared/data-access';
+import { EndpointRepository } from './endpoint.repository';
+import { UpdateEndpointDto } from './dto/update-endpoint.dto';
 
 @Injectable()
 export class EndpointService {
   constructor(private endpointRepository: EndpointRepository, private collectionRepository: CollectionRepository) {}
 
-  async intercept(uri: string, query: { [key: string]: string }, body: string, method: string, project: Project) {
-    const path = uri.replace('/api/intercept/', '/');
+  async intercept(path: string, query: { [key: string]: string }, body: string, method: string, project: Project) {
+    const _path = path.replace('/api/intercept/', '/');
+    const ignoreParams = project.configuration.ignoreParams as string;
+    const ignoreParamsList = ignoreParams.split(',');
+    const searchParams = new URLSearchParams();
+
+    for (const param in query) {
+      if (!ignoreParamsList.includes(param)) {
+        searchParams.append(param, query[param]);
+      }
+    }
+
+    const url = `${_path}${searchParams.toString().length ? `?${searchParams.toString()}` : ''}`;
+
     const found = await this.endpointRepository.findOne(
       {
-        path,
+        path: url,
         project,
         method,
       },
@@ -27,7 +40,7 @@ export class EndpointService {
 
     const defaultCategory = await this.collectionRepository.findOrCreate('default', project.id);
 
-    return this.endpointRepository.createEndpoint(path, method, project, defaultCategory);
+    return this.endpointRepository.createEndpoint(url, method, project, defaultCategory);
   }
 
   async getAll(projectId: string): Promise<Endpoint[]> {
