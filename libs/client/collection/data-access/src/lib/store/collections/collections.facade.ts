@@ -17,4 +17,12 @@ export class CollectionsFacade {
   init(projectId: string) {
     this.store.dispatch(CollectionsActions.init({ projectId }));
   }
+
+  moveEndpointInCollection(data: any) {
+    this.store.dispatch(CollectionsActions.moveEndpointInCollection({ data }));
+  }
+
+  moveEndpointToOtherCollection(data: any) {
+    this.store.dispatch(CollectionsActions.moveEndpointToOtherCollection({ data }));
+  }
 }

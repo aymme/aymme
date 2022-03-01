@@ -12,6 +12,7 @@ import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-pa
 import { ResponseListModule } from '@aymme/client/mock/ui/response-list';
 import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { LoaderModule } from '@aymme/client/shell/ui/loader';
     EditorModule,
     ResponseListModule,
     LoaderModule,
+    DragDropModule,
   ],
   declarations: [MockComponent],
   providers: [CollectionsFacade],

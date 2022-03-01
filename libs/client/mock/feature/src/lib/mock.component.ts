@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take, takeUntil, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ay-mock',
@@ -14,6 +15,8 @@ import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
   providers: [],
 })
 export class MockComponent {
+  unsubscribe$: Subject<void> = new Subject();
+
   projectId: string = this.route.snapshot.parent?.parent?.params.projectId;
   form: FormGroup = this.fb.group({
     configuration: this.fb.group({
@@ -62,6 +65,26 @@ export class MockComponent {
       delay: Number(this.configurationForm.value['delay']),
       responses: [...this.responseArrayForm.value],
     });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      const { container, previousIndex, currentIndex } = event;
+
+      // don't update the endpoints if the endpoint is moved
+      // to the same index as it was.
+      if (previousIndex === currentIndex) return;
+
+      this.collectionsFacade.moveEndpointInCollection({ containerId: container.id, previousIndex, currentIndex });
+    } else {
+      const { container, previousContainer, previousIndex, currentIndex } = event;
+      this.collectionsFacade.moveEndpointToOtherCollection({
+        containerId: container.id,
+        previousContainerId: previousContainer.id,
+        previousIndex,
+        currentIndex,
+      });
+    }
   }
 
   onEndpointSelect(id: string) {

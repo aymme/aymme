@@ -45,17 +45,45 @@
 </div>
 
 <ng-template #collectionPanel let-collections="collections">
-  <ay-collection-panel [name]="collection.name" *ngFor="let collection of collections">
-    <ul data-cy="endpoints-list" class="text-sm">
-      <ay-endpoint-link
-        [isSelected]="endpoint.id === (selectedEndpoint$ | async)"
-        *ngFor="let endpoint of collection.endpoints"
-        [method]="endpoint.method"
-        [path]="endpoint.path"
-        (selectEndpoint)="onEndpointSelect(endpoint.id)"
-      ></ay-endpoint-link>
-    </ul>
-  </ay-collection-panel>
+  <section cdkDropListGroup>
+    <ay-collection-panel *ngFor="let collection of collections">
+      <section
+        data-cy="endpoints-list"
+        class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
+      >
+        <header class="flex flex-row p-2">
+          <h5 class="text-muted text-sm font-bold capitalize">{{ collection.name }}</h5>
+          <section class="ml-auto">
+            <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
+          </section>
+        </header>
+
+        <section
+          class="drop-list p-4 px-2"
+          cdkDropList
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="collection.endpoints"
+          id="{{ collection.id }}"
+        >
+          <div cdkDrag cdkDragLockAxis="y" *ngFor="let endpoint of collection.endpoints">
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+            <ay-endpoint-link
+              [isSelected]="endpoint.id === (selectedEndpoint$ | async)"
+              [method]="endpoint.method"
+              [path]="endpoint.path"
+              (selectEndpoint)="onEndpointSelect(endpoint.id)"
+            ></ay-endpoint-link>
+          </div>
+        </section>
+      </section>
+    </ay-collection-panel>
+  </section>
+</ng-template>
+
+<ng-template #endpointLinks let-collection="collection"> </ng-template>
+
+<ng-template #noEndpoints>
+  <p class="italic">No endpoints in this collection.</p>
 </ng-template>
 
 <ng-template #noCollectionsFound>
