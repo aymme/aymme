@@ -1,0 +1,46 @@
+.drop-list {
+  min-height: 20px;
+  overflow: hidden;
+  display: block;
+}
+
+.cdk-drag-preview {
+  background-color: var(--ay-bg-color);
+  border: 1px solid var(--ay-border-color);
+  font-size: 14px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, .1);
+}
+
+.example-custom-placeholder {
+  min-height: 60px;
+  background-color: var(--ay-bg-color);
+  border: 1px solid var(--ay-border-color);
+  font-size: 14px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, .1);
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-receiving,
+.cdk-drop-list-dragging {
+  border-radius: 8px;
+  min-height: 60px;
+  background: repeating-linear-gradient(45deg,
+      var(--ay-stripes-bg-1),
+      var(--ay-stripes-bg-1) 5px,
+      var(--ay-stripes-bg-2) 5px,
+      var(--ay-stripes-bg-2) 10px);
+}
+
+.drop-list>div {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.drop-list.cdk-drop-list-dragging .drop-list:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

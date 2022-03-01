@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CollectionsEntity } from '@aymme/client/collection/data-access';
 
 @Component({
   selector: 'ay-collection-panel',
@@ -6,13 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./collection-panel.component.scss'],
 })
 export class CollectionPanelComponent {
-  @Input() name = '';
+  @Input() collection!: CollectionsEntity;
+  @Output() selectEndpoint = new EventEmitter();
 
-  update() {
-    console.log(`Update ${this.name}`);
-  }
-
-  delete() {
-    console.log(`Delete ${this.name}`);
+  test(data: any) {
+    // this.selectEndpoint.emit(data);
   }
 }

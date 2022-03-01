@@ -1,13 +1,9 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { CollectionRepository } from './collection.repository';
 import { CreateProjectDto } from '@aymme/api/project/data-access';
 import { Collection } from '@aymme/api/shared/data-access';
 import { UpdateCollectionNameDto } from './dto/update-collection-name.dto';
+import { UpdateCollectionDto } from './dto/update-collection.dto';
 
 @Injectable()
 export class CollectionService {
@@ -33,6 +29,7 @@ export class CollectionService {
   }
 
   async create(projectId: string, data: CreateProjectDto): Promise<Collection> {
+    console.log('create?');
     const { name } = data;
     const collection = this.categoryRepository.create();
     collection.projectId = projectId;
@@ -41,20 +38,12 @@ export class CollectionService {
     try {
       return await collection.save();
     } catch (e) {
-      this.logger.error(
-        `Failed to create the collection "${name}". DTO: ${JSON.stringify(
-          data
-        )}`
-      );
+      this.logger.error(`Failed to create the collection "${name}". DTO: ${JSON.stringify(data)}`);
       throw new InternalServerErrorException();
     }
   }
 
-  async updateName(
-    projectId: string,
-    id: string,
-    data: UpdateCollectionNameDto
-  ): Promise<Collection> {
+  async updateName(projectId: string, id: string, data: UpdateCollectionNameDto): Promise<Collection> {
     const { name } = data;
     const collection = await this.getById(id, projectId);
 
@@ -63,15 +52,15 @@ export class CollectionService {
     try {
       await collection.save();
     } catch (e) {
-      this.logger.error(
-        `Failed to update the collection "${name}". DTO: ${JSON.stringify(
-          data
-        )}`
-      );
+      this.logger.error(`Failed to update the collection "${name}". DTO: ${JSON.stringify(data)}`);
       throw new InternalServerErrorException();
     }
 
     return collection;
+  }
+
+  async update(projectId: string, data: UpdateCollectionDto[]): Promise<Collection[]> {
+    return this.categoryRepository.save(data);
   }
 
   async delete(projectId: string, id: string): Promise<void> {

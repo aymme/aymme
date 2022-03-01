@@ -20,6 +20,7 @@ module.exports = {
       white: '#ffffff',
       black: '#000000',
       background: '#003341',
+      muted: 'rgba(255,255,255,.5)',
     },
     fontFamily: {
       sans: ["'Inter', sans-serif"],
