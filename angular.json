@@ -124,6 +124,29 @@
       },
       "tags": []
     },
+    "api-database-data-access": {
+      "root": "libs/api/database/data-access",
+      "sourceRoot": "libs/api/database/data-access/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/api/database/data-access/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/database/data-access"],
+          "options": {
+            "jestConfig": "libs/api/database/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "api-database-utils": {
       "root": "libs/api/database/utils",
       "sourceRoot": "libs/api/database/utils/src",

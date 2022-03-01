@@ -1,9 +1,4 @@
-import {
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { CollectionRepository } from './collection.repository';
 import { CreateProjectDto } from '@aymme/api/project/data-access';
 import { Collection } from '@aymme/api/shared/data-access';
@@ -41,20 +36,12 @@ export class CollectionService {
     try {
       return await collection.save();
     } catch (e) {
-      this.logger.error(
-        `Failed to create the collection "${name}". DTO: ${JSON.stringify(
-          data
-        )}`
-      );
+      this.logger.error(`Failed to create the collection "${name}". DTO: ${JSON.stringify(data)}`);
       throw new InternalServerErrorException();
     }
   }
 
-  async updateName(
-    projectId: string,
-    id: string,
-    data: UpdateCollectionNameDto
-  ): Promise<Collection> {
+  async updateName(projectId: string, id: string, data: UpdateCollectionNameDto): Promise<Collection> {
     const { name } = data;
     const collection = await this.getById(id, projectId);
 
@@ -63,11 +50,7 @@ export class CollectionService {
     try {
       await collection.save();
     } catch (e) {
-      this.logger.error(
-        `Failed to update the collection "${name}". DTO: ${JSON.stringify(
-          data
-        )}`
-      );
+      this.logger.error(`Failed to update the collection "${name}". DTO: ${JSON.stringify(data)}`);
       throw new InternalServerErrorException();
     }
 
@@ -75,6 +58,10 @@ export class CollectionService {
   }
 
   async delete(projectId: string, id: string): Promise<void> {
+    const data: Collection[] = [];
+
+    await this.categoryRepository.save(data);
+
     await this.categoryRepository.delete({ projectId, id });
   }
 }
