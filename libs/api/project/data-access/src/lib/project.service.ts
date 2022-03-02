@@ -136,6 +136,18 @@ export class ProjectService {
   }
 
   async delete(id: string): Promise<void> {
-    await this.projectRepository.delete({ id });
+    await this.getById(id);
+
+    try {
+      await this.prisma.project.delete({
+        where: {
+          id,
+        },
+      });
+    } catch (e) {
+      this.logger.error(`Failed to delete the project with ID: ${id}`);
+      this.logger.error(e.message);
+      throw new InternalServerErrorException();
+    }
   }
 }
