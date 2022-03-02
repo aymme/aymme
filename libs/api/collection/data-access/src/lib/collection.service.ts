@@ -3,13 +3,12 @@ import { Collection } from '@prisma/client';
 import { CreateProjectDto } from '@aymme/api/project/data-access';
 import { PrismaService } from '@aymme/api/database/data-access';
 import { UpdateCollectionNameDto } from './dto/update-collection-name.dto';
-import { CollectionRepository } from './collection.repository';
 
 @Injectable()
 export class CollectionService {
   private logger = new Logger(CollectionService.name);
 
-  constructor(private categoryRepository: CollectionRepository, private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {}
 
   async getAllByProjectID(projectId: string): Promise<Collection[]> {
     return this.prisma.collection.findMany({

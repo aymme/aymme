@@ -2,14 +2,12 @@ import { ConflictException, Injectable, InternalServerErrorException, Logger, No
 import slugify from 'slugify';
 import { Project } from '@prisma/client';
 import { PrismaService } from '@aymme/api/database/data-access';
-
-import { ProjectRepository } from './project.repository';
 import { CreateProjectDto, UpdateProjectConfigurationDto, UpdateProjectDto } from './dto';
 
 @Injectable()
 export class ProjectService {
   private logger = new Logger(ProjectService.name);
-  constructor(private projectRepository: ProjectRepository, private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {}
 
   async getAll(): Promise<Project[]> {
     return this.prisma.project.findMany({
