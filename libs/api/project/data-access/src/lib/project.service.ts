@@ -71,6 +71,9 @@ export class ProjectService {
               ignoreParams: undefined,
             },
           },
+          collections: {
+            create: [{ name: 'default' }], // TODO needs to come from config
+          },
         },
       });
     } catch (e) {
