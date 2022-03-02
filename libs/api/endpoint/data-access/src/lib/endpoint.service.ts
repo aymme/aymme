@@ -1,15 +1,36 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { URLSearchParams } from 'url';
+import { Endpoint, Header, Prisma, Project, ProjectConfiguration, Response } from '@prisma/client';
 import { CollectionRepository } from '@aymme/api/collection/data-access';
-import { Endpoint, Project } from '@aymme/api/shared/data-access';
+import { PrismaService } from '@aymme/api/database/data-access';
 import { EndpointRepository } from './endpoint.repository';
 import { UpdateEndpointDto } from './dto/update-endpoint.dto';
+import { HeaderDto } from './dto/header.dto';
+import { ResponseDto } from './dto/response.dto';
 
 @Injectable()
 export class EndpointService {
-  constructor(private endpointRepository: EndpointRepository, private collectionRepository: CollectionRepository) {}
+  private logger = new Logger(EndpointService.name);
 
-  async intercept(path: string, query: { [key: string]: string }, body: string, method: string, project: Project) {
+  constructor(
+    private endpointRepository: EndpointRepository,
+    private collectionRepository: CollectionRepository,
+    private prisma: PrismaService
+  ) {}
+
+  async intercept(
+    path: string,
+    query: { [key: string]: string },
+    body: string,
+    method: string,
+    project: Project & { configuration: ProjectConfiguration }
+  ): Promise<Endpoint & { responses: Response[]; headers: Header[] }> {
     const _path = path.replace('/api/intercept/', '/');
     const ignoreParams = project.configuration.ignoreParams as string;
     const ignoreParamsList = ignoreParams.split(',');
@@ -23,41 +44,75 @@ export class EndpointService {
 
     const url = `${_path}${searchParams.toString().length ? `?${searchParams.toString()}` : ''}`;
 
-    const found = await this.endpointRepository.findOne(
-      {
+    const found = await this.prisma.endpoint.findFirst({
+      where: {
         path: url,
         project,
         method,
       },
-      {
-        relations: ['responses'],
-      }
-    );
+      include: {
+        responses: true,
+        headers: true,
+      },
+    });
 
     if (found) {
       return found;
     }
 
-    const defaultCategory = await this.collectionRepository.findOrCreate('default', project.id);
+    const defaultCollection = await this.prisma.collection.findFirst({
+      where: {
+        name: 'default',
+        projectId: project.id,
+      },
+    });
 
-    return this.endpointRepository.createEndpoint(url, method, project, defaultCategory);
+    try {
+      return await this.prisma.endpoint.create({
+        data: {
+          path: url,
+          method,
+          project: {
+            connect: {
+              id: project.id,
+            },
+          },
+          collection: {
+            connect: {
+              id: defaultCollection.id,
+            },
+          },
+          responses: {
+            create: true,
+          },
+        },
+        include: {
+          responses: true,
+          headers: true,
+        },
+      });
+    } catch (e) {
+      this.logger.error(e.message, e.stack);
+      throw new InternalServerErrorException();
+    }
   }
 
   async getAll(projectId: string): Promise<Endpoint[]> {
-    const [endpoints] = await this.endpointRepository.findAndCount({
+    return await this.prisma.endpoint.findMany({
       where: { projectId },
     });
-    return endpoints;
   }
 
   async getById(projectId: string, id: string): Promise<Endpoint> {
-    const found = await this.endpointRepository.findOne(
-      {
+    const found = await this.prisma.endpoint.findFirst({
+      where: {
         projectId,
         id,
       },
-      { relations: ['responses'] }
-    );
+      include: {
+        responses: true,
+      },
+    });
 
     if (!found) {
       throw new NotFoundException(`Endpoint with ID: ${id} not found`);
@@ -71,10 +126,95 @@ export class EndpointService {
       throw new BadRequestException("It looks like your request doesn't contain a body");
     }
 
-    return this.endpointRepository.updateEndpoint(id, projectId, updateEndpointDto);
+    const { headers, activeStatusCode, delay, emptyArray, collectionId, responses, forward } = updateEndpointDto;
+
+    await this.getById(projectId, id);
+
+    try {
+      return await this.prisma.endpoint.update({
+        where: {
+          id,
+        },
+        data: {
+          headers: this.prepareHeadersData(headers, id),
+          activeStatusCode,
+          delay,
+          emptyArray,
+          responses: this.prepareResponsesData(responses, id),
+          forward,
+          collectionId,
+        },
+        include: {
+          headers: true,
+        },
+      });
+    } catch (e) {
+      this.logger.error(e.message);
+      throw new InternalServerErrorException();
+    }
   }
 
   async delete(projectId: string, id: string): Promise<void> {
-    await this.endpointRepository.delete({ projectId, id });
+    await this.getById(projectId, id);
+
+    try {
+      await this.prisma.endpoint.delete({
+        where: {
+          id,
+        },
+      });
+    } catch (e) {
+      this.logger.error(`Failed to delete the project with ID: ${id}`);
+      this.logger.error(e.message);
+      throw new InternalServerErrorException();
+    }
+  }
+
+  private prepareHeadersData(headers: HeaderDto[], id: string): Prisma.HeaderUpdateManyWithoutEndpointInput {
+    return {
+      deleteMany: {
+        endpointId: id,
+        NOT: headers.map(({ id }) => ({ id })),
+      },
+      upsert: headers.map(({ id, name, value }) => {
+        return {
+          where: {
+            id: id || '',
+          },
+          update: {
+            name,
+            value,
+          },
+          create: {
+            name,
+            value,
+          },
+        };
+      }),
+    };
+  }
+
+  private prepareResponsesData(responses: ResponseDto[], id: string): Prisma.ResponseUpdateManyWithoutEndpointInput {
+    return {
+      deleteMany: {
+        endpointId: id,
+        NOT: responses.map(({ id }) => ({ id })),
+      },
+      upsert: responses.map(({ id, statusCode, body }) => {
+        return {
+          where: {
+            id: id || '',
+          },
+          update: {
+            statusCode,
+            body,
+          },
+          create: {
+            statusCode,
+            body,
+          },
+        };
+      }),
+    };
   }
 }

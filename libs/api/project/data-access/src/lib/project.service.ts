@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import slugify from 'slugify';
-import { Project } from '@prisma/client';
+import { Project, ProjectConfiguration } from '@prisma/client';
 import { PrismaService } from '@aymme/api/database/data-access';
 import { CreateProjectDto, UpdateProjectConfigurationDto, UpdateProjectDto } from './dto';
 
@@ -9,13 +9,13 @@ export class ProjectService {
   private logger = new Logger(ProjectService.name);
   constructor(private prisma: PrismaService) {}
 
-  async getAll(): Promise<Project[]> {
+  async getAll(): Promise<Array<Project & { configuration: ProjectConfiguration }>> {
     return this.prisma.project.findMany({
       include: { configuration: true },
     });
   }
 
-  async getById(id: string): Promise<Project> {
+  async getById(id: string): Promise<Project & { configuration: ProjectConfiguration }> {
     const found = await this.prisma.project.findUnique({
       where: {
         id,
@@ -30,7 +30,7 @@ export class ProjectService {
     return found;
   }
 
-  async getBySlug(slug: string): Promise<Project> {
+  async getBySlug(slug: string): Promise<Project & { configuration: ProjectConfiguration }> {
     const found = await this.prisma.project.findUnique({
       where: {
         slug,

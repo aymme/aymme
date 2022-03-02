@@ -1,7 +1,11 @@
 import { IHeader } from '@aymme/shared/model';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class HeaderDto implements IHeader {
+  @IsString()
+  @IsOptional()
+  id: string;
+
   @IsNotEmpty()
   @IsString()
   name: string;
