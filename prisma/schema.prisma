@@ -33,11 +33,11 @@ model Endpoint {
 }
 
 model Header {
-  id         String   @id
+  id         String   @id @default(uuid())
   name       String
   value      String
   endpointId String
-  endpoint   Endpoint @relation(fields: [endpointId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  endpoint   Endpoint @relation(fields: [endpointId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Project {

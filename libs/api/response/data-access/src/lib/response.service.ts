@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { Response } from '@prisma/client';
 import { PrismaService } from '@aymme/api/database/data-access';
-import { ResponseRepository } from './response.repository';
 import { CreateResponseDto } from './dto/create-response.dto';
 import { UpdateResponseDto } from './dto/update-response.dto';
 
@@ -17,7 +16,7 @@ import { UpdateResponseDto } from './dto/update-response.dto';
 export class ResponseService {
   private logger = new Logger(ResponseService.name);
 
-  constructor(private responseRepository: ResponseRepository, private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {}
 
   getAll(endpointId: string): Promise<Response[]> {
     return this.prisma.response.findMany({

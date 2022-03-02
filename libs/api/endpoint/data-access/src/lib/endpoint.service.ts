@@ -7,9 +7,7 @@ import {
 } from '@nestjs/common';
 import { URLSearchParams } from 'url';
 import { Endpoint, Header, Prisma, Project, ProjectConfiguration, Response } from '@prisma/client';
-import { CollectionRepository } from '@aymme/api/collection/data-access';
 import { PrismaService } from '@aymme/api/database/data-access';
-import { EndpointRepository } from './endpoint.repository';
 import { UpdateEndpointDto } from './dto/update-endpoint.dto';
 import { HeaderDto } from './dto/header.dto';
 import { ResponseDto } from './dto/response.dto';
@@ -18,11 +16,7 @@ import { ResponseDto } from './dto/response.dto';
 export class EndpointService {
   private logger = new Logger(EndpointService.name);
 
-  constructor(
-    private endpointRepository: EndpointRepository,
-    private collectionRepository: CollectionRepository,
-    private prisma: PrismaService
-  ) {}
+  constructor(private prisma: PrismaService) {}
 
   async intercept(
     path: string,
