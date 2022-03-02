@@ -1,24 +1,28 @@
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
-import { CollectionRepository } from './collection.repository';
+import { Collection } from '@prisma/client';
 import { CreateProjectDto } from '@aymme/api/project/data-access';
-import { Collection } from '@aymme/api/shared/data-access';
+import { PrismaService } from '@aymme/api/database/data-access';
 import { UpdateCollectionNameDto } from './dto/update-collection-name.dto';
+import { CollectionRepository } from './collection.repository';
 
 @Injectable()
 export class CollectionService {
   private logger = new Logger(CollectionService.name);
 
-  constructor(private categoryRepository: CollectionRepository) {}
+  constructor(private categoryRepository: CollectionRepository, private prisma: PrismaService) {}
 
   async getAllByProjectID(projectId: string): Promise<Collection[]> {
-    return this.categoryRepository.find({
-      where: { projectId },
-      relations: ['endpoints'],
+    return this.prisma.collection.findMany({
+      where: {
+        projectId,
+      },
     });
   }
 
   async getById(id: string, projectId: string): Promise<Collection> {
-    const found = await this.categoryRepository.findOne({ id, projectId });
+    const found = await this.prisma.collection.findFirst({
+      where: { id, projectId },
+    });
 
     if (!found) {
       throw new NotFoundException();
@@ -29,12 +33,18 @@ export class CollectionService {
 
   async create(projectId: string, data: CreateProjectDto): Promise<Collection> {
     const { name } = data;
-    const collection = this.categoryRepository.create();
-    collection.projectId = projectId;
-    collection.name = name;
 
     try {
-      return await collection.save();
+      return await this.prisma.collection.create({
+        data: {
+          name,
+          project: {
+            connect: {
+              id: projectId,
+            },
+          },
+        },
+      });
     } catch (e) {
       this.logger.error(`Failed to create the collection "${name}". DTO: ${JSON.stringify(data)}`);
       throw new InternalServerErrorException();
@@ -43,25 +53,35 @@ export class CollectionService {
 
   async updateName(projectId: string, id: string, data: UpdateCollectionNameDto): Promise<Collection> {
     const { name } = data;
-    const collection = await this.getById(id, projectId);
-
-    collection.name = name;
+    await this.getById(id, projectId);
 
     try {
-      await collection.save();
+      return await this.prisma.collection.update({
+        where: {
+          id,
+        },
+        data: {
+          name,
+        },
+      });
     } catch (e) {
       this.logger.error(`Failed to update the collection "${name}". DTO: ${JSON.stringify(data)}`);
+      this.logger.error(e.message);
       throw new InternalServerErrorException();
     }
-
-    return collection;
   }
 
   async delete(projectId: string, id: string): Promise<void> {
-    const data: Collection[] = [];
+    await this.getById(id, projectId);
 
-    await this.categoryRepository.save(data);
-
-    await this.categoryRepository.delete({ projectId, id });
+    try {
+      await this.prisma.collection.delete({
+        where: { id },
+      });
+    } catch (e) {
+      this.logger.error(`Failed to delete the collection with ID: ${id}`);
+      this.logger.error(e.message);
+      throw new InternalServerErrorException();
+    }
   }
 }
