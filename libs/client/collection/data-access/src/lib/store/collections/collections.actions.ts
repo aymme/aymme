@@ -59,3 +59,5 @@ export const deleteCollectionFailure = createAction(
   '[Collections] Delete Collection Success',
   props<{ error: Response | null | undefined }>()
 );
+
+export const updateCollectionOrder = createAction('[Collections] Update Collection Order', props<{ data: any }>());

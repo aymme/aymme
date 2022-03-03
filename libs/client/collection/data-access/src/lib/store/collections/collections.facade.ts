@@ -34,4 +34,8 @@ export class CollectionsFacade {
   deleteCollection(collection: Collection) {
     this.store.dispatch(CollectionsActions.deleteCollection({ collection }));
   }
+
+  updateCollectionOrder(data: any) {
+    this.store.dispatch(CollectionsActions.updateCollectionOrder({ data }));
+  }
 }

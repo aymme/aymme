@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, take, takeUntil, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
@@ -41,7 +41,20 @@ export class MockComponent {
   });
 
   loaded$: Observable<boolean> = this.collectionsFacade.loaded$;
-  collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$;
+  collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$.pipe(
+    map((results) => {
+      const r = results.sort((a, b) => {
+        // TODO: checking for undefined is not okay here.
+        // --- Should expect the order coming from the backend.
+        if (a.order !== undefined && b.order !== undefined) {
+          return a.order - b.order;
+        } else {
+          return 0;
+        }
+      });
+      return r;
+    })
+  );
   selectedProject$: Observable<ProjectsEntity | undefined> = this.projectsFacade.selectedProject$;
   availableStatusCodes$: Observable<ResponseEntity[] | undefined> = this.endpointFacade.availableStatusCodes$;
   activeStatusCode$: Observable<ResponseEntity | undefined> = this.endpointFacade.activeStatusCode$;
@@ -78,12 +91,22 @@ export class MockComponent {
     });
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  toggleCompress(collection: CollectionsEntity) {}
+
+  onDropCollection(event: CdkDragDrop<string[]>) {
+    const { container, previousIndex, currentIndex } = event;
+
+    // don't update the endpoints if the endpoint is moved to the same index as it was.
+    if (previousIndex === currentIndex) return;
+
+    this.collectionsFacade.updateCollectionOrder({ containerId: container.id, previousIndex, currentIndex });
+  }
+
+  onDropEndpoint(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       const { container, previousIndex, currentIndex } = event;
 
-      // don't update the endpoints if the endpoint is moved
-      // to the same index as it was.
+      // don't update the endpoints if the endpoint is moved to the same index as it was.
       if (previousIndex === currentIndex) return;
 
       this.collectionsFacade.moveEndpointInCollection({ containerId: container.id, previousIndex, currentIndex });
@@ -169,7 +192,6 @@ export class MockComponent {
       },
     });
 
-    // TODO: shouldn't subscribe here
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
       this.collectionsFacade.createNewCollection(result);
@@ -189,7 +211,6 @@ export class MockComponent {
       },
     });
 
-    // TODO: shouldn't subscribe here
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
       this.collectionsFacade.deleteCollection(collection);
@@ -201,6 +222,7 @@ export class MockComponent {
   }
 }
 
+// TODO: can extract this component to their own file.
 @Component({
   selector: 'ay-dialog-overview-example-dialog',
   templateUrl: 'new-collection-dialog.html',
@@ -221,6 +243,7 @@ export class NewCollectionDialogComponent {
   }
 }
 
+// TODO: can extract this component to their own file.
 @Component({
   selector: 'ay-confirm-delete-collection-dialog',
   templateUrl: 'confirm-delete-collection-dialog.html',
