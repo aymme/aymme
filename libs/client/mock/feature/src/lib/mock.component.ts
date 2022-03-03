@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, take, takeUntil, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Collection } from '@aymme/api/shared/data-access';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+interface DialogData {
+  name: string;
+}
+
+interface DeleteCollectionDialogData {
+  name: string;
+}
 
 @Component({
   selector: 'ay-mock',
@@ -14,6 +25,8 @@ import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
   providers: [],
 })
 export class MockComponent {
+  unsubscribe$: Subject<void> = new Subject();
+
   projectId: string = this.route.snapshot.parent?.parent?.params.projectId;
   form: FormGroup = this.fb.group({
     configuration: this.fb.group({
@@ -28,7 +41,20 @@ export class MockComponent {
   });
 
   loaded$: Observable<boolean> = this.collectionsFacade.loaded$;
-  collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$;
+  collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$.pipe(
+    map((results) => {
+      const r = results.sort((a, b) => {
+        // TODO: checking for undefined is not okay here.
+        // --- Should expect the order coming from the backend.
+        if (a.order !== undefined && b.order !== undefined) {
+          return a.order - b.order;
+        } else {
+          return 0;
+        }
+      });
+      return r;
+    })
+  );
   selectedProject$: Observable<ProjectsEntity | undefined> = this.projectsFacade.selectedProject$;
   availableStatusCodes$: Observable<ResponseEntity[] | undefined> = this.endpointFacade.availableStatusCodes$;
   activeStatusCode$: Observable<ResponseEntity | undefined> = this.endpointFacade.activeStatusCode$;
@@ -47,7 +73,8 @@ export class MockComponent {
     private collectionsFacade: CollectionsFacade,
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.collectionsFacade.init(this.projectId);
   }
@@ -62,6 +89,36 @@ export class MockComponent {
       delay: Number(this.configurationForm.value['delay']),
       responses: [...this.responseArrayForm.value],
     });
+  }
+
+  toggleCompress(collection: CollectionsEntity) {}
+
+  onDropCollection(event: CdkDragDrop<string[]>) {
+    const { container, previousIndex, currentIndex } = event;
+
+    // don't update the endpoints if the endpoint is moved to the same index as it was.
+    if (previousIndex === currentIndex) return;
+
+    this.collectionsFacade.updateCollectionOrder({ containerId: container.id, previousIndex, currentIndex });
+  }
+
+  onDropEndpoint(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      const { container, previousIndex, currentIndex } = event;
+
+      // don't update the endpoints if the endpoint is moved to the same index as it was.
+      if (previousIndex === currentIndex) return;
+
+      this.collectionsFacade.moveEndpointInCollection({ containerId: container.id, previousIndex, currentIndex });
+    } else {
+      const { container, previousContainer, previousIndex, currentIndex } = event;
+      this.collectionsFacade.moveEndpointToOtherCollection({
+        containerId: container.id,
+        previousContainerId: previousContainer.id,
+        previousIndex,
+        currentIndex,
+      });
+    }
   }
 
   onEndpointSelect(id: string) {
@@ -126,7 +183,78 @@ export class MockComponent {
     }
   }
 
+  createCollection() {
+    const dialogRef = this.dialog.open(NewCollectionDialogComponent, {
+      width: '400px',
+      data: { name: '' },
+      position: {
+        top: '100px',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.collectionsFacade.createNewCollection(result);
+    });
+  }
+
+  renameCollection(collection: Collection) {
+    console.log('TODO: implement rename collection.');
+  }
+
+  deleteCollection(collection: Collection) {
+    const dialogRef = this.dialog.open(ConfirmDeleteCollectionComponent, {
+      width: '400px',
+      data: { name: collection.name },
+      position: {
+        top: '100px',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.collectionsFacade.deleteCollection(collection);
+    });
+  }
+
   isBoolean(val: any): boolean {
     return typeof val === 'boolean';
+  }
+}
+
+// TODO: can extract this component to their own file.
+@Component({
+  selector: 'ay-dialog-overview-example-dialog',
+  templateUrl: 'new-collection-dialog.html',
+})
+export class NewCollectionDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<NewCollectionDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
+
+  @HostListener('window:keyup.enter', ['$event'])
+  onDialogClick(event: KeyboardEvent): void {
+    this.onCancelClick();
+  }
+
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+// TODO: can extract this component to their own file.
+@Component({
+  selector: 'ay-confirm-delete-collection-dialog',
+  templateUrl: 'confirm-delete-collection-dialog.html',
+})
+export class ConfirmDeleteCollectionComponent {
+  constructor(
+    public dialogRef: MatDialogRef<NewCollectionDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DeleteCollectionDialogData
+  ) {}
+
+  onCancelClick(): void {
+    this.dialogRef.close();
   }
 }

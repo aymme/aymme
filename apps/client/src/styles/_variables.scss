@@ -14,6 +14,9 @@
 
   --ay-blue-highlight: #4287f5;
 
+  --ay-stripes-bg-1: rgba(255, 255, 255, .05);
+  --ay-stripes-bg-2: rgba(255, 255, 255, .1);
+
   scroll-behavior: smooth;
 }
 
@@ -24,4 +27,6 @@ html.light {
   --ay-loader-color: rgba(0, 0, 0, .5);
   --ay-border-color: rgba(0, 0, 0, .1);
   --ay-active-color: rgb(220, 220, 220);
+  --ay-stripes-bg-1: #f9f9f9;
+  --ay-stripes-bg-2: #fff;
 }

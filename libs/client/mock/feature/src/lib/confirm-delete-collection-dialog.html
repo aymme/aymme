@@ -1,0 +1,27 @@
+<article class="dark:bg-background rounded-lg bg-white p-6">
+  <header class="dark:border-blend-50 mb-4 flex flex-col items-center border-b border-gray-100 pb-2">
+    <h1>Delete collection</h1>
+  </header>
+
+  <div class="mb-4 text-sm">
+    <p class="mb-4">Are you sure you want to delete the collection <strong>`{{data.name}}`</strong>.</p>
+    <p><em>Please note, this will also delete all endpoints inside the collection.</em></p>
+  </div>
+
+  <footer class="flex flex-row justify-between">
+    <button
+      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
+      (click)="onCancelClick()"
+    >
+      Get me back!
+    </button>
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
+    >
+      I'm sure, delete!
+    </button>
+  </footer>
+</article>
