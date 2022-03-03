@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Collection } from '@aymme/api/shared/data-access';
 import { select, Store } from '@ngrx/store';
 
 import * as CollectionsActions from './collections.actions';
 import * as CollectionsSelectors from './collections.selectors';
+import { ICollection } from '@aymme/shared/model';
 
 @Injectable()
 export class CollectionsFacade {
@@ -31,7 +31,7 @@ export class CollectionsFacade {
     this.store.dispatch(CollectionsActions.createNewCollection({ name }));
   }
 
-  deleteCollection(collection: Collection) {
+  deleteCollection(collection: ICollection) {
     this.store.dispatch(CollectionsActions.deleteCollection({ collection }));
   }
 

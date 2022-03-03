@@ -28,17 +28,14 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "typeorm": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/typeorm/cli.js",
-    "migration:show": "yarn typeorm migration:show",
-    "migration:generate": "yarn typeorm migration:generate -n",
-    "migration:run": "yarn typeorm migration:run",
-    "migration:revert": "yarn typeorm migration:revert",
-    "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json",
-    "seed:config": "typeorm-seeding config",
-    "seed:run": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/.bin/typeorm-seeding seed",
-    "seed:fresh": "rm ./database/db-test.sqlite && yarn run migration:run && yarn run seed:run",
-    "schema:sync": "yarn typeorm schema:sync",
-    "schema:log": "yarn typeorm schema:log",
-    "schema:drop": "yarn typeorm schema:drop"
+    "migration:deploy": "yarn prisma migrate deploy",
+    "migration:dev": "yarn prisma migrate dev",
+    "migration:generate": "yarn prisma migrate dev --create-only",
+    "migration:reset": "yarn prisma migrate reset",
+    "migration:status": "yarn prisma migrate status",
+    "seed:run": "yarn prisma db seed",
+    "seed:fresh": "rm ./prisma/db-test.sqlite && yarn run migration:dev && yarn run seed:run",
+    "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -52,18 +49,17 @@
     "@angular/platform-browser": "13.2.1",
     "@angular/platform-browser-dynamic": "13.2.1",
     "@angular/router": "13.2.1",
-    "@jorgebodega/typeorm-seeding": "^3.2.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
-    "@nestjs/typeorm": "^8.0.0",
     "@ngrx/component-store": "~13.0.0",
     "@ngrx/effects": "~13.0.0",
     "@ngrx/entity": "~13.0.0",
     "@ngrx/router-store": "~13.0.0",
     "@ngrx/store": "~13.0.0",
     "@nrwl/angular": "13.7.3",
+    "@prisma/client": "^3.10.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.1",
     "monaco-editor": "^0.31.1",
@@ -74,7 +70,6 @@
     "slugify": "^1.5.3",
     "sqlite3": "^5.0.2",
     "tslib": "^2.0.0",
-    "typeorm": "^0.2.34",
     "zone.js": "0.11.4"
   },
   "devDependencies": {
@@ -122,6 +117,7 @@
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.6",
+    "prisma": "^3.10.0",
     "tailwindcss": "^3.0.2",
     "ts-jest": "27.0.5",
     "ts-node": "~9.1.1",
@@ -131,5 +127,8 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-merge": "^5.8.0",
     "webpack-node-externals": "^3.0.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

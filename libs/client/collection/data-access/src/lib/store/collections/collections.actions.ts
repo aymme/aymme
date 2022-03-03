@@ -1,4 +1,3 @@
-import { Collection } from '@aymme/api/shared/data-access';
 import { createAction, props } from '@ngrx/store';
 import { CollectionsEntity } from './collections.models';
 

@@ -343,5 +343,7 @@ $RECYCLE.BIN/
 
 # Misc
 database/*.sqlite
+prisma/*.sqlite
+prisma/*.sqlite-journal
 
 .angular

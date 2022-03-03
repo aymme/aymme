@@ -38,18 +38,53 @@ DATABASE_NAME=./database/db.sqlite
 *Note: The DB file is temporarily in the project, until we integrate Electron and use the User's local system to store the DB*
 
 ### Migrations and seeding the DB
-Each time you create a new SQLite Database, you need to run the migrations and the initial seed data
-
-For local development, as of this moment, when you start the API, it will generate the DB tables. This is possible
-because of the `synchronize: true` option, provided by TypeORM
-
-For testing and local development you can run the following commands
-```shell
-yarn schema:drop # To DROP all the tables
-yarn schema:sync # To sync the DB tables with the Entities
-yarn seed:run # To run the RootSeeder. This will ingest one project "Aymme" and one collection "default"
+#### Development Environment
+To be able to work locally, you only need to update the `.env` file with the following content
+```dotenv
+DATABASE_URL="file:./db.sqlite"
 ```
-For production, we will generate migrations and run them. And we should disable `synchronize: false`. More on this in the Deployment section
+And in your terminal run the following command
+```shell
+yarn prisma migrate dev
+```
+This will create or apply migrations, re-generate the PrismaClient and run the seeds
+
+*Note: Only use it in dev environment*
+
+---
+
+While you are working a new feature, you might need to change the DB often.
+For this matter, you should use
+```shell
+yarn prisma db push
+```
+This script is suitable for prototyping
+
+---
+
+If you want to reset the database to undo manual changes or `db push` experiments, use the following script
+```shell
+yarn prisma migrate reset
+```
+
+---
+If you want to create only a migration and not applying it, you can use
+```shell
+yarn prisma migrate dev --create-only
+```
+
+---
+To seed the database, you can use
+```shell
+yarn prisma db seed
+```
+
+#### Production and Test environments
+To deploy a migration to production or test environment, you should be using
+```shell
+yarn prisma migrate deploy
+```
+This script should be part of CI/CD pipeline
 
 ###Some useful commands
 

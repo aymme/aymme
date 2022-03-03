@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { getMetadataArgsStorage } from 'typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 import databaseConfig from './config/database.config';
 
@@ -10,17 +8,6 @@ import databaseConfig from './config/database.config';
     ConfigModule.forRoot({
       load: [databaseConfig],
       isGlobal: true,
-    }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'sqlite',
-        database: configService.get<string>('database.name'),
-        synchronize: configService.get<boolean>('database.synchronize'),
-        entities: getMetadataArgsStorage().tables.map((tbl) => tbl.target),
-        logging: false,
-      }),
-      inject: [ConfigService],
     }),
   ],
   providers: [
