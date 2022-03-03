@@ -71,6 +71,7 @@ export class CollectionsEffects {
             .pipe(map((result) => CollectionsActions.updateCollectionsSuccess({ result })));
         },
         undoAction: (action: any, error: any) => {
+          // TODO: see next line, maybe trigger error here somehow?
           console.log('TODO: Implement error handling or revert back?');
           return {
             type: 'UNDO_TODO_UPDATE',

@@ -54,56 +54,67 @@
 </div>
 
 <ng-template #collectionPanel let-collections="collections">
-  <section cdkDropListGroup>
-    <ay-collection-panel *ngFor="let collection of collections">
-      <section
-        data-cy="endpoints-list"
-        class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
-      >
-        <header class="flex flex-row p-2">
-          <h5 class="text-muted text-sm capitalize">{{ collection.name }}</h5>
-          <section class="dropdown-menu relative ml-auto">
-            <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
+  <section cdkDropList [cdkDropListData]="collections" (cdkDropListDropped)="onDropCollection($event)">
+    <section cdkDropListGroup class="collection-drop-list">
+      <ay-collection-panel *ngFor="let collection of collections">
+        <section
+          cdkDrag
+          data-cy="endpoints-list"
+          class="collection-item dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
+        >
+          <div class="collection-item-drag-placeholder mb-4" *cdkDragPlaceholder></div>
 
-            <div class="dark:bg-background absolute left-0 top-8 z-10 hidden w-40 rounded-md bg-white">
-              <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
-                <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-b border-gray-100 hover:bg-gray-100">
-                  <button (click)="renameCollection(collection)" class="px-6 py-4">
-                    <i class="fa fa-edit mr-2"></i>Rename
-                  </button>
-                </li>
-                <li
-                  *ngIf="collection.name !== 'default'"
-                  class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 hover:bg-gray-100"
-                >
-                  <button (click)="deleteCollection(collection)" class="px-6 py-4">
-                    <i class="fa fa-times mr-2"></i>Remove
-                  </button>
-                </li>
-              </ul>
+          <header class="flex flex-row items-center p-2">
+            <button cdkDragHandle class="mr-2 cursor-pointer p-2"><i class="fa fa-arrows"></i></button>
+            <h5 class="text-muted text-sm capitalize">{{ collection.name }}</h5>
+
+            <div class="ml-auto flex flex-row">
+              <button class="mr-2 cursor-pointer" (click)="toggleCompress(collection)">
+                <i class="fas fa-compress-alt"></i>
+              </button>
+              <section class="dropdown-menu relative ml-auto">
+                <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
+                <div class="dark:bg-background absolute left-0 top-8 z-10 hidden w-40 rounded-md bg-white">
+                  <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
+                    <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-b border-gray-100 hover:bg-gray-100">
+                      <button (click)="renameCollection(collection)" class="px-6 py-4">
+                        <i class="fa fa-edit mr-2"></i>Rename
+                      </button>
+                    </li>
+                    <li
+                      *ngIf="collection.name !== 'default'"
+                      class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 hover:bg-gray-100"
+                    >
+                      <button (click)="deleteCollection(collection)" class="px-6 py-4">
+                        <i class="fa fa-times mr-2"></i>Remove
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+          </header>
+
+          <section
+            class="drop-list p-4 px-2"
+            cdkDropList
+            (cdkDropListDropped)="onDropEndpoint($event)"
+            [cdkDropListData]="collection.endpoints"
+            id="{{ collection.id }}"
+          >
+            <div cdkDrag cdkDragLockAxis="y" *ngFor="let endpoint of collection.endpoints">
+              <div class="collection-item-drag-placeholder" *cdkDragPlaceholder></div>
+              <ay-endpoint-link
+                [isSelected]="endpoint.id === (selectedEndpoint$ | async)"
+                [method]="endpoint.method"
+                [path]="endpoint.path"
+                (selectEndpoint)="onEndpointSelect(endpoint.id)"
+              ></ay-endpoint-link>
             </div>
           </section>
-        </header>
-
-        <section
-          class="drop-list p-4 px-2"
-          cdkDropList
-          (cdkDropListDropped)="drop($event)"
-          [cdkDropListData]="collection.endpoints"
-          id="{{ collection.id }}"
-        >
-          <div cdkDrag cdkDragLockAxis="y" *ngFor="let endpoint of collection.endpoints">
-            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-            <ay-endpoint-link
-              [isSelected]="endpoint.id === (selectedEndpoint$ | async)"
-              [method]="endpoint.method"
-              [path]="endpoint.path"
-              (selectEndpoint)="onEndpointSelect(endpoint.id)"
-            ></ay-endpoint-link>
-          </div>
         </section>
-      </section>
-    </ay-collection-panel>
+      </ay-collection-panel>
+    </section>
   </section>
 </ng-template>
 

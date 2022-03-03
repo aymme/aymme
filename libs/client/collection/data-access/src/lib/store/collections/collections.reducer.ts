@@ -1,4 +1,4 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { EntityState, EntityAdapter, createEntityAdapter, Update } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import * as CollectionsActions from './collections.actions';
@@ -32,13 +32,49 @@ const collectionsReducer = createReducer(
     loaded: false,
     error: null,
   })),
-  on(CollectionsActions.loadCollectionsSuccess, (state, { collections }) =>
-    collectionsAdapter.setAll(collections, { ...state, loaded: true })
-  ),
+  on(CollectionsActions.loadCollectionsSuccess, (state, { collections }) => {
+    // TODO: remove this temp order setting
+    const tempCollections = collections.map((col, i) => {
+      return {
+        ...col,
+        order: i,
+      };
+    });
+
+    return collectionsAdapter.setAll(tempCollections, { ...state, loaded: true });
+  }),
   on(CollectionsActions.loadCollectionsFailure, (state, { error }) => ({
     ...state,
     error,
   })),
+  on(CollectionsActions.updateCollectionOrder, (state, { data }) => {
+    const collections: CollectionsEntity[] = (Object.values(state.entities) as CollectionsEntity[]).sort((a, b) => {
+      if (a.order !== undefined && b.order !== undefined) {
+        return a.order - b.order;
+      } else {
+        return 0;
+      }
+    });
+
+    if (collections.length) {
+      const collectionsUpdate: CollectionsEntity[] = moveItemInArray(
+        collections,
+        data.previousIndex,
+        data.currentIndex
+      ).map((collection, i) => {
+        return {
+          ...collection,
+          order: i,
+        };
+      });
+
+      const update = collectionsAdapter.upsertMany(collectionsUpdate, state);
+
+      return update;
+    } else {
+      return state;
+    }
+  }),
   on(CollectionsActions.moveEndpointInCollection, (state, { data }) => {
     const collections: CollectionsEntity[] = Object.values(state.entities) as CollectionsEntity[];
     if (collections.length) {
@@ -63,8 +99,6 @@ const collectionsReducer = createReducer(
   }),
   on(CollectionsActions.moveEndpointToOtherCollection, (state, { data }) => {
     const collections: CollectionsEntity[] = Object.values(state.entities) as CollectionsEntity[];
-
-    console.log(data);
 
     if (collections.length) {
       const previousCollection = collections.find((col) => col.id === data.previousContainerId);
