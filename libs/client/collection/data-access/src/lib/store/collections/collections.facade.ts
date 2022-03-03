@@ -19,16 +19,18 @@ export class CollectionsFacade {
     this.store.dispatch(CollectionsActions.init({ projectId }));
   }
 
+  // TODO: type this data
   moveEndpointInCollection(data: any) {
     this.store.dispatch(CollectionsActions.moveEndpointInCollection({ data }));
   }
 
+  // TODO: type this data
   moveEndpointToOtherCollection(data: any) {
     this.store.dispatch(CollectionsActions.moveEndpointToOtherCollection({ data }));
   }
 
-  createNewCollection(name: string) {
-    this.store.dispatch(CollectionsActions.createNewCollection({ name }));
+  createNewCollection(projectId: string, name: string) {
+    this.store.dispatch(CollectionsActions.createNewCollection({ projectId, name }));
   }
 
   deleteCollection(collection: ICollection) {

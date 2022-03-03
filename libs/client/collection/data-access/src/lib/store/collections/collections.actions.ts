@@ -32,7 +32,10 @@ export const moveEndpointToOtherCollection = createAction(
   props<{ data: any }>()
 );
 
-export const createNewCollection = createAction('[Collections] Add New Collection', props<{ name: string }>());
+export const createNewCollection = createAction(
+  '[Collections] Add New Collection',
+  props<{ projectId: string; name: string }>()
+);
 
 export const createNewCollectionSuccess = createAction(
   '[Collections] Add New Collection Sucess',
