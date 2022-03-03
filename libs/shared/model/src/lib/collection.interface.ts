@@ -4,6 +4,6 @@ export interface ICollection {
   id: string;
   name: string;
   endpoints?: IEndpoint[];
-  order?: number;
+  order: number;
   projectId?: string;
 }

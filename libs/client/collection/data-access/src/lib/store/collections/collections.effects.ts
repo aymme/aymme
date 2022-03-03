@@ -62,7 +62,11 @@ export class CollectionsEffects {
 
   updateCollection$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CollectionsActions.moveEndpointInCollection, CollectionsActions.moveEndpointToOtherCollection),
+      ofType(
+        CollectionsActions.moveEndpointInCollection,
+        CollectionsActions.moveEndpointToOtherCollection,
+        CollectionsActions.updateCollectionOrder
+      ),
       withLatestFrom(this.store$.select(getAllCollections)),
       optimisticUpdate({
         run: ({ data }, collection) => {
