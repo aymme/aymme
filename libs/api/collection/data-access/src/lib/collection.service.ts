@@ -49,6 +49,7 @@ export class CollectionService {
         },
       });
     } catch (e) {
+      this.logger.error(e.message);
       this.logger.error(`Failed to create the collection "${name}". DTO: ${JSON.stringify(data)}`);
       throw new InternalServerErrorException();
     }

@@ -113,6 +113,7 @@ export class MockComponent {
     } else {
       const { container, previousContainer, previousIndex, currentIndex } = event;
       this.collectionsFacade.moveEndpointToOtherCollection({
+        projectId: this.projectId,
         containerId: container.id,
         previousContainerId: previousContainer.id,
         previousIndex,
@@ -194,7 +195,7 @@ export class MockComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
-      this.collectionsFacade.createNewCollection(result);
+      this.collectionsFacade.createNewCollection(this.projectId, result);
     });
   }
 

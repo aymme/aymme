@@ -28,13 +28,13 @@ export class CollectionsEffects {
     )
   );
 
-  createNewProject$ = createEffect(() =>
+  createNewCollection$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CollectionsActions.createNewCollection),
       fetch({
-        run: ({ name }) => {
+        run: ({ projectId, name }) => {
           return this.collectionService
-            .createNewCollection(name)
+            .createNewCollection(projectId, name)
             .pipe(map((collection) => CollectionsActions.createNewCollectionSuccess({ collection })));
         },
         onError: (_, error) => {
@@ -65,9 +65,9 @@ export class CollectionsEffects {
       ofType(CollectionsActions.moveEndpointInCollection, CollectionsActions.moveEndpointToOtherCollection),
       withLatestFrom(this.store$.select(getAllCollections)),
       optimisticUpdate({
-        run: (action, collections) => {
+        run: ({ data }, collection) => {
           return this.collectionService
-            .updateCollections(collections)
+            .updateCollections(data.projectId, collection)
             .pipe(map((result) => CollectionsActions.updateCollectionsSuccess({ result })));
         },
         undoAction: (action: any, error: any) => {
