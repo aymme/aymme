@@ -16,7 +16,6 @@ export class CollectionsEffects {
       ofType(CollectionsActions.init),
       fetch({
         run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
           return this.collectionService
             .getAll(action.projectId)
             .pipe(map((collections) => CollectionsActions.loadCollectionsSuccess({ collections })));
@@ -30,6 +29,38 @@ export class CollectionsEffects {
   );
 
   createNewProject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CollectionsActions.createNewCollection),
+      fetch({
+        run: ({ name }) => {
+          return this.collectionService
+            .createNewCollection(name)
+            .pipe(map((collection) => CollectionsActions.createNewCollectionSuccess({ collection })));
+        },
+        onError: (_, error) => {
+          return CollectionsActions.createNewCollectionFailure({ error });
+        },
+      })
+    )
+  );
+
+  deleteCollection$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CollectionsActions.deleteCollection),
+      fetch({
+        run: ({ collection }) => {
+          return this.collectionService
+            .deleteCollection(collection)
+            .pipe(map(() => CollectionsActions.deleteCollectionSuccess({ collection })));
+        },
+        onError: (_, error) => {
+          return CollectionsActions.deleteCollectionFailure({ error });
+        },
+      })
+    )
+  );
+
+  updateCollection$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CollectionsActions.moveEndpointInCollection, CollectionsActions.moveEndpointToOtherCollection),
       withLatestFrom(this.store$.select(getAllCollections)),

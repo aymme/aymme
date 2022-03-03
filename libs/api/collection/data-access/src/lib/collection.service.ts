@@ -1,4 +1,10 @@
-import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { CollectionRepository } from './collection.repository';
 import { CreateProjectDto } from '@aymme/api/project/data-access';
 import { Collection } from '@aymme/api/shared/data-access';
@@ -29,7 +35,6 @@ export class CollectionService {
   }
 
   async create(projectId: string, data: CreateProjectDto): Promise<Collection> {
-    console.log('create?');
     const { name } = data;
     const collection = this.categoryRepository.create();
     collection.projectId = projectId;
@@ -64,6 +69,17 @@ export class CollectionService {
   }
 
   async delete(projectId: string, id: string): Promise<void> {
+    const found = await this.categoryRepository.findOne({ id, projectId });
+
+    if (!found) {
+      throw new NotFoundException();
+    }
+
+    if (found.name === 'default') {
+      const error = 'No allowed to delete default collection.';
+      throw new BadRequestException(error);
+    }
+
     await this.categoryRepository.delete({ projectId, id });
   }
 }

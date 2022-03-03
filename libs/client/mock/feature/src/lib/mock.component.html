@@ -8,6 +8,15 @@
         </h2>
         <div class="ml-auto">
           <button
+            data-cy="mock-create-collection-bottom"
+            type="button"
+            label="Create Collection"
+            class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
+            (click)="createCollection()"
+          >
+            Create Collection
+          </button>
+          <button
             data-cy="mock-import-bottom"
             type="button"
             label="Import"
@@ -52,9 +61,27 @@
         class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
       >
         <header class="flex flex-row p-2">
-          <h5 class="text-muted text-sm font-bold capitalize">{{ collection.name }}</h5>
-          <section class="ml-auto">
+          <h5 class="text-muted text-sm capitalize">{{ collection.name }}</h5>
+          <section class="dropdown-menu relative ml-auto">
             <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
+
+            <div class="dark:bg-background absolute left-0 top-8 z-10 hidden w-40 rounded-md bg-white">
+              <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
+                <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-b border-gray-100 hover:bg-gray-100">
+                  <button (click)="renameCollection(collection)" class="px-6 py-4">
+                    <i class="fa fa-edit mr-2"></i>Rename
+                  </button>
+                </li>
+                <li
+                  *ngIf="collection.name !== 'default'"
+                  class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 hover:bg-gray-100"
+                >
+                  <button (click)="deleteCollection(collection)" class="px-6 py-4">
+                    <i class="fa fa-times mr-2"></i>Remove
+                  </button>
+                </li>
+              </ul>
+            </div>
           </section>
         </header>
 

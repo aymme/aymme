@@ -11,7 +11,7 @@ export const COLLECTIONS_FEATURE_KEY = 'collections';
 export interface State extends EntityState<CollectionsEntity> {
   selectedId?: string | number; // which Collections record has been selected
   loaded: boolean; // has the Collections list been loaded
-  error?: string | null; // last known error (if any)
+  error?: Response | null; // last known error (if any)
 }
 
 export interface CollectionsPartialState {
@@ -63,14 +63,17 @@ const collectionsReducer = createReducer(
   }),
   on(CollectionsActions.moveEndpointToOtherCollection, (state, { data }) => {
     const collections: CollectionsEntity[] = Object.values(state.entities) as CollectionsEntity[];
+
+    console.log(data);
+
     if (collections.length) {
       const previousCollection = collections.find((col) => col.id === data.previousContainerId);
       const currentCollection = collections.find((col) => col.id === data.containerId);
 
-      if (previousCollection?.endpoints && currentCollection?.endpoints) {
+      if (previousCollection?.endpoints && currentCollection) {
         const { currentArray, targetArray } = transferArrayItem(
           previousCollection.endpoints,
-          currentCollection.endpoints,
+          currentCollection.endpoints || [],
           data.previousIndex,
           data.currentIndex
         );
@@ -100,6 +103,16 @@ const collectionsReducer = createReducer(
     } else {
       return state;
     }
+  }),
+  on(CollectionsActions.createNewCollectionSuccess, (state, { collection }) => {
+    return collectionsAdapter.setOne(collection, state);
+  }),
+  on(CollectionsActions.createNewCollectionFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
+  on(CollectionsActions.deleteCollectionSuccess, (state, { collection }) => {
+    return collectionsAdapter.removeOne(collection.id, state);
   })
 );
 

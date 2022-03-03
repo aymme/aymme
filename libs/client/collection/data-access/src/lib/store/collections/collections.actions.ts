@@ -1,3 +1,4 @@
+import { Collection } from '@aymme/api/shared/data-access';
 import { createAction, props } from '@ngrx/store';
 import { CollectionsEntity } from './collections.models';
 
@@ -30,4 +31,31 @@ export const moveEndpointInCollection = createAction(
 export const moveEndpointToOtherCollection = createAction(
   '[Collections] Move Endpoint to Other Collection',
   props<{ data: any }>()
+);
+
+export const createNewCollection = createAction('[Collections] Add New Collection', props<{ name: string }>());
+
+export const createNewCollectionSuccess = createAction(
+  '[Collections] Add New Collection Sucess',
+  props<{ collection: any }>()
+);
+
+export const createNewCollectionFailure = createAction(
+  '[Collections] Add New Collection Failure',
+  props<{ error: Response | null | undefined }>()
+);
+
+export const deleteCollection = createAction(
+  '[Collections] Delete Collection',
+  props<{ collection: CollectionsEntity }>()
+);
+
+export const deleteCollectionSuccess = createAction(
+  '[Collections] Delete Collection Success',
+  props<{ collection: CollectionsEntity }>()
+);
+
+export const deleteCollectionFailure = createAction(
+  '[Collections] Delete Collection Success',
+  props<{ error: Response | null | undefined }>()
 );

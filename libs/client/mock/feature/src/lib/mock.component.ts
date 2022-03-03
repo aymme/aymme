@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener, Inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject, take, takeUntil, tap } from 'rxjs';
@@ -7,6 +7,16 @@ import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-acce
 import { EndpointFacade } from '@aymme/client/mock/data-access';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Collection } from '@aymme/api/shared/data-access';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+interface DialogData {
+  name: string;
+}
+
+interface DeleteCollectionDialogData {
+  name: string;
+}
 
 @Component({
   selector: 'ay-mock',
@@ -50,7 +60,8 @@ export class MockComponent {
     private collectionsFacade: CollectionsFacade,
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {
     this.collectionsFacade.init(this.projectId);
   }
@@ -149,7 +160,78 @@ export class MockComponent {
     }
   }
 
+  createCollection() {
+    const dialogRef = this.dialog.open(NewCollectionDialogComponent, {
+      width: '400px',
+      data: { name: '' },
+      position: {
+        top: '100px',
+      },
+    });
+
+    // TODO: shouldn't subscribe here
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.collectionsFacade.createNewCollection(result);
+    });
+  }
+
+  renameCollection(collection: Collection) {
+    console.log('TODO: implement rename collection.');
+  }
+
+  deleteCollection(collection: Collection) {
+    const dialogRef = this.dialog.open(ConfirmDeleteCollectionComponent, {
+      width: '400px',
+      data: { name: collection.name },
+      position: {
+        top: '100px',
+      },
+    });
+
+    // TODO: shouldn't subscribe here
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.collectionsFacade.deleteCollection(collection);
+    });
+  }
+
   isBoolean(val: any): boolean {
     return typeof val === 'boolean';
+  }
+}
+
+@Component({
+  selector: 'ay-dialog-overview-example-dialog',
+  templateUrl: 'new-collection-dialog.html',
+})
+export class NewCollectionDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<NewCollectionDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
+
+  @HostListener('window:keyup.enter', ['$event'])
+  onDialogClick(event: KeyboardEvent): void {
+    this.onCancelClick();
+  }
+
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'ay-confirm-delete-collection-dialog',
+  templateUrl: 'confirm-delete-collection-dialog.html',
+})
+export class ConfirmDeleteCollectionComponent {
+  constructor(
+    public dialogRef: MatDialogRef<NewCollectionDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DeleteCollectionDialogData
+  ) {}
+
+  onCancelClick(): void {
+    this.dialogRef.close();
   }
 }
