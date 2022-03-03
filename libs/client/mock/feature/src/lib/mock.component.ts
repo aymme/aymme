@@ -1,14 +1,14 @@
-import { Component, HostListener, Inject, OnDestroy } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, map, Observable, Subject, take, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Collection } from '@aymme/api/shared/data-access';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ICollection } from '@aymme/shared/model';
 
 interface DialogData {
   name: string;
@@ -198,11 +198,11 @@ export class MockComponent {
     });
   }
 
-  renameCollection(collection: Collection) {
+  renameCollection(collection: ICollection) {
     console.log('TODO: implement rename collection.');
   }
 
-  deleteCollection(collection: Collection) {
+  deleteCollection(collection: ICollection) {
     const dialogRef = this.dialog.open(ConfirmDeleteCollectionComponent, {
       width: '400px',
       data: { name: collection.name },

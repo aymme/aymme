@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
-import { Collection } from '@prisma/client';
+import { Collection, Endpoint } from '@prisma/client';
 import { CreateProjectDto } from '@aymme/api/project/data-access';
 import { PrismaService } from '@aymme/api/database/data-access';
 import { UpdateCollectionNameDto } from './dto/update-collection-name.dto';
@@ -11,10 +11,13 @@ export class CollectionService {
 
   constructor(private prisma: PrismaService) {}
 
-  async getAllByProjectID(projectId: string): Promise<Collection[]> {
+  async getAllByProjectID(projectId: string): Promise<Array<Collection & { endpoints: Endpoint[] }>> {
     return this.prisma.collection.findMany({
       where: {
         projectId,
+      },
+      include: {
+        endpoints: true,
       },
     });
   }
@@ -71,8 +74,23 @@ export class CollectionService {
     }
   }
 
-  async update(projectId: string, data: UpdateCollectionDto[]): Promise<Collection[]> {
-    return this.categoryRepository.save(data);
+  async update(projectId: string, data: UpdateCollectionDto[]): Promise<Array<Collection & { endpoints: Endpoint[] }>> {
+    return await this.prisma.$transaction(
+      data.map((collection) =>
+        this.prisma.collection.update({
+          where: { id: collection.id },
+          data: {
+            name: collection.name,
+            endpoints: {
+              connect: collection.endpoints.map((endpoint) => ({ id: endpoint.id })),
+            },
+          },
+          include: {
+            endpoints: true,
+          },
+        })
+      )
+    );
   }
 
   async delete(projectId: string, id: string): Promise<void> {
