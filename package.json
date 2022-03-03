@@ -28,17 +28,14 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "typeorm": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/typeorm/cli.js",
-    "migration:show": "yarn typeorm migration:show",
-    "migration:generate": "yarn typeorm migration:generate -n",
-    "migration:run": "yarn typeorm migration:run",
-    "migration:revert": "yarn typeorm migration:revert",
-    "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json",
-    "seed:config": "typeorm-seeding config",
-    "seed:run": "ts-node -r tsconfig-paths/register --project tsconfig.typeorm.json ./node_modules/.bin/typeorm-seeding seed",
-    "seed:fresh": "rm ./database/db-test.sqlite && yarn run migration:run && yarn run seed:run",
-    "schema:sync": "yarn typeorm schema:sync",
-    "schema:log": "yarn typeorm schema:log",
-    "schema:drop": "yarn typeorm schema:drop"
+    "migration:deploy": "yarn prisma migrate deploy",
+    "migration:dev": "yarn prisma migrate dev",
+    "migration:generate": "yarn prisma migrate dev --create-only",
+    "migration:reset": "yarn prisma migrate reset",
+    "migration:status": "yarn prisma migrate status",
+    "seed:run": "yarn prisma db seed",
+    "seed:fresh": "rm ./prisma/db-test.sqlite && yarn run migration:dev && yarn run seed:run",
+    "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -129,5 +126,8 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-merge": "^5.8.0",
     "webpack-node-externals": "^3.0.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }
