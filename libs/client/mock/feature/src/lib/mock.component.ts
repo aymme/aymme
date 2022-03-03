@@ -44,13 +44,7 @@ export class MockComponent {
   collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$.pipe(
     map((results) => {
       const r = results.sort((a, b) => {
-        // TODO: checking for undefined is not okay here.
-        // --- Should expect the order coming from the backend.
-        if (a.order !== undefined && b.order !== undefined) {
-          return a.order - b.order;
-        } else {
-          return 0;
-        }
+        return a.order - b.order;
       });
       return r;
     })
@@ -99,7 +93,12 @@ export class MockComponent {
     // don't update the endpoints if the endpoint is moved to the same index as it was.
     if (previousIndex === currentIndex) return;
 
-    this.collectionsFacade.updateCollectionOrder({ containerId: container.id, previousIndex, currentIndex });
+    this.collectionsFacade.updateCollectionOrder({
+      projectId: this.projectId,
+      containerId: container.id,
+      previousIndex,
+      currentIndex,
+    });
   }
 
   onDropEndpoint(event: CdkDragDrop<string[]>) {

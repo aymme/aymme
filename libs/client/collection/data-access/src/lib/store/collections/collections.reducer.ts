@@ -33,15 +33,7 @@ const collectionsReducer = createReducer(
     error: null,
   })),
   on(CollectionsActions.loadCollectionsSuccess, (state, { collections }) => {
-    // TODO: remove this temp order setting
-    const tempCollections = collections.map((col, i) => {
-      return {
-        ...col,
-        order: i,
-      };
-    });
-
-    return collectionsAdapter.setAll(tempCollections, { ...state, loaded: true });
+    return collectionsAdapter.setAll(collections, { ...state, loaded: true });
   }),
   on(CollectionsActions.loadCollectionsFailure, (state, { error }) => ({
     ...state,

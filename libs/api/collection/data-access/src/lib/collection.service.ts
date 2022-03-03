@@ -82,6 +82,7 @@ export class CollectionService {
           where: { id: collection.id },
           data: {
             name: collection.name,
+            order: collection.order,
             endpoints: {
               connect: collection.endpoints.map((endpoint) => ({ id: endpoint.id })),
             },
