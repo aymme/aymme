@@ -1,14 +1,14 @@
 export const responseMocks = [
   {
-    body: '{ "message": "Please update mocks data 1322211111" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 500,
   },
   {
-    body: '{ "message": "Please update mocks data 2" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 500,
   },
   {
-    body: '{ "message": "Please update mocks data 3" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 500,
   },
   {
@@ -24,15 +24,15 @@ export const responseMocks = [
     statusCode: 101,
   },
   {
-    body: '{\n    "data": "helop"\n}',
+    body: '{\n    "data": "Please update mocks data"\n}',
     statusCode: 304,
   },
   {
-    body: '{ "message": "Please update mocks data 5" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 500,
   },
   {
-    body: '{ "message": "Please update mocks data 6" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 100,
   },
   {
@@ -56,7 +56,7 @@ export const responseMocks = [
     statusCode: 500,
   },
   {
-    body: '{ "message": "Please update mocks data 7" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 200,
   },
   {
@@ -64,7 +64,7 @@ export const responseMocks = [
     statusCode: 500,
   },
   {
-    body: '{ "message": "Please update mocks data 8" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 500,
   },
   {
@@ -72,7 +72,7 @@ export const responseMocks = [
     statusCode: 300,
   },
   {
-    body: '{ "message": "Please update mocks data 9" }',
+    body: '{ "message": "Please update mocks data" }',
     statusCode: 500,
   },
   {

@@ -25,7 +25,7 @@ export const endpointMocks = [
   },
   {
     path: '/api/messages-service/client-api/v4/message-center/messages/unread-conversation-count',
-    activeStatusCode: 200,
+    activeStatusCode: 500,
     emptyArray: false,
     method: 'GET',
     forward: false,
