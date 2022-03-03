@@ -1,22 +1,26 @@
 import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import slugify from 'slugify';
-import { Project, ProjectConfiguration } from '@aymme/api/shared/data-access';
-
-import { ProjectRepository } from './project.repository';
+import { Project, ProjectConfiguration } from '@prisma/client';
+import { PrismaService } from '@aymme/api/database/data-access';
 import { CreateProjectDto, UpdateProjectConfigurationDto, UpdateProjectDto } from './dto';
 
 @Injectable()
 export class ProjectService {
   private logger = new Logger(ProjectService.name);
-  constructor(private projectRepository: ProjectRepository) {}
+  constructor(private prisma: PrismaService) {}
 
-  async getAll(): Promise<Project[]> {
-    return this.projectRepository.find();
+  async getAll(): Promise<Array<Project & { configuration: ProjectConfiguration }>> {
+    return this.prisma.project.findMany({
+      include: { configuration: true },
+    });
   }
 
-  async getById(id: string): Promise<Project> {
-    const found = await this.projectRepository.findOne({
-      id,
+  async getById(id: string): Promise<Project & { configuration: ProjectConfiguration }> {
+    const found = await this.prisma.project.findUnique({
+      where: {
+        id,
+      },
+      include: { configuration: true },
     });
 
     if (!found) {
@@ -26,9 +30,12 @@ export class ProjectService {
     return found;
   }
 
-  async getBySlug(slug: string): Promise<Project> {
-    const found = await this.projectRepository.findOne({
-      slug,
+  async getBySlug(slug: string): Promise<Project & { configuration: ProjectConfiguration }> {
+    const found = await this.prisma.project.findUnique({
+      where: {
+        slug,
+      },
+      include: { configuration: true },
     });
 
     if (!found) {
@@ -42,7 +49,7 @@ export class ProjectService {
     const { name } = createProjectDto;
 
     // TODO: Maybe by name is not a good choice, maybe we need to find it by slug?
-    const found = await this.projectRepository.findOne({ name });
+    const found = await this.prisma.project.findFirst({ where: { name } });
 
     if (found) {
       this.logger.error(`Project already exist "${name}". DTO: ${JSON.stringify(createProjectDto)}`);
@@ -50,53 +57,75 @@ export class ProjectService {
       throw new ConflictException('Project already exist');
     }
 
-    const project = this.projectRepository.create();
-
-    project.name = name;
-    project.slug = slugify(name, {
-      lower: true,
-    });
-    project.configuration = new ProjectConfiguration();
-
     try {
-      await project.save();
+      return await this.prisma.project.create({
+        data: {
+          name,
+          slug: slugify(name, {
+            lower: true,
+          }),
+          configuration: {
+            create: {
+              ignoreParams: undefined,
+            },
+          },
+          collections: {
+            create: [{ name: 'default' }], // TODO needs to come from config
+          },
+        },
+      });
     } catch (e) {
       this.logger.error(`Failed creating the project "${name}". DTO: ${JSON.stringify(createProjectDto)}`);
       this.logger.error(e.message);
       throw new InternalServerErrorException();
     }
-
-    return project;
   }
 
   async update(id: string, updateProjectDto: UpdateProjectDto): Promise<Project> {
     const { name } = updateProjectDto;
-    const project = await this.getById(id);
-
-    project.name = name;
+    await this.getById(id);
 
     try {
-      await project.save();
+      return await this.prisma.project.update({
+        where: {
+          id,
+        },
+        data: {
+          name,
+        },
+        include: { configuration: true },
+      });
     } catch (e) {
-      this.logger.error(`Failed update the project with ID "${project.id}". DTO: ${JSON.stringify(updateProjectDto)}`);
+      console.log(e);
+      this.logger.error(`Failed update the project with ID "${id}". DTO: ${JSON.stringify(updateProjectDto)}`);
       this.logger.error(e.message);
       throw new InternalServerErrorException();
     }
-
-    return project;
   }
 
   async updateConfiguration(id: string, updateConfigurationDto: UpdateProjectConfigurationDto) {
     const { ignoreParams } = updateConfigurationDto;
-    const project = await this.getById(id);
-
-    project.configuration.ignoreParams = ignoreParams;
+    await this.getById(id); // TODO Temporary workaround. We should maybe catch Prisma exceptions
 
     try {
-      await project.save();
+      return await this.prisma.project.update({
+        where: {
+          id,
+        },
+        data: {
+          configuration: {
+            update: {
+              ignoreParams: ignoreParams.join(','),
+            },
+          },
+        },
+        include: {
+          configuration: true,
+        },
+      });
     } catch (e) {
       this.logger.error(
-        `Failed update the project configuration with Project ID "${project.id}". DTO: ${JSON.stringify(
+        `Failed update the project configuration with Project ID "${id}". DTO: ${JSON.stringify(
           updateConfigurationDto
         )}`
       );
@@ -104,10 +133,21 @@ export class ProjectService {
 
       throw new InternalServerErrorException();
     }
-
-    return project;
   }
+
   async delete(id: string): Promise<void> {
-    await this.projectRepository.delete({ id });
+    await this.getById(id);
+
+    try {
+      await this.prisma.project.delete({
+        where: {
+          id,
+        },
+      });
+    } catch (e) {
+      this.logger.error(`Failed to delete the project with ID: ${id}`);
+      this.logger.error(e.message);
+      throw new InternalServerErrorException();
+    }
   }
 }

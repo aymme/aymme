@@ -1,10 +1,9 @@
 import { All, Body, Controller, Headers, Logger, NotFoundException, Query, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import sleep from 'sleep-promise';
-
+import { Project, ProjectConfiguration } from '@prisma/client';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
 import { CurrentProject, ProjectGuard } from '@aymme/api/project/utils';
-import { Project } from '@aymme/api/shared/data-access';
 
 @Controller('intercept')
 export class ApiInterceptFeatureController {
@@ -18,7 +17,7 @@ export class ApiInterceptFeatureController {
     @Headers() headers,
     @Req() request: Request,
     @Res() response: Response,
-    @CurrentProject() currentProject: Project
+    @CurrentProject() currentProject: Project & { configuration: ProjectConfiguration }
   ) {
     this.logger.verbose(request.path);
     this.logger.verbose(currentProject.name);

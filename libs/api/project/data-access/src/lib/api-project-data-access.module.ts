@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProjectRepository } from './project.repository';
+import { ApiDatabaseDataAccessModule } from '@aymme/api/database/data-access';
 import { ProjectService } from './project.service';
-import { ProjectConfigurationRepository } from './project-configuration.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProjectRepository, ProjectConfigurationRepository])],
+  imports: [ApiDatabaseDataAccessModule],
   controllers: [],
   providers: [ProjectService],
   exports: [ProjectService],
