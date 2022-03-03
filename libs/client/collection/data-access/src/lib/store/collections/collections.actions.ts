@@ -1,10 +1,8 @@
+import { Collection } from '@aymme/api/shared/data-access';
 import { createAction, props } from '@ngrx/store';
 import { CollectionsEntity } from './collections.models';
 
-export const init = createAction(
-  '[Collections Page] Init',
-  props<{ projectId: string }>()
-);
+export const init = createAction('[Collections Page] Init', props<{ projectId: string }>());
 
 export const loadCollectionsSuccess = createAction(
   '[Collections/API] Load Collections Success',
@@ -15,3 +13,51 @@ export const loadCollectionsFailure = createAction(
   '[Collections/API] Load Collections Failure',
   props<{ error: any }>()
 );
+
+export const updateCollectionsSuccess = createAction(
+  '[Collections/API] Update Collections Success',
+  props<{ result: any }>()
+);
+export const updateCollectionsFailure = createAction(
+  '[Collections/API] Update Collections Failure',
+  props<{ error: any }>()
+);
+
+export const moveEndpointInCollection = createAction(
+  '[Collections] Move Endpoint in Collection',
+  props<{ data: any }>()
+);
+
+export const moveEndpointToOtherCollection = createAction(
+  '[Collections] Move Endpoint to Other Collection',
+  props<{ data: any }>()
+);
+
+export const createNewCollection = createAction('[Collections] Add New Collection', props<{ name: string }>());
+
+export const createNewCollectionSuccess = createAction(
+  '[Collections] Add New Collection Sucess',
+  props<{ collection: any }>()
+);
+
+export const createNewCollectionFailure = createAction(
+  '[Collections] Add New Collection Failure',
+  props<{ error: Response | null | undefined }>()
+);
+
+export const deleteCollection = createAction(
+  '[Collections] Delete Collection',
+  props<{ collection: CollectionsEntity }>()
+);
+
+export const deleteCollectionSuccess = createAction(
+  '[Collections] Delete Collection Success',
+  props<{ collection: CollectionsEntity }>()
+);
+
+export const deleteCollectionFailure = createAction(
+  '[Collections] Delete Collection Success',
+  props<{ error: Response | null | undefined }>()
+);
+
+export const updateCollectionOrder = createAction('[Collections] Update Collection Order', props<{ data: any }>());

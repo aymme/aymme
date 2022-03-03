@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MockComponent } from './mock.component';
+import { MockComponent, NewCollectionDialogComponent, ConfirmDeleteCollectionComponent } from './mock.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CollectionsEffects, CollectionsFacade, CollectionsFeature } from '@aymme/client/collection/data-access';
@@ -12,6 +12,10 @@ import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-pa
 import { ResponseListModule } from '@aymme/client/mock/ui/response-list';
 import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -31,8 +35,12 @@ import { LoaderModule } from '@aymme/client/shell/ui/loader';
     EditorModule,
     ResponseListModule,
     LoaderModule,
+    DragDropModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  declarations: [MockComponent],
+  declarations: [MockComponent, NewCollectionDialogComponent, ConfirmDeleteCollectionComponent],
   providers: [CollectionsFacade],
 })
 export class MockModule {}

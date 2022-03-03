@@ -3,6 +3,7 @@ import { Collection } from '@prisma/client';
 import { CreateProjectDto } from '@aymme/api/project/data-access';
 import { PrismaService } from '@aymme/api/database/data-access';
 import { UpdateCollectionNameDto } from './dto/update-collection-name.dto';
+import { UpdateCollectionDto } from './dto/update-collection.dto';
 
 @Injectable()
 export class CollectionService {
@@ -68,6 +69,10 @@ export class CollectionService {
       this.logger.error(e.message);
       throw new InternalServerErrorException();
     }
+  }
+
+  async update(projectId: string, data: UpdateCollectionDto[]): Promise<Collection[]> {
+    return this.categoryRepository.save(data);
   }
 
   async delete(projectId: string, id: string): Promise<void> {

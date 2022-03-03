@@ -14,5 +14,6 @@ export interface IEndpoint {
   project?: IProject;
   responses?: IResponse[];
   headers?: IHeader[];
-  category?: ICollection;
+  collection?: ICollection;
+  collectionId?: string;
 }

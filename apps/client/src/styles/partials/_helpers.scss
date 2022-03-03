@@ -1,4 +1,19 @@
-
 .ay-disabled-cursor {
   cursor: not-allowed;
+}
+
+.dropdown-menu {
+  button {
+    &:hover+div {
+      display: inline-block;
+    }
+  }
+
+  div {
+    transition: all .3s cubic-bezier(0, 0, 0.2, 1);
+
+    &:hover {
+      display: inline-block;
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Collection } from '@aymme/api/shared/data-access';
 import { select, Store } from '@ngrx/store';
 
 import * as CollectionsActions from './collections.actions';
@@ -16,5 +17,25 @@ export class CollectionsFacade {
 
   init(projectId: string) {
     this.store.dispatch(CollectionsActions.init({ projectId }));
+  }
+
+  moveEndpointInCollection(data: any) {
+    this.store.dispatch(CollectionsActions.moveEndpointInCollection({ data }));
+  }
+
+  moveEndpointToOtherCollection(data: any) {
+    this.store.dispatch(CollectionsActions.moveEndpointToOtherCollection({ data }));
+  }
+
+  createNewCollection(name: string) {
+    this.store.dispatch(CollectionsActions.createNewCollection({ name }));
+  }
+
+  deleteCollection(collection: Collection) {
+    this.store.dispatch(CollectionsActions.deleteCollection({ collection }));
+  }
+
+  updateCollectionOrder(data: any) {
+    this.store.dispatch(CollectionsActions.updateCollectionOrder({ data }));
   }
 }
