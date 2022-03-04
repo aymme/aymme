@@ -3,7 +3,7 @@ CREATE TABLE "Collection" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "projectId" TEXT NOT NULL,
-    "order" CHAR DEFAULT 0,
+    "order" INTEGER NOT NULL DEFAULT 0,
     CONSTRAINT "Collection_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "Project" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
