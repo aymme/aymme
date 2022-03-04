@@ -65,7 +65,8 @@ export class CollectionsEffects {
       ofType(
         CollectionsActions.moveEndpointInCollection,
         CollectionsActions.moveEndpointToOtherCollection,
-        CollectionsActions.updateCollectionOrder
+        CollectionsActions.updateCollectionOrder,
+        CollectionsActions.updateCollection
       ),
       withLatestFrom(this.store$.select(getAllCollections)),
       optimisticUpdate({
