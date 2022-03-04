@@ -55,8 +55,6 @@ export class CollectionService {
           },
         });
 
-        console.log(lastOrderNumber);
-
         return await this.prisma.collection.create({
           data: {
             name,
@@ -105,11 +103,13 @@ export class CollectionService {
             name: collection.name,
             order: collection.order,
             endpoints: {
-              connect: collection.endpoints.map((endpoint) => ({ id: endpoint.id })),
-              update: collection.endpoints.map((endpoint) => ({
-                where: { id: endpoint.id },
-                data: { order: endpoint.order },
-              })),
+              connect: collection.endpoints && collection.endpoints.map((endpoint) => ({ id: endpoint.id })),
+              update:
+                collection.endpoints &&
+                collection.endpoints.map((endpoint) => ({
+                  where: { id: endpoint.id },
+                  data: { order: endpoint.order },
+                })),
             },
           },
           include: {
