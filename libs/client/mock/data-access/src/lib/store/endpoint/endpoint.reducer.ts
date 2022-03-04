@@ -3,6 +3,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
 
 import * as EndpointActions from './endpoint.actions';
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
 export const ENDPOINT_FEATURE_KEY = 'endpoint';
 
@@ -18,6 +19,19 @@ export interface State {
 export interface EndpointPartialState {
   readonly [ENDPOINT_FEATURE_KEY]: State;
 }
+
+export function sortByOrder(e1: EndpointEntity, e2: EndpointEntity) {
+  const compare = e1.order - e2.order;
+  if (compare > 0) {
+    return 1;
+  } else if (compare < 0) {
+    return -1;
+  } else return 0;
+}
+
+export const collectionsAdapter: EntityAdapter<EndpointEntity> = createEntityAdapter<EndpointEntity>({
+  sortComparer: sortByOrder,
+});
 
 export const initialState: State = {
   loaded: null,
