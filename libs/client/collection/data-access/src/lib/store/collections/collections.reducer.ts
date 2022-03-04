@@ -1,5 +1,5 @@
-import { EntityState, EntityAdapter, createEntityAdapter, Update } from '@ngrx/entity';
-import { createReducer, on, Action } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
 
 import * as CollectionsActions from './collections.actions';
 import { CollectionsEntity } from './collections.models';
@@ -18,7 +18,18 @@ export interface CollectionsPartialState {
   readonly [COLLECTIONS_FEATURE_KEY]: State;
 }
 
-export const collectionsAdapter: EntityAdapter<CollectionsEntity> = createEntityAdapter<CollectionsEntity>();
+export function sortByOrder(c1: CollectionsEntity, c2: CollectionsEntity) {
+  const compare = c1.order - c2.order;
+  if (compare > 0) {
+    return 1;
+  } else if (compare < 0) {
+    return -1;
+  } else return 0;
+}
+
+export const collectionsAdapter: EntityAdapter<CollectionsEntity> = createEntityAdapter<CollectionsEntity>({
+  sortComparer: sortByOrder,
+});
 
 export const initialState: State = collectionsAdapter.getInitialState({
   // set initial required properties
