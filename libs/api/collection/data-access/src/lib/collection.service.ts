@@ -16,6 +16,9 @@ export class CollectionService {
       where: {
         projectId,
       },
+      orderBy: {
+        order: 'asc',
+      },
       include: {
         endpoints: true,
       },
