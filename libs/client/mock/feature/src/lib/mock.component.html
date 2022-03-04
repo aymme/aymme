@@ -61,6 +61,7 @@
           cdkDrag
           data-cy="endpoints-list"
           class="collection-item dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
+          [ngClass]="{ 'is-compressed': collection.compressed }"
         >
           <div class="collection-item-drag-placeholder mb-4" *cdkDragPlaceholder></div>
 
