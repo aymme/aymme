@@ -16,4 +16,5 @@ export interface IEndpoint {
   headers?: IHeader[];
   collection?: ICollection;
   collectionId?: string;
+  order: number;
 }
