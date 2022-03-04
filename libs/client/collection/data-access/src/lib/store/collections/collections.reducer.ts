@@ -1,3 +1,4 @@
+import { EndpointEntity } from '@aymme/client/mock/model';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 
@@ -36,6 +37,15 @@ export const initialState: State = collectionsAdapter.getInitialState({
   loaded: false,
 });
 
+const mapToOrder = (array: any[]): any[] => {
+  return array.map((endpoint: EndpointEntity, i: number) => {
+    return {
+      ...endpoint,
+      order: i,
+    };
+  });
+};
+
 const collectionsReducer = createReducer(
   initialState,
   on(CollectionsActions.init, (state) => ({
@@ -61,20 +71,14 @@ const collectionsReducer = createReducer(
     error,
   })),
   on(CollectionsActions.updateCollectionOrder, (state, { data }) => {
-    const collections: CollectionsEntity[] = (Object.values(state.entities) as CollectionsEntity[]).sort((a, b) => {
-      if (a.order !== undefined && b.order !== undefined) {
-        return a.order - b.order;
-      } else {
-        return 0;
-      }
-    });
+    const collections: CollectionsEntity[] = Object.values(state.entities) as CollectionsEntity[];
 
     if (collections.length) {
       const collectionsUpdate: CollectionsEntity[] = moveItemInArray(
         collections,
         data.previousIndex,
         data.currentIndex
-      ).map((collection, i) => {
+      ).map((collection: CollectionsEntity, i: number) => {
         return {
           ...collection,
           order: i,
@@ -96,9 +100,12 @@ const collectionsReducer = createReducer(
           if (!collection?.endpoints?.length) {
             return collection;
           }
+
+          const endpoints = moveItemInArray(collection.endpoints, data.previousIndex, data.currentIndex);
+
           return {
             ...collection,
-            endpoints: moveItemInArray(collection.endpoints, data.previousIndex, data.currentIndex),
+            endpoints: mapToOrder(endpoints),
           };
         }
 
@@ -129,14 +136,14 @@ const collectionsReducer = createReducer(
           if (collection.id === previousCollection.id) {
             return {
               ...collection,
-              endpoints: currentArray,
+              endpoints: mapToOrder(currentArray),
             };
           }
 
           if (collection.id === currentCollection.id) {
             return {
               ...collection,
-              endpoints: targetArray,
+              endpoints: mapToOrder(targetArray),
             };
           }
 

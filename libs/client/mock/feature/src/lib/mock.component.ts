@@ -64,13 +64,6 @@ export class MockComponent {
     private toastr: ToastrService
   ) {
     this.collectionsFacade.init(this.projectId);
-
-    // this.toastr.success('New collection created succesfully!');
-    // this.toastr.error('Something failed, we are doomed. please try to create a collection again.');
-  }
-
-  isEndpointSelected() {
-    return true;
   }
 
   updateEndpoint() {
@@ -107,7 +100,12 @@ export class MockComponent {
       // don't update the endpoints if the endpoint is moved to the same index as it was.
       if (previousIndex === currentIndex) return;
 
-      this.collectionsFacade.moveEndpointInCollection({ containerId: container.id, previousIndex, currentIndex });
+      this.collectionsFacade.moveEndpointInCollection({
+        projectId: this.projectId,
+        containerId: container.id,
+        previousIndex,
+        currentIndex,
+      });
     } else {
       const { container, previousContainer, previousIndex, currentIndex } = event;
       this.collectionsFacade.moveEndpointToOtherCollection({
