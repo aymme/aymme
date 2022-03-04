@@ -73,7 +73,7 @@
               <button class="mr-2 cursor-pointer" (click)="toggleCompress(collection)">
                 <i class="fas fa-compress-alt"></i>
               </button>
-              <section class="dropdown-menu relative ml-auto">
+              <section *ngIf="collection.name !== 'default'" class="dropdown-menu relative ml-auto">
                 <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
                 <div class="dark:bg-background absolute left-0 top-8 z-10 hidden w-40 rounded-md bg-white">
                   <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
@@ -82,10 +82,7 @@
                         <i class="fa fa-edit mr-2"></i>Rename
                       </button>
                     </li>
-                    <li
-                      *ngIf="collection.name !== 'default'"
-                      class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 hover:bg-gray-100"
-                    >
+                    <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 hover:bg-gray-100">
                       <button (click)="deleteCollection(collection)" class="px-6 py-4">
                         <i class="fa fa-times mr-2"></i>Remove
                       </button>

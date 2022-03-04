@@ -20,11 +20,14 @@
   </div>
 
   <footer class="flex flex-row justify-between">
-    <button class="hover:dark:bg-blend-100 rounded-md px-4 py-2 hover:bg-gray-100" (click)="onCancelClick()">
+    <button
+      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
+      (click)="onCancelClick()"
+    >
       Cancel
     </button>
     <button
-      class="hover:dark:bg-blend-100 rounded-md px-4 py-2 hover:bg-gray-100"
+      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
       mat-button
       [mat-dialog-close]="data.name"
       cdkFocusInitial

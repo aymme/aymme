@@ -45,4 +45,8 @@ export class CollectionsFacade {
   toggleCompressed(collection: CollectionsEntity) {
     this.store.dispatch(CollectionsActions.toggleCompressed({ collection }));
   }
+
+  updateCollection(data: any, collection: CollectionsEntity) {
+    this.store.dispatch(CollectionsActions.updateCollection({ data, collection }));
+  }
 }
