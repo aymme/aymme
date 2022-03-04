@@ -63,3 +63,8 @@ export const deleteCollectionFailure = createAction(
 );
 
 export const updateCollectionOrder = createAction('[Collections] Update Collection Order', props<{ data: any }>());
+
+export const toggleCompressed = createAction(
+  '[Collection] toggle compressed',
+  props<{ collection: CollectionsEntity }>()
+);

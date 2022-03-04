@@ -10,6 +10,10 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ICollection } from '@aymme/shared/model';
 
+interface CompressCollectionsEntity extends CollectionsEntity {
+  compressed: boolean;
+}
+
 interface DialogData {
   name: string;
 }
@@ -85,7 +89,10 @@ export class MockComponent {
     });
   }
 
-  toggleCompress(collection: CollectionsEntity) {}
+  toggleCompress(collection: CompressCollectionsEntity) {
+    const collectionUpdate = { ...collection, compressed: !collection.compressed };
+    this.collectionsFacade.toggleCompressed(collectionUpdate);
+  }
 
   onDropCollection(event: CdkDragDrop<string[]>) {
     const { container, previousIndex, currentIndex } = event;

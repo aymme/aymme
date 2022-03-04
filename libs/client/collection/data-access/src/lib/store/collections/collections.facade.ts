@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store';
 import * as CollectionsActions from './collections.actions';
 import * as CollectionsSelectors from './collections.selectors';
 import { ICollection } from '@aymme/shared/model';
+import { CollectionsEntity } from '.';
 
 @Injectable()
 export class CollectionsFacade {
@@ -39,5 +40,9 @@ export class CollectionsFacade {
 
   updateCollectionOrder(data: any) {
     this.store.dispatch(CollectionsActions.updateCollectionOrder({ data }));
+  }
+
+  toggleCompressed(collection: CollectionsEntity) {
+    this.store.dispatch(CollectionsActions.toggleCompressed({ collection }));
   }
 }
