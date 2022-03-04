@@ -55,6 +55,8 @@ export class CollectionService {
           },
         });
 
+        console.log(lastOrderNumber);
+
         return await this.prisma.collection.create({
           data: {
             name,
@@ -123,7 +125,12 @@ export class CollectionService {
   }
 
   async delete(projectId: string, id: string): Promise<void> {
-    await this.getById(id, projectId);
+    const project = await this.getById(id, projectId);
+
+    if (project.name === 'default') {
+      this.logger.error(`Not allowed to delete default collection with ID: ${id}`);
+      throw new InternalServerErrorException('Not allowed to delete default collection');
+    }
 
     try {
       await this.prisma.collection.delete({
