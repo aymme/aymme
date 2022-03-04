@@ -9,6 +9,8 @@ import { getAllCollections } from './collections.selectors';
 import { Store } from '@ngrx/store';
 import { CollectionsEntity } from './collections.models';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Injectable()
 export class CollectionsEffects {
   init$ = createEffect(() =>
@@ -21,7 +23,7 @@ export class CollectionsEffects {
             .pipe(map((collections) => CollectionsActions.loadCollectionsSuccess({ collections })));
         },
         onError: (action, error) => {
-          console.error('Error', error);
+          this.toastr.error(`Unable to fetch the collections. Please reopen the project.`);
           return CollectionsActions.loadCollectionsFailure({ error });
         },
       })
@@ -33,11 +35,15 @@ export class CollectionsEffects {
       ofType(CollectionsActions.createNewCollection),
       fetch({
         run: ({ projectId, name }) => {
-          return this.collectionService
-            .createNewCollection(projectId, name)
-            .pipe(map((collection) => CollectionsActions.createNewCollectionSuccess({ collection })));
+          return this.collectionService.createNewCollection(projectId, name).pipe(
+            map((collection) => CollectionsActions.createNewCollectionSuccess({ collection })),
+            tap(() => {
+              this.toastr.success(`Successfully created '${name}' collection.`);
+            })
+          );
         },
         onError: (_, error) => {
+          this.toastr.error(`Couldn't create the new collection. Please try again.`);
           return CollectionsActions.createNewCollectionFailure({ error });
         },
       })
@@ -49,11 +55,15 @@ export class CollectionsEffects {
       ofType(CollectionsActions.deleteCollection),
       fetch({
         run: ({ collection }) => {
-          return this.collectionService
-            .deleteCollection(collection)
-            .pipe(map(() => CollectionsActions.deleteCollectionSuccess({ collection })));
+          return this.collectionService.deleteCollection(collection).pipe(
+            map(() => CollectionsActions.deleteCollectionSuccess({ collection })),
+            tap(() => {
+              this.toastr.success(`Successfully deleted the '${collection.name}' collection.`);
+            })
+          );
         },
         onError: (_, error) => {
+          this.toastr.error(`Not able to delete the collection, please try again.`);
           return CollectionsActions.deleteCollectionFailure({ error });
         },
       })
@@ -71,13 +81,15 @@ export class CollectionsEffects {
       withLatestFrom(this.store$.select(getAllCollections)),
       optimisticUpdate({
         run: ({ data }, collection) => {
-          return this.collectionService
-            .updateCollections(data.projectId, collection)
-            .pipe(map((result) => CollectionsActions.updateCollectionsSuccess({ result })));
+          return this.collectionService.updateCollections(data.projectId, collection).pipe(
+            map((result) => CollectionsActions.updateCollectionsSuccess({ result })),
+            tap(() => {
+              this.toastr.success(`Successfully updated the collections.`);
+            })
+          );
         },
         undoAction: (action: any, error: any) => {
-          // TODO: see next line, maybe trigger error here somehow?
-          console.log('TODO: Implement error handling or revert back?');
+          this.toastr.error(`Not able to update the collections, please try again.`);
           return {
             type: 'UNDO_TODO_UPDATE',
             todo: action.todo,
@@ -90,6 +102,7 @@ export class CollectionsEffects {
   constructor(
     private readonly actions$: Actions,
     private collectionService: CollectionService,
-    private store$: Store<CollectionsEntity>
+    private store$: Store<CollectionsEntity>,
+    private toastr: ToastrService
   ) {}
 }

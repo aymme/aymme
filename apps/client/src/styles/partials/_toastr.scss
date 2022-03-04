@@ -1,0 +1,54 @@
+$box-shadow: 0 3px 7px 0 rgb(0 0 0 / 25%);
+
+.toast-container .ngx-toastr {
+  font-size: .9rem;
+  box-shadow: $box-shadow;
+  color: white;
+  padding: 1rem 2.6rem 1rem 3rem;
+  width: auto;
+  text-shadow: none;
+  margin-bottom: 1rem;
+  max-width: 400px;
+
+  &.toast-success {
+    background-color: #3dc763;
+    background-color: linear-gradient(90deg, rgba(61, 199, 99, 1) 0%, rgba(51, 195, 91, 1) 100%, rgba(61, 199, 99, 1) 200%);
+
+    .toast-close-button {
+      background-color: #33aa55;
+    }
+  }
+
+  &.toast-error {
+    background-color: #ed3d3d;
+    background-color: linear-gradient(90deg, rgba(237, 61, 61, 1) 0%, rgba(238, 10, 10, 1) 100%, rgba(61, 199, 99, 1) 200%);
+
+    .toast-close-button {
+      background-color: #c03030;
+    }
+  }
+
+  &.toast-warning {}
+
+  .toast-close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 30px;
+    padding: 5px;
+    color: rgba(0, 0, 0, .15);
+
+    &:hover {
+      opacity: 1;
+      color: white;
+    }
+  }
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+}
