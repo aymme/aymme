@@ -64,6 +64,7 @@
     "class-validator": "^0.13.1",
     "monaco-editor": "^0.31.1",
     "ngx-monaco-editor": "^12.0.0",
+    "ngx-toastr": "^14.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
     "sleep-promise": "^9.1.0",

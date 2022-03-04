@@ -1,4 +1,4 @@
-import { delay, map } from 'rxjs/operators';
+import { delay, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -6,6 +6,7 @@ import { fetch } from '@nrwl/angular';
 
 import { ProjectsService } from '../../services/projects.service';
 import * as ProjectsActions from './projects.actions';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ProjectsEffects {
@@ -21,7 +22,6 @@ export class ProjectsEffects {
         },
 
         onError: (action, error) => {
-          console.error('Error', error);
           return ProjectsActions.loadProjectsFailure({ error });
         },
       })
@@ -33,11 +33,15 @@ export class ProjectsEffects {
       ofType(ProjectsActions.createNewProject),
       fetch({
         run: ({ name }) => {
-          return this.projectsService
-            .createNewProject(name)
-            .pipe(map((project) => ProjectsActions.createNewProjectSuccess({ project })));
+          return this.projectsService.createNewProject(name).pipe(
+            map((project) => ProjectsActions.createNewProjectSuccess({ project })),
+            tap(() => {
+              this.toastr.success(`Successfully created the new project.`);
+            })
+          );
         },
         onError: (_, error) => {
+          this.toastr.success(`Failed to create project, please try again.`);
           return ProjectsActions.createNewProjectFailure({ error });
         },
       })
@@ -55,5 +59,9 @@ export class ProjectsEffects {
     )
   );
 
-  constructor(private readonly actions$: Actions, private projectsService: ProjectsService) {}
+  constructor(
+    private readonly actions$: Actions,
+    private projectsService: ProjectsService,
+    private toastr: ToastrService
+  ) {}
 }
