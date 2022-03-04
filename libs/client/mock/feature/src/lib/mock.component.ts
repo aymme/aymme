@@ -7,19 +7,13 @@ import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-acce
 import { EndpointFacade } from '@aymme/client/mock/data-access';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ICollection } from '@aymme/shared/model';
+import { ConfirmDeleteCollectionDialogComponent, CreateNewCollectionDialogComponent } from './dialogs';
+import { RenameCollectionDialogComponent } from './dialogs/rename-collection/rename-collection-dialog.component';
 
-interface CompressCollectionsEntity extends CollectionsEntity {
+interface CompressedCollectionsEntity extends CollectionsEntity {
   compressed: boolean;
-}
-
-interface DialogData {
-  name: string;
-}
-
-interface DeleteCollectionDialogData {
-  name: string;
 }
 
 @Component({
@@ -82,7 +76,7 @@ export class MockComponent {
     });
   }
 
-  toggleCompress(collection: CompressCollectionsEntity) {
+  toggleCompress(collection: CompressedCollectionsEntity) {
     const collectionUpdate = { ...collection, compressed: !collection.compressed };
     this.collectionsFacade.toggleCompressed(collectionUpdate);
   }
@@ -184,7 +178,7 @@ export class MockComponent {
   }
 
   createCollection() {
-    const dialogRef = this.dialog.open(NewCollectionDialogComponent, {
+    const dialogRef = this.dialog.open(CreateNewCollectionDialogComponent, {
       width: '400px',
       data: { name: '' },
       position: {
@@ -199,11 +193,22 @@ export class MockComponent {
   }
 
   renameCollection(collection: ICollection) {
-    console.log('TODO: implement rename collection.');
+    const dialogRef = this.dialog.open(RenameCollectionDialogComponent, {
+      width: '400px',
+      data: { name: collection.name },
+      position: {
+        top: '100px',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.collectionsFacade.updateCollection({ projectId: this.projectId, newName: result }, collection);
+    });
   }
 
   deleteCollection(collection: ICollection) {
-    const dialogRef = this.dialog.open(ConfirmDeleteCollectionComponent, {
+    const dialogRef = this.dialog.open(ConfirmDeleteCollectionDialogComponent, {
       width: '400px',
       data: { name: collection.name },
       position: {
@@ -219,42 +224,5 @@ export class MockComponent {
 
   isBoolean(val: any): boolean {
     return typeof val === 'boolean';
-  }
-}
-
-// TODO: can extract this component to their own file.
-@Component({
-  selector: 'ay-dialog-overview-example-dialog',
-  templateUrl: 'new-collection-dialog.html',
-})
-export class NewCollectionDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<NewCollectionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
-
-  @HostListener('window:keyup.enter', ['$event'])
-  onDialogClick(event: KeyboardEvent): void {
-    this.onCancelClick();
-  }
-
-  onCancelClick(): void {
-    this.dialogRef.close();
-  }
-}
-
-// TODO: can extract this component to their own file.
-@Component({
-  selector: 'ay-confirm-delete-collection-dialog',
-  templateUrl: 'confirm-delete-collection-dialog.html',
-})
-export class ConfirmDeleteCollectionComponent {
-  constructor(
-    public dialogRef: MatDialogRef<NewCollectionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DeleteCollectionDialogData
-  ) {}
-
-  onCancelClick(): void {
-    this.dialogRef.close();
   }
 }

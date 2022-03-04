@@ -49,6 +49,13 @@ const collectionsReducer = createReducer(
   on(CollectionsActions.toggleCompressed, (state, { collection }) => {
     return collectionsAdapter.upsertOne(collection, { ...state });
   }),
+  on(CollectionsActions.updateCollection, (state, { data, collection }) => {
+    const updatedCollection: CollectionsEntity = {
+      ...collection,
+      name: data.newName,
+    };
+    return collectionsAdapter.upsertOne(updatedCollection, { ...state });
+  }),
   on(CollectionsActions.loadCollectionsFailure, (state, { error }) => ({
     ...state,
     error,
