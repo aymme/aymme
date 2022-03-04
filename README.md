@@ -49,9 +49,16 @@ yarn prisma migrate dev
 ```
 This will create or apply migrations, re-generate the PrismaClient and run the seeds
 
+When generating a new migration, depending on the changes. You might need to update the migration file, manually.
+For example, if you add a new column to a table, and generate a migration. Prisma will generate a SQL script for 
+creating a new temp table, copy existing data to it. And then it will drop the table and rename the temp table.
+
+Now this is not necessary, because we can only `ALTER` the table. As far as I know, this is possible with SQLite.
+For more info on customizing migrations please read the following [documentation](https://www.prisma.io/docs/guides/database/developing-with-prisma-migrate/customizing-migrations)
+
 *Note: Only use it in dev environment*
 
----
+#### DB Prototyping
 
 While you are working a new feature, you might need to change the DB often.
 For this matter, you should use
@@ -60,20 +67,20 @@ yarn prisma db push
 ```
 This script is suitable for prototyping
 
----
+#### Reset the database
 
 If you want to reset the database to undo manual changes or `db push` experiments, use the following script
 ```shell
 yarn prisma migrate reset
 ```
+#### Create only a migration file
 
----
 If you want to create only a migration and not applying it, you can use
 ```shell
 yarn prisma migrate dev --create-only
 ```
+#### Seed the database 
 
----
 To seed the database, you can use
 ```shell
 yarn prisma db seed
@@ -85,38 +92,6 @@ To deploy a migration to production or test environment, you should be using
 yarn prisma migrate deploy
 ```
 This script should be part of CI/CD pipeline
-
-###Some useful commands
-
-Run all the migrations
-```shell
-yarn migration:run
-```
-It will run all the migrations that are not yet synced with the DB
-
----
-
-Generate a migration
-```shell
-yarn migration:generate NameOfMigration
-```
-This will generate a new file in the following format ${TIMESTAMP}-NameOfMigration in the `database/migrations` folder.
-The generate command will also create the necessary SQL for the migration based on the changed Entities.
-
----
-
-Show all migrations
-```shell
-yarn migration:show
-```
-This will also tell you which of the migrations are synced or not
-
----
-
-Revert the last executed migration
-```shell
-yarn migration:revert
-```
 
 ### Developing (cheatsheet)
 
