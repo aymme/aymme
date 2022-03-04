@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
@@ -45,14 +45,7 @@ export class MockComponent {
   });
 
   loaded$: Observable<boolean> = this.collectionsFacade.loaded$;
-  collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$.pipe(
-    map((results) => {
-      const r = results.sort((a, b) => {
-        return a.order - b.order;
-      });
-      return r;
-    })
-  );
+  collections$: Observable<CollectionsEntity[]> = this.collectionsFacade.allCollections$;
   selectedProject$: Observable<ProjectsEntity | undefined> = this.projectsFacade.selectedProject$;
   availableStatusCodes$: Observable<ResponseEntity[] | undefined> = this.endpointFacade.availableStatusCodes$;
   activeStatusCode$: Observable<ResponseEntity | undefined> = this.endpointFacade.activeStatusCode$;
