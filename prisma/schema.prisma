@@ -31,6 +31,7 @@ model Endpoint {
   project          Project     @relation(fields: [projectId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   headers          Header[]
   responses        Response[]
+  order            Int         @default(0)
 }
 
 model Header {

@@ -6,6 +6,7 @@ export const endpointMocks = [
     method: 'GET',
     forward: false,
     delay: 0,
+    order: 0,
   },
   {
     path: '/api/user-manager/client-api/v2/users/me',
@@ -14,6 +15,7 @@ export const endpointMocks = [
     method: 'GET',
     forward: false,
     delay: 0,
+    order: 4,
   },
   {
     path: '/api/messages-service/client-api/v4/message-center/messages/unread-conversation-count?size=25',
@@ -22,6 +24,7 @@ export const endpointMocks = [
     method: 'GET',
     forward: false,
     delay: 0,
+    order: 3,
   },
   {
     path: '/api/messages-service/client-api/v4/message-center/messages/unread-conversation-count',
@@ -30,6 +33,7 @@ export const endpointMocks = [
     method: 'GET',
     forward: false,
     delay: 500,
+    order: 2,
   },
   {
     path: '/api/arrangement-manager/client-api/v2/productsummary',
@@ -38,6 +42,7 @@ export const endpointMocks = [
     method: 'GET',
     forward: false,
     delay: 0,
+    order: 5,
   },
   {
     path: '/api/payment-order-service/client-api/v2/payment-orders/customer-profile/details',
@@ -46,6 +51,7 @@ export const endpointMocks = [
     method: 'GET',
     forward: false,
     delay: 300,
+    order: 6,
   },
   {
     path: '/api/notifications-service/client-api/v2/notifications/unread-count',
@@ -54,5 +60,6 @@ export const endpointMocks = [
     method: 'GET',
     forward: false,
     delay: 0,
+    order: 1,
   },
 ];

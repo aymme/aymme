@@ -20,7 +20,11 @@ export class CollectionService {
         order: 'asc',
       },
       include: {
-        endpoints: true,
+        endpoints: {
+          orderBy: {
+            order: 'asc',
+          },
+        },
       },
     });
   }
@@ -100,10 +104,18 @@ export class CollectionService {
             order: collection.order,
             endpoints: {
               connect: collection.endpoints.map((endpoint) => ({ id: endpoint.id })),
+              update: collection.endpoints.map((endpoint) => ({
+                where: { id: endpoint.id },
+                data: { order: endpoint.order },
+              })),
             },
           },
           include: {
-            endpoints: true,
+            endpoints: {
+              orderBy: {
+                order: 'asc',
+              },
+            },
           },
         })
       )

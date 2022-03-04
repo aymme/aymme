@@ -27,11 +27,11 @@ export class EndpointService {
   ): Promise<Endpoint & { responses: Response[]; headers: Header[] }> {
     const _path = path.replace('/api/intercept/', '/');
     const ignoreParams = project.configuration.ignoreParams as string;
-    const ignoreParamsList = ignoreParams.split(',');
+    const ignoreParamsList = ignoreParams && ignoreParams.split(',');
     const searchParams = new URLSearchParams();
 
     for (const param in query) {
-      if (!ignoreParamsList.includes(param)) {
+      if (ignoreParamsList && !ignoreParamsList.includes(param)) {
         searchParams.append(param, query[param]);
       }
     }
@@ -61,11 +61,24 @@ export class EndpointService {
       },
     });
 
+    const lastOrderNumber = await this.prisma.endpoint.findFirst({
+      where: {
+        projectId: project.id,
+      },
+      orderBy: {
+        order: 'desc',
+      },
+      select: {
+        order: true,
+      },
+    });
+
     try {
       return await this.prisma.endpoint.create({
         data: {
           path: url,
           method,
+          order: lastOrderNumber ? lastOrderNumber.order + 1 : 0,
           project: {
             connect: {
               id: project.id,
@@ -77,7 +90,7 @@ export class EndpointService {
             },
           },
           responses: {
-            create: true,
+            create: {},
           },
         },
         include: {
