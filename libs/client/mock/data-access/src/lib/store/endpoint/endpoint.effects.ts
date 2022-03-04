@@ -8,6 +8,7 @@ import { getSelectedId as getSelectedProjectId } from '@aymme/client/projects/da
 import * as EndpointActions from './endpoint.actions';
 import * as EndpointSelectors from './endpoint.selectors';
 import { EndpointService } from '../../services/endpoint.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class EndpointEffects {
@@ -47,7 +48,7 @@ export class EndpointEffects {
           return this.endpointService.updateEndpoint(endpointId || '', projectId || '', action.data).pipe(
             map(() => EndpointActions.updateEndpointSuccess()),
             tap(() => {
-              console.log('TODO: implement message service.');
+              this.toastr.success(`Successfully updated the collection.`);
             })
           );
         },
@@ -58,5 +59,10 @@ export class EndpointEffects {
     )
   );
 
-  constructor(private readonly actions$: Actions, private store: Store, private endpointService: EndpointService) {}
+  constructor(
+    private readonly actions$: Actions,
+    private store: Store,
+    private endpointService: EndpointService,
+    private toastr: ToastrService
+  ) {}
 }

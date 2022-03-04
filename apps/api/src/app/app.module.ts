@@ -6,8 +6,6 @@ import { ApiProjectFeatureModule } from '@aymme/api/project/feature';
 import { ApiResponseFeatureModule } from '@aymme/api/response/feature';
 import { ApiCollectionFeatureModule } from '@aymme/api/collection/feature';
 
-
-
 import { AppController } from './app.controller';
 
 @Module({

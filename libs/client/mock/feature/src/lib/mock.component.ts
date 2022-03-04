@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ICollection } from '@aymme/shared/model';
 import { ConfirmDeleteCollectionDialogComponent, CreateNewCollectionDialogComponent } from './dialogs';
 import { RenameCollectionDialogComponent } from './dialogs/rename-collection/rename-collection-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 interface CompressedCollectionsEntity extends CollectionsEntity {
   compressed: boolean;
@@ -59,9 +60,13 @@ export class MockComponent {
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade,
     private fb: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastr: ToastrService
   ) {
     this.collectionsFacade.init(this.projectId);
+
+    // this.toastr.success('New collection created succesfully!');
+    // this.toastr.error('Something failed, we are doomed. please try to create a collection again.');
   }
 
   isEndpointSelected() {
