@@ -41,15 +41,27 @@ export class CollectionService {
     const { name } = data;
 
     try {
-      return await this.prisma.collection.create({
-        data: {
-          name,
-          project: {
-            connect: {
-              id: projectId,
+      return this.prisma.$transaction(async () => {
+        const lastOrderNumber = await this.prisma.collection.findFirst({
+          where: {
+            projectId,
+          },
+          orderBy: {
+            order: 'desc',
+          },
+        });
+
+        return await this.prisma.collection.create({
+          data: {
+            name,
+            order: lastOrderNumber.order + 1,
+            project: {
+              connect: {
+                id: projectId,
+              },
             },
           },
-        },
+        });
       });
     } catch (e) {
       this.logger.error(e.message);
