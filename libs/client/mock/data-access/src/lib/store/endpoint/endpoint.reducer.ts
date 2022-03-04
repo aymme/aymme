@@ -1,9 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
-
 import * as EndpointActions from './endpoint.actions';
-import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
 export const ENDPOINT_FEATURE_KEY = 'endpoint';
 
