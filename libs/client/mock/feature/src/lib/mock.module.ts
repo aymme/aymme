@@ -16,6 +16,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { TooltipModule } from '@aymme/client/shell/ui/tooltip';
+
 import {
   ConfirmDeleteCollectionDialogComponent,
   CreateNewCollectionDialogComponent,
@@ -44,6 +46,7 @@ import {
     MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
+    TooltipModule,
   ],
   declarations: [
     MockComponent,
