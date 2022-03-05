@@ -7,31 +7,44 @@
           <small data-cy="mock-project-nam-slug">(slug: {{ project.slug }})</small>
         </h2>
         <div class="ml-auto">
-          <button
-            data-cy="mock-create-collection-bottom"
-            type="button"
-            label="Create Collection"
-            class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
-            (click)="createCollection()"
-          >
-            Create Collection
-          </button>
-          <button
-            data-cy="mock-import-bottom"
-            type="button"
-            label="Import"
-            class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
-          >
-            Import
-          </button>
-          <button
-            data-cy="mock-export-bottom"
-            type="button"
-            label="Export"
-            class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-2 hover:bg-gray-100"
-          >
-            Export
-          </button>
+          <ay-tooltip [content]="'Project Configuration'">
+            <button
+              class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
+            >
+              <i class="fas fa-sliders-h-square"></i>
+            </button>
+          </ay-tooltip>
+          <ay-tooltip [content]="'Create Collection'">
+            <button
+              data-cy="mock-create-collection-bottom"
+              type="button"
+              label="Create Collection"
+              class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
+              (click)="createCollection()"
+            >
+              <i class="fa fa-plus-circle"></i>
+            </button>
+          </ay-tooltip>
+          <ay-tooltip [content]="'Import Collection'">
+            <button
+              data-cy="mock-import-bottom"
+              type="button"
+              label="Import"
+              class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
+            >
+              <i class="fa fa-download"></i>
+            </button>
+          </ay-tooltip>
+          <ay-tooltip [content]="'Export Collection'">
+            <button
+              data-cy="mock-export-bottom"
+              type="button"
+              label="Export"
+              class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
+            >
+              <i class="fa fa-upload"></i>
+            </button>
+          </ay-tooltip>
         </div>
       </header>
       <div class="py-5">
