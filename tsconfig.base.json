@@ -57,6 +57,7 @@
       "@aymme/client/shell/ui/logo": ["libs/client/shell/ui/logo/src/index.ts"],
       "@aymme/client/shell/ui/overlay-panel": ["libs/client/shell/ui/overlay-panel/src/index.ts"],
       "@aymme/client/shell/ui/theme-switcher": ["libs/client/shell/ui/theme-switcher/src/index.ts"],
+      "@aymme/client/shell/ui/tooltip": ["libs/client/shell/ui/tooltip/src/index.ts"],
       "@aymme/client/shell/ui/top-bar": ["libs/client/shell/ui/top-bar/src/index.ts"],
       "@aymme/shared/model": ["libs/shared/model/src/index.ts"]
     }
