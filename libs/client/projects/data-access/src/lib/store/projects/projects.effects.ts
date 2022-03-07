@@ -32,6 +32,26 @@ export class ProjectsEffects {
     )
   );
 
+  exportProject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectsActions.exportProject),
+      fetch({
+        run: ({ projectId, fileName }) => {
+          return this.projectsService.exportProject(projectId, fileName).pipe(
+            map(() => ProjectsActions.exportProjectSuccess()),
+            tap(() => {
+              return this.toastr.success(`Successfully created the new project.`);
+            })
+          );
+        },
+        onError: (_, error) => {
+          this.toastr.error(`Failed to create the export download.`);
+          return ProjectsActions.createNewProjectFailure({ error });
+        },
+      })
+    )
+  );
+
   createNewProject$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProjectsActions.createNewProject),

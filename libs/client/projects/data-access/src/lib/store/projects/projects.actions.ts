@@ -50,3 +50,10 @@ export const removeIgnoreParamFromConfiguration = createAction(
 );
 
 export const getProjectFailure = createAction('[Projects/API] Get Project Failure', props<{ error: unknown }>());
+
+export const exportProject = createAction(
+  '[Projects/API] Export Project',
+  props<{ projectId: string; fileName: string }>()
+);
+
+export const exportProjectSuccess = createAction('[Projects/API] Export Project Success');
