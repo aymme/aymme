@@ -40,7 +40,13 @@ export class ProjectsEffects {
           return this.projectsService.exportProject(projectId, fileName).pipe(
             map(() => ProjectsActions.exportProjectSuccess()),
             tap(() => {
-              return this.toastr.success(`Successfully created the new project.`);
+              return this.toastr.success(
+                `Created export file with name: <br /><strong class="text-xs">${fileName}</strong>`,
+                '',
+                {
+                  enableHtml: true,
+                }
+              );
             })
           );
         },
