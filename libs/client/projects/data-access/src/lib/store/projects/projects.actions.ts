@@ -27,6 +27,8 @@ export const deleteProject = createAction('[Projects/API] Delete Project', props
 
 export const deleteProjectSuccess = createAction('[Projects/API] Delete Project Success');
 
+export const updateProjectConfiguration = createAction('[Projects/API] Update Project Configuration');
+
 export const deleteProjectFailure = createAction('[Projects/API] Delete Project Failure', props<{ error: unknown }>());
 
 export const selectProject = createAction('[Projects/API] Get Project', props<{ projectId: string }>());
@@ -35,6 +37,16 @@ export const getProject = createAction('[Projects/API] Get Project', props<{ pro
 export const getProjectSuccess = createAction(
   '[Projects/API] Get Project Success',
   props<{ project: ProjectsEntity }>()
+);
+
+export const addIgnoreParamToConfiguration = createAction(
+  '[Projects/API] Add Param To Project Configuration',
+  props<{ newParam: string }>()
+);
+
+export const removeIgnoreParamFromConfiguration = createAction(
+  '[Projects/API] Remove Param To Project Configuration',
+  props<{ param: string }>()
 );
 
 export const getProjectFailure = createAction('[Projects/API] Get Project Failure', props<{ error: unknown }>());

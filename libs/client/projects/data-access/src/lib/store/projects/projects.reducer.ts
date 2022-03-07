@@ -6,10 +6,15 @@ import { ProjectsEntity } from './projects.models';
 
 export const PROJECTS_FEATURE_KEY = 'projects';
 
+export interface ProjectConfigurationEntity {
+  ignoreParams: string[];
+}
+
 export interface State extends EntityState<ProjectsEntity> {
   selectedId?: string; // which Projects record has been selected
   loaded: boolean; // has the Projects list been loaded
   error?: Response | null; // last known error (if any)
+  configuration?: ProjectConfigurationEntity;
 }
 
 export interface ProjectsPartialState {
@@ -49,5 +54,49 @@ export const projectsReducer = createReducer(
   on(ProjectsActions.createNewProjectFailure, (state, { error }) => ({
     ...state,
     error,
-  }))
+  })),
+  on(ProjectsActions.removeIgnoreParamFromConfiguration, (state, { param }) => {
+    const project = state.selectedId ? state.entities[state.selectedId] : null;
+
+    if (project) {
+      const updatedProject = {
+        ...project,
+        configuration: {
+          ...project.configuration,
+          ignoreParams: [...project.configuration.ignoreParams.filter((p: string) => p !== param)],
+        },
+      };
+
+      return projectsAdapter.upsertOne(updatedProject, state);
+    } else {
+      return state;
+    }
+  }),
+  on(ProjectsActions.addIgnoreParamToConfiguration, (state, { newParam }) => {
+    const project = state.selectedId ? state.entities[state.selectedId] : null;
+
+    if (project) {
+      let updatedProject;
+      if (project.configuration.ignoreParams) {
+        updatedProject = {
+          ...project,
+          configuration: {
+            ...project.configuration,
+            ignoreParams: [...project.configuration.ignoreParams, newParam],
+          },
+        };
+      } else {
+        updatedProject = {
+          ...project,
+          configuration: {
+            ...project.configuration,
+            ignoreParams: [newParam],
+          },
+        };
+      }
+      return projectsAdapter.upsertOne(updatedProject, state);
+    } else {
+      return state;
+    }
+  })
 );
