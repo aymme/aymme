@@ -84,7 +84,10 @@
 
             <div class="ml-auto flex flex-row">
               <button class="mr-2 cursor-pointer" (click)="toggleCompress(collection)">
-                <i class="fas fa-compress-alt"></i>
+                <i
+                  class="fas fa-compress-alt"
+                  [ngClass]="collection.compressed ? 'fa-expand-alt' : 'fa-compress-alt'"
+                ></i>
               </button>
               <section *ngIf="collection.name !== 'default'" class="dropdown-menu relative ml-auto">
                 <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
