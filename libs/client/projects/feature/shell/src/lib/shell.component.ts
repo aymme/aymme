@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'ay-shell-component',
   template: `<router-outlet *ngIf="selectedProject$ | async; else isLoading"></router-outlet>
     <ng-template #isLoading>
-      <div class="align-items-center flex justify-content-center"></div>
+      <div class="align-items-center justify-content-center flex"></div>
     </ng-template> `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
