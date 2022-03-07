@@ -63,7 +63,10 @@ export const projectsReducer = createReducer(
         ...project,
         configuration: {
           ...project.configuration,
-          ignoreParams: [...project.configuration.ignoreParams.filter((p: string) => p !== param)],
+          ignoreParams: project.configuration.ignoreParams
+            .split(',')
+            .filter((p: string) => p !== param)
+            .join(','),
         },
       };
 
@@ -82,7 +85,7 @@ export const projectsReducer = createReducer(
           ...project,
           configuration: {
             ...project.configuration,
-            ignoreParams: [...project.configuration.ignoreParams, newParam],
+            ignoreParams: `${project.configuration.ignoreParams},${newParam}`,
           },
         };
       } else {

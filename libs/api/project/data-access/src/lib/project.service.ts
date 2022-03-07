@@ -115,7 +115,7 @@ export class ProjectService {
         data: {
           configuration: {
             update: {
-              ignoreParams: ignoreParams.join(','),
+              ignoreParams: ignoreParams,
             },
           },
         },
