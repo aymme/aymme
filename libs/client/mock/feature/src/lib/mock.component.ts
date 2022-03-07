@@ -9,7 +9,11 @@ import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { ICollection } from '@aymme/shared/model';
-import { ConfirmDeleteCollectionDialogComponent, CreateNewCollectionDialogComponent } from './dialogs';
+import {
+  ConfirmDeleteCollectionDialogComponent,
+  CreateNewCollectionDialogComponent,
+  ProjectConfigurationDialogComponent,
+} from './dialogs';
 import { RenameCollectionDialogComponent } from './dialogs/rename-collection/rename-collection-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 
@@ -192,6 +196,20 @@ export class MockComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return;
       this.collectionsFacade.createNewCollection(this.projectId, result);
+    });
+  }
+
+  openProjectConfiguration() {
+    const dialogRef = this.dialog.open(ProjectConfigurationDialogComponent, {
+      width: '500px',
+      data: {},
+      position: {
+        top: '100px',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('xx', result);
     });
   }
 

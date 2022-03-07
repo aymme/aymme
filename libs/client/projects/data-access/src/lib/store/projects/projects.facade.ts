@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { ProjectsEntity } from '.';
 
 import * as ProjectsActions from './projects.actions';
 import * as ProjectsSelectors from './projects.selectors';
@@ -33,7 +34,19 @@ export class ProjectsFacade {
     this.store.dispatch(ProjectsActions.deleteProject({ projectId }));
   }
 
+  updateProjectConfiguration() {
+    this.store.dispatch(ProjectsActions.updateProjectConfiguration());
+  }
+
   selectProject(projectId: string) {
     this.store.dispatch(ProjectsActions.selectProject({ projectId }));
+  }
+
+  addIgnoreParamToConfiguration(newParam: string) {
+    this.store.dispatch(ProjectsActions.addIgnoreParamToConfiguration({ newParam }));
+  }
+
+  removeIgnoreParamFromConfiguration(param: string) {
+    this.store.dispatch(ProjectsActions.removeIgnoreParamFromConfiguration({ param }));
   }
 }

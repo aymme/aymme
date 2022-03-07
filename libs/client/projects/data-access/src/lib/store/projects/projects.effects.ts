@@ -1,12 +1,16 @@
-import { delay, map, tap } from 'rxjs/operators';
+import { delay, map, tap, withLatestFrom } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
+import { fetch, optimisticUpdate } from '@nrwl/angular';
 
 import { ProjectsService } from '../../services/projects.service';
 import * as ProjectsActions from './projects.actions';
 import { ToastrService } from 'ngx-toastr';
+import { getSelected } from './projects.selectors';
+import { ProjectsEntity } from '.';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProjectsEffects {
@@ -59,9 +63,37 @@ export class ProjectsEffects {
     )
   );
 
+  updateProject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectsActions.updateProjectConfiguration),
+      withLatestFrom(this.store$.select(getSelected)),
+      optimisticUpdate({
+        run: ({ action }, project) => {
+          if (project) {
+            return this.projectsService.updateProject(project).pipe(
+              map((project) => ProjectsActions.getProjectSuccess({ project })),
+              tap(() => {
+                this.toastr.success(`Successfully updated the project.`);
+              })
+            );
+          }
+          return new Observable();
+        },
+        undoAction: (action: any, error: any) => {
+          this.toastr.error(`Not able to update the project, please try again.`);
+          return {
+            type: 'UNDO_TODO_UPDATE',
+            todo: action.todo,
+          };
+        },
+      })
+    )
+  );
+
   constructor(
     private readonly actions$: Actions,
     private projectsService: ProjectsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private store$: Store<ProjectsEntity>
   ) {}
 }

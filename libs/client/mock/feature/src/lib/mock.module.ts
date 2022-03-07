@@ -21,6 +21,7 @@ import { TooltipModule } from '@aymme/client/shell/ui/tooltip';
 import {
   ConfirmDeleteCollectionDialogComponent,
   CreateNewCollectionDialogComponent,
+  ProjectConfigurationDialogComponent,
   RenameCollectionDialogComponent,
 } from './dialogs';
 
@@ -53,6 +54,7 @@ import {
     CreateNewCollectionDialogComponent,
     ConfirmDeleteCollectionDialogComponent,
     RenameCollectionDialogComponent,
+    ProjectConfigurationDialogComponent,
   ],
   providers: [CollectionsFacade],
 })
