@@ -4,5 +4,6 @@ export interface IProject {
   id: string;
   name: string;
   slug: string;
+  configuration: any;
   endpoints?: IEndpoint[];
 }

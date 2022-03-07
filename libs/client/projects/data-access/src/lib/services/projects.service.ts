@@ -24,6 +24,16 @@ export class ProjectsService {
     );
   }
 
+  updateProject(project: ProjectsEntity): Observable<ProjectsEntity> {
+    console.log('xx', project);
+
+    const { configuration } = project;
+
+    return this.http.put<ProjectsEntity>(`${this.apiURL}/${project.id}/configuration`, {
+      ignoreParams: configuration.ignoreParams,
+    });
+  }
+
   getProjectById(projectId: string) {
     return this.http.get<ProjectsEntity>(`${this.apiURL}/${projectId}`);
   }
