@@ -16,8 +16,8 @@ export class CreateNewCollectionDialogComponent {
   ) {}
 
   @HostListener('window:keyup.enter', ['$event'])
-  onDialogClick(event: KeyboardEvent): void {
-    this.onCancelClick();
+  onDialogClick(): void {
+    this.dialogRef.close(this.data.name);
   }
 
   onCancelClick(): void {

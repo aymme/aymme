@@ -8,14 +8,7 @@
 
     <div class="flex flex-col">
       <label class="mb-2 inline-block text-sm font-bold" for="name">Collection Name</label>
-      <input
-        id="name"
-        class="rounded-md text-sm"
-        matInput
-        type="text"
-        [(ngModel)]="data.name"
-        (keyup.enter)="onCancelClick()"
-      />
+      <input id="name" class="rounded-md text-sm" matInput type="text" [(ngModel)]="data.name" cdkFocusInitial />
     </div>
   </div>
 
@@ -30,7 +23,6 @@
       class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
       mat-button
       [mat-dialog-close]="data.name"
-      cdkFocusInitial
     >
       Create
     </button>
