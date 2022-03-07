@@ -49,4 +49,8 @@ export class ProjectsFacade {
   removeIgnoreParamFromConfiguration(param: string) {
     this.store.dispatch(ProjectsActions.removeIgnoreParamFromConfiguration({ param }));
   }
+
+  exportProject(projectId: string, fileName: string) {
+    this.store.dispatch(ProjectsActions.exportProject({ projectId, fileName }));
+  }
 }

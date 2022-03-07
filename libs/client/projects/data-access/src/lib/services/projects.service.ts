@@ -45,4 +45,8 @@ export class ProjectsService {
   deleteProject(id: string) {
     return this.http.delete(`/api/${this.apiFeatureKey}/${id}`);
   }
+
+  exportProject(projectId: string, fileName: string) {
+    return this.http.get(`/api/${this.apiFeatureKey}/${projectId}/export/${fileName}`);
+  }
 }

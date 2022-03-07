@@ -33,6 +33,13 @@ export class ApiProjectFeatureController {
     return this.projectService.getById(id);
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Get(':id/export/:fileName')
+  async getExport(@Param('id', new ParseUUIDPipe()) id: string, @Param() fileName: string) {
+    console.log(id, fileName);
+    return this.projectService.getById(id);
+  }
+
   @Post()
   async create(@Body() createProjectDto: CreateProjectDto) {
     return this.projectService.create(createProjectDto);

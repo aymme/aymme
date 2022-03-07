@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, delay, Observable, Subject, tap } from 'rxjs';
@@ -15,7 +15,6 @@ import {
   ProjectConfigurationDialogComponent,
 } from './dialogs';
 import { RenameCollectionDialogComponent } from './dialogs/rename-collection/rename-collection-dialog.component';
-import { ToastrService } from 'ngx-toastr';
 
 interface CompressedCollectionsEntity extends CollectionsEntity {
   compressed: boolean;
@@ -64,8 +63,7 @@ export class MockComponent {
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade,
     private fb: FormBuilder,
-    public dialog: MatDialog,
-    private toastr: ToastrService
+    public dialog: MatDialog
   ) {
     this.collectionsFacade.init(this.projectId);
   }
@@ -183,6 +181,15 @@ export class MockComponent {
       });
     }
   }
+
+  exportProject(project: ProjectsEntity) {
+    const currentDate = new Date().toISOString();
+    const fileName = `${project.name}-${currentDate}.json`;
+
+    this.projectsFacade.exportProject(this.projectId, fileName);
+  }
+
+  importProject() {}
 
   createCollection() {
     const dialogRef = this.dialog.open(CreateNewCollectionDialogComponent, {
