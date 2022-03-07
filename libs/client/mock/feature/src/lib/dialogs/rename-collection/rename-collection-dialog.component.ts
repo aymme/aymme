@@ -19,7 +19,11 @@ export class RenameCollectionDialogComponent {
 
   @HostListener('window:keyup.enter', ['$event'])
   onDialogClick(event: KeyboardEvent): void {
-    this.onCancelClick();
+    this.onEnterPress();
+  }
+
+  onEnterPress(): void {
+    this.dialogRef.close(this.data.name);
   }
 
   onCancelClick(): void {
