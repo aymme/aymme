@@ -207,10 +207,6 @@ export class MockComponent {
         top: '100px',
       },
     });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('xx', result);
-    });
   }
 
   renameCollection(collection: ICollection) {
