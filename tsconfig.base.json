@@ -33,6 +33,8 @@
       "@aymme/api/shared/data-access": ["libs/api/shared/data-access/src/index.ts"],
       "@aymme/client/collection/data-access": ["libs/client/collection/data-access/src/index.ts"],
       "@aymme/client/collection/ui/collection-panel": ["libs/client/collection/ui/collection-panel/src/index.ts"],
+      "@aymme/client/how-to-use/feature/how-to-use": ["libs/client/how-to-use/feature/how-to-use/src/index.ts"],
+      "@aymme/client/how-to-use/feature/shell": ["libs/client/how-to-use/feature/shell/src/index.ts"],
       "@aymme/client/mock/data-access": ["libs/client/mock/data-access/src/index.ts"],
       "@aymme/client/mock/feature": ["libs/client/mock/feature/src/index.ts"],
       "@aymme/client/mock/model": ["libs/client/mock/model/src/index.ts"],
