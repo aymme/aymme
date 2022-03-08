@@ -532,6 +532,58 @@
       "tags": [],
       "implicitDependencies": ["client"]
     },
+    "client-how-to-use-feature-how-to-use": {
+      "projectType": "library",
+      "root": "libs/client/how-to-use/feature/how-to-use",
+      "sourceRoot": "libs/client/how-to-use/feature/how-to-use/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/how-to-use/feature/how-to-use"],
+          "options": {
+            "jestConfig": "libs/client/how-to-use/feature/how-to-use/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/how-to-use/feature/how-to-use/src/**/*.ts",
+              "libs/client/how-to-use/feature/how-to-use/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "client-how-to-use-feature-shell": {
+      "projectType": "library",
+      "root": "libs/client/how-to-use/feature/shell",
+      "sourceRoot": "libs/client/how-to-use/feature/shell/src",
+      "prefix": "aymme",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/client/how-to-use/feature/shell"],
+          "options": {
+            "jestConfig": "libs/client/how-to-use/feature/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/client/how-to-use/feature/shell/src/**/*.ts",
+              "libs/client/how-to-use/feature/shell/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "client-mock-data-access": {
       "projectType": "library",
       "root": "libs/client/mock/data-access",
