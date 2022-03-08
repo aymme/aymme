@@ -15,11 +15,10 @@ export const webShellRoutes: Route[] = [
         path: 'projects',
         loadChildren: async () => (await import('@aymme/client/projects/feature/shell')).ShellModule,
       },
-      // {
-      //   path: 'projects/:projectId/mock',
-      //   loadChildren: async () =>
-      //     (await import('@aymme/client/mock/feature')).MockModule,
-      // },
+      {
+        path: 'how-to-use',
+        loadChildren: async () => (await import('@aymme/client/how-to-use/feature/shell')).ShellModule,
+      },
     ],
   },
   {

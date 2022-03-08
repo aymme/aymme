@@ -31,7 +31,7 @@ import { ShellComponent } from './shell.component';
       },
     ]),
     StoreModule.forFeature(PROJECTS_FEATURE_KEY, projectsReducer),
-    EffectsModule.forFeature([ProjectsEffects])
+    EffectsModule.forFeature([ProjectsEffects]),
   ],
   providers: [ProjectsFacade],
   declarations: [ShellComponent],
