@@ -58,6 +58,25 @@ export class ProjectsEffects {
     )
   );
 
+  importProject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProjectsActions.importProject),
+      fetch({
+        run: ({ projectId, file }) => {
+          return this.projectsService.importProject(projectId, file).pipe(
+            map(() => ProjectsActions.importProjectSuccess()),
+            tap(() => {
+              return this.toastr.success(`Import project succesfull.`);
+            })
+          );
+        },
+        onError: (_, error) => {
+          this.toastr.error(`Failed to import the project, please try again..`);
+        },
+      })
+    )
+  );
+
   createNewProject$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProjectsActions.createNewProject),

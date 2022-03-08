@@ -13,12 +13,15 @@ import {
   ConfirmDeleteCollectionDialogComponent,
   CreateNewCollectionDialogComponent,
   ProjectConfigurationDialogComponent,
+  ImportProjectDialogComponent,
 } from './dialogs';
 import { RenameCollectionDialogComponent } from './dialogs/rename-collection/rename-collection-dialog.component';
 
 interface CompressedCollectionsEntity extends CollectionsEntity {
   compressed: boolean;
 }
+
+const POSITION = { top: '100px' };
 
 @Component({
   selector: 'ay-mock',
@@ -189,7 +192,13 @@ export class MockComponent {
     this.projectsFacade.exportProject(this.projectId, fileName);
   }
 
-  importProject() {}
+  importProject() {
+    this.dialog.open(ImportProjectDialogComponent, {
+      width: '400px',
+      data: { projectId: this.projectId },
+      position: POSITION,
+    });
+  }
 
   createCollection() {
     const dialogRef = this.dialog.open(CreateNewCollectionDialogComponent, {

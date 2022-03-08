@@ -53,4 +53,8 @@ export class ProjectsFacade {
   exportProject(projectId: string, fileName: string) {
     this.store.dispatch(ProjectsActions.exportProject({ projectId, fileName }));
   }
+
+  importProject(projectId: string, file: File): void {
+    this.store.dispatch(ProjectsActions.importProject({ projectId, file }));
+  }
 }

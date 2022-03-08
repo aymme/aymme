@@ -57,3 +57,7 @@ export const exportProject = createAction(
 );
 
 export const exportProjectSuccess = createAction('[Projects/API] Export Project Success');
+
+export const importProject = createAction('[Projects/API] Import Project', props<{ projectId: string; file: File }>());
+
+export const importProjectSuccess = createAction('[Projects/API] Import Project Success');

@@ -1,0 +1,47 @@
+<article class="dark:bg-background rounded-lg bg-white p-6">
+  <header class="dark:border-blend-50 mb-4 flex flex-col items-center border-b border-gray-100 pb-2">
+    <h1>Import Project</h1>
+  </header>
+
+  <div class="mb-4">
+    <p class="mb-4 text-sm">
+      Choose a <strong>AYMME Project Export</strong> file (.json file) to import the project configuration data,
+      collections and endpoints.
+    </p>
+    <form [formGroup]="importProjectForm" class="mb-4">
+      <label
+        for="fileUpload"
+        class="dark:border-blend-50 hover:dark:bg-blend-100 inline-block cursor-pointer rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
+        ><i class="fa fa-download mr-2"></i> Choose a File</label
+      >
+      <input
+        id="fileUpload"
+        formControlName="importFiles"
+        type="file"
+        single
+        class="hidden"
+        accept=".json"
+        (change)="onFileChange($event)"
+      />
+    </form>
+
+    <ng-container *ngIf="file$ | async as file">
+      <span class="inline-block w-full text-sm"> File: {{ file?.name }} </span>
+    </ng-container>
+  </div>
+
+  <footer class="flex flex-row justify-between">
+    <button
+      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
+      (click)="onCancelClick()"
+    >
+      Bring me back!
+    </button>
+    <button
+      (click)="doImport()"
+      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
+    >
+      Import
+    </button>
+  </footer>
+</article>
