@@ -49,4 +49,11 @@ export class ProjectsService {
   exportProject(projectId: string, fileName: string) {
     return this.http.get(`/api/${this.apiFeatureKey}/${projectId}/export/${fileName}`);
   }
+
+  importProject(projectId: string, file: File) {
+    const formData: FormData = new FormData();
+    formData.append('files[]', file, file.name);
+
+    return this.http.post(`${this.apiFeatureKey}/${projectId}/import/`, formData, {});
+  }
 }

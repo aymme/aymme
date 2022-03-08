@@ -36,8 +36,7 @@ export class ApiProjectFeatureController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id/export/:fileName')
   async getExport(@Param('id', new ParseUUIDPipe()) id: string, @Param() fileName: string) {
-    console.log(id, fileName);
-    return this.projectService.getById(id);
+    return this.projectService.exportProject(id);
   }
 
   @Post()
