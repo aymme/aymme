@@ -70,6 +70,10 @@ export class ApiProjectFeatureController {
   @Post(':id/import')
   @UseInterceptors(FileInterceptor('file'))
   importProject(@Param('id', new ParseUUIDPipe()) id: string, @UploadedFile() file: Express.Multer.File) {
+    if (!file) {
+      throw new BadRequestException('No file specified.');
+    }
+
     if (file.mimetype !== 'application/json') {
       throw new BadRequestException(`Mime type ${file.mimetype} is not supported by the system`);
     }
