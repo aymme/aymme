@@ -41,7 +41,7 @@ const endpointReducer = createReducer(
   }),
   on(EndpointActions.loadEndpointFailure, (state, { error }) => ({ ...state, error })),
   on(EndpointActions.addNewResponse, (state, { response, body }) => {
-    const newResponse: ResponseEntity = { statusCode: response, body: body, id: '' };
+    const newResponse: ResponseEntity = { statusCode: response, body: body };
     let updatedResponseArray: ResponseEntity[];
 
     if (state.endpoint) {

@@ -1,11 +1,13 @@
 import { IResponse } from '@aymme/shared/model';
 import { IsEnum, IsJSON, IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
 import { HttpStatus } from '@nestjs/common';
+import { Transform } from 'class-transformer';
 
 export class ResponseDto implements IResponse {
   @IsOptional()
   @IsUUID()
-  id: string;
+  @Transform(({ value }) => (value === null ? undefined : value))
+  id: string | null;
 
   @IsOptional()
   @IsJSON()
