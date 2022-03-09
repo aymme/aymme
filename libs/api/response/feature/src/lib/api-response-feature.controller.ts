@@ -1,18 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseUUIDPipe,
-  Post,
-  Put,
-} from '@nestjs/common';
-import {
-  CreateResponseDto,
-  ResponseService,
-  UpdateResponseDto,
-} from '@aymme/api/response/data-access';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from '@nestjs/common';
+import { CreateResponseDto, ResponseService, UpdateResponseDto } from '@aymme/api/response/data-access';
 
 @Controller('endpoints/:endpointId/responses')
 export class ApiResponseFeatureController {
@@ -24,18 +11,12 @@ export class ApiResponseFeatureController {
   }
 
   @Get(':id')
-  getById(
-    @Param('endpointId', new ParseUUIDPipe()) endpointId: string,
-    @Param('id', new ParseUUIDPipe()) id: string
-  ) {
+  getById(@Param('endpointId', new ParseUUIDPipe()) endpointId: string, @Param('id', new ParseUUIDPipe()) id: string) {
     return this.responseService.getById(endpointId, id);
   }
 
   @Post()
-  create(
-    @Param('endpointId', new ParseUUIDPipe()) endpointId: string,
-    @Body() createResponseDto: CreateResponseDto
-  ) {
+  create(@Param('endpointId', new ParseUUIDPipe()) endpointId: string, @Body() createResponseDto: CreateResponseDto) {
     return this.responseService.create(endpointId, createResponseDto);
   }
 
@@ -49,10 +30,7 @@ export class ApiResponseFeatureController {
   }
 
   @Delete(':id')
-  delete(
-    @Param('endpointId', new ParseUUIDPipe()) endpointId: string,
-    @Param('id', new ParseUUIDPipe()) id: string
-  ) {
+  delete(@Param('endpointId', new ParseUUIDPipe()) endpointId: string, @Param('id', new ParseUUIDPipe()) id: string) {
     return this.responseService.delete(endpointId, id);
   }
 }

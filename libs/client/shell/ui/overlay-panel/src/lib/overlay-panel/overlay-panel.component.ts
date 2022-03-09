@@ -27,12 +27,25 @@ export class OverlayPanelComponent implements OnInit {
   groupedOptions$: BehaviorSubject<groupedOption[]> = new BehaviorSubject<groupedOption[]>([]);
 
   filteredOptions$ = combineLatest([this.groupedOptions$, this.filter$]).pipe(
-    map(([options, filterString]) =>
-      options.filter((option) => {
-        // TODO: deep filter on option.item to only display the filterString match
-        return option;
-      })
-    )
+    map(([options, filterString]) => {
+      if (filterString) {
+        if (filterString.length === 1) {
+          return options.filter((option) => option.label.includes(filterString));
+        } else {
+          return options
+            .map((option) => {
+              const items = option.items.filter((item) => item.label.includes(filterString));
+              return {
+                ...option,
+                items,
+              };
+            })
+            .filter((option) => option.items.length);
+        }
+      } else {
+        return options;
+      }
+    })
   );
 
   ngOnInit(): void {
