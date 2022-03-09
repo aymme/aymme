@@ -34,4 +34,8 @@ export class EndpointFacade {
   addNewResponse(response: number, body: string) {
     this.store.dispatch(EndpointActions.addNewResponse({ response, body }));
   }
+
+  removeResponse(response: ResponseEntity) {
+    this.store.dispatch(EndpointActions.removeResponse({ response }));
+  }
 }

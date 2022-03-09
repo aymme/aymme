@@ -40,6 +40,23 @@ const endpointReducer = createReducer(
     };
   }),
   on(EndpointActions.loadEndpointFailure, (state, { error }) => ({ ...state, error })),
+  on(EndpointActions.removeResponse, (state, { response }) => {
+    if (state.endpoint) {
+      const updatedResponseArray = state.endpoint.responses?.filter((res) => res.id !== response.id);
+
+      const updatedEnpoint = {
+        ...state.endpoint,
+        responses: updatedResponseArray,
+      };
+
+      return {
+        ...state,
+        endpoint: updatedEnpoint,
+      };
+    } else {
+      return state;
+    }
+  }),
   on(EndpointActions.addNewResponse, (state, { response, body }) => {
     const newResponse: ResponseEntity = { statusCode: response, body: body };
     let updatedResponseArray: ResponseEntity[];

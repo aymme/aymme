@@ -21,7 +21,8 @@ export class ResponseListComponent {
     if (data) {
       this.responses = data.map((response) => ({
         id: response.id,
-        statusCode: response.statusCode.toString(),
+        statusCode: response.statusCode,
+        body: response.body,
       }));
 
       // const activeStatusCodeIndex = this.responses.findIndex(
@@ -34,7 +35,7 @@ export class ResponseListComponent {
 
   @Output() viewResponseBody = new EventEmitter<number>();
 
-  responses: any = [];
+  responses: ResponseEntity[] = [];
   activeItem: any;
   selectedStatusCode!: number;
   availableStatuses = availableStatusCodes;
@@ -56,6 +57,10 @@ export class ResponseListComponent {
 
     // update active status dropdown with newly added response
     this.endpointFacade.addNewResponse(this.selectedStatusCode, newBodyContent);
+  }
+
+  removeResponse(response: ResponseEntity) {
+    this.endpointFacade.removeResponse(response);
   }
 
   showMockFor(index: number): void {

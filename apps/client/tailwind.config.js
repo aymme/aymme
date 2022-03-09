@@ -25,6 +25,9 @@ module.exports = {
     fontFamily: {
       sans: ["'Inter', sans-serif"],
     },
+    fontSize: {
+      xs: '.75rem',
+    },
     extend: {
       spacing: {
         sm: '0.5rem',
