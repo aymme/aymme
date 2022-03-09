@@ -6,6 +6,7 @@ import { APP_CONFIG, AppConfig } from '@aymme/client/shared/app-config';
 
 import { ProjectsEntity } from '../store/projects/projects.models';
 import { Observable } from 'rxjs';
+import { FileSaverService } from 'ngx-filesaver';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,11 @@ export class ProjectsService {
   private apiFeatureKey = '/projects';
   private apiURL = this.appConfig.baseURL + this.apiFeatureKey;
 
-  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig, private http: HttpClient) {}
+  constructor(
+    @Inject(APP_CONFIG) private appConfig: AppConfig,
+    private http: HttpClient,
+    private fileSaver: FileSaverService
+  ) {}
 
   getProjects() {
     return this.http.get<ProjectsEntity[]>(`/api${this.apiFeatureKey}`).pipe(
@@ -46,8 +51,8 @@ export class ProjectsService {
     return this.http.delete(`/api/${this.apiFeatureKey}/${id}`);
   }
 
-  exportProject(projectId: string, fileName: string) {
-    return this.http.get(`/api/${this.apiFeatureKey}/${projectId}/export/${fileName}`);
+  exportProject(projectId: string): Observable<ProjectsEntity> {
+    return this.http.get<ProjectsEntity>(`/api/${this.apiFeatureKey}/${projectId}/export`);
   }
 
   importProject(projectId: string, file: File) {
@@ -55,5 +60,10 @@ export class ProjectsService {
     formData.append('files[]', file, file.name);
 
     return this.http.post(`${this.apiFeatureKey}/${projectId}/import/`, formData, {});
+  }
+
+  saveToFile(data: ProjectsEntity, fileName: string) {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    this.fileSaver.save(blob, fileName);
   }
 }

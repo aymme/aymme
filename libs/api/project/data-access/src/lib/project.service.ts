@@ -150,4 +150,28 @@ export class ProjectService {
       throw new InternalServerErrorException();
     }
   }
+
+  async exportProject(id: string): Promise<unknown> {
+    const found = await this.prisma.project.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        configuration: true,
+        collections: {
+          include: {
+            endpoints: true,
+          },
+        },
+        _count: true,
+      }, // NOTE `_count` can be useful for the import
+    });
+
+    if (!found) {
+      throw new NotFoundException();
+    }
+
+    return found;
+  }
+
 }
