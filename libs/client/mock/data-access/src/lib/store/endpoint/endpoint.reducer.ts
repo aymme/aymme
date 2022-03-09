@@ -39,7 +39,30 @@ const endpointReducer = createReducer(
       loaded: true,
     };
   }),
-  on(EndpointActions.loadEndpointFailure, (state, { error }) => ({ ...state, error }))
+  on(EndpointActions.loadEndpointFailure, (state, { error }) => ({ ...state, error })),
+  on(EndpointActions.addNewResponse, (state, { response, body }) => {
+    const newResponse: ResponseEntity = { statusCode: response, body: body, id: '' };
+    let updatedResponseArray: ResponseEntity[];
+
+    if (state.endpoint) {
+      if (state.endpoint.responses) {
+        updatedResponseArray = [...state.endpoint.responses, newResponse];
+      } else {
+        updatedResponseArray = [newResponse];
+      }
+      const updatedEndpoint = {
+        ...state.endpoint,
+        responses: updatedResponseArray,
+      };
+
+      return {
+        ...state,
+        endpoint: updatedEndpoint,
+      };
+    } else {
+      return state;
+    }
+  })
 );
 
 export function reducer(state: State | undefined, action: Action) {
