@@ -37,7 +37,10 @@ export class ProjectsEffects {
       ofType(ProjectsActions.exportProject),
       fetch({
         run: ({ projectId, fileName }) => {
-          return this.projectsService.exportProject(projectId, fileName).pipe(
+          return this.projectsService.exportProject(projectId).pipe(
+            tap((data) => {
+              this.projectsService.saveToFile(data, fileName);
+            }),
             map(() => ProjectsActions.exportProjectSuccess()),
             tap(() => {
               return this.toastr.success(
