@@ -3,6 +3,6 @@
   position: relative;
 }
 
-li.active a {
+li.active {
  background-color: var(--ay-active-color);
 }

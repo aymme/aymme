@@ -1,14 +1,20 @@
 <section class="relative">
   <ul class="flex flex-row items-center">
     <li
+      class="hover:dark:bg-blend-50 dark:border-blend-50 mr-1 flex cursor-pointer flex-row items-center rounded-t border border-gray-100 text-sm transition ease-in-out hover:bg-gray-100"
       *ngFor="let response of responses; index as i"
       (click)="showMockFor(i)"
       [ngClass]="{ active: response.statusCode === activeItem.statusCode }"
     >
-      <a
-        class="hover:dark:bg-blend-50 dark:border-blend-50 inline-block h-full cursor-pointer rounded-t border border-gray-100 px-4 py-2 text-sm transition ease-in-out hover:bg-gray-100"
-        >{{ response.statusCode }}</a
+      <a class="px-3 py-2">{{ response.statusCode }}</a>
+
+      <button
+        *ngIf="response.statusCode !== 500"
+        (click)="removeResponse(response)"
+        class="dark:border-blend-50 h-full rounded-tr border-l-[1px] border-gray-200 px-3 py-2 text-xs"
       >
+        <i class="fa fa-times"></i>
+      </button>
     </li>
 
     <li>
