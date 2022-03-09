@@ -69,7 +69,7 @@ export class ProjectsEffects {
           return this.projectsService.importProject(projectId, file).pipe(
             map(() => ProjectsActions.importProjectSuccess()),
             tap(() => {
-              return this.toastr.success(`Import project succesfull.`);
+              return this.toastr.success(`Import project successful.`);
             })
           );
         },

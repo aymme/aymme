@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   ClassSerializerInterceptor,
   Controller,
@@ -8,6 +9,7 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import {
@@ -16,6 +18,10 @@ import {
   UpdateProjectConfigurationDto,
   UpdateProjectDto,
 } from '@aymme/api/project/data-access';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
+
+import 'multer';
 
 @Controller('projects')
 export class ApiProjectFeatureController {
@@ -31,12 +37,6 @@ export class ApiProjectFeatureController {
   @Get(':id')
   async getById(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.projectService.getById(id);
-  }
-
-  @UseInterceptors(ClassSerializerInterceptor)
-  @Get(':id/export/:fileName')
-  async getExport(@Param('id', new ParseUUIDPipe()) id: string, @Param() fileName: string) {
-    return this.projectService.exportProject(id);
   }
 
   @Post()
@@ -60,5 +60,20 @@ export class ApiProjectFeatureController {
   @Delete(':id')
   async delete(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.projectService.delete(id);
+  }
+
+  @Get(':id/export')
+  async getExport(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.projectService.exportProject(id);
+  }
+
+  @Post(':id/import')
+  @UseInterceptors(FileInterceptor('file'))
+  importProject(@Param('id', new ParseUUIDPipe()) id: string, @UploadedFile() file: Express.Multer.File) {
+    if (file.mimetype !== 'application/json') {
+      throw new BadRequestException(`Mime type ${file.mimetype} is not supported by the system`);
+    }
+
+    this.projectService.importProject(id, JSON.parse(file.buffer.toString()));
   }
 }
