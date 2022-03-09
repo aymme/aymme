@@ -57,9 +57,9 @@ export class ProjectsService {
 
   importProject(projectId: string, file: File) {
     const formData: FormData = new FormData();
-    formData.append('files[]', file, file.name);
+    formData.append('file', file);
 
-    return this.http.post(`${this.apiFeatureKey}/${projectId}/import/`, formData, {});
+    return this.http.post(`/api/${this.apiFeatureKey}/${projectId}/import`, formData, {});
   }
 
   saveToFile(data: ProjectsEntity, fileName: string) {
