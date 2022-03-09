@@ -3,7 +3,6 @@ import { ResponseEntity } from '@aymme/client/mock/model';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { availableStatusCodes } from './available-status-codes';
 import { OverlayOption } from '@aymme/client/shell/ui/overlay-panel';
-import { BehaviorSubject } from 'rxjs';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
 
 @Component({
@@ -24,10 +23,6 @@ export class ResponseListComponent {
         statusCode: response.statusCode,
         body: response.body,
       }));
-
-      // const activeStatusCodeIndex = this.responses.findIndex(
-      //   (response: any) => response.statusCode == this.activeStatusCode
-      // );
 
       this.showMockFor(0);
     }
@@ -86,7 +81,7 @@ export class ResponseListComponent {
     this.showMockFor(this.responses.length - 1);
   }
 
-  private getResponseByStatusCode(statusCode: number): any {
-    return this.responses.find((response: any) => response.statusCode == statusCode);
+  private getResponseByStatusCode(statusCode: number): ResponseEntity | undefined {
+    return this.responses.find((response: ResponseEntity) => response.statusCode == statusCode);
   }
 }
