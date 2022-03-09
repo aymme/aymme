@@ -4,6 +4,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { availableStatusCodes } from './available-status-codes';
 import { OverlayOption } from '@aymme/client/shell/ui/overlay-panel';
 import { BehaviorSubject } from 'rxjs';
+import { EndpointFacade } from '@aymme/client/mock/data-access';
 
 @Component({
   selector: 'ay-response-list',
@@ -39,18 +40,22 @@ export class ResponseListComponent {
   availableStatuses = availableStatusCodes;
   showOverlayPanel = false;
 
+  constructor(private endpointFacade: EndpointFacade) {}
+
   addNewResponse(): void {
+    const newBodyContent = '{ "are-you-mocking-me": "yes" }';
+
     this.responseArrayForm?.push(
       new FormGroup({
         statusCode: new FormControl(this.selectedStatusCode),
-        body: new FormControl('{ "are-you-mocking-me": "yes" }'),
+        body: new FormControl(newBodyContent),
       })
     );
 
-    this.responses = [
-      ...this.responses,
-      { statusCode: this.selectedStatusCode, body: '{ "are-you-mocking-me": "yes" }' },
-    ];
+    this.responses = [...this.responses, { statusCode: this.selectedStatusCode, body: newBodyContent }];
+
+    // update active status dropdown with newly added response
+    this.endpointFacade.addNewResponse(this.selectedStatusCode, newBodyContent);
   }
 
   showMockFor(index: number): void {
@@ -68,9 +73,12 @@ export class ResponseListComponent {
   }
 
   onSelectedStatusCode(item: OverlayOption): void {
+    // if status code is already used skip adding again.
     if (this.getResponseByStatusCode(item.value)) return;
 
     // TODO: update "Active Status" list with newly added status code.
+
+    console.log(this);
 
     this.selectedStatusCode = item.value;
     this.addNewResponse();
