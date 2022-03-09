@@ -4,7 +4,7 @@ import { fetch, optimisticUpdate } from '@nrwl/angular';
 
 import * as CollectionsActions from './collections.actions';
 import { CollectionService } from '../../services';
-import { map, tap, withLatestFrom } from 'rxjs/operators';
+import { delay, map, tap, withLatestFrom } from 'rxjs/operators';
 import { getAllCollections } from './collections.selectors';
 import { Store } from '@ngrx/store';
 import { CollectionsEntity } from './collections.models';
@@ -15,12 +15,18 @@ import { ToastrService } from 'ngx-toastr';
 export class CollectionsEffects {
   init$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CollectionsActions.init),
+      ofType(CollectionsActions.init, CollectionsActions.refresh),
       fetch({
         run: (action) => {
-          return this.collectionService
-            .getAll(action.projectId)
-            .pipe(map((collections) => CollectionsActions.loadCollectionsSuccess({ collections })));
+          return this.collectionService.getAll(action.projectId).pipe(
+            map((collections) => CollectionsActions.loadCollectionsSuccess({ collections })),
+            delay(500),
+            tap(() => {
+              if (action.type === CollectionsActions.refresh.type) {
+                this.toastr.success('Successfully refreshed project data.');
+              }
+            })
+          );
         },
         onError: (action, error) => {
           this.toastr.error(`Unable to fetch the collections. Please reopen the project.`);
