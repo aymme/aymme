@@ -36,7 +36,7 @@ export class ResponseListComponent {
   @Output() viewResponseBody = new EventEmitter<number>();
 
   responses: ResponseEntity[] = [];
-  activeItem: any;
+  activeItem: ResponseEntity;
   selectedStatusCode!: number;
   availableStatuses = availableStatusCodes;
   showOverlayPanel = false;
@@ -73,17 +73,12 @@ export class ResponseListComponent {
   }
 
   hideOverlayPanel() {
-    console.log('hi?');
     this.showOverlayPanel = false;
   }
 
   onSelectedStatusCode(item: OverlayOption): void {
     // if status code is already used skip adding again.
     if (this.getResponseByStatusCode(item.value)) return;
-
-    // TODO: update "Active Status" list with newly added status code.
-
-    console.log(this);
 
     this.selectedStatusCode = item.value;
     this.addNewResponse();
