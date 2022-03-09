@@ -30,4 +30,8 @@ export class EndpointFacade {
   updateEndpoint(data: UpdateEndpointDto) {
     this.store.dispatch(EndpointActions.updateEndpoint({ data }));
   }
+
+  addNewResponse(response: number, body: string) {
+    this.store.dispatch(EndpointActions.addNewResponse({ response, body }));
+  }
 }
