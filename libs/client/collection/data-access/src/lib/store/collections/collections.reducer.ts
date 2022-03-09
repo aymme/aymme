@@ -53,6 +53,12 @@ const collectionsReducer = createReducer(
     loaded: false,
     error: null,
   })),
+  on(CollectionsActions.refresh, (state) => {
+    return {
+      ...state,
+      loaded: false,
+    };
+  }),
   on(CollectionsActions.loadCollectionsSuccess, (state, { collections }) => {
     return collectionsAdapter.setAll(collections, { ...state, loaded: true });
   }),

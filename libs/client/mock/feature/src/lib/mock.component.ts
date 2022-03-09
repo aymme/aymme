@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, delay, Observable, Subject, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
@@ -197,6 +197,10 @@ export class MockComponent {
       if (!result) return;
       this.collectionsFacade.createNewCollection(this.projectId, result);
     });
+  }
+
+  reloadProject() {
+    this.collectionsFacade.refresh(this.projectId);
   }
 
   openProjectConfiguration() {

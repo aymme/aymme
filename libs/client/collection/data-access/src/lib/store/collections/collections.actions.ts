@@ -3,6 +3,8 @@ import { CollectionsEntity } from './collections.models';
 
 export const init = createAction('[Collections Page] Init', props<{ projectId: string }>());
 
+export const refresh = createAction('[Collection/API] refresh', props<{ projectId: string }>());
+
 export const loadCollectionsSuccess = createAction(
   '[Collections/API] Load Collections Success',
   props<{ collections: CollectionsEntity[] }>()
@@ -17,6 +19,7 @@ export const updateCollectionsSuccess = createAction(
   '[Collections/API] Update Collections Success',
   props<{ result: any }>()
 );
+
 export const updateCollectionsFailure = createAction(
   '[Collections/API] Update Collections Failure',
   props<{ error: any }>()

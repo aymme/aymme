@@ -20,6 +20,10 @@ export class CollectionsFacade {
     this.store.dispatch(CollectionsActions.init({ projectId }));
   }
 
+  refresh(projectId: string) {
+    this.store.dispatch(CollectionsActions.refresh({ projectId }));
+  }
+
   // TODO: type this data
   moveEndpointInCollection(data: any) {
     this.store.dispatch(CollectionsActions.moveEndpointInCollection({ data }));
