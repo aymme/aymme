@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shell/ui/theme-switcher",
+  "sourceRoot": "libs/client/shell/ui/theme-switcher/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shell/ui/theme-switcher"],
+      "options": {
+        "jestConfig": "libs/client/shell/ui/theme-switcher/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shell/ui/theme-switcher/src/**/*.ts",
+          "libs/client/shell/ui/theme-switcher/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

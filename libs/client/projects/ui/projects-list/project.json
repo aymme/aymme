@@ -1,0 +1,27 @@
+{
+  "projectType": "library",
+  "root": "libs/client/projects/ui/projects-list",
+  "sourceRoot": "libs/client/projects/ui/projects-list/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/projects/ui/projects-list"],
+      "options": {
+        "jestConfig": "libs/client/projects/ui/projects-list/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/projects/ui/projects-list/src/**/*.ts",
+          "libs/client/projects/ui/projects-list/src/**/*.html"
+        ]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

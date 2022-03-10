@@ -1,0 +1,23 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shell/ui/loader",
+  "sourceRoot": "libs/client/shell/ui/loader/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shell/ui/loader"],
+      "options": {
+        "jestConfig": "libs/client/shell/ui/loader/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/shell/ui/loader/src/**/*.ts", "libs/client/shell/ui/loader/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

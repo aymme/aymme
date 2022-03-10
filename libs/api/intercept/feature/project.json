@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/intercept/feature",
+  "sourceRoot": "libs/api/intercept/feature/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/api/intercept/feature/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/intercept/feature"],
+      "options": {
+        "jestConfig": "libs/api/intercept/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
