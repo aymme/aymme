@@ -118,6 +118,7 @@ export class EndpointService {
       },
       include: {
         responses: true,
+        headers: true,
       },
     });
 
