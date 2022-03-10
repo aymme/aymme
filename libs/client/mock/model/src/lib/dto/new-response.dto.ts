@@ -1,4 +1,4 @@
 export class NewResponseDto {
-  statusCode?: number; // TODO: This should be a mandatory field
+  statusCode: number;
   body?: string;
 }
