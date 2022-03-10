@@ -1,0 +1,24 @@
+{
+  "projectType": "library",
+  "root": "libs/client/projects/feature",
+  "sourceRoot": "libs/client/projects/feature/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/projects/feature"],
+      "options": {
+        "jestConfig": "libs/client/projects/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/projects/feature/src/**/*.ts", "libs/client/projects/feature/src/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

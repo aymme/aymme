@@ -1,0 +1,23 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shell/ui/tooltip",
+  "sourceRoot": "libs/client/shell/ui/tooltip/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shell/ui/tooltip"],
+      "options": {
+        "jestConfig": "libs/client/shell/ui/tooltip/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/shell/ui/tooltip/src/**/*.ts", "libs/client/shell/ui/tooltip/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

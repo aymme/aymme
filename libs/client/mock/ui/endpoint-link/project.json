@@ -1,0 +1,59 @@
+{
+  "projectType": "library",
+  "root": "libs/client/mock/ui/endpoint-link",
+  "sourceRoot": "libs/client/mock/ui/endpoint-link/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/mock/ui/endpoint-link"],
+      "options": {
+        "jestConfig": "libs/client/mock/ui/endpoint-link/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/mock/ui/endpoint-link/src/**/*.ts",
+          "libs/client/mock/ui/endpoint-link/src/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/client/mock/ui/endpoint-link/.storybook"
+        },
+        "projectBuildConfig": "client-mock-ui-endpoint-link:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/client-mock-ui-endpoint-link",
+        "config": {
+          "configFolder": "libs/client/mock/ui/endpoint-link/.storybook"
+        },
+        "projectBuildConfig": "client-mock-ui-endpoint-link:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

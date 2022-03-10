@@ -1,0 +1,23 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shared/ui/editor",
+  "sourceRoot": "libs/client/shared/ui/editor/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shared/ui/editor"],
+      "options": {
+        "jestConfig": "libs/client/shared/ui/editor/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/shared/ui/editor/src/**/*.ts", "libs/client/shared/ui/editor/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/how-to-use/feature/how-to-use",
+  "sourceRoot": "libs/client/how-to-use/feature/how-to-use/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/how-to-use/feature/how-to-use"],
+      "options": {
+        "jestConfig": "libs/client/how-to-use/feature/how-to-use/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/how-to-use/feature/how-to-use/src/**/*.ts",
+          "libs/client/how-to-use/feature/how-to-use/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

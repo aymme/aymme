@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/endpoint/feature",
+  "sourceRoot": "libs/api/endpoint/feature/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/api/endpoint/feature/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/endpoint/feature"],
+      "options": {
+        "jestConfig": "libs/api/endpoint/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
