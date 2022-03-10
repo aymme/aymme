@@ -4,7 +4,7 @@ import sleep from 'sleep-promise';
 import { Project, ProjectConfiguration } from '@prisma/client';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
 import { CurrentProject, ProjectGuard } from '@aymme/api/project/utils';
-import { interpolateTemplateString } from './interpolate-template';
+import { interpolateTemplateString } from '@aymme/api/intercept/utils';
 
 @Controller('intercept')
 export class ApiInterceptFeatureController {
