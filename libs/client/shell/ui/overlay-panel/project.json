@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shell/ui/overlay-panel",
+  "sourceRoot": "libs/client/shell/ui/overlay-panel/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shell/ui/overlay-panel"],
+      "options": {
+        "jestConfig": "libs/client/shell/ui/overlay-panel/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shell/ui/overlay-panel/src/**/*.ts",
+          "libs/client/shell/ui/overlay-panel/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

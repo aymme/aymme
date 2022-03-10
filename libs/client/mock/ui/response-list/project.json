@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/mock/ui/response-list",
+  "sourceRoot": "libs/client/mock/ui/response-list/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/mock/ui/response-list"],
+      "options": {
+        "jestConfig": "libs/client/mock/ui/response-list/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/mock/ui/response-list/src/**/*.ts",
+          "libs/client/mock/ui/response-list/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

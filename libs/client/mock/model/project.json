@@ -1,0 +1,23 @@
+{
+  "root": "libs/client/mock/model",
+  "sourceRoot": "libs/client/mock/model/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/client/mock/model/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/mock/model"],
+      "options": {
+        "jestConfig": "libs/client/mock/model/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

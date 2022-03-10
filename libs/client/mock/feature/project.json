@@ -1,0 +1,24 @@
+{
+  "projectType": "library",
+  "root": "libs/client/mock/feature",
+  "sourceRoot": "libs/client/mock/feature/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/mock/feature"],
+      "options": {
+        "jestConfig": "libs/client/mock/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/mock/feature/src/**/*.ts", "libs/client/mock/feature/src/**/*.html"]
+      },
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

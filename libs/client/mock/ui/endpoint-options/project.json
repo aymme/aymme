@@ -1,0 +1,59 @@
+{
+  "projectType": "library",
+  "root": "libs/client/mock/ui/endpoint-options",
+  "sourceRoot": "libs/client/mock/ui/endpoint-options/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/mock/ui/endpoint-options"],
+      "options": {
+        "jestConfig": "libs/client/mock/ui/endpoint-options/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/mock/ui/endpoint-options/src/**/*.ts",
+          "libs/client/mock/ui/endpoint-options/src/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/client/mock/ui/endpoint-options/.storybook"
+        },
+        "projectBuildConfig": "client-mock-ui-endpoint-options:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/client-mock-ui-endpoint-options",
+        "config": {
+          "configFolder": "libs/client/mock/ui/endpoint-options/.storybook"
+        },
+        "projectBuildConfig": "client-mock-ui-endpoint-options:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

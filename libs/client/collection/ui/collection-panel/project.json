@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/collection/ui/collection-panel",
+  "sourceRoot": "libs/client/collection/ui/collection-panel/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/collection/ui/collection-panel"],
+      "options": {
+        "jestConfig": "libs/client/collection/ui/collection-panel/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/collection/ui/collection-panel/src/**/*.ts",
+          "libs/client/collection/ui/collection-panel/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
