@@ -1,8 +1,9 @@
 input[type="text"] {
   background-color: transparent;
   border: 1px solid var(--ay-border-color);
-  padding: 10px 15px;
+  padding: .8rem 1.2rem;
   color: var(--ay-text-color);
+  max-width: 100%;
 
   &::placeholder {
     font-size: .8rem;
