@@ -16,4 +16,8 @@ export class EndpointLinkComponent {
   onClick() {
     this.selectEndpoint.emit();
   }
+
+  getMethodClass(method: string): string {
+    return method ? `method-${method.toLowerCase()}` : '';
+  }
 }

@@ -2,6 +2,8 @@
   class="dark:border-blend-50 hover:dark:bg-blend-50 flex cursor-pointer flex-row items-center rounded-sm border-gray-100 bg-orange-600 px-2 py-3 transition ease-in-out hover:bg-gray-100"
   [ngClass]="{ 'is-selected': isSelected }"
 >
-  <span class="mr-4 rounded-md bg-blue-500 p-1 px-2 font-bold text-white">{{ method }}</span>
+  <span [ngClass]="getMethodClass(method)" class="mr-4 rounded-md p-1 px-2 text-xs font-medium text-white">{{
+    method
+  }}</span>
   <span>{{ path }}</span>
 </li>
