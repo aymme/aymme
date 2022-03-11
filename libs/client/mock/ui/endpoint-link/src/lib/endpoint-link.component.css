@@ -6,3 +6,19 @@ li.is-selected {
 .light li.is-selected {
   background-color: rgb(220, 220, 220);
 }
+
+.method-post {
+ background-color: var(--ay-brand-orange);
+}
+
+.method-put {
+  background-color: var(--ay-brand-purple);
+}
+
+.method-delete {
+  background-color: var(--ay-brand-red);
+}
+
+.method-get {
+  background-color: var(--ay-brand-light);
+}
