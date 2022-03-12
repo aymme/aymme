@@ -1,130 +1,238 @@
 <div class="py-10">
-  <article class="mx-auto w-3/5 leading-7">
-    <h1 class="mb-6 text-2xl font-extralight">What is AYMME?</h1>
-    <p class="mb-4">
-      AYMME stands for <strong>"Are You Mocking ME?"</strong> and this tool makes mocking data easier when using running
-      your Angular Application. Angular CLI already covers the instant feedback when code changes, but when you need to
-      test multiple scenarios using different data, error responses or error messages this can really annoying. AYMME is
-      made in order to manage this for you by providing the following functionalities.
-    </p>
+  <ng-container *ngIf="activeContent$ | async as activeContent">
+    <section class="grid gap-5 p-5 md:grid-cols-12">
+      <aside class="rounded-md p-4 md:col-span-3">
+        <ul class="dark:border-blend-50 rounded-lg border-2 p-2">
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeContent === contentParts.WHATIS }"
+              (click)="switchContent(contentParts.WHATIS)"
+              class="dark:border-blend-50 hover:dark:bg-blend-50 inline-block w-full cursor-pointer rounded border-b border-gray-100 px-2 pt-4 pb-4 text-center transition-all ease-in-out hover:bg-gray-100"
+              >What is?</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeContent === contentParts.HOWTOUSE }"
+              (click)="switchContent(contentParts.HOWTOUSE)"
+              class="dark:border-blend-50 hover:dark:bg-blend-50 inline-block w-full cursor-pointer rounded border-b border-gray-100 px-2 pt-4 pb-4 text-center transition-all ease-in-out hover:bg-gray-100"
+              >How to use</a
+            >
+          </li>
+          <!-- <li>
+            <a
+              [ngClass]="{ 'is-active': activeContent === contentParts.HOWTOSETUP }"
+              (click)="switchContent(contentParts.HOWTOSETUP)"
+              class="dark:border-blend-50 hover:dark:bg-blend-50 inline-block w-full cursor-pointer rounded border-b border-gray-100 px-2 pt-4 pb-4 text-center transition-all ease-in-out hover:bg-gray-100"
+              >How to setup</a
+            >
+          </li> -->
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeContent === contentParts.HOWTOCONFIGURE }"
+              (click)="switchContent(contentParts.HOWTOCONFIGURE)"
+              class="dark:border-blend-50 hover:dark:bg-blend-50 inline-block w-full cursor-pointer rounded border-b border-gray-100 px-2 pt-4 pb-4 text-center transition-all ease-in-out hover:bg-gray-100"
+              >How to configure</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeContent === contentParts.FUNCTIONALITY }"
+              (click)="switchContent(contentParts.FUNCTIONALITY)"
+              class="dark:border-blend-50 hover:dark:bg-blend-50 inline-block w-full cursor-pointer rounded border-gray-100 px-2 pt-4 pb-4 text-center transition-all ease-in-out hover:bg-gray-100"
+              >Functionality</a
+            >
+          </li>
+        </ul>
+      </aside>
 
-    <ul class="mb-4 list-disc pl-6">
-      <li>Mocking API (backend) responses</li>
-      <li>Mocking different status codes</li>
-      <li>JSON editor to provide the responses</li>
-      <li>Share AYMME projects within your team</li>
-    </ul>
+      <main class="article-wrapper relative p-4 pr-8 leading-7 md:col-span-9">
+        <article class="opacity-0" [ngClass]="{ 'is-active': activeContent === contentParts.WHATIS }">
+          <h1 class="mb-6 text-4xl font-extralight">What is AYMME?</h1>
+          <p class="mb-4">
+            AYMME stands for <strong>"Are You Mocking ME?"</strong> and this tool makes mocking data easier when using
+            running your Web Application. Most Javascript Framework already covering the instant feedback when code
+            changes, but when you need to test multiple scenarios using different data, error responses or error
+            messages this can really annoying. AYMME is made in order to manage this for you by providing the following
+            functionalities.
+          </p>
 
-    <p class="mb-4">
-      Depending on the state of your project, it might not be needed to use these functionalities. But you can always
-      use this tool in a demo to quickly switch to different set of data.
-    </p>
+          <ul class="mb-4 list-disc pl-6">
+            <li>Mocking API (backend) responses</li>
+            <li>Mocking different status codes (200, 500, 404 etc.)</li>
+            <li>JSON editor to provide the responses</li>
+            <li>Set specific project configuration to group endpoints</li>
+            <li>Share AYMME projects within your team</li>
+          </ul>
 
-    <hr class="divider mt-6 inline-block pb-8" />
+          <p class="mb-4">
+            Depending on the state of your project, it might not be needed to use these functionalities. But you can
+            always use this tool in a demo to quickly switch to different set of data.
+          </p>
 
-    <h4 class="header mb-6 text-lg font-medium">Mocking Back-End Services</h4>
-    <p class="mb-4">
-      Any component or service that needs data, can be mocked locally using the mock providers of generated data
-      modules. These are convenient if you need static data initially. However, if you want to try other scenarios like
-      when it returns an error from the server or use other data. It cannot be easily modified.
-    </p>
-    <p class="mb-4">
-      <strong>AYMME</strong> allows you to change the response of each endpoint easily and simulate the live environment
-      by providing the data through an actual HTTP request. Each request that your application is making, can be
-      registered in AYMME by redirecting the requests to the AYMME Back-End Service. From there, AYMME will be
-      registered and ready for mocking the response. AYMME is also able to manage your mock data, by uploading multiple
-      examples, to switch between different mock data on the fly.
-    </p>
+          <hr class="divider mt-6 inline-block pb-8" />
 
-    <hr class="divider mt-6 inline-block pb-8" />
+          <h4 class="header mb-6 text-lg font-medium">Mocking Back-End Services</h4>
+          <p class="mb-4">
+            Any component or service that requires data, can be mocked locally using the mock providers of generated
+            data modules. These are convenient if you need static data initially. However, if you want to try other
+            scenarios like when it returns an error from the server or use other data. It cannot be easily modified.
+          </p>
+          <p class="mb-4">
+            <strong>AYMME</strong> allows you to change the response of each endpoint easily and simulate the live
+            environment by providing the data through an actual HTTP request. Each request that your application is
+            making, can be registered in AYMME by redirecting the requests to the AYMME Back-End Service. From there,
+            AYMME will be registered and ready for mocking the response. AYMME is also able to manage your mock data, by
+            uploading multiple examples, to switch between different mock data on the fly.
+          </p>
 
-    <h4 class="heading mb-4 text-lg font-medium">How to setup your project</h4>
-    <p class="mb-4">Prerequisites to use AYMME.</p>
-    <ul class="mb-4 list-disc pl-6">
-      <li>Running AYMME</li>
-      <li>Angular Project ready</li>
-      <li>Component or Services that can make HTTP requests</li>
-    </ul>
+          <p class="text-right">
+            <a (click)="switchContent(contentParts.HOWTOUSE)" class="cursor-pointer"
+              >How to use <i class="fa fa-arrow-right"></i
+            ></a>
+          </p>
+        </article>
 
-    <h5 class="heading text-md mb-4 font-bold">Create a project</h5>
-    <p class="mb-4">
-      1. Create your project in the
-      <a class="cursor-pointer hover:underline" href="#" routerLink="/projects">Projects</a> page. Use a project name
-      that is unique, this will be used when setting up configuration in your Angular project.
-    </p>
+        <article class="opacity-0" [ngClass]="{ 'is-active': activeContent === contentParts.HOWTOUSE }">
+          <h1 class="mb-6 text-4xl font-extralight">How to use</h1>
 
-    <h5 class="heading text-md mb-4 font-bold">Setup proxy configuration</h5>
-    <p class="mb-4">
-      1. Start adding a proxy configuration in your Angular project. You can do this by using the default Angular Proxy
-      Configuration when running "ng serve". Create the a file in the project folder together with your package.json and
-      name this "proxy.conf.aymme.js" to avoid conflicts with other configurations. Then use the following snippet in
-      this file and replace PROJECT_NAME with the name of your project:
-    </p>
-    <code class="relative inline-block w-full">
-      <pre
-        class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
-        innerHTML="{{ code }}"
-      ></pre>
-      <a class="absolute right-3 top-3 dark:text-white" href="#" (click)="copyCode(code)"
-        ><i class="far fa-copy"></i
-      ></a>
-    </code>
-    <p class="mb-4">2. Update configuration to use the new proxy configuration in <strong>angular.json</strong>:</p>
-    <code class="relative inline-block w-full">
-      <pre
-        class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
-        innerHTML="{{ angularJSONServiceCode }}"
-      ></pre>
-      <a class="absolute right-3 top-3 dark:text-white" href="#" (click)="copyCode(angularJSONServiceCode)"
-        ><i class="far fa-copy"></i
-      ></a>
-    </code>
+          <p class="mb-4">
+            In this section you will find more information on how to setup AYMME in your Javascript project.
+          </p>
 
-    <p class="mb-4">
-      3. For convenience, add the following to the "scripts" object in your <strong>package.json:</strong>
-    </p>
-    <code class="relative inline-block w-full">
-      <pre
-        class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
-        innerHTML="{{ scriptsCode }}"
-      ></pre>
-      <a class="absolute right-3 top-1 dark:text-white" href="#" (click)="copyCode(scriptsCode)"
-        ><i class="far fa-copy"></i
-      ></a>
-    </code>
+          <p class="mb-4">Prerequisites to use AYMME:</p>
+          <ul class="mb-4 list-disc pl-6 leading-8">
+            <li>Running AYMME</li>
+            <li>Javascript Project ready</li>
+            <li>Component or Services that can make HTTP requests</li>
+          </ul>
 
-    <h5 class="heading text-md mb-4 font-bold">Run your project application</h5>
-    <p class="mb-4">4. Now run the app using the script just created with the command:</p>
+          <h5 class="heading mb-4 text-lg font-bold">1. Create a project</h5>
+          <p class="mb-4">
+            Create your project in the
+            <a class="cursor-pointer hover:underline" href="#" routerLink="/projects">Projects</a> page. Use a project
+            name that is unique, the slug will be used when setting up configuration in your Javascript project.
+          </p>
 
-    <code class="relative inline-block w-full">
-      <pre
-        class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
-        innerHTML="{{ terminalCode }}"
-      ></pre>
-      <a class="absolute right-3 top-1 dark:text-white" href="#" (click)="copyCode(terminalCode)"
-        ><i class="far fa-copy"></i
-      ></a>
-    </code>
+          <h5 class="heading mb-4 text-lg font-bold">2. Setup proxy configuration</h5>
 
-    <h5 class="heading text-md mb-4 font-bold">Start Mocking Me!</h5>
-    <p class="mb-4">
-      The components or services in your project should be making HTTP requests to AYMME now. To verify this, select
-      your project in the AYMME web application page. This will list all the requests made by your project application
-      on the left side. When your application is performing new requests, simply hit the refresh button to fetch the
-      latest endpoints. Now you can start mocking each requests by clicking on the endpoint and configure the response
-      on the right bar.
-    </p>
+          <p class="mb-4">Start adding a proxy configuration in your Javascript project.</p>
 
-    <h5 class="heading text-md mb-4 font-bold">Managing Your Endpoints</h5>
-    <p class="mb-4">
-      Notice that you will have all requests with a collection name called "default". To group your endpoints, drag your
-      endpoints to any collection.
-    </p>
+          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-angular mr-2"></i> For Angular:</h6>
 
-    <h5 class="heading text-md mb-4 font-bold">Managing Your Mock Data</h5>
-    <p class="mb-4">
-      When configuring the response data, it might be handy to switch between multiple response. You can have multiple
-      responses and switch between them by selecting the active status code.
-    </p>
-  </article>
+          <p class="mb-4">
+            You can do this by using the default Angular Proxy Configuration when running "ng serve". Create the a file
+            in the project folder together with your package.json and name this "proxy.conf.aymme.js" to avoid conflicts
+            with other configurations. Then use the following snippet in this file and replace PROJECT_SLUG with the
+            name of your project:
+          </p>
+
+          <p class="mb-4">2. Add the following in <strong>proxy.conf.aymme.js</strong>:</p>
+
+          <code class="relative inline-block w-full">
+            <pre
+              class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
+              innerHTML="{{ code }}"
+            ></pre>
+            <a class="absolute right-3 top-3 dark:text-white" href="#" (click)="copyCode(code)"
+              ><i class="far fa-copy"></i
+            ></a>
+          </code>
+
+          <p class="mb-4">
+            2. Update configuration to use the new proxy configuration in <strong>angular.json</strong>:
+          </p>
+          <code class="relative inline-block w-full">
+            <pre
+              class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
+              innerHTML="{{ angularJSONServiceCode }}"
+            ></pre>
+            <a class="absolute right-3 top-3 dark:text-white" href="#" (click)="copyCode(angularJSONServiceCode)"
+              ><i class="far fa-copy"></i
+            ></a>
+          </code>
+
+          <p class="mb-4">
+            3. For convenience, add the following to the "scripts" object in your <strong>package.json:</strong>
+          </p>
+          <code class="relative inline-block w-full">
+            <pre
+              class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
+              innerHTML="{{ scriptsCode }}"
+            ></pre>
+            <a class="absolute right-3 top-1 dark:text-white" href="#" (click)="copyCode(scriptsCode)"
+              ><i class="far fa-copy"></i
+            ></a>
+          </code>
+
+          <p class="mb-4">4. Now run the app using the script just created with the command:</p>
+
+          <code class="relative inline-block w-full">
+            <pre
+              class="dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
+              innerHTML="{{ terminalCode }}"
+            ></pre>
+            <a class="absolute right-3 top-1 dark:text-white" href="#" (click)="copyCode(terminalCode)"
+              ><i class="far fa-copy"></i
+            ></a>
+          </code>
+
+          <hr class="divider mt-6 inline-block pb-8" />
+
+          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-react mr-2"></i> For React:</h6>
+
+          <p class="mb-4"><em>to be updated ..</em></p>
+
+          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-vuejs mr-2"></i> For Vue:</h6>
+
+          <p class="mb-4"><em>to be updated ..</em></p>
+
+          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-js mr-2"></i> For other projects:</h6>
+
+          <p><em>to be updated ..</em></p>
+        </article>
+
+        <article class="opacity-0" [ngClass]="{ 'is-active': activeContent === contentParts.HOWTOCONFIGURE }">
+          <h1 class="mb-6 text-4xl font-extralight">How to Configure</h1>
+
+          <p class="mb-4">
+            The components or services in your project should be making HTTP requests to AYMME now. To verify this,
+            select your project in the AYMME web application page. This will list all the requests made by your project
+            application on the left side. When your application is performing new requests, simply hit the refresh
+            button to fetch the latest endpoints. Now you can start mocking each requests by clicking on the endpoint
+            and configure the response on the right bar.
+          </p>
+
+          <h5 class="heading text-md mb-4 font-bold">Managing the Endpoints</h5>
+          <p class="mb-4">
+            Notice that you will have all requests with a collection name called "default". To group your endpoints,
+            drag the endpoints to any collection. If the endpoint doens't appear in the list try using the refresh in
+            order to fetch new data.
+          </p>
+
+          <h5 class="heading text-md mb-4 font-bold">Managing the Mock Data</h5>
+          <p class="mb-4">
+            When configuring the response data, it might be handy to switch between multiple response. You can have
+            multiple responses and switch between them by selecting the active status code.
+          </p>
+        </article>
+
+        <article class="opacity-0" [ngClass]="{ 'is-active': activeContent === contentParts.FUNCTIONALITY }">
+          <h1 class="mb-6 text-4xl font-extralight">Functionality</h1>
+
+          <h5 class="heading text-md mb-4 font-bold">Sharing your AYMME data</h5>
+          <p class="mb-4">Import / Export</p>
+
+          <h5 class="heading text-md mb-4 font-bold">Ignore Query Params</h5>
+          <p class="mb-4">Ignore params</p>
+
+          <h5 class="heading text-md mb-4 font-bold">Manage collections</h5>
+          <p class="mb-4">Create, Rename & Delete</p>
+
+          <h5 class="heading text-md mb-4 font-bold">Endpoint Options</h5>
+          <p class="mb-4">Active status code, delay, empty & forward</p>
+        </article>
+      </main>
+    </section>
+  </ng-container>
 </div>
