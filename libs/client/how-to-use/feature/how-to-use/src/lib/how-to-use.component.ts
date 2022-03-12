@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+enum contentParts {
+  WHATIS = 'what-is',
+  HOWTOUSE = 'how-to-use',
+  // HOWTOSETUP = 'how-to-setup',
+  HOWTOCONFIGURE = 'how-to-configure',
+  FUNCTIONALITY = 'functionality',
+}
 
 @Component({
   selector: 'ay-how-to-use',
@@ -6,6 +15,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./how-to-use.component.scss'],
 })
 export class HowToUseComponent {
+  activeContent$: BehaviorSubject<string> = new BehaviorSubject<string>(contentParts.WHATIS);
+
+  contentParts = contentParts;
+
   public code = `
 {
     "*": {
@@ -14,7 +27,7 @@ export class HowToUseComponent {
       "logLevel": "debug",
       "changeOrigin": false,
       "headers": {
-        "aymme-project-id": "PROJECT_NAME"
+        "aymme-project-id": "PROJECT_SLUG"
       }
     }
   }`;
@@ -55,5 +68,9 @@ export class HowToUseComponent {
     textArea.select();
     document.execCommand('copy');
     return false;
+  }
+
+  switchContent(content: contentParts) {
+    this.activeContent$.next(content);
   }
 }
