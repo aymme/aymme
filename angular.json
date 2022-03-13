@@ -9,6 +9,7 @@
     "api-endpoint-data-access": "libs/api/endpoint/data-access",
     "api-endpoint-feature": "libs/api/endpoint/feature",
     "api-intercept-feature": "libs/api/intercept/feature",
+    "api-intercept-utils": "libs/api/intercept/utils",
     "api-project-data-access": "libs/api/project/data-access",
     "api-project-feature": "libs/api/project/feature",
     "api-project-utils": "libs/api/project/utils",
