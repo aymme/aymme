@@ -25,7 +25,6 @@
       "@aymme/api/endpoint/data-access": ["libs/api/endpoint/data-access/src/index.ts"],
       "@aymme/api/endpoint/feature": ["libs/api/endpoint/feature/src/index.ts"],
       "@aymme/api/intercept/feature": ["libs/api/intercept/feature/src/index.ts"],
-      "@aymme/api/intercept/utils": ["libs/api/intercept/utils/src/index.ts"],
       "@aymme/api/project/data-access": ["libs/api/project/data-access/src/index.ts"],
       "@aymme/api/project/feature": ["libs/api/project/feature/src/index.ts"],
       "@aymme/api/project/utils": ["libs/api/project/utils/src/index.ts"],
