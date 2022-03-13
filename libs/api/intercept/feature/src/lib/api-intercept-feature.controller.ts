@@ -4,6 +4,7 @@ import sleep from 'sleep-promise';
 import { Project, ProjectConfiguration } from '@prisma/client';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
 import { CurrentProject, ProjectGuard } from '@aymme/api/project/utils';
+import { interpolateTemplateString } from '@aymme/api/intercept/utils';
 
 @Controller('intercept')
 export class ApiInterceptFeatureController {
@@ -39,9 +40,12 @@ export class ApiInterceptFeatureController {
       throw new NotFoundException(`Response for HTTP Status code ${endpoint.activeStatusCode} does not exist`);
     }
 
+    // TODO The variables are mocked, need to store it to DB.
+    const VARIABLES = {firstName: "Kern", lastName: "Zhao"};
+
     if (endpoint.headers && endpoint.headers.length) {
       const headers = endpoint.headers.reduce((obj, header) => {
-        return { ...obj, [header.name]: header.value };
+        return { ...obj, [interpolateTemplateString(header.name, VARIABLES)]: interpolateTemplateString(header.value, VARIABLES) };
       }, {});
       res.set(headers);
     }
@@ -49,8 +53,9 @@ export class ApiInterceptFeatureController {
     if (endpoint.delay && endpoint.delay > 10) {
       await sleep(endpoint.delay);
     }
+    const bodyAfterTemplateInterpolation = interpolateTemplateString(endpointResponse.body, VARIABLES);
 
-    return res.json(JSON.parse(endpointResponse.body));
+    return res.json(JSON.parse(bodyAfterTemplateInterpolation));
   }
 
   constructor(private endpointService: EndpointService) {}
