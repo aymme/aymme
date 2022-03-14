@@ -53,6 +53,9 @@ export class EndpointEffects {
           );
         },
         onError: (action, error) => {
+          this.toastr.error(
+            `Error saving collection. Please verify that there are no validation errors in the editor and try again.`
+          );
           return EndpointActions.updateEndpointFailure({ error });
         },
       })
