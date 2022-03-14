@@ -94,6 +94,16 @@
         "jestConfig": "apps/client/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx build client",
+          "docker build -f ./apps/client/Dockerfile . -t client"
+        ],
+        "parallel": false
+      }
     }
   },
   "tags": []
