@@ -16,7 +16,7 @@ export class EditorComponent {
   @Input() debounce = 500;
   @Output() contentChange = new EventEmitter<string>();
 
-  editorOptions = { theme: 'vs', language: 'json', minimap: { enabled: false }, automaticLayout: true };
+  editorOptions = { theme: 'vs-dark', language: 'json', minimap: { enabled: false }, automaticLayout: true };
   code = '{ "message": "Please update mocks data" }';
 
   editor: any | undefined;
@@ -35,27 +35,17 @@ export class EditorComponent {
     this.editor = editor;
     editor.trigger('format', 'editor.action.formatDocument');
 
-    // if (!this.dataModel) {
-    try {
-      this.dataModel = {
-        value: JSON.stringify('{ "message": "Please update mocks data" }', null, 2),
-        language: 'json',
-      };
-      // this.cd.detectChanges();
-    } catch (e) {
-      console.log({ e });
-    }
-    // }
+    this.editor.onDidBlurEditorWidget(() => {
+      this.format();
+    });
+
+    this.editor.onDidPaste(() => {
+      this.format();
+    });
   }
 
   format() {
     this.editor.trigger('format', 'editor.action.formatDocument');
-  }
-
-  save() {
-    // console.log(this.code);
-    // console.log(JSON.parse(this.code));
-    // console.log(JSON.stringify(this.code, null, 2));
   }
 
   onChange() {
