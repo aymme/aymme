@@ -22,7 +22,7 @@ export class ProjectsService {
   ) {}
 
   getProjects() {
-    return this.http.get<ProjectsEntity[]>(`/api${this.apiFeatureKey}`).pipe(
+    return this.http.get<ProjectsEntity[]>(`${this.apiURL}`).pipe(
       map((response) => {
         return response;
       })
@@ -42,24 +42,24 @@ export class ProjectsService {
   }
 
   createNewProject(name: string): Observable<ProjectsEntity> {
-    return this.http.post<ProjectsEntity>(`/api${this.apiFeatureKey}`, {
+    return this.http.post<ProjectsEntity>(`${this.apiURL}`, {
       name,
     });
   }
 
   deleteProject(id: string) {
-    return this.http.delete(`/api/${this.apiFeatureKey}/${id}`);
+    return this.http.delete(`${this.apiURL}/${id}`);
   }
 
   exportProject(projectId: string): Observable<ProjectsEntity> {
-    return this.http.get<ProjectsEntity>(`/api/${this.apiFeatureKey}/${projectId}/export`);
+    return this.http.get<ProjectsEntity>(`${this.apiURL}/${projectId}/export`);
   }
 
   importProject(projectId: string, file: File) {
     const formData: FormData = new FormData();
     formData.append('file', file);
 
-    return this.http.post(`/api/${this.apiFeatureKey}/${projectId}/import`, formData, {});
+    return this.http.post(`${this.apiURL}/${projectId}/import`, formData, {});
   }
 
   saveToFile(data: ProjectsEntity, fileName: string) {
