@@ -25,14 +25,13 @@ once you have the project locally, you need to install all the dependencies
 ```bash
 cd aymme && yarn install
 ```
-After you successfully installed the dependencies you should create two files
+After you successfully installed the dependencies you should create a .env file
 ```bash
-touch database/db.sqlite
 touch .env
 ```
-Inside the `.env` file you should put the following ENV variable
+And inside, put the following content
 ```dotenv
-DATABASE_NAME=./database/db.sqlite
+DATABASE_URL="file:./db.sqlite"
 ```
 
 *Note: The DB file is temporarily in the project, until we integrate Electron and use the User's local system to store the DB*
@@ -92,6 +91,25 @@ To deploy a migration to production or test environment, you should be using
 yarn prisma migrate deploy
 ```
 This script should be part of CI/CD pipeline
+
+### Docker Environment
+
+This repo also provides a way for you to use AYMME inside a docker environment
+
+In order for you to use AYMME in a Container, first start with the [Installing](#installing) guide
+
+Once you have finished with the Installing step run the following commands
+```shell
+yarn nx run-many --target=deploy --projects=api,client --parallel --skip-nx-cache
+```
+This will build the projects and their containers. Once this is finished, you should be able to run `docker-compose` from the root of the project
+```shell
+docker-compose up
+# or
+docker-compose up -d # To run it in the background
+```
+
+*Note: Running the app in containers will create a separate DB file, independent of your local db file. This file will be generated only once (unless you have removed the container previously). Each time you start the container, only the pending migrations will be applied*__
 
 ### Developing (cheatsheet)
 
