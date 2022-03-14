@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: aymme-be
+    image: api
+    env_file:
+      - .env
+
+  client:
+    container_name: aymme-fe
+    image: client
+    ports:
+      - "80:80"
+      - "3333:3333"
+    links:
+      - api:aymme-be
