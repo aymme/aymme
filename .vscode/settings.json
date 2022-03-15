@@ -12,13 +12,12 @@
     "statusBarItem.hoverBackground": "#71c0ec",
     "titleBar.activeBackground": "#137db9",
     "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#83256199",
+    "titleBar.inactiveBackground": "#0f5f8d",
     "titleBar.inactiveForeground": "#e7e7e799",
     "sash.hoverBorder": "#71c0ec",
-    "statusBarItem.remoteBackground": "#832561",
+    "statusBarItem.remoteBackground": "#0f5f8d",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
-  "peacock.color": "#832561",
   "editor.formatOnSave": true,
   "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
