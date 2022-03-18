@@ -24,7 +24,10 @@ export class ResponseListComponent {
         body: response.body,
       }));
 
-      this.showMockFor(0);
+      if (this.initializingAvailableStatusCodes) {
+        this.showMockFor(0);
+        this.initializingAvailableStatusCodes = false;
+      }
     }
   }
 
@@ -35,6 +38,7 @@ export class ResponseListComponent {
   selectedStatusCode!: number;
   availableStatuses = availableStatusCodes;
   showOverlayPanel = false;
+  initializingAvailableStatusCodes = true;
 
   constructor(private endpointFacade: EndpointFacade) {}
 
