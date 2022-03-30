@@ -187,7 +187,7 @@ export class EndpointService {
       upsert: headers.map(({ id, name, value }) => {
         return {
           where: {
-            id: id || '',
+            id,
           },
           update: {
             name,
@@ -211,7 +211,7 @@ export class EndpointService {
       upsert: responses.map(({ id, statusCode, body }) => {
         return {
           where: {
-            id: id || '',
+            id,
           },
           update: {
             statusCode,
