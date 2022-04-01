@@ -201,7 +201,6 @@ export class ProjectService {
             id,
           },
           data: {
-            name,
             configuration: {
               update: {
                 ignoreParams: configuration.ignoreParams,
