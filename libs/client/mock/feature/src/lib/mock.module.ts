@@ -25,6 +25,7 @@ import {
   ProjectConfigurationDialogComponent,
   RenameCollectionDialogComponent,
 } from './dialogs';
+import { VariableEditorComponent } from './dialogs/project-configuration/variable-editor/variable-editor.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import {
     ConfirmDeleteCollectionDialogComponent,
     RenameCollectionDialogComponent,
     ProjectConfigurationDialogComponent,
+    VariableEditorComponent,
     ImportProjectDialogComponent,
   ],
   providers: [CollectionsFacade],

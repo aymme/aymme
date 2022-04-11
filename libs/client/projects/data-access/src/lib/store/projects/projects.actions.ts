@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { ProjectsEntity } from './projects.models';
+import { IProjectConfiguration } from '@aymme/shared/model';
 
 export const init = createAction('[Projects Page] Init');
 
@@ -27,17 +28,17 @@ export const deleteProject = createAction('[Projects/API] Delete Project', props
 
 export const deleteProjectSuccess = createAction('[Projects/API] Delete Project Success');
 
-export const updateProjectConfiguration = createAction('[Projects/API] Update Project Configuration');
+export const updateSelectedProjectConfiguration = createAction('[Projects/API] Update Selected Project Configuration', props<{configuration: IProjectConfiguration, onSuccess: () => void}>());
+export const updateProjectConfigurationSuccess = createAction(
+  '[Projects/API] Update Configuration Success',
+  props<{ projectId: string; configuration: IProjectConfiguration }>()
+);
 
 export const deleteProjectFailure = createAction('[Projects/API] Delete Project Failure', props<{ error: unknown }>());
 
 export const selectProject = createAction('[Projects/API] Get Project', props<{ projectId: string }>());
 export const getProject = createAction('[Projects/API] Get Project', props<{ projectId: string }>());
 
-export const getProjectSuccess = createAction(
-  '[Projects/API] Get Project Success',
-  props<{ project: ProjectsEntity }>()
-);
 
 export const addIgnoreParamToConfiguration = createAction(
   '[Projects/API] Add Param To Project Configuration',

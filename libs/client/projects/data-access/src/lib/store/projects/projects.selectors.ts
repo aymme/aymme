@@ -20,3 +20,5 @@ export const getSelectedId = createSelector(getProjectsState, (state: State) => 
 export const getSelected = createSelector(getProjectsEntities, getSelectedId, (entities, selectedId) =>
   selectedId ? entities[selectedId] : undefined
 );
+
+export const getSelectedProjectConfiguration = createSelector(getSelected, selected => selected?.configuration);
