@@ -4,6 +4,7 @@ import sleep from 'sleep-promise';
 import { Project, ProjectConfiguration } from '@prisma/client';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
 import { CurrentProject, ProjectGuard } from '@aymme/api/project/utils';
+import { interpolateTemplateString } from '@aymme/api/intercept/utils';
 
 @Controller('intercept')
 export class ApiInterceptFeatureController {
@@ -40,9 +41,16 @@ export class ApiInterceptFeatureController {
       throw new NotFoundException(`Response for HTTP Status code ${endpoint.activeStatusCode} does not exist`);
     }
 
+    let variables;
+    try {
+      variables = JSON.parse(currentProject.configuration.variables);
+    } catch (e) {
+      variables = {};
+    }
+
     if (endpoint.headers && endpoint.headers.length) {
       const headers = endpoint.headers.reduce((obj, header) => {
-        return { ...obj, [header.name]: header.value };
+        return { ...obj, [interpolateTemplateString(header.name, variables)]: interpolateTemplateString(header.value, variables) };
       }, {});
       res.set(headers);
     }
@@ -50,8 +58,7 @@ export class ApiInterceptFeatureController {
     if (endpoint.delay && endpoint.delay > 10) {
       await sleep(endpoint.delay);
     }
-
-    return res.json(JSON.parse(endpointResponse.body));
+    return res.json(JSON.parse(interpolateTemplateString(endpointResponse.body, variables)));
   }
 
   constructor(private endpointService: EndpointService) {}

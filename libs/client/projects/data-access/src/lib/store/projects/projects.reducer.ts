@@ -3,18 +3,15 @@ import { createReducer, on } from '@ngrx/store';
 
 import * as ProjectsActions from './projects.actions';
 import { ProjectsEntity } from './projects.models';
+import { IProjectConfiguration } from '@aymme/shared/model';
 
 export const PROJECTS_FEATURE_KEY = 'projects';
-
-export interface ProjectConfigurationEntity {
-  ignoreParams: string[];
-}
 
 export interface State extends EntityState<ProjectsEntity> {
   selectedId?: string; // which Projects record has been selected
   loaded: boolean; // has the Projects list been loaded
   error?: Response | null; // last known error (if any)
-  configuration?: ProjectConfigurationEntity;
+  configuration?: IProjectConfiguration;
 }
 
 export interface ProjectsPartialState {
@@ -55,6 +52,9 @@ export const projectsReducer = createReducer(
     ...state,
     error,
   })),
+  on(ProjectsActions.updateProjectConfigurationSuccess, (state, {configuration, projectId}) => {
+    return projectsAdapter.updateOne({id: projectId, changes: {configuration}}, state);
+  }),
   on(ProjectsActions.removeIgnoreParamFromConfiguration, (state, { param }) => {
     const project = state.selectedId ? state.entities[state.selectedId] : null;
 
@@ -63,7 +63,7 @@ export const projectsReducer = createReducer(
         ...project,
         configuration: {
           ...project.configuration,
-          ignoreParams: project.configuration.ignoreParams
+          ignoreParams: (project.configuration.ignoreParams as string)
             .split(',')
             .filter((p: string) => p !== param)
             .join(','),
@@ -93,7 +93,7 @@ export const projectsReducer = createReducer(
           ...project,
           configuration: {
             ...project.configuration,
-            ignoreParams: [newParam],
+            ignoreParams: newParam,
           },
         };
       }

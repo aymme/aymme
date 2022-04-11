@@ -1,0 +1,10 @@
+:host {
+  button.add-variable {
+    display: block;
+    margin-left: auto;
+  }
+
+  .variable-key-container, .variable-value-container {
+    flex: 1 1 0;
+  }
+}

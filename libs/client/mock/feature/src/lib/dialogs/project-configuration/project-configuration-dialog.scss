@@ -1,0 +1,15 @@
+:host {
+  .active-tab {
+    border-bottom: 0;
+    position: relative;
+    z-index: 9;
+    background-color: var(--ay-bg-color);
+  }
+
+  .tabs {
+    position: relative;
+    top: -1px;
+    z-index: 1;
+  }
+
+}

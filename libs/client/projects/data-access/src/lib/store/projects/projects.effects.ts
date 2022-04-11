@@ -7,10 +7,9 @@ import { fetch, optimisticUpdate } from '@nrwl/angular';
 import { ProjectsService } from '../../services/projects.service';
 import * as ProjectsActions from './projects.actions';
 import { ToastrService } from 'ngx-toastr';
-import { getSelected } from './projects.selectors';
+import { getSelectedId } from './projects.selectors';
 import { ProjectsEntity } from '.';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProjectsEffects {
@@ -111,21 +110,19 @@ export class ProjectsEffects {
     )
   );
 
-  updateProject$ = createEffect(() =>
+  updateProjectConfiguration$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProjectsActions.updateProjectConfiguration),
-      withLatestFrom(this.store$.select(getSelected)),
+      ofType(ProjectsActions.updateSelectedProjectConfiguration),
+      withLatestFrom(this.store$.select(getSelectedId)),
       optimisticUpdate({
-        run: ({ action }, project) => {
-          if (project) {
-            return this.projectsService.updateProject(project).pipe(
-              map((project) => ProjectsActions.getProjectSuccess({ project })),
-              tap(() => {
-                this.toastr.success(`Successfully updated the project.`);
-              })
-            );
-          }
-          return new Observable();
+        run: (action, selectedProjectId) => {
+          return this.projectsService.updateProjectConfiguration(selectedProjectId as string, action.configuration).pipe(
+            map((updatedConfiguration) => ProjectsActions.updateProjectConfigurationSuccess({ projectId: selectedProjectId as string, configuration: updatedConfiguration })),
+            tap(() => action.onSuccess()),
+            tap(() => {
+              this.toastr.success(`Successfully updated the project.`);
+            })
+          );
         },
         undoAction: (action: any, error: any) => {
           this.toastr.error(`Not able to update the project, please try again.`);

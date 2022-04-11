@@ -1,0 +1,26 @@
+<form [formGroup]='formGroup'>
+  <ng-container formArrayName='variables'>
+    <div *ngFor='let _ of formArray.controls; let index = index' class="mb-2 flex flex-row" [formGroup]='getSubFormGroupAtIndex(index)'>
+      <div class='variable-key-container'>
+        <input
+          class="rounded text-sm w-full"
+          type="text"
+          placeholder="Key"
+          formControlName='key'
+        />
+      </div>
+      <div class='ml-2 variable-value-container'>
+        <input
+          class="rounded text-sm w-full"
+          type="text"
+          placeholder="Value"
+          formControlName='value'
+        />
+      </div>
+      <button type='button' class="p-2 hover:opacity-90 ml-2" (click)='removeAtIndex(index)'>
+        <i class="fa fa-minus"></i>
+      </button>
+    </div>
+  </ng-container>
+</form>
+<button class='add-variable mt-3' (click)='addNewItemToFormArray()'>Add new variable</button>

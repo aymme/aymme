@@ -54,7 +54,7 @@ export class ApiProjectFeatureController {
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body() updateProjectConfigurationDto: UpdateProjectConfigurationDto
   ) {
-    return this.projectService.updateConfiguration(id, updateProjectConfigurationDto);
+    return (await this.projectService.updateConfiguration(id, updateProjectConfigurationDto)).configuration;
   }
 
   @Delete(':id')
