@@ -19,7 +19,7 @@ export class ProjectConfigurationDialogComponent {
         ...project,
         configuration: {
           ...project?.configuration,
-          ignoreParams: project?.configuration.ignoreParams.split(','),
+          ignoreParams: project?.configuration?.ignoreParams?.split(','),
         },
       };
     })
