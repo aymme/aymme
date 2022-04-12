@@ -5,12 +5,12 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { URLSearchParams } from 'url';
-import { Endpoint, Header, Prisma, Project, ProjectConfiguration, Response } from '@prisma/client';
-import { PrismaService } from '@aymme/api/database/data-access';
-import { UpdateEndpointDto } from './dto/update-endpoint.dto';
-import { HeaderDto } from './dto/header.dto';
-import { ResponseDto } from './dto/response.dto';
+import {URLSearchParams} from 'url';
+import {Endpoint, Header, Prisma, Project, ProjectConfiguration, Response} from '@prisma/client';
+import {PrismaService} from '@aymme/api/database/data-access';
+import {UpdateEndpointDto} from './dto/update-endpoint.dto';
+import {HeaderDto} from './dto/header.dto';
+import {ResponseDto} from './dto/response.dto';
 
 @Injectable()
 export class EndpointService {
@@ -187,7 +187,7 @@ export class EndpointService {
       upsert: headers.map(({ id, name, value }) => {
         return {
           where: {
-            id,
+            id: id || '',
           },
           update: {
             name,
@@ -211,7 +211,7 @@ export class EndpointService {
       upsert: responses.map(({ id, statusCode, body }) => {
         return {
           where: {
-            id,
+            id: id || '',
           },
           update: {
             statusCode,
