@@ -4,7 +4,7 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/node:build",
+      "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/api",
@@ -28,7 +28,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/node:execute",
+      "executor": "@nrwl/node:node",
       "options": {
         "buildTarget": "api:build",
         "inspect": true,
@@ -53,10 +53,7 @@
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          "nx build api",
-          "docker build -f ./apps/api/Dockerfile . -t api"
-        ],
+        "commands": ["nx build api", "docker build -f ./apps/api/Dockerfile . -t api"],
         "parallel": false
       }
     }
