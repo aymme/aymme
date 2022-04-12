@@ -43,16 +43,17 @@ export class ProjectConfigurationDialogComponent {
     public dialogRef: MatDialogRef<ProjectConfigurationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProjectConfiguration,
     private projectsFacade: ProjectsFacade,
-    private actions$: Actions,
-  ) {
-  }
+    private actions$: Actions
+  ) {}
 
   onCancelClick(): void {
     this.dialogRef.close();
   }
 
   saveProjectConfiguration() {
-    this.projectsFacade.updateProjectConfiguration({variables: this.variableEditorComponent.value}, () => this.dialogRef.close());
+    this.projectsFacade.updateProjectConfiguration({ variables: this.variableEditorComponent.value }, () =>
+      this.dialogRef.close()
+    );
   }
 
   addQueryParam() {
