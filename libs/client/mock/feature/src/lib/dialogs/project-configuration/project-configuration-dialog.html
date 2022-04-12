@@ -4,10 +4,10 @@
   </header>
 
   <section class="mb-4">
-    <p class="text-sm mb-5">Configure multiple settings for this project.</p>
+    <p class="mb-5 text-sm">Configure multiple settings for this project.</p>
   </section>
 
-  <ul data-cy="endpoint-details-configuration-tabs" class="flex flex-row text-sm font-medium mt-4">
+  <ul data-cy="endpoint-details-configuration-tabs" class="mt-4 flex flex-row text-sm font-medium">
     <li
       class="dark:border-blend-50 dark:border-blend-50 cursor-pointer rounded-t border border-b-0 border-gray-100 p-3"
       (click)="currentTab = 'variables-tab'"
@@ -24,48 +24,14 @@
     </li>
   </ul>
 
-  <div class='tabs dark:border-blend-50 mb-4 border border-gray-100 p-4'>
+  <div class="tabs dark:border-blend-50 mb-4 border border-gray-100 p-4">
     <ng-container *ngIf="currentTab === 'variables-tab'">
-      <h5 class='mb-3 block text-sm font-bold'>Variables</h5>
-      <ay-variable-editor [variables]='(selectedProjectConfiguration$ | async)?.variables'></ay-variable-editor>
+      <h5 class="mb-3 block text-sm font-bold">Variables</h5>
+      <ay-variable-editor [variables]="(selectedProjectConfiguration$ | async)?.variables"></ay-variable-editor>
     </ng-container>
     <ng-container *ngIf="currentTab === 'ignore-query-params-tab'">
       <ng-container *ngIf="loaded$ | async; else loadingConfiguration">
-        <ng-container *ngIf="project$ | async as project">
-          <label class="mb-3 block text-sm font-bold" for="ignoreParams">Ignore Query Params</label>
-          <p class="mb-3 text-xs">
-            Add a query param in order to ignore them as separate endpoints. For example: <strong>/users</strong> will be
-            treated the same as <strong>/users?limit=20</strong> if you provide "limit" as query param.
-          </p>
-
-          <div class="mb-3 flex flex-row">
-            <form [formGroup]="projectConfiguration">
-              <input type="text" id="queryParam" class="mr-1 rounded-md text-sm" formControlName="queryParam" /><button
-              (click)="addQueryParam()"
-              class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
-            >
-              Add
-            </button>
-            </form>
-          </div>
-
-          <p class="text-xs italic" *ngIf="!project?.configuration?.ignoreParams?.length">No params specified yet.</p>
-
-          <ul>
-            <li
-              class="dark:bg-blend-100 bg-gray-100pr-0 mr-3 mb-3 inline-block rounded-lg p-0 text-sm"
-              *ngFor="let param of project.configuration.ignoreParams"
-            >
-              <span class="inline-block px-3 py-2">{{param}}</span>
-              <button
-                (click)="removeQueryParam(param)"
-                class="dark:border-blend-50 hover:dark:bg-blend-100 h-full rounded-r-lg border-l-[1px] border-gray-200 px-3 py-2"
-              >
-                <i class="fa fa-times"></i>
-              </button>
-            </li>
-          </ul>
-        </ng-container>
+        <ng-container *ngIf="project$ | async as project then projectIgnoreQueries;"></ng-container>
       </ng-container>
       <ng-template #loadingConfiguration>
         <section class="p-5 pt-7 text-center text-sm">
@@ -73,7 +39,6 @@
         </section>
       </ng-template>
     </ng-container>
-
   </div>
 
   <hr class="divider mb-4" />
@@ -93,3 +58,39 @@
     </button>
   </footer>
 </article>
+
+<ng-template #projectIgnoreQueries let-project="project">
+  <label class="mb-3 block text-sm font-bold" for="ignoreParams">Ignore Query Params</label>
+  <p class="mb-3 text-xs">
+    Add a query param in order to ignore them as separate endpoints. For example: <strong>/users</strong> will be
+    treated the same as <strong>/users?limit=20</strong> if you provide "limit" as query param.
+  </p>
+
+  <div class="mb-3 flex flex-row">
+    <form [formGroup]="projectConfiguration">
+      <input type="text" id="queryParam" class="mr-1 rounded-md text-sm" formControlName="queryParam" /><button
+        (click)="addQueryParam()"
+        class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+
+  <p class="text-xs italic" *ngIf="!project?.configuration?.ignoreParams?.length">No params specified yet.</p>
+
+  <ul>
+    <li
+      class="dark:bg-blend-100 bg-gray-100pr-0 mr-3 mb-3 inline-block rounded-lg p-0 text-sm"
+      *ngFor="let param of project?.configuration?.ignoreParams"
+    >
+      <span class="inline-block px-3 py-2">{{param}}</span>
+      <button
+        (click)="removeQueryParam(param)"
+        class="dark:border-blend-50 hover:dark:bg-blend-100 h-full rounded-r-lg border-l-[1px] border-gray-200 px-3 py-2"
+      >
+        <i class="fa fa-times"></i>
+      </button>
+    </li>
+  </ul>
+</ng-template>

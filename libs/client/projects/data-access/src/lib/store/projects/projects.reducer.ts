@@ -52,8 +52,8 @@ export const projectsReducer = createReducer(
     ...state,
     error,
   })),
-  on(ProjectsActions.updateProjectConfigurationSuccess, (state, {configuration, projectId}) => {
-    return projectsAdapter.updateOne({id: projectId, changes: {configuration}}, state);
+  on(ProjectsActions.updateProjectConfigurationSuccess, (state, { configuration, projectId }) => {
+    return projectsAdapter.updateOne({ id: projectId, changes: { configuration } }, state);
   }),
   on(ProjectsActions.removeIgnoreParamFromConfiguration, (state, { param }) => {
     const project = state.selectedId ? state.entities[state.selectedId] : null;
