@@ -1,7 +1,7 @@
 <form [formGroup]='formGroup'>
   <ng-container formArrayName='variables'>
     <div *ngFor='let _ of formArray.controls; let index = index' class="mb-2 flex flex-row" [formGroup]='getSubFormGroupAtIndex(index)'>
-      <div class='variable-key-container'>
+      <div class='grow'>
         <input
           class="rounded text-sm w-full"
           type="text"
@@ -9,7 +9,7 @@
           formControlName='key'
         />
       </div>
-      <div class='ml-2 variable-value-container'>
+      <div class='ml-2 grow'>
         <input
           class="rounded text-sm w-full"
           type="text"
@@ -23,4 +23,4 @@
     </div>
   </ng-container>
 </form>
-<button class='add-variable dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100' (click)='addNewItemToFormArray()'>Add new variable</button>
+<button class='block ml-auto add-variable dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100' (click)='addNewItemToFormArray()'>Add new variable</button>
