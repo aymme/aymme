@@ -38,4 +38,8 @@ export class EndpointFacade {
   removeResponse(response: ResponseEntity) {
     this.store.dispatch(EndpointActions.removeResponse({ response }));
   }
+
+  removeEndpoint(data: { endpointId: string }) {
+    this.store.dispatch(EndpointActions.removeEndpoint(data));
+  }
 }

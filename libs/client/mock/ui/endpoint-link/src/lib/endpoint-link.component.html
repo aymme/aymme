@@ -5,5 +5,6 @@
   <span [ngClass]="getMethodClass(method)" class="mr-4 rounded-md p-1 px-2 text-xs font-medium text-white">{{
     method
   }}</span>
-  <span>{{ path }}</span>
+  <span class="break-all">{{ path }}</span>
+  <button class="remove-endpoint-btn ml-auto" (click)="removeEndpoint()"><i class="far fa-times"></i></button>
 </li>

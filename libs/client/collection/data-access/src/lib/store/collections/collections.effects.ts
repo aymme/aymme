@@ -8,8 +8,8 @@ import { delay, map, tap, withLatestFrom } from 'rxjs/operators';
 import { getAllCollections } from './collections.selectors';
 import { Store } from '@ngrx/store';
 import { CollectionsEntity } from './collections.models';
-
 import { ToastrService } from 'ngx-toastr';
+import { EndpointActions } from '@aymme/client/mock/data-access';
 
 @Injectable()
 export class CollectionsEffects {
@@ -100,6 +100,17 @@ export class CollectionsEffects {
             type: 'UNDO_TODO_UPDATE',
             todo: action.todo,
           };
+        },
+      })
+    )
+  );
+
+  removeEndpointFromCollection$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CollectionsActions.removeEndpointFromCollection),
+      fetch({
+        run: ({ endpointId }) => {
+          return EndpointActions.removeEndpoint({ endpointId });
         },
       })
     )

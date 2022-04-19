@@ -62,6 +62,27 @@ export class EndpointEffects {
     )
   );
 
+  removeEndpoint$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EndpointActions.removeEndpoint),
+      concatLatestFrom(() => [this.store.select(getSelectedProjectId)]),
+      pessimisticUpdate({
+        run: (action, projectId) => {
+          return this.endpointService.removeEndpoint(action.endpointId || '', projectId || '').pipe(
+            map(() => EndpointActions.removeEndpointSuccess()),
+            tap(() => {
+              this.toastr.success(`Successfully removed endpoint from the collection.`);
+            })
+          );
+        },
+        onError: (action, error) => {
+          this.toastr.error(`Error removing endpoint.`);
+          return EndpointActions.removeEndpointFailure({ error });
+        },
+      })
+    )
+  );
+
   constructor(
     private readonly actions$: Actions,
     private store: Store,

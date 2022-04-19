@@ -34,6 +34,10 @@ export class CollectionsFacade {
     this.store.dispatch(CollectionsActions.moveEndpointToOtherCollection({ data }));
   }
 
+  removeEndpointFromCollection(collectionId: string, endpointId: string) {
+    this.store.dispatch(CollectionsActions.removeEndpointFromCollection({ collectionId, endpointId }));
+  }
+
   createNewCollection(projectId: string, name: string) {
     this.store.dispatch(CollectionsActions.createNewCollection({ projectId, name }));
   }

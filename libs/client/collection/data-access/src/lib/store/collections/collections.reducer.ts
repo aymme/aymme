@@ -164,6 +164,30 @@ const collectionsReducer = createReducer(
       return state;
     }
   }),
+
+  on(CollectionsActions.removeEndpointFromCollection, (state, { collectionId, endpointId }) => {
+    const collections: CollectionsEntity[] = Object.values(state.entities) as CollectionsEntity[];
+    if (collections.length) {
+      const collectionsUpdate: CollectionsEntity[] = collections.map((collection) => {
+        if (collection?.id === collectionId) {
+          if (!collection?.endpoints?.length) {
+            return collection;
+          }
+          const endpoints = collection.endpoints.filter((e) => {
+            return e.id !== endpointId;
+          });
+          return {
+            ...collection,
+            endpoints,
+          };
+        }
+        return collection;
+      });
+      return collectionsAdapter.upsertMany(collectionsUpdate, state);
+    }
+    return state;
+  }),
+
   on(CollectionsActions.createNewCollectionSuccess, (state, { collection }) => {
     return collectionsAdapter.setOne(collection, state);
   }),
