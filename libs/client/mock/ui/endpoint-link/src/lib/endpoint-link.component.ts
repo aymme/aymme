@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { take } from 'rxjs';
 
@@ -6,7 +6,6 @@ import { take } from 'rxjs';
   selector: 'ay-endpoint-link',
   templateUrl: './endpoint-link.component.html',
   styleUrls: ['./endpoint-link.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class EndpointLinkComponent {
   @Input() method = '';

@@ -22,10 +22,13 @@ li.is-selected {
   background-color: var(--ay-brand-light);
 }
 
-.remove-endpoint-btn {
-  padding: 0 4px;
-  &:hover {
-    background: #3f616b;
-    border-radius: 2px;
+:host {
+  display: flex;
+  &:hover .close-btn {
+    display: inline-block;
   }
+}
+
+li {
+  width: calc(100% - 20px);
 }
