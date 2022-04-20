@@ -35,7 +35,7 @@ model Endpoint {
   responses        Response[]
   order            Int         @default(0)
 
-  @@unique([projectId, path])
+  @@unique([projectId, path, method])
 }
 
 model Header {
