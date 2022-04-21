@@ -100,7 +100,7 @@
       "options": {
         "commands": [
           "nx build client",
-          "docker build -f ./apps/client/Dockerfile . -t client"
+          "docker build -f ./apps/client/Dockerfile . -t aymme/client"
         ],
         "parallel": false
       }

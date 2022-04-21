@@ -53,7 +53,7 @@
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": ["nx build api", "docker build -f ./apps/api/Dockerfile . -t api"],
+        "commands": ["nx build api", "docker build -f ./apps/api/Dockerfile . -t aymme/api"],
         "parallel": false
       }
     }
