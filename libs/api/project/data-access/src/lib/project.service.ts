@@ -1,9 +1,9 @@
-import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import {ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException} from '@nestjs/common';
 import slugify from 'slugify';
-import { Header, Prisma, Project, ProjectConfiguration, Response } from '@prisma/client';
-import { PrismaService } from '@aymme/api/database/data-access';
-import { CreateProjectDto, UpdateProjectConfigurationDto, UpdateProjectDto } from './dto';
-import { ProjectWithRelations } from './types';
+import {Header, Prisma, Project, ProjectConfiguration, Response} from '@prisma/client';
+import {PrismaService} from '@aymme/api/database/data-access';
+import {CreateProjectDto, UpdateProjectConfigurationDto, UpdateProjectDto} from './dto';
+import {ProjectWithRelations} from './types';
 
 @Injectable()
 export class ProjectService {
@@ -234,9 +234,10 @@ export class ProjectService {
           for (const endpoint of collection.endpoints) {
             const newEndpoint = await this.prisma.endpoint.upsert({
               where: {
-                projectId_path: {
+                projectId_path_method: {
                   projectId: id,
                   path: endpoint.path,
+                  method: endpoint.method
                 },
               },
               create: {
