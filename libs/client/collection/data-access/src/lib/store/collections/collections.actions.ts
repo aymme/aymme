@@ -35,6 +35,13 @@ export const moveEndpointToOtherCollection = createAction(
   props<{ data: any }>()
 );
 
+export const removeEndpointSuccess = createAction(
+  '[Collections] Remove Endpoint Success',
+  props<{ collectionId: string; endpointId: string }>()
+);
+
+export const removeEndpointFailure = createAction('[Collections] Remove Endpoint Failure');
+
 export const removeEndpointFromCollection = createAction(
   '[Collections] Remove Endpoint from Collection',
   props<{ collectionId: string; endpointId: string }>()

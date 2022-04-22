@@ -9,6 +9,7 @@ import * as EndpointActions from './endpoint.actions';
 import * as EndpointSelectors from './endpoint.selectors';
 import { EndpointService } from '../../services/endpoint.service';
 import { ToastrService } from 'ngx-toastr';
+import { CollectionsActions } from '@aymme/client/collection/data-access';
 
 @Injectable()
 export class EndpointEffects {
@@ -67,17 +68,13 @@ export class EndpointEffects {
       ofType(EndpointActions.removeEndpoint),
       concatLatestFrom(() => [this.store.select(getSelectedProjectId)]),
       pessimisticUpdate({
-        run: (action, projectId) => {
-          return this.endpointService.removeEndpoint(action.endpointId || '', projectId || '').pipe(
-            map(() => EndpointActions.removeEndpointSuccess()),
-            tap(() => {
-              this.toastr.success(`Successfully removed endpoint from the collection.`);
-            })
-          );
+        run: ({ collectionId, endpointId }, projectId) => {
+          return this.endpointService
+            .removeEndpoint(endpointId || '', projectId || '')
+            .pipe(map(() => CollectionsActions.removeEndpointSuccess({ collectionId, endpointId })));
         },
-        onError: (action, error) => {
-          this.toastr.error(`Error removing endpoint.`);
-          return EndpointActions.removeEndpointFailure({ error });
+        onError: () => {
+          return CollectionsActions.removeEndpointFailure();
         },
       })
     )

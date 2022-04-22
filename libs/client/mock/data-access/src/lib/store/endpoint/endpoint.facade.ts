@@ -39,7 +39,7 @@ export class EndpointFacade {
     this.store.dispatch(EndpointActions.removeResponse({ response }));
   }
 
-  removeEndpoint(data: { endpointId: string }) {
-    this.store.dispatch(EndpointActions.removeEndpoint(data));
+  removeEndpoint(collectionId: string, endpointId: string) {
+    this.store.dispatch(EndpointActions.removeEndpoint({ collectionId, endpointId }));
   }
 }

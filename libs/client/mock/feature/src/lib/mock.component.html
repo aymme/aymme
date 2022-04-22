@@ -157,6 +157,7 @@
                 [method]="endpoint.method"
                 [path]="endpoint.path"
                 (selectEndpoint)="onEndpointSelect(endpoint.id)"
+                (removeEndpoint)="removeEndpoint(collection.id, endpoint.id)"
               ></ay-endpoint-link>
             </div>
           </section>

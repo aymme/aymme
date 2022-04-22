@@ -5,8 +5,9 @@
   <span [ngClass]="getMethodClass(method)" class="mr-4 rounded-md p-1 px-2 text-xs font-medium text-white">{{
     method
   }}</span>
-  <span class="break-all">{{ path }}</span>
+  <span class="path-txt break-all">{{ path }}</span>
+  <button class="close-btn ml-auto hidden rounded-sm px-1" (click)="onRemoveEndpoint($event)">
+    <i class="far fa-times"></i>
+  </button>
 </li>
-<button class="close-btn remove-endpoint-btn ml-auto hidden rounded-sm px-1" (click)="removeEndpoint()">
-  <i class="far fa-times"></i>
-</button>
+

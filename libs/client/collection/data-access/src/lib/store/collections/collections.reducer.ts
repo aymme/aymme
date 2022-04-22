@@ -166,26 +166,10 @@ const collectionsReducer = createReducer(
   }),
 
   on(CollectionsActions.removeEndpointFromCollection, (state, { collectionId, endpointId }) => {
-    const collections: CollectionsEntity[] = Object.values(state.entities) as CollectionsEntity[];
-    if (collections.length) {
-      const collectionsUpdate: CollectionsEntity[] = collections.map((collection) => {
-        if (collection?.id === collectionId) {
-          if (!collection?.endpoints?.length) {
-            return collection;
-          }
-          const endpoints = collection.endpoints.filter((e) => {
-            return e.id !== endpointId;
-          });
-          return {
-            ...collection,
-            endpoints,
-          };
-        }
-        return collection;
-      });
-      return collectionsAdapter.upsertMany(collectionsUpdate, state);
-    }
-    return state;
+    const collection = state.entities[collectionId];
+    const endpoints = collection?.endpoints?.filter((e) => e.id !== endpointId);
+    const changes = { ...collection, endpoints };
+    return collectionsAdapter.updateOne({ id: collectionId, changes }, state);
   }),
 
   on(CollectionsActions.createNewCollectionSuccess, (state, { collection }) => {

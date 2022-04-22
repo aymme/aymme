@@ -1,3 +1,15 @@
+li:hover {
+  .close-btn {
+    display: inline-block;
+  }
+  .path-txt {
+    margin-right: 0;
+  }
+}
+.path-txt {
+  margin-right: 18px;
+}
+
 li.is-selected {
   background-color: rgba(255, 255, 255, 0.1);
 }
@@ -20,15 +32,4 @@ li.is-selected {
 
 .method-get {
   background-color: var(--ay-brand-light);
-}
-
-:host {
-  display: flex;
-  &:hover .close-btn {
-    display: inline-block;
-  }
-}
-
-li {
-  width: calc(100% - 20px);
 }

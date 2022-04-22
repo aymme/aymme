@@ -12,9 +12,10 @@ export const updateEndpoint = createAction('[Endpoint Page] Update Endpoint', pr
 export const updateEndpointSuccess = createAction('[Endpoint/API] Update Endpoint Success');
 export const updateEndpointFailure = createAction('[Endpoint/API] Update Endpoint Failure', props<{ error: any }>());
 
-export const removeEndpoint = createAction('[Endpoint/API] Remove Endpoint', props<{ endpointId: string }>());
-export const removeEndpointSuccess = createAction('[Endpoint/API] Remove Endpoint Success');
-export const removeEndpointFailure = createAction('[Endpoint/API] Remove Endpoint Failure', props<{ error: any }>());
+export const removeEndpoint = createAction(
+  '[Endpoint/API] Remove Endpoint',
+  props<{ collectionId: string; endpointId: string }>()
+);
 
 export const addNewResponse = createAction(
   '[Endpoint/API] Add New Response',

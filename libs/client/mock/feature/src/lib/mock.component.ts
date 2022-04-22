@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, delay, Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
@@ -77,6 +77,10 @@ export class MockComponent {
       delay: Number(this.configurationForm.value['delay']),
       responses: [...this.responseArrayForm.value],
     });
+  }
+
+  removeEndpoint(collectionId: string, endpointId: string) {
+    this.endpointFacade.removeEndpoint(collectionId, endpointId);
   }
 
   toggleCompress(collection: CompressedCollectionsEntity) {

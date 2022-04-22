@@ -1,6 +1,4 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'ay-endpoint-link',
@@ -12,13 +10,7 @@ export class EndpointLinkComponent {
   @Input() path = '';
   @Input() isSelected = false;
   @Output() selectEndpoint = new EventEmitter();
-  collection: CollectionsEntity;
-
-  constructor(private collectionsFacade: CollectionsFacade) {
-    this.collectionsFacade.allCollections$.pipe(take(1)).subscribe((t) => {
-      this.collection = t[0];
-    });
-  }
+  @Output() removeEndpoint = new EventEmitter();
 
   @HostListener('click')
   onClick() {
@@ -29,10 +21,8 @@ export class EndpointLinkComponent {
     return method ? `method-${method.toLowerCase()}` : '';
   }
 
-  removeEndpoint() {
-    const endpointId = this.collection?.endpoints?.find((e) => e.path === this.path)?.id;
-    if (endpointId) {
-      this.collectionsFacade.removeEndpointFromCollection(this.collection.id, endpointId);
-    }
+  onRemoveEndpoint(ev: Event) {
+    this.removeEndpoint.emit();
+    ev.stopPropagation();
   }
 }
