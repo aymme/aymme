@@ -78,6 +78,6 @@ export class ApiProjectFeatureController {
       throw new BadRequestException(`Mime type ${file.mimetype} is not supported by the system`);
     }
 
-    this.projectService.importProject(id, JSON.parse(file.buffer.toString()));
+    return this.projectService.importProject(id, JSON.parse(file.buffer.toString()));
   }
 }
