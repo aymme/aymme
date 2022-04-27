@@ -1,9 +1,9 @@
 import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { Collection, Endpoint } from '@prisma/client';
-import { CreateProjectDto } from '@aymme/api/project/data-access';
 import { PrismaService } from '@aymme/api/database/data-access';
 import { UpdateCollectionNameDto } from './dto/update-collection-name.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
+import { CreateCollectionDto } from './dto/create-collection.dto';
 
 @Injectable()
 export class CollectionService {
@@ -41,7 +41,7 @@ export class CollectionService {
     return found;
   }
 
-  async create(projectId: string, data: CreateProjectDto): Promise<Collection> {
+  async create(projectId: string, data: CreateCollectionDto): Promise<Collection> {
     const { name } = data;
 
     try {

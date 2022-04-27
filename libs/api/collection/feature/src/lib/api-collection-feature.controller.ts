@@ -1,6 +1,10 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put } from '@nestjs/common';
-import { CollectionService, UpdateCollectionNameDto, UpdateCollectionDto } from '@aymme/api/collection/data-access';
-import { CreateProjectDto } from '@aymme/api/project/data-access';
+import {
+  CollectionService,
+  CreateCollectionDto,
+  UpdateCollectionDto,
+  UpdateCollectionNameDto,
+} from '@aymme/api/collection/data-access';
 
 @Controller('projects/:projectId/collections')
 export class ApiCollectionFeatureController {
@@ -11,10 +15,12 @@ export class ApiCollectionFeatureController {
     return this.collectionService.getAllByProjectID(projectId);
   }
 
-  // TODO: fix this: this doesn't work. Shouldn't be here...
   @Post()
-  async create(@Param('projectId', new ParseUUIDPipe()) projectId: string, @Body() createProjectDto: CreateProjectDto) {
-    return this.collectionService.create(projectId, createProjectDto);
+  async create(
+    @Param('projectId', new ParseUUIDPipe()) projectId: string,
+    @Body() createCollectionDto: CreateCollectionDto
+  ) {
+    return this.collectionService.create(projectId, createCollectionDto);
   }
 
   @Put()
