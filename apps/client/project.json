@@ -91,17 +91,14 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/client"],
       "options": {
-        "jestConfig": "apps/client/jest.config.js",
+        "jestConfig": "apps/client/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          "nx build client",
-          "docker build -f ./apps/client/Dockerfile . -t aymme/client"
-        ],
+        "commands": ["nx build client", "docker build -f ./apps/client/Dockerfile . -t aymme/client"],
         "parallel": false
       }
     }

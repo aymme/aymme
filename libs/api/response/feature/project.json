@@ -14,7 +14,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/api/response/feature"],
       "options": {
-        "jestConfig": "libs/api/response/feature/jest.config.js",
+        "jestConfig": "libs/api/response/feature/jest.config.ts",
         "passWithNoTests": true
       }
     }

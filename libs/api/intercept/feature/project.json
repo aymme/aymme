@@ -14,7 +14,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/api/intercept/feature"],
       "options": {
-        "jestConfig": "libs/api/intercept/feature/jest.config.js",
+        "jestConfig": "libs/api/intercept/feature/jest.config.ts",
         "passWithNoTests": true
       }
     }

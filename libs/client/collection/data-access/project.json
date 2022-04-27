@@ -14,7 +14,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/collection/data-access"],
       "options": {
-        "jestConfig": "libs/client/collection/data-access/jest.config.js",
+        "jestConfig": "libs/client/collection/data-access/jest.config.ts",
         "passWithNoTests": true
       }
     }

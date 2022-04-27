@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/mock/ui/response-list"],
       "options": {
-        "jestConfig": "libs/client/mock/ui/response-list/jest.config.js",
+        "jestConfig": "libs/client/mock/ui/response-list/jest.config.ts",
         "passWithNoTests": true
       }
     },

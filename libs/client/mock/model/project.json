@@ -14,7 +14,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/mock/model"],
       "options": {
-        "jestConfig": "libs/client/mock/model/jest.config.js",
+        "jestConfig": "libs/client/mock/model/jest.config.ts",
         "passWithNoTests": true
       }
     }

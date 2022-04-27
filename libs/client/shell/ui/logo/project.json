@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/shell/ui/logo"],
       "options": {
-        "jestConfig": "libs/client/shell/ui/logo/jest.config.js",
+        "jestConfig": "libs/client/shell/ui/logo/jest.config.ts",
         "passWithNoTests": true
       }
     },

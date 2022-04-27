@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/shell/ui/clickaway"],
       "options": {
-        "jestConfig": "libs/client/shell/ui/clickaway/jest.config.js",
+        "jestConfig": "libs/client/shell/ui/clickaway/jest.config.ts",
         "passWithNoTests": true
       }
     },

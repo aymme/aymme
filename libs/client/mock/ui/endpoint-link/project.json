@@ -8,7 +8,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/mock/ui/endpoint-link"],
       "options": {
-        "jestConfig": "libs/client/mock/ui/endpoint-link/jest.config.js",
+        "jestConfig": "libs/client/mock/ui/endpoint-link/jest.config.ts",
         "passWithNoTests": true
       }
     },
