@@ -8,7 +8,6 @@ import { delay, map, tap, withLatestFrom } from 'rxjs/operators';
 import { getAllCollections } from './collections.selectors';
 import { Store } from '@ngrx/store';
 import { CollectionsEntity } from './collections.models';
-
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
@@ -103,6 +102,28 @@ export class CollectionsEffects {
         },
       })
     )
+  );
+
+  removeEndpointSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CollectionsActions.removeEndpointSuccess),
+      map(({ collectionId, endpointId }) => {
+        this.toastr.success(`Successfully removed endpoint from the collection.`);
+        return CollectionsActions.removeEndpointFromCollection({ collectionId, endpointId });
+      })
+    )
+  );
+
+  removeEndpointFailure$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(CollectionsActions.removeEndpointFailure),
+        map(() => {
+          this.toastr.error(`Error removing endpoint.`);
+          return null;
+        })
+      ),
+    { dispatch: false }
   );
 
   constructor(

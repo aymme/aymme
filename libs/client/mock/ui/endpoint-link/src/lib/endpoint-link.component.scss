@@ -1,6 +1,17 @@
+li:hover {
+  .close-btn {
+    display: inline-block;
+  }
+  .path-txt {
+    margin-right: 0;
+  }
+}
+.path-txt {
+  margin-right: 18px;
+}
 
 li.is-selected {
- background-color: rgba(255,255,255,.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .light li.is-selected {
@@ -8,7 +19,7 @@ li.is-selected {
 }
 
 .method-post {
- background-color: var(--ay-brand-orange);
+  background-color: var(--ay-brand-orange);
 }
 
 .method-put {

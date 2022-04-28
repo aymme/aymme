@@ -164,6 +164,14 @@ const collectionsReducer = createReducer(
       return state;
     }
   }),
+
+  on(CollectionsActions.removeEndpointFromCollection, (state, { collectionId, endpointId }) => {
+    const collection = state.entities[collectionId];
+    const endpoints = collection?.endpoints?.filter((e) => e.id !== endpointId);
+    const changes = { ...collection, endpoints };
+    return collectionsAdapter.updateOne({ id: collectionId, changes }, state);
+  }),
+
   on(CollectionsActions.createNewCollectionSuccess, (state, { collection }) => {
     return collectionsAdapter.setOne(collection, state);
   }),

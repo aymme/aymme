@@ -9,6 +9,7 @@ import * as EndpointActions from './endpoint.actions';
 import * as EndpointSelectors from './endpoint.selectors';
 import { EndpointService } from '../../services/endpoint.service';
 import { ToastrService } from 'ngx-toastr';
+import { CollectionsActions } from '@aymme/client/collection/data-access';
 
 @Injectable()
 export class EndpointEffects {
@@ -57,6 +58,23 @@ export class EndpointEffects {
             `Error saving collection. Please verify that there are no validation errors in the editor and try again.`
           );
           return EndpointActions.updateEndpointFailure({ error });
+        },
+      })
+    )
+  );
+
+  removeEndpoint$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EndpointActions.removeEndpoint),
+      concatLatestFrom(() => [this.store.select(getSelectedProjectId)]),
+      pessimisticUpdate({
+        run: ({ collectionId, endpointId }, projectId) => {
+          return this.endpointService
+            .removeEndpoint(endpointId || '', projectId || '')
+            .pipe(map(() => CollectionsActions.removeEndpointSuccess({ collectionId, endpointId })));
+        },
+        onError: () => {
+          return CollectionsActions.removeEndpointFailure();
         },
       })
     )

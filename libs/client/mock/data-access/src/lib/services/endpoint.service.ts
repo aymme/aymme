@@ -21,6 +21,10 @@ export class EndpointService {
     return this.http.put<EndpointEntity>(`${this.apiURL}/${projectId}/endpoints/${id}`, data);
   }
 
+  removeEndpoint(id: string, projectId: string) {
+    return this.http.delete<EndpointEntity>(`${this.apiURL}/${projectId}/endpoints/${id}`);
+  }
+
   addNewResponse(id: string, projectId: string, data: NewResponseDto) {
     return this.http.post<ResponseEntity>(`${this.appConfig.baseURL}/endpoints/${id}/responses`, data);
   }
