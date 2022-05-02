@@ -29,7 +29,6 @@
     "client-mock-ui-endpoint-options": "libs/client/mock/ui/endpoint-options",
     "client-mock-ui-response-list": "libs/client/mock/ui/response-list",
     "client-projects-data-access": "libs/client/projects/data-access",
-    "client-projects-feature": "libs/client/projects/feature",
     "client-projects-feature-projects": "libs/client/projects/feature/projects",
     "client-projects-feature-shell": "libs/client/projects/feature/shell",
     "client-projects-ui-projects-list": "libs/client/projects/ui/projects-list",
