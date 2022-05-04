@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: aymme-be
+    image: aymme/api:latest
+    environment:
+      - DATABASE_URL=mongodb://mongodb:27017/aymme
+    depends_on:
+      - mongodb
+
+  client:
+    container_name: aymme-fe
+    image: aymme/client:latest
+    ports:
+      - "80:80"
+      - "3333:3333"
+    depends_on:
+      - api:aymme-be
+
+  mongodb:
+    image: 'bitnami/mongodb:5.0'
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongo-db:/bitnami/mongodb'
+    environment:
+      - MONGODB_ADVERTISED_HOSTNAME=127.0.0.1
+      - MONGODB_REPLICA_SET_MODE=primary
+      - MONGODB_USERNAME=myUser
+      - MONGODB_PASSWORD=myPassword
+      - MONGODB_REPLICA_SET_KEY=replicasetkey123
