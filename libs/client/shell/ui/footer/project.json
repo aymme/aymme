@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/footer",
   "sourceRoot": "libs/client/shell/ui/footer/src",
   "prefix": "ay",
   "targets": {

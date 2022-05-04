@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/mock/ui/endpoint-link",
   "sourceRoot": "libs/client/mock/ui/endpoint-link/src",
   "prefix": "ay",
   "targets": {

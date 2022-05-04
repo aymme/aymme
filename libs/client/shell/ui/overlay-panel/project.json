@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/overlay-panel",
   "sourceRoot": "libs/client/shell/ui/overlay-panel/src",
   "prefix": "aymme",
   "targets": {

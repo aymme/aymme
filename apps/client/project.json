@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/client",
   "sourceRoot": "apps/client/src",
   "prefix": "ay",
   "targets": {

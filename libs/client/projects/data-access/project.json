@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/projects/data-access",
   "sourceRoot": "libs/client/projects/data-access/src",
   "prefix": "ay",
   "targets": {

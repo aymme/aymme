@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/how-to-use/feature/shell",
   "sourceRoot": "libs/client/how-to-use/feature/shell/src",
   "prefix": "aymme",
   "targets": {

@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/theme-switcher",
   "sourceRoot": "libs/client/shell/ui/theme-switcher/src",
   "prefix": "ay",
   "targets": {

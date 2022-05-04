@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/response/feature",
   "sourceRoot": "libs/api/response/feature/src",
   "projectType": "library",
   "targets": {

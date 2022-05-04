@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/mock/ui/endpoint-options",
   "sourceRoot": "libs/client/mock/ui/endpoint-options/src",
   "prefix": "aymme",
   "targets": {

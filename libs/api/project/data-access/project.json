@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/project/data-access",
   "sourceRoot": "libs/api/project/data-access/src",
   "projectType": "library",
   "targets": {

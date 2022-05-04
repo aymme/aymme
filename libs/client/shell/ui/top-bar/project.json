@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/top-bar",
   "sourceRoot": "libs/client/shell/ui/top-bar/src",
   "prefix": "ay",
   "targets": {

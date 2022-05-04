@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/mock/feature",
   "sourceRoot": "libs/client/mock/feature/src",
   "prefix": "ay",
   "targets": {

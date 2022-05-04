@@ -1,5 +1,4 @@
 {
-  "root": "libs/client/mock/model",
   "sourceRoot": "libs/client/mock/model/src",
   "projectType": "library",
   "targets": {

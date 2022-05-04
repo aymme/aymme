@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shared/ui/editor",
   "sourceRoot": "libs/client/shared/ui/editor/src",
   "prefix": "ay",
   "targets": {

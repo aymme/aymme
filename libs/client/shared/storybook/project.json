@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shared/storybook",
   "sourceRoot": "libs/client/shared/storybook/src",
   "prefix": "aymme",
   "targets": {

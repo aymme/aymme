@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/logo",
   "sourceRoot": "libs/client/shell/ui/logo/src",
   "prefix": "ay",
   "targets": {

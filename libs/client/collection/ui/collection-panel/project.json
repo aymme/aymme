@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/collection/ui/collection-panel",
   "sourceRoot": "libs/client/collection/ui/collection-panel/src",
   "prefix": "ay",
   "targets": {

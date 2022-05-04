@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/projects/ui/projects-list",
   "sourceRoot": "libs/client/projects/ui/projects-list/src",
   "prefix": "aymme",
   "targets": {

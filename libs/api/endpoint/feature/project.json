@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/endpoint/feature",
   "sourceRoot": "libs/api/endpoint/feature/src",
   "projectType": "library",
   "targets": {

@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/clickaway",
   "sourceRoot": "libs/client/shell/ui/clickaway/src",
   "prefix": "aymme",
   "targets": {

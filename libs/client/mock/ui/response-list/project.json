@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/mock/ui/response-list",
   "sourceRoot": "libs/client/mock/ui/response-list/src",
   "prefix": "ay",
   "targets": {

@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/feature",
   "sourceRoot": "libs/client/shell/feature/src",
   "prefix": "ay",
   "targets": {

@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/dropdown",
   "sourceRoot": "libs/client/shell/ui/dropdown/src",
   "prefix": "aymme",
   "targets": {

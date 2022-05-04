@@ -1,5 +1,4 @@
 {
-  "root": "apps/client-mock-ui-endpoint-link-e2e",
   "sourceRoot": "apps/client-mock-ui-endpoint-link-e2e/src",
   "projectType": "application",
   "targets": {

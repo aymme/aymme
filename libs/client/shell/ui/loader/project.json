@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/client/shell/ui/loader",
   "sourceRoot": "libs/client/shell/ui/loader/src",
   "prefix": "aymme",
   "targets": {
