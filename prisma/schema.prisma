@@ -1,15 +1,15 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["interactiveTransactions"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Collection {
-  id        String     @id @default(uuid())
+  id        String     @id @default(uuid()) @map("_id")
   name      String
   projectId String
   project   Project    @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -20,7 +20,7 @@ model Collection {
 }
 
 model Endpoint {
-  id               String      @id @default(uuid())
+  id               String      @id @default(uuid()) @map("_id")
   path             String
   activeStatusCode Int         @default(500)
   emptyArray       Boolean     @default(false)
@@ -39,7 +39,7 @@ model Endpoint {
 }
 
 model Header {
-  id         String   @id @default(uuid())
+  id         String   @id @default(uuid()) @map("_id")
   name       String
   value      String
   endpointId String
@@ -47,23 +47,23 @@ model Header {
 }
 
 model Project {
-  id                    String                 @id @default(uuid())
-  name                  String                 @unique(map: "sqlite_autoindex_project_3")
-  slug                  String                 @unique(map: "sqlite_autoindex_project_2")
-  configurationId       String?                @unique(map: "sqlite_autoindex_project_4")
-  configuration         ProjectConfiguration?  @relation(fields: [configurationId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  collections           Collection[]
-  endpoints             Endpoint[]
+  id              String                @id @default(uuid()) @map("_id")
+  name            String                @unique
+  slug            String                @unique
+  configuration   ProjectConfiguration?
+  collections     Collection[]
+  endpoints       Endpoint[]
 }
 
 model ProjectConfiguration {
-  id           String   @id @default(uuid())
+  id           String   @id @default(uuid()) @map("_id")
   ignoreParams String?
-  project      Project?
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  projectId    String
 }
 
 model Response {
-  id         String   @id @default(uuid())
+  id         String   @id @default(uuid()) @map("_id")
   body       String   @default("{ \"message\": \"Please update mocks data\" }")
   statusCode Int      @default(500)
   endpointId String
