@@ -8,7 +8,6 @@ const EXAMPLE_PROJECT: Project = {
   id: '8a9bedb8-f8f7-4410-ad2d-55a1c14c59dc',
   name: 'Aymme',
   slug: 'aymme',
-  configurationId: '7202e5e1-cfc1-44fc-ba3a-a812ef3d1c0d',
 };
 
 const EXAMPLE_PROJECTS: Project[] = [EXAMPLE_PROJECT];
@@ -165,7 +164,7 @@ describe('ProjectService', () => {
     it('should update a Project', async () => {
       jest.spyOn(service, 'getById').mockResolvedValue({
         ...EXAMPLE_PROJECT,
-        configuration: { id: '492a358b-b4a7-4bab-a990-8eb0127e912c', ignoreParams: '' },
+        configuration: { id: '', ignoreParams: '', projectId: '' },
       });
       // jest.spyOn(prismaService.project, 'update').mockResolvedValue({ ...result, name: 'New Name', slug: 'new-name' });
 

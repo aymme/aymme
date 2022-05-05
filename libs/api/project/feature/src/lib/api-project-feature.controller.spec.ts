@@ -12,10 +12,10 @@ const EXAMPLE_PROJECT: Project & { configuration: ProjectConfiguration } = {
   id: EXAMPLE_PROJECT_ID,
   name: 'Aymme',
   slug: 'aymme',
-  configurationId: '7202e5e1-cfc1-44fc-ba3a-a812ef3d1c0d',
   configuration: {
     id: 'e993289e-57c0-44ef-8fa7-8f21e24563c1',
     ignoreParams: 'refreshToken',
+    projectId: EXAMPLE_PROJECT_ID,
   },
 };
 
