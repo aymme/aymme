@@ -14,6 +14,6 @@ RUN yarn install
 # dependencies that nestjs needs
 RUN yarn add reflect-metadata tslib rxjs @nestjs/platform-express prisma
 
-RUN yarn prisma db push
+RUN yarn prisma generate
 
-CMD ["node", "./main.js"]
+CMD ["sh","-c", "yarn prisma db push && node ./main.js"]
