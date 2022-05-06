@@ -1,26 +1,6 @@
-<form [formGroup]='formGroup'>
-  <ng-container formArrayName='variables'>
-    <div *ngFor='let _ of formArray.controls; let index = index' class="mb-2 flex flex-row" [formGroup]='getSubFormGroupAtIndex(index)'>
-      <div class='grow'>
-        <input
-          class="rounded text-sm w-full"
-          type="text"
-          placeholder="Key"
-          formControlName='key'
-        />
-      </div>
-      <div class='ml-2 grow'>
-        <input
-          class="rounded text-sm w-full"
-          type="text"
-          placeholder="Value"
-          formControlName='value'
-        />
-      </div>
-      <button type='button' class="p-2 hover:opacity-90 ml-2" (click)='removeAtIndex(index)'>
-        <i class="fa fa-minus"></i>
-      </button>
-    </div>
-  </ng-container>
-</form>
-<button class='block ml-auto add-variable dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100' (click)='addNewItemToFormArray()'>Add new variable</button>
+<ngx-monaco-editor
+  style="height: 300px"
+  [options]="editorOptions"
+  [(ngModel)]="code"
+  (onInit)="onEditorInit($event)"
+></ngx-monaco-editor>
