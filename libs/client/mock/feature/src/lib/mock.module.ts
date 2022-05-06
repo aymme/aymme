@@ -26,6 +26,7 @@ import {
   RenameCollectionDialogComponent,
 } from './dialogs';
 import { VariableEditorComponent } from './dialogs/project-configuration/variable-editor/variable-editor.component';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 @NgModule({
   imports: [
@@ -33,8 +34,8 @@ import { VariableEditorComponent } from './dialogs/project-configuration/variabl
     RouterModule.forChild([
       {
         path: '',
-        component: MockComponent,
-      },
+        component: MockComponent
+      }
     ]),
     StoreModule.forFeature(CollectionsFeature.COLLECTIONS_FEATURE_KEY, CollectionsFeature.reducer),
     EffectsModule.forFeature([CollectionsEffects]),
@@ -50,6 +51,7 @@ import { VariableEditorComponent } from './dialogs/project-configuration/variabl
     ReactiveFormsModule,
     FormsModule,
     TooltipModule,
+    MonacoEditorModule
   ],
   declarations: [
     MockComponent,

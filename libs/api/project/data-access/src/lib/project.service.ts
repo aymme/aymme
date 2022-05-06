@@ -240,7 +240,7 @@ export class ProjectService {
                   path: endpoint.path,
                   method: endpoint.method,
                 },
-              },
+              } as any,
               create: {
                 path: endpoint.path,
                 activeStatusCode: endpoint.activeStatusCode,

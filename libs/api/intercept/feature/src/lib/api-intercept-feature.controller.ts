@@ -4,7 +4,7 @@ import sleep from 'sleep-promise';
 import { Project, ProjectConfiguration } from '@prisma/client';
 import { EndpointService } from '@aymme/api/endpoint/data-access';
 import { CurrentProject, ProjectGuard } from '@aymme/api/project/utils';
-import { interpolateTemplateString } from '@aymme/api/intercept/utils';
+import { interpolateObject, interpolateTemplateString } from '@aymme/api/intercept/utils';
 
 @Controller('intercept')
 export class ApiInterceptFeatureController {
@@ -58,7 +58,10 @@ export class ApiInterceptFeatureController {
     if (endpoint.delay && endpoint.delay > 10) {
       await sleep(endpoint.delay);
     }
-    return res.json(JSON.parse(interpolateTemplateString(endpointResponse.body, variables)));
+
+    const jsonParsedBody = JSON.parse(endpointResponse.body);
+
+    return res.json(interpolateObject(jsonParsedBody, variables));
   }
 
   constructor(private endpointService: EndpointService) {}

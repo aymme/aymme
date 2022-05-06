@@ -1,51 +1,42 @@
-import { Component, Input } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ay-variable-editor',
   templateUrl: 'variable-editor.html',
   styleUrls: ['variable-editor.scss']
 })
-export class VariableEditorComponent {
-
-  formGroup = this.formBuilder.group(
-    {variables: this.formBuilder.array([])}
-  );
+export class VariableEditorComponent implements OnInit {
 
   @Input()
-  set variables(v: string) {
-    const object = JSON.parse(v);
-    this.formArray.clear();
-    Object.keys(object).map(key => ({key: key, value: object[key]})).forEach(item => this.addNewItemToFormArray(item));
+  variables: string;
+
+  editor: any;
+  code: string;
+  editorOptions = { theme: 'vs-dark', language: 'json', minimap: { enabled: false }, automaticLayout: true };
+
+  ngOnInit() {
+    this.code = this.variables;
   }
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  get value(): string {
-    const object: any = {};
-    for (const item of this.formArray.value) {
-      const {key, value} = item;
-      if (key && value) {
-        object[key] = value;
-      }
-    }
-    return JSON.stringify(object);
+  get value() {
+    return this.code;
   }
 
-  getSubFormGroupAtIndex(index: number): FormGroup {
-    return this.formArray.controls[index] as FormGroup;
+  format() {
+    this.editor.trigger('format', 'editor.action.formatDocument');
   }
 
-  get formArray(): FormArray {
-    return this.formGroup.get('variables') as FormArray;
-  }
+  onEditorInit(editor: any) {
+    this.editor = editor;
+    setTimeout(() => this.format(), 20);
 
-  addNewItemToFormArray(item?: {key: string; value: string}) {
-    this.formArray.push(this.formBuilder.group(item || {key: '', value: ''}));
-  }
+    this.editor.onDidBlurEditorWidget(() => {
+      this.format();
+    });
 
-  removeAtIndex(index: number) {
-    this.formArray.removeAt(index);
+    this.editor.onDidPaste(() => {
+      this.format();
+    });
   }
 
 }
