@@ -5,16 +5,17 @@ services:
     container_name: aymme-be
     image: aymme/api:latest
     environment:
-      - DATABASE_URL=mongodb://mongodb:27017/aymme
+      - DATABASE_URL=mongodb://root:root@mongodb:27017/aymme?authSource=admin
     depends_on:
       - mongodb
+    ports:
+      - "3333:3333"
 
   client:
     container_name: aymme-fe
     image: aymme/client:latest
     ports:
       - "80:80"
-      - "3333:3333"
     depends_on:
       - api:aymme-be
 
@@ -25,8 +26,12 @@ services:
     volumes:
       - 'mongo-db:/bitnami/mongodb'
     environment:
-      - MONGODB_ADVERTISED_HOSTNAME=127.0.0.1
+#      - MONGODB_ADVERTISED_HOSTNAME=host.docker.internal
       - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_USERNAME=myUser
-      - MONGODB_PASSWORD=myPassword
+      - MONGODB_ROOT_USER=root
+      - MONGODB_ROOT_PASSWORD=root
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
+      - MONGODB_DATABASE=aymme
+
+volumes:
+  mongo-db:

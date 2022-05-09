@@ -6,4 +6,4 @@ WORKDIR /usr/share/nginx/html
 
 COPY ./dist/apps/client .
 
-EXPOSE 80 3333
+EXPOSE 80

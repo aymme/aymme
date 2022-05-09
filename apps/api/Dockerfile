@@ -7,7 +7,8 @@ WORKDIR /app
 COPY ./dist/apps/api .
 COPY prisma ./prisma/
 
-ENV PORT=3333
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
 RUN yarn install
 
@@ -15,5 +16,7 @@ RUN yarn install
 RUN yarn add reflect-metadata tslib rxjs @nestjs/platform-express prisma
 
 RUN yarn prisma generate
+
+EXPOSE 3333
 
 CMD ["sh","-c", "yarn prisma db push && node ./main.js"]
