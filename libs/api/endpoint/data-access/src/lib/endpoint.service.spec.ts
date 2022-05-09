@@ -95,7 +95,7 @@ describe('EndpointService', () => {
 
   describe('intercept()', () => {
     it('should return an existing endpoint', async () => {
-      const endpoint = await service.intercept(EXAMPLE_ENDPOINT_PATH, {}, '', 'GET', EXAMPLE_PROJECT);
+      const endpoint = await service.intercept(EXAMPLE_ENDPOINT_PATH, {}, {}, 'GET', EXAMPLE_PROJECT);
 
       expect(prismaCollectionFindFirstMock).toHaveBeenCalledTimes(0);
       expect(endpoint.id).toEqual(EXAMPLE_ENDPOINT_ID);
@@ -106,7 +106,7 @@ describe('EndpointService', () => {
         .mockImplementationOnce(() => null)
         .mockImplementationOnce(() => ({ ...EXAMPLE_ENDPOINT, order: 0 }));
 
-      const endpoint = await service.intercept(EXAMPLE_ENDPOINT_PATH, {}, '', 'GET', EXAMPLE_PROJECT);
+      const endpoint = await service.intercept(EXAMPLE_ENDPOINT_PATH, {}, {}, 'GET', EXAMPLE_PROJECT);
 
       expect(prismaCollectionFindFirstMock).toHaveBeenCalledTimes(1);
       expect(prismaEndpointCreateMock).toHaveBeenCalledTimes(1);
@@ -121,7 +121,7 @@ describe('EndpointService', () => {
 
       prismaEndpointCreateMock.mockImplementationOnce(() => ({ ...EXAMPLE_ENDPOINT, path }));
 
-      const endpoint = await service.intercept(EXAMPLE_ENDPOINT_PATH, { size: '50' }, '', 'GET', EXAMPLE_PROJECT);
+      const endpoint = await service.intercept(EXAMPLE_ENDPOINT_PATH, { size: '50' }, {}, 'GET', EXAMPLE_PROJECT);
 
       expect(endpoint.path).toEqual(path);
     });
@@ -136,7 +136,7 @@ describe('EndpointService', () => {
       const endpoint = await service.intercept(
         withIgnoredParamPath,
         { size: '50', refreshToken: 'token' },
-        '',
+        {},
         'GET',
         EXAMPLE_PROJECT
       );
@@ -152,7 +152,7 @@ describe('EndpointService', () => {
       });
 
       await expect(
-        service.intercept(EXAMPLE_ENDPOINT_PATH, { size: '50' }, '', 'GET', EXAMPLE_PROJECT)
+        service.intercept(EXAMPLE_ENDPOINT_PATH, { size: '50' }, {}, 'GET', EXAMPLE_PROJECT)
       ).rejects.toThrow(InternalServerErrorException);
     });
   });

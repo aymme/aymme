@@ -21,7 +21,7 @@ export class EndpointService {
   async intercept(
     path: string,
     query: { [key: string]: string },
-    body: string,
+    body: object,
     method: string,
     project: Project & { configuration: ProjectConfiguration }
   ): Promise<Endpoint & { responses: Response[]; headers: Header[] }> {
