@@ -25,7 +25,6 @@ import {
   ProjectConfigurationDialogComponent,
   RenameCollectionDialogComponent,
 } from './dialogs';
-import { VariableEditorComponent } from './dialogs/project-configuration/variable-editor/variable-editor.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 @NgModule({
@@ -59,7 +58,6 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     ConfirmDeleteCollectionDialogComponent,
     RenameCollectionDialogComponent,
     ProjectConfigurationDialogComponent,
-    VariableEditorComponent,
     ImportProjectDialogComponent,
   ],
   providers: [CollectionsFacade],

@@ -27,7 +27,9 @@
   <div class="tabs dark:border-blend-50 mb-4 border border-gray-100 p-4">
     <ng-container *ngIf="currentTab === 'variables-tab'">
       <h5 class="mb-3 block text-sm font-bold">Variables</h5>
-      <ay-variable-editor [variables]="(selectedProjectConfiguration$ | async)?.variables"></ay-variable-editor>
+      <div style='height: 300px'>
+        <ay-editor [(content)]='variables'></ay-editor>
+      </div>
     </ng-container>
     <ng-container *ngIf="currentTab === 'ignore-query-params-tab'">
       <ng-container *ngIf="loaded$ | async; else loadingConfiguration">
