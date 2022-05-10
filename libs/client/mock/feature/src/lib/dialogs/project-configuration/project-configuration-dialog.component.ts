@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProjectsFacade } from '@aymme/client/projects/data-access';
 import { delay, map } from 'rxjs';
 import { VariableEditorComponent } from './variable-editor/variable-editor.component';
-import { Actions } from '@ngrx/effects';
 
 interface ProjectConfiguration {
   projectId: string;
@@ -43,7 +42,6 @@ export class ProjectConfigurationDialogComponent {
     public dialogRef: MatDialogRef<ProjectConfigurationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProjectConfiguration,
     private projectsFacade: ProjectsFacade,
-    private actions$: Actions
   ) {}
 
   onCancelClick(): void {
