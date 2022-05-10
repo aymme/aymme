@@ -14,8 +14,7 @@ import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from '@aymme/client/shell/ui/tooltip';
 
 import {
@@ -25,7 +24,6 @@ import {
   ProjectConfigurationDialogComponent,
   RenameCollectionDialogComponent,
 } from './dialogs';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 @NgModule({
   imports: [
@@ -33,8 +31,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     RouterModule.forChild([
       {
         path: '',
-        component: MockComponent
-      }
+        component: MockComponent,
+      },
     ]),
     StoreModule.forFeature(CollectionsFeature.COLLECTIONS_FEATURE_KEY, CollectionsFeature.reducer),
     EffectsModule.forFeature([CollectionsEffects]),
@@ -50,7 +48,6 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     ReactiveFormsModule,
     FormsModule,
     TooltipModule,
-    MonacoEditorModule
   ],
   declarations: [
     MockComponent,
