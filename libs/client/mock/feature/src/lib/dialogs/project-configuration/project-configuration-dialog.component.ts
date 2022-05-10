@@ -2,8 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProjectsFacade } from '@aymme/client/projects/data-access';
-import { delay, map } from 'rxjs';
-import { VariableEditorComponent } from './variable-editor/variable-editor.component';
+import { delay, map, Subscription } from 'rxjs';
 
 interface ProjectConfiguration {
   projectId: string;
@@ -16,7 +15,6 @@ interface ProjectConfiguration {
 })
 export class ProjectConfigurationDialogComponent {
   selectedProjectConfiguration$ = this.projectsFacade.selectedProjectConfiguration$;
-  selectedProject$ = this.projectsFacade.selectedProject$;
   project$ = this.projectsFacade.selectedProject$.pipe(
     map((project) => {
       return {
@@ -36,20 +34,26 @@ export class ProjectConfigurationDialogComponent {
     queryParam: new FormControl(),
   });
 
-  @ViewChild(VariableEditorComponent) variableEditorComponent: VariableEditorComponent;
+  variables: string;
+
+  subscriptions = new Subscription();
 
   constructor(
     public dialogRef: MatDialogRef<ProjectConfigurationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProjectConfiguration,
     private projectsFacade: ProjectsFacade,
-  ) {}
+  ) {
+    this.subscriptions.add(
+      this.selectedProjectConfiguration$.subscribe(configuration => this.variables = configuration?.variables),
+    )
+  }
 
   onCancelClick(): void {
     this.dialogRef.close();
   }
 
   saveProjectConfiguration() {
-    this.projectsFacade.updateProjectConfiguration({ variables: this.variableEditorComponent.value }, () =>
+    this.projectsFacade.updateProjectConfiguration({ variables: this.variables }, () =>
       this.dialogRef.close()
     );
   }
@@ -64,5 +68,9 @@ export class ProjectConfigurationDialogComponent {
 
   removeQueryParam(queryParam: string) {
     this.projectsFacade.removeIgnoreParamFromConfiguration(queryParam);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
