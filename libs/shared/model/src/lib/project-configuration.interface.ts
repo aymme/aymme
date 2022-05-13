@@ -1,4 +1,5 @@
 export interface IProjectConfiguration {
-  id: string;
-  ignoreParams: string[] | string;
+  id?: string;
+  ignoreParams?: string;
+  variables?: any;
 }

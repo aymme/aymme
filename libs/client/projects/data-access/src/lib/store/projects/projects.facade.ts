@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { ProjectsEntity } from '.';
 
 import * as ProjectsActions from './projects.actions';
 import * as ProjectsSelectors from './projects.selectors';
+import { IProjectConfiguration } from '@aymme/shared/model';
 
 @Injectable()
 export class ProjectsFacade {
@@ -14,10 +14,12 @@ export class ProjectsFacade {
   loaded$ = this.store.pipe(select(ProjectsSelectors.getProjectsLoaded));
   allProjects$ = this.store.pipe(select(ProjectsSelectors.getAllProjects));
   selectedProject$ = this.store.pipe(select(ProjectsSelectors.getSelected));
+  selectedProjectConfiguration$ = this.store.pipe(select(ProjectsSelectors.getSelectedProjectConfiguration));
   error$ = this.store.pipe(select(ProjectsSelectors.getProjectsError));
   getNewProject$ = this.store.pipe(select(ProjectsSelectors.getNewProject));
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store) {
+  }
 
   /**
    * Use the initialization action to perform one
@@ -35,8 +37,8 @@ export class ProjectsFacade {
     this.store.dispatch(ProjectsActions.deleteProject({ projectId }));
   }
 
-  updateProjectConfiguration() {
-    this.store.dispatch(ProjectsActions.updateProjectConfiguration());
+  updateProjectConfiguration(configuration: IProjectConfiguration, onSuccess: () => void) {
+    this.store.dispatch(ProjectsActions.updateSelectedProjectConfiguration({configuration, onSuccess}));
   }
 
   selectProject(projectId: string) {

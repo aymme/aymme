@@ -14,8 +14,7 @@ import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from '@aymme/client/shell/ui/tooltip';
 
 import {

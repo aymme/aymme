@@ -7,6 +7,7 @@ import { APP_CONFIG, AppConfig } from '@aymme/client/shared/app-config';
 import { ProjectsEntity } from '../store/projects/projects.models';
 import { Observable } from 'rxjs';
 import { FileSaverService } from 'ngx-filesaver';
+import { IProjectConfiguration } from '@aymme/shared/model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,12 +30,8 @@ export class ProjectsService {
     );
   }
 
-  updateProject(project: ProjectsEntity): Observable<ProjectsEntity> {
-    const { configuration } = project;
-
-    return this.http.put<ProjectsEntity>(`${this.apiURL}/${project.id}/configuration`, {
-      ignoreParams: configuration.ignoreParams,
-    });
+  updateProjectConfiguration(projectId: string, configuration: IProjectConfiguration): Observable<IProjectConfiguration> {
+    return this.http.put<IProjectConfiguration>(`${this.apiURL}/${projectId}/configuration`, configuration );
   }
 
   getProjectById(projectId: string) {

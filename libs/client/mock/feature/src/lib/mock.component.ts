@@ -225,7 +225,7 @@ export class MockComponent {
 
   openProjectConfiguration() {
     const dialogRef = this.dialog.open(ProjectConfigurationDialogComponent, {
-      width: '500px',
+      width: '700px',
       data: {},
       position: {
         top: '100px',

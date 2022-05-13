@@ -113,7 +113,7 @@ export class ProjectService {
   }
 
   async updateConfiguration(id: string, updateConfigurationDto: UpdateProjectConfigurationDto) {
-    const { ignoreParams } = updateConfigurationDto;
+    const { ignoreParams, variables } = updateConfigurationDto;
     await this.getById(id); // TODO Temporary workaround. We should maybe catch Prisma exceptions
 
     try {
@@ -124,7 +124,8 @@ export class ProjectService {
         data: {
           configuration: {
             update: {
-              ignoreParams: ignoreParams,
+              ignoreParams,
+              variables,
             },
           },
         },
@@ -239,7 +240,7 @@ export class ProjectService {
                   path: endpoint.path,
                   method: endpoint.method,
                 },
-              },
+              } as any,
               create: {
                 path: endpoint.path,
                 activeStatusCode: endpoint.activeStatusCode,

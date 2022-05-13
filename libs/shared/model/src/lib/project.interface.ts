@@ -1,9 +1,10 @@
 import { IEndpoint } from './endpoint.interface';
+import { IProjectConfiguration } from './project-configuration.interface';
 
 export interface IProject {
   id: string;
   name: string;
   slug: string;
-  configuration: any;
+  configuration: IProjectConfiguration;
   endpoints?: IEndpoint[];
 }
