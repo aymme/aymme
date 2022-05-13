@@ -11,6 +11,8 @@ export const getProjectsLoaded = createSelector(getProjectsState, (state: State)
 
 export const getProjectsError = createSelector(getProjectsState, (state: State) => state.error);
 
+export const getNewProject = createSelector(getProjectsState, (state: State) => state.project);
+
 export const getAllProjects = createSelector(getProjectsState, (state: State) => selectAll(state));
 
 export const getProjectsEntities = createSelector(getProjectsState, (state: State) => selectEntities(state));

@@ -31,7 +31,7 @@ describe('Aymme', () => {
     it('should have 4 menu items', () => {
       const menu = cy.getBySel('main-navigation-list');
       menu.should('be.visible');
-      menu.children().should('have.length', 4);
+      menu.children().should('have.length', 3);
     });
   });
 

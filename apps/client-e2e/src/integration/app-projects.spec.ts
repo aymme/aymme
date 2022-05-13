@@ -1,11 +1,17 @@
 describe('App/Projects', () => {
   const PROJECT_NAME = 'Test: New Project 1';
-  const PROJECT_URL = 'http://localhost:4200/api/projects';
   const PROJECT_NAME_EXISTS_ERROR = 'Project name already exists';
+
+  before(() => {
+    cy.task('deleteAllProjects');
+  });
+
+  after(() => {
+    cy.task('deleteAllProjects');
+  });
 
   describe('Project: display a list of projects', () => {
     beforeEach(() => {
-      cy.intercept('GET', PROJECT_URL, []).as('getProjects');
       cy.visit('/');
     });
 
@@ -23,10 +29,6 @@ describe('App/Projects', () => {
   });
 
   describe('Projects: add new project form', () => {
-    beforeEach(() => {
-      cy.intercept('GET', PROJECT_URL, []).as('getProjects');
-    });
-
     it('should have a add new project button', () => {
       cy.getBySel('projects-list-add-new-project').should('be.visible');
     });
@@ -61,17 +63,6 @@ describe('App/Projects', () => {
 
   describe('Projects: adding a new project', () => {
     it('should create a new project if the name is provided in the form', () => {
-      cy.intercept('POST', PROJECT_URL, {
-        statusCode: 200,
-        body: {
-          name: 'Test: New Project 1',
-          slug: 'test:new-project-1',
-          id: '4900d446-006e-46cd-99cd-142ca1caa206',
-        },
-      });
-
-      cy.intercept('GET', PROJECT_URL, { fixture: 'new-project.json', statusCode: 200 }).as('getProjects');
-
       // reset form
       cy.visit('/');
       cy.getBySel('projects-list-add-new-project').click();
@@ -79,8 +70,6 @@ describe('App/Projects', () => {
       // continue test
       cy.getBySel('add-new-project-form-input-name').type(PROJECT_NAME);
       cy.getBySel('add-new-project-submit').click();
-
-      cy.wait('@getProjects');
 
       cy.getBySel('add-new-project-form').should('not.exist');
       const projectListElement = cy.getBySel('projects-list');
@@ -93,7 +82,6 @@ describe('App/Projects', () => {
 
   describe('Projects: should delete a project', () => {
     it('should delete a project', () => {
-      cy.intercept('GET', PROJECT_URL, []).as('getProjects');
       const projectListElement = cy.getBySel('projects-list');
       projectListElement.children().should('have.length', 1);
       projectListElement.eq(0).getBySel('projects-delete-project').click();
@@ -103,28 +91,19 @@ describe('App/Projects', () => {
   });
 
   describe('Projects: add a project with a name that already exists', () => {
-    before(() => {
-      cy.intercept('POST', PROJECT_URL, {
-        statusCode: 409,
-      });
-    });
-
     it('should display a error', () => {
       cy.getBySel('projects-list-add-new-project').click();
       cy.getBySel('add-new-project-form-input-name').type(PROJECT_NAME);
       cy.getBySel('add-new-project-submit').click();
+
+      cy.getBySel('projects-list-add-new-project').click();
+      cy.getBySel('add-new-project-form-input-name').type(PROJECT_NAME);
+      cy.getBySel('add-new-project-submit').click();
+
       cy.getBySel('add-new-project-error').contains(PROJECT_NAME_EXISTS_ERROR);
     });
 
-    it('should allow a new project when the name is changed', () => {
-      cy.intercept('POST', PROJECT_URL, {
-        statusCode: 200,
-        body: {
-          name: 'Test: New Project 2',
-          slug: 'test:new-project-2',
-          id: '4900d446-006e-46cd-99cd-142ca1caa206',
-        },
-      });
+    it('should allow to add a new project when the name is changed', () => {
       cy.getBySel('add-new-project-form-input-name').clear();
       cy.getBySel('add-new-project-form-input-name').type('Test: New Project 2');
       cy.getBySel('add-new-project-submit').click();

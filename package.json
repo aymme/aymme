@@ -66,6 +66,7 @@
     "class-validator": "^0.13.1",
     "file-saver": "^2.0.5",
     "monaco-editor": "^0.33.0",
+    "mongodb": "^4.5.0",
     "nest-winston": "^1.6.2",
     "ngx-filesaver": "^13.0.0",
     "ngx-monaco-editor": "^12.0.0",

@@ -1,3 +1,4 @@
+import { IProject } from '@aymme/shared/model';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
@@ -15,10 +16,7 @@ export interface State extends EntityState<ProjectsEntity> {
   loaded: boolean; // has the Projects list been loaded
   error?: Response | null; // last known error (if any)
   configuration?: ProjectConfigurationEntity;
-}
-
-export interface ProjectsPartialState {
-  readonly [PROJECTS_FEATURE_KEY]: State;
+  project?: IProject
 }
 
 export const projectsAdapter: EntityAdapter<ProjectsEntity> = createEntityAdapter<ProjectsEntity>();
@@ -49,7 +47,7 @@ export const projectsReducer = createReducer(
     ...state,
     project: project,
     loaded: false,
-    error: undefined,
+    error: null,
   })),
   on(ProjectsActions.createNewProjectFailure, (state, { error }) => ({
     ...state,

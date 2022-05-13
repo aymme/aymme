@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
+import { ProjectsEntity, ProjectsFacade, State } from '@aymme/client/projects/data-access';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subject, takeUntil, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, Subject, takeUntil, tap } from 'rxjs';
 
 const PROJECT_ALREADY_EXITS = 'Project name already exists.';
 const FILL_IN_PROJECT_NAME = 'Please specify a project name.';
@@ -16,19 +16,19 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   loaded$ = this.projectsFacade.loaded$;
   projects$ = this.projectsFacade.allProjects$;
-  error$ = this.projectsFacade.error$.pipe(
+  error$ = combineLatest([this.projectsFacade.error$, this.projectsFacade.getNewProject$]).pipe(
     takeUntil(this.unsubscribe$),
-    tap((err) => {
+    tap(([err]) => {
       if (err?.status === 409) {
         this.displayError$.next(PROJECT_ALREADY_EXITS);
+        return;
       }
 
-      if (!err) {
-        this.hideDialog();
-        this.resetFormInput();
-      }
+      this.hideDialog();
+      this.resetFormInput();
     })
   );
+
 
   displayAddNewProject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   displayError$: BehaviorSubject<boolean | string> = new BehaviorSubject<boolean | string>(false);
