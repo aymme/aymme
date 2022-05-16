@@ -1,7 +1,7 @@
 
 # Contributing to AYMME
 
-Welcome! Thank you for taking an interest in contributing to this application. Bellow you will find
+Welcome! Thank you for taking an interest in contributing to this application. Bellow, you will find
 useful information on how to start the application locally and how you can start contributing to it.
 
 For any questions, please don't hesitate to contact us via our [Discord channel](https://discord.gg/RpHs6G95).
@@ -17,19 +17,21 @@ For any questions, please don't hesitate to contact us via our [Discord channel]
 * Install [`yarn`](https://classic.yarnpkg.com/lang/en/) (for installing npm dependencies, and we are using the classic version of yarn)
 * Install [`docker`](https://www.docker.com/products/docker-desktop/) (for managing the database)
 
-To install Yarn using npm, copy and paste the following commands in your terminal of choice
+To install Yarn using `npm`, copy and paste the following command in your terminal of choice
 ```shell
 npm install --global yarn
 ```
 
+> 💡 For Windows users, you can use [Git Bash](https://gitforwindows.org/)
+
 ## General Setup
 
-Before you proceed with the setup, you need to choose how you want to interact with the database. AYMME currently is using a MongoDB for storing data.
+Before you proceed with the setup, you need to choose how you want to interact with the database. AYMME is currently using MongoDB for storing data.
 
-To be able to use MongoDB for local development, you can use one of the three options
+To be able to use MongoDB for local development, you can use one of the following options
 * Using the docker-compose.development.yml by running
   ```bash
-  docker-compose -p aymme -f ./docker/docker-compose.development.yml up # -d to run it in the background
+  docker-compose -p aymme-dev -f ./docker/docker-compose.development.yml up # -d to run it in the background
   ```
   _This step is once you have the source code locally_
 * Installing MongoDB locally by following the [MongoDB Guide](https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-os-x/), or
@@ -58,8 +60,6 @@ The final step is to run the database migrations
 yarn prisma db push
 ```
 
-> 💡 For Windows users, you can use [Git Bash](https://gitforwindows.org/)
-
 ### Running and building the application
 
 To run the application locally you need to execute two commands
@@ -80,5 +80,5 @@ This will build the application and create the two containers. Usually this step
 
 **Before starting to work on a new feature, please make sure we have a discussion around your idea**
 
-It's never a good experience to invest a lot of time and effort on a feature that somebody else is working on it, or it's not in the pipeline
+It's never a good experience to invest a lot of time and effort on a feature that somebody else is working on, or it's not in the pipeline
 To avoid this from happening, we would kindly ask contributors to create [a feature request](https://github.com/aymme/aymme/discussions/new?category=ideas). Let's first discuss the idea and come up with a plan
