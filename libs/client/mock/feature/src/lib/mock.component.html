@@ -102,11 +102,11 @@
 
 <ng-template #collectionPanel let-collections="collections">
   <section cdkDropList [cdkDropListData]="collections" (cdkDropListDropped)="onDropCollection($event)">
-    <section cdkDropListGroup class="collection-drop-list">
+    <section cdkDropListGroup class="collection-drop-list" data-cy="collection-list">
       <ay-collection-panel *ngFor="let collection of collections">
         <section
           cdkDrag
-          data-cy="endpoints-list"
+          data-cy="collection-item"
           class="collection-item dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
           [ngClass]="{ 'is-compressed': collection.compressed }"
         >
@@ -123,7 +123,11 @@
                   [ngClass]="collection.compressed ? 'fa-expand-alt' : 'fa-compress-alt'"
                 ></i>
               </button>
-              <section *ngIf="collection.name !== 'default'" class="dropdown-menu relative ml-auto">
+              <section
+                *ngIf="collection.name !== 'default'"
+                data-cy="endpoints-list"
+                class="dropdown-menu relative ml-auto"
+              >
                 <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
                 <div class="dark:bg-background absolute left-0 top-8 z-10 hidden w-40 rounded-md bg-white">
                   <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
@@ -150,7 +154,7 @@
             [cdkDropListData]="collection.endpoints"
             id="{{ collection.id }}"
           >
-            <div cdkDrag cdkDragLockAxis="y" *ngFor="let endpoint of collection.endpoints">
+            <div cdkDrag cdkDragLockAxis="y" *ngFor="let endpoint of collection.endpoints" data-cy="endpoints-list">
               <div class="collection-item-drag-placeholder" *cdkDragPlaceholder></div>
               <ay-endpoint-link
                 [isSelected]="endpoint.id === (selectedEndpoint$ | async)"

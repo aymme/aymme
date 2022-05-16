@@ -18,7 +18,6 @@ export class ProjectsListComponent {
   }
 
   onClick(project: IProject) {
-    console.log({ project });
     this.openProject.emit({ id: project.id });
   }
 }
