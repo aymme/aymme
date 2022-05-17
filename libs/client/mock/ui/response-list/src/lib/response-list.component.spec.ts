@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResponseListComponent } from './response-list.component';
+import { EndpointFacade } from '@aymme/client/mock/data-access';
+import { OverlayPanelModule } from '@aymme/client/shell/ui/overlay-panel';
 
 describe('ResponseListComponent', () => {
   let component: ResponseListComponent;
@@ -8,9 +10,18 @@ describe('ResponseListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResponseListComponent ]
-    })
-    .compileComponents();
+      declarations: [ResponseListComponent],
+      imports: [OverlayPanelModule],
+      providers: [
+        {
+          provide: EndpointFacade,
+          useValue: {
+            addNewResponse: jest.fn(),
+            removeResponse: jest.fn(),
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

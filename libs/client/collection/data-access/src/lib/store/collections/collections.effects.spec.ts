@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 
 import * as CollectionsActions from './collections.actions';
 import { CollectionsEffects } from './collections.effects';
-import { hot } from 'jasmine-marbles';
+import { CollectionService } from '../../services/collection.service';
+import { cold, hot } from 'jasmine-marbles';
+import { ToastrService } from 'ngx-toastr';
 
 describe('CollectionsEffects', () => {
   let actions: Observable<Action>;
@@ -16,7 +18,21 @@ describe('CollectionsEffects', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NxModule.forRoot()],
-      providers: [CollectionsEffects, provideMockActions(() => actions), provideMockStore()],
+      providers: [
+        CollectionsEffects,
+        provideMockActions(() => actions),
+        provideMockStore(),
+        {
+          provide: CollectionService,
+          useValue: {
+            getAll: jest.fn(() => cold('--a|', { a: [] })),
+          },
+        },
+        {
+          provide: ToastrService,
+          useValue: jest.fn(),
+        },
+      ],
     });
 
     effects = TestBed.inject(CollectionsEffects);
@@ -24,7 +40,7 @@ describe('CollectionsEffects', () => {
 
   describe('init$', () => {
     it('should work', () => {
-      actions = hot('-a-|', { a: CollectionsActions.init() });
+      actions = hot('-a-|', { a: CollectionsActions.init({ projectId: '123' }) });
 
       const expected = hot('-a-|', {
         a: CollectionsActions.loadCollectionsSuccess({ collections: [] }),

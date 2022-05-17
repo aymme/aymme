@@ -2,23 +2,18 @@ import { Action } from '@ngrx/store';
 
 import * as CollectionsActions from './collections.actions';
 import { CollectionsEntity } from './collections.models';
-import { State, initialState, reducer } from './collections.reducer';
+import { initialState, reducer, State } from './collections.reducer';
 
 describe('Collections Reducer', () => {
-  const createCollectionsEntity = (
-    id: string,
-    name = ''
-  ): CollectionsEntity => ({
+  const createCollectionsEntity = (id: string, name = ''): CollectionsEntity => ({
     id,
     name: name || `name-${id}`,
+    order: 1,
   });
 
   describe('valid Collections actions', () => {
     it('loadCollectionsSuccess should return the list of known Collections', () => {
-      const collections = [
-        createCollectionsEntity('PRODUCT-AAA'),
-        createCollectionsEntity('PRODUCT-zzz'),
-      ];
+      const collections = [createCollectionsEntity('PRODUCT-AAA'), createCollectionsEntity('PRODUCT-zzz')];
       const action = CollectionsActions.loadCollectionsSuccess({ collections });
 
       const result: State = reducer(initialState, action);
