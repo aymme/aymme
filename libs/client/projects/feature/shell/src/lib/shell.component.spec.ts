@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { ProjectsFacade } from '@aymme/client/projects/data-access';
 
 import { ShellComponent } from './shell.component';
 
@@ -8,7 +10,16 @@ describe('ShellComponentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterModule],
       declarations: [ShellComponent],
+      providers: [
+        {
+          provide: ProjectsFacade,
+          useValue: {
+            init: jest.fn(),
+          },
+        },
+      ],
     }).compileComponents();
   });
 
