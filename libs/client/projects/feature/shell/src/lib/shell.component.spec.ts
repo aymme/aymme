@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
 import { ProjectsFacade } from '@aymme/client/projects/data-access';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { ShellComponent } from './shell.component';
 
 describe('ShellComponentComponent', () => {
@@ -10,7 +9,7 @@ describe('ShellComponentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterModule],
+      imports: [RouterTestingModule],
       declarations: [ShellComponent],
       providers: [
         {
