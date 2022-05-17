@@ -5,20 +5,25 @@ import { initialState, reducer, State } from './endpoint.reducer';
 import { EndpointEntity } from '@aymme/client/mock/model';
 
 describe('Endpoint Reducer', () => {
-  const createEndpointEntity = (id: string, name = ''): EndpointEntity => ({
+  const createEndpointEntity = (id: string, path = ''): EndpointEntity => ({
     id,
-    name: name || `name-${id}`,
+    path: path || `name-${id}`,
+    activeStatusCode: 500,
+    emptyArray: false,
+    method: 'GET',
+    forward: false,
+    delay: 0,
+    order: 0,
   });
 
   describe('valid Endpoint actions', () => {
     it('loadEndpointSuccess should return the list of known Endpoint', () => {
-      const endpoint = [createEndpointEntity('PRODUCT-AAA'), createEndpointEntity('PRODUCT-zzz')];
+      const endpoint = createEndpointEntity('PRODUCT-AAA');
       const action = EndpointActions.loadEndpointSuccess({ endpoint });
 
       const result: State = reducer(initialState, action);
 
       expect(result.loaded).toBe(true);
-      expect(result.ids.length).toBe(2);
     });
   });
 
