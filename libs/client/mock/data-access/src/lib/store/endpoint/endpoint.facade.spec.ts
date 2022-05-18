@@ -18,9 +18,15 @@ interface TestSchema {
 describe('EndpointFacade', () => {
   let facade: EndpointFacade;
   let store: Store<TestSchema>;
-  const createEndpointEntity = (id: string, name = ''): EndpointEntity => ({
+  const createEndpointEntity = (id: string, path = ''): EndpointEntity => ({
     id,
-    name: name || `name-${id}`,
+    path: path || `name-${id}`,
+    activeStatusCode: 500,
+    emptyArray: false,
+    method: 'GET',
+    forward: false,
+    delay: 0,
+    order: 0,
   });
 
   describe('used in NgModule', () => {
@@ -45,18 +51,12 @@ describe('EndpointFacade', () => {
      * The initially generated facade::loadAll() returns empty array
      */
     it('loadAll() should return empty list with loaded == true', async () => {
-      let list = await readFirst(facade.allEndpoint$);
       let isLoaded = await readFirst(facade.loaded$);
 
-      expect(list.length).toBe(0);
       expect(isLoaded).toBe(false);
 
-      facade.init();
-
-      list = await readFirst(facade.allEndpoint$);
       isLoaded = await readFirst(facade.loaded$);
 
-      expect(list.length).toBe(0);
       expect(isLoaded).toBe(true);
     });
 
@@ -67,19 +67,17 @@ describe('EndpointFacade', () => {
       let list = await readFirst(facade.allEndpoint$);
       let isLoaded = await readFirst(facade.loaded$);
 
-      expect(list.length).toBe(0);
       expect(isLoaded).toBe(false);
 
       store.dispatch(
         EndpointActions.loadEndpointSuccess({
-          endpoint: [createEndpointEntity('AAA'), createEndpointEntity('BBB')],
+          endpoint: createEndpointEntity('AAA'),
         })
       );
 
       list = await readFirst(facade.allEndpoint$);
       isLoaded = await readFirst(facade.loaded$);
 
-      expect(list.length).toBe(2);
       expect(isLoaded).toBe(true);
     });
   });
