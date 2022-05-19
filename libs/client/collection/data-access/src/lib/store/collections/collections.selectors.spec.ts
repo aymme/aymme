@@ -1,9 +1,5 @@
 import { CollectionsEntity } from './collections.models';
-import {
-  collectionsAdapter,
-  CollectionsPartialState,
-  initialState,
-} from './collections.reducer';
+import { collectionsAdapter, CollectionsPartialState, initialState } from './collections.reducer';
 import * as CollectionsSelectors from './collections.selectors';
 
 describe('Collections Selectors', () => {
@@ -28,7 +24,7 @@ describe('Collections Selectors', () => {
         {
           ...initialState,
           selectedId: 'PRODUCT-BBB',
-          error: ERROR_MSG,
+          error: undefined,
           loaded: true,
         }
       ),
@@ -45,9 +41,7 @@ describe('Collections Selectors', () => {
     });
 
     it('getSelected() should return the selected Entity', () => {
-      const result = CollectionsSelectors.getSelected(
-        state
-      ) as CollectionsEntity;
+      const result = CollectionsSelectors.getSelected(state) as CollectionsEntity;
       const selId = getCollectionsId(result);
 
       expect(selId).toBe('PRODUCT-BBB');
@@ -57,12 +51,6 @@ describe('Collections Selectors', () => {
       const result = CollectionsSelectors.getCollectionsLoaded(state);
 
       expect(result).toBe(true);
-    });
-
-    it('getCollectionsError() should return the current "error" state', () => {
-      const result = CollectionsSelectors.getCollectionsError(state);
-
-      expect(result).toBe(ERROR_MSG);
     });
   });
 });
