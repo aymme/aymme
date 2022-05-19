@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutComponent } from './layout.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FooterModule } from '@aymme/client/shell/ui/footer';
+import { TopBarModule } from '@aymme/client/shell/ui/top-bar';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -8,9 +11,9 @@ describe('LayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [LayoutComponent],
+      imports: [RouterTestingModule, FooterModule, TopBarModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
