@@ -1,4 +1,4 @@
-import { endpointAdapter, EndpointPartialState, initialState } from './endpoint.reducer';
+import { EndpointPartialState, initialState } from './endpoint.reducer';
 import * as EndpointSelectors from './endpoint.selectors';
 import { EndpointEntity } from '@aymme/client/mock/model';
 
@@ -9,40 +9,29 @@ describe('Endpoint Selectors', () => {
     ({
       id,
       name: name || `name-${id}`,
+      activeStatusCode: 200,
+      delay: 300,
+      path: '',
+      method: 'GET',
+      forward: false,
+      order: 1,
+      emptyArray: false,
     } as EndpointEntity);
 
   let state: EndpointPartialState;
 
   beforeEach(() => {
     state = {
-      endpoint: endpointAdapter.setAll(
-        [createEndpointEntity('PRODUCT-AAA'), createEndpointEntity('PRODUCT-BBB'), createEndpointEntity('PRODUCT-CCC')],
-        {
-          ...initialState,
-          selectedId: 'PRODUCT-BBB',
-          error: ERROR_MSG,
-          loaded: true,
-        }
-      ),
+      endpoint: {
+        ...initialState,
+        selectedId: 'PRODUCT-BBB',
+        error: ERROR_MSG,
+        loaded: true,
+      },
     };
   });
 
   describe('Endpoint Selectors', () => {
-    it('getAllEndpoint() should return the list of Endpoint', () => {
-      const results = EndpointSelectors.getAllEndpoint(state);
-      const selId = getEndpointId(results[1]);
-
-      expect(results.length).toBe(3);
-      expect(selId).toBe('PRODUCT-BBB');
-    });
-
-    it('getSelected() should return the selected Entity', () => {
-      const result = EndpointSelectors.getSelected(state) as EndpointEntity;
-      const selId = getEndpointId(result);
-
-      expect(selId).toBe('PRODUCT-BBB');
-    });
-
     it('getEndpointLoaded() should return the current "loaded" status', () => {
       const result = EndpointSelectors.getEndpointLoaded(state);
 

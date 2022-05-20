@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EndpointOptionsComponent } from './endpoint-options.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('EndpointOptionsComponent', () => {
   let component: EndpointOptionsComponent;
@@ -8,9 +9,9 @@ describe('EndpointOptionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EndpointOptionsComponent ]
-    })
-    .compileComponents();
+      declarations: [EndpointOptionsComponent],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
