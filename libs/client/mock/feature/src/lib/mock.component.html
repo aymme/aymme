@@ -114,7 +114,7 @@
 
           <header class="flex flex-row items-center p-2">
             <button cdkDragHandle class="mr-2 cursor-pointer p-2"><i class="fa fa-arrows"></i></button>
-            <h5 class="text-muted text-sm capitalize">{{ collection.name }}</h5>
+            <h5 class="dark:text-muted text-sm capitalize">{{ collection.name }}</h5>
 
             <div class="ml-auto flex flex-row">
               <button class="mr-2 cursor-pointer" (click)="toggleCompress(collection)">
@@ -252,7 +252,7 @@
       <span class="font-bold">Details</span>
       <button
         data-cy="endpoint-details-update-button"
-        class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white"
+        class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
         label="Update"
         (click)="updateEndpoint()"
       >
