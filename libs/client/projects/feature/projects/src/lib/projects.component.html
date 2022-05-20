@@ -8,7 +8,6 @@
         class="ml-auto"
         type="button"
         (click)="showDialog()"
-        icon="pi pi-plus"
         label="New project"
       >
         <i class="fas fa-plus"></i>
@@ -21,7 +20,7 @@
   </article>
 
   <article
-    class="dark:bg-background absolute min-h-full w-1/2 rounded-lg bg-white"
+    class="dark:bg-background absolute min-h-full w-1/2 rounded-lg border border-solid bg-white py-4"
     *ngIf="displayAddNewProject$ | async"
     data-cy="add-new-project-form"
   >
