@@ -10,7 +10,7 @@ export class DropdownComponent {
   @Input() options!: any;
   @Input() selected!: any;
   @Input() optionValue!: any;
-  @Output() onSelectItem = new EventEmitter<any>();
+  @Output() selectItem = new EventEmitter<any>();
 
   showDropdown$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -18,8 +18,8 @@ export class DropdownComponent {
     this.showDropdown$.next(!this.showDropdown$.value);
   }
 
-  selectItem(item: any): void {
-    this.onSelectItem.emit(item);
+  select(item: any): void {
+    this.selectItem.emit(item);
     this.showDropdown$.next(false);
   }
 

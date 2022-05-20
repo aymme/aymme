@@ -9,7 +9,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     let message = (exception as any).message.message;
-    let code = 'HttpException';
+    const code = 'HttpException';
 
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
 

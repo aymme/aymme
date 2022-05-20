@@ -27,7 +27,6 @@
     "client-mock-feature": "libs/client/mock/feature",
     "client-mock-model": "libs/client/mock/model",
     "client-mock-ui-endpoint-link": "libs/client/mock/ui/endpoint-link",
-    "client-mock-ui-endpoint-link-e2e": "apps/client-mock-ui-endpoint-link-e2e",
     "client-mock-ui-endpoint-options": "libs/client/mock/ui/endpoint-options",
     "client-mock-ui-response-list": "libs/client/mock/ui/response-list",
     "client-projects-data-access": "libs/client/projects/data-access",

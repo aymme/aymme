@@ -11,7 +11,7 @@
     [ngClass]="{ 'dropdown-open': showDropdown$ | async }"
   >
     <ul class="">
-      <li (click)="selectItem(option)" class="block w-full" *ngFor="let option of options; let i = index">
+      <li (click)="select(option)" class="block w-full" *ngFor="let option of options; let i = index">
         <a
           class="hover:dark:bg-blend-50 dark:border-blend-50 block cursor-pointer border-b border-gray-100 px-7 py-3 hover:bg-gray-100"
           >{{ option.statusCode }}</a
