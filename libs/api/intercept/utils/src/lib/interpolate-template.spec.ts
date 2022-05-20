@@ -1,4 +1,4 @@
-import { interpolateTemplateString } from '@aymme/api/intercept/utils';
+import { interpolateTemplateString } from './interpolate-template';
 
 describe('interpolateTemplateString', () => {
   it('should return template string when variable is falsy', () => {
@@ -15,25 +15,25 @@ describe('interpolateTemplateString', () => {
   });
   it('should replace template with variables', () => {
     const template = `Hello {{firstName}} {{lastName}}!`;
-    const variables = {firstName: 'Kern', lastName: 'Zhao'};
+    const variables = { firstName: 'Kern', lastName: 'Zhao' };
     const result = interpolateTemplateString(template, variables);
     expect(result).toEqual('Hello Kern Zhao!');
   });
   it('should replace template with variables', () => {
     const template = `Hello {{firstName}} {{lastName}} {{lastName}}!`;
-    const variables = {firstName: 'Kern', lastName: 'Zhao'};
+    const variables = { firstName: 'Kern', lastName: 'Zhao' };
     const result = interpolateTemplateString(template, variables);
     expect(result).toEqual('Hello Kern Zhao Zhao!');
   });
   it('should keep template if no variable is matching', () => {
     const template = `Hello {{foo}}`;
-    const variables = {firstName: 'Kern', lastName: 'Zhao'};
+    const variables = { firstName: 'Kern', lastName: 'Zhao' };
     const result = interpolateTemplateString(template, variables);
     expect(result).toEqual('Hello {{foo}}');
   });
   it('should replace template with variables', () => {
     const template = `Hello {{{firstName}}} {{{{lastName}}}}!`;
-    const variables = {firstName: 'Kern', lastName: 'Zhao'};
+    const variables = { firstName: 'Kern', lastName: 'Zhao' };
     const result = interpolateTemplateString(template, variables);
     expect(result).toEqual('Hello {Kern} {{Zhao}}!');
   });
