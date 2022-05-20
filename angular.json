@@ -5,6 +5,7 @@
     "api-collection-data-access": "libs/api/collection/data-access",
     "api-collection-feature": "libs/api/collection/feature",
     "api-core-feature": "libs/api/core/feature",
+    "api-core-utils": "libs/api/core/utils",
     "api-database-data-access": "libs/api/database/data-access",
     "api-endpoint-data-access": "libs/api/endpoint/data-access",
     "api-endpoint-feature": "libs/api/endpoint/feature",
