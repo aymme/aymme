@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FooterModule } from '@aymme/client/shell/ui/footer';
 import { TopBarModule } from '@aymme/client/shell/ui/top-bar';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -12,7 +13,7 @@ describe('LayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LayoutComponent],
-      imports: [RouterTestingModule, FooterModule, TopBarModule],
+      imports: [RouterTestingModule, FooterModule, TopBarModule, FontAwesomeTestingModule],
     }).compileComponents();
   });
 
