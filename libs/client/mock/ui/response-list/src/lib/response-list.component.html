@@ -13,13 +13,13 @@
         (click)="removeResponse(response)"
         class="dark:border-blend-50 h-full rounded-tr border-l-[1px] border-gray-200 px-3 py-2 text-xs"
       >
-        <i class="fa fa-times"></i>
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
       </button>
     </li>
 
     <li>
       <button class="cursor-pointer px-4 py-2" (click)="showOverlayPanelClick()">
-        <i class="fa fa-plus"></i>
+        <fa-icon [icon]="['fas', 'plus']"></fa-icon>
       </button>
     </li>
   </ul>

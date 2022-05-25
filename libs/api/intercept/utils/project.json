@@ -1,5 +1,4 @@
 {
-  "root": "libs/api/intercept/utils",
   "sourceRoot": "libs/api/intercept/utils/src",
   "projectType": "library",
   "targets": {

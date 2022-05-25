@@ -55,6 +55,7 @@
       "@aymme/client/shell/ui/clickaway": ["libs/client/shell/ui/clickaway/src/index.ts"],
       "@aymme/client/shell/ui/dropdown": ["libs/client/shell/ui/dropdown/src/index.ts"],
       "@aymme/client/shell/ui/footer": ["libs/client/shell/ui/footer/src/index.ts"],
+      "@aymme/client/shell/ui/icons": ["libs/client/shell/ui/icons/src/index.ts"],
       "@aymme/client/shell/ui/layout": ["libs/client/shell/ui/layout/src/index.ts"],
       "@aymme/client/shell/ui/loader": ["libs/client/shell/ui/loader/src/index.ts"],
       "@aymme/client/shell/ui/logo": ["libs/client/shell/ui/logo/src/index.ts"],

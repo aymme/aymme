@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { getAppConfigProvider } from '@aymme/client/shared/app-config';
 import { ClientShellFeatureModule } from '@aymme/client/shell/feature';
 import { ToastrModule } from 'ngx-toastr';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ const toastrOptions = {
     BrowserAnimationsModule,
     ClientShellFeatureModule,
     ToastrModule.forRoot(toastrOptions),
+    FontAwesomeModule,
   ],
   providers: [getAppConfigProvider(environment)],
   bootstrap: [AppComponent],

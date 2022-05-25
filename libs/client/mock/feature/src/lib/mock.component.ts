@@ -12,8 +12,8 @@ import { ICollection } from '@aymme/shared/model';
 import {
   ConfirmDeleteCollectionDialogComponent,
   CreateNewCollectionDialogComponent,
-  ProjectConfigurationDialogComponent,
   ImportProjectDialogComponent,
+  ProjectConfigurationDialogComponent,
 } from './dialogs';
 import { RenameCollectionDialogComponent } from './dialogs/rename-collection/rename-collection-dialog.component';
 

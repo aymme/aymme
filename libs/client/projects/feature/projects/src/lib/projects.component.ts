@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProjectsEntity, ProjectsFacade, State } from '@aymme/client/projects/data-access';
 import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Subject, takeUntil, tap } from 'rxjs';
+import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
 
 const PROJECT_ALREADY_EXITS = 'Project name already exists.';
 const FILL_IN_PROJECT_NAME = 'Please specify a project name.';
@@ -28,7 +28,6 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       this.resetFormInput();
     })
   );
-
 
   displayAddNewProject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   displayError$: BehaviorSubject<boolean | string> = new BehaviorSubject<boolean | string>(false);

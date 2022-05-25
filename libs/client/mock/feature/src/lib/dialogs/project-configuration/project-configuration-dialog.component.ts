@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProjectsFacade } from '@aymme/client/projects/data-access';
@@ -41,11 +41,11 @@ export class ProjectConfigurationDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ProjectConfigurationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ProjectConfiguration,
-    private projectsFacade: ProjectsFacade,
+    private projectsFacade: ProjectsFacade
   ) {
     this.subscriptions.add(
-      this.selectedProjectConfiguration$.subscribe(configuration => this.variables = configuration?.variables),
-    )
+      this.selectedProjectConfiguration$.subscribe((configuration) => (this.variables = configuration?.variables))
+    );
   }
 
   onCancelClick(): void {
@@ -53,9 +53,7 @@ export class ProjectConfigurationDialogComponent {
   }
 
   saveProjectConfiguration() {
-    this.projectsFacade.updateProjectConfiguration({ variables: this.variables }, () =>
-      this.dialogRef.close()
-    );
+    this.projectsFacade.updateProjectConfiguration({ variables: this.variables }, () => this.dialogRef.close());
   }
 
   addQueryParam() {

@@ -2,7 +2,7 @@
   <ng-content></ng-content>
 
   <div class="tooltip invisible absolute z-50 flex flex-row items-center rounded-md px-3 py-2 text-white">
-    <header class="mr-2" *ngIf="showIcon"><i class="fad fa-info-square"></i></header>
+    <header class="mr-2" *ngIf="showIcon"><fa-icon [icon]="['fas', 'info']"></fa-icon></header>
     <section>
       <h5 *ngIf="title">{{ title }}</h5>
       <p>{{ content }}</p>

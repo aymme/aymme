@@ -40,6 +40,7 @@
     "client-shell-ui-clickaway": "libs/client/shell/ui/clickaway",
     "client-shell-ui-dropdown": "libs/client/shell/ui/dropdown",
     "client-shell-ui-footer": "libs/client/shell/ui/footer",
+    "client-shell-ui-icons": "libs/client/shell/ui/icons",
     "client-shell-ui-layout": "libs/client/shell/ui/layout",
     "client-shell-ui-loader": "libs/client/shell/ui/loader",
     "client-shell-ui-logo": "libs/client/shell/ui/logo",

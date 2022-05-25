@@ -24,6 +24,7 @@ import {
   ProjectConfigurationDialogComponent,
   RenameCollectionDialogComponent,
 } from './dialogs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import {
     ReactiveFormsModule,
     FormsModule,
     TooltipModule,
+    FontAwesomeModule,
   ],
   declarations: [
     MockComponent,

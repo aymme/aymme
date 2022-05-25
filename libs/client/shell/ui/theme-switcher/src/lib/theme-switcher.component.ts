@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeSwitcherService, THEMES } from './theme-switcher.service';
+import { THEMES, ThemeSwitcherService } from './theme-switcher.service';
 
 @Component({
   selector: 'ay-theme-switcher',
   templateUrl: './theme-switcher.component.html',
-  styleUrls: ['./theme-switcher.component.scss']
+  styleUrls: ['./theme-switcher.component.scss'],
 })
 export class ThemeSwitcherComponent implements OnInit {
   public theme: THEMES = THEMES.Dark;
   public THEMES = THEMES;
 
-  public constructor(
-    private readonly themeSwitcherService: ThemeSwitcherService,
-  ) {}
+  public constructor(private readonly themeSwitcherService: ThemeSwitcherService) {}
 
   public ngOnInit(): void {
     this.theme = this.themeSwitcherService.theme;
@@ -24,5 +22,4 @@ export class ThemeSwitcherComponent implements OnInit {
 
     this.theme = _theme;
   }
-
 }

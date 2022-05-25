@@ -6,7 +6,8 @@
       (click)="onClick(project)"
     >
       <h4 class="font-medium">
-        <i class="fa fa-project-diagram mr-2 opacity-40"></i>{{ project.name | titlecase }}
+        <fa-icon [icon]="['fas', 'project-diagram']" class="mr-2" [classes]="['opacity-40']"></fa-icon
+        >{{ project.name | titlecase }}
         <small>({{ project.slug }})</small>
       </h4>
       <button
@@ -16,7 +17,7 @@
         class="ml-auto p-2"
         (click)="onDeleteProject(project, $event)"
       >
-        <i class="fa fa-times text-gray dark:text-blend"></i>
+        <fa-icon [icon]="['fas', 'times']" [fixedWidth]="true"></fa-icon>
       </button>
     </li>
   </ul>
