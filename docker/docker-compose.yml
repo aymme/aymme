@@ -15,9 +15,9 @@ services:
     container_name: aymme-fe
     image: aymme/client:latest
     ports:
-      - "80:80"
+      - "7333:80"
     depends_on:
-      - api:aymme-be
+      - api
 
   mongodb:
     image: 'bitnami/mongodb:5.0'
@@ -26,7 +26,6 @@ services:
     volumes:
       - 'mongo-db:/bitnami/mongodb'
     environment:
-#      - MONGODB_ADVERTISED_HOSTNAME=host.docker.internal
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_ROOT_USER=root
       - MONGODB_ROOT_PASSWORD=root
