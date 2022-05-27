@@ -14,6 +14,8 @@ services:
   client:
     container_name: aymme-fe
     image: aymme/client:latest
+    environment:
+      - API_URL=http://localhost:3333/api
     ports:
       - "7333:80"
     depends_on:

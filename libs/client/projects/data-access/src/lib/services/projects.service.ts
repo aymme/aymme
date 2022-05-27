@@ -14,7 +14,7 @@ import { IProjectConfiguration } from '@aymme/shared/model';
 })
 export class ProjectsService {
   private apiFeatureKey = '/projects';
-  private apiURL = this.appConfig.baseURL + this.apiFeatureKey;
+  private apiURL = this.appConfig.apiUrl + this.apiFeatureKey;
 
   constructor(
     @Inject(APP_CONFIG) private appConfig: AppConfig,
@@ -30,8 +30,11 @@ export class ProjectsService {
     );
   }
 
-  updateProjectConfiguration(projectId: string, configuration: IProjectConfiguration): Observable<IProjectConfiguration> {
-    return this.http.put<IProjectConfiguration>(`${this.apiURL}/${projectId}/configuration`, configuration );
+  updateProjectConfiguration(
+    projectId: string,
+    configuration: IProjectConfiguration
+  ): Observable<IProjectConfiguration> {
+    return this.http.put<IProjectConfiguration>(`${this.apiURL}/${projectId}/configuration`, configuration);
   }
 
   getProjectById(projectId: string) {
