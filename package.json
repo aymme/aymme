@@ -36,7 +36,8 @@
     "migration:status": "yarn prisma migrate status",
     "seed:run": "yarn prisma db seed",
     "seed:fresh": "rm ./prisma/db-test.sqlite && yarn run migration:dev && yarn run seed:run",
-    "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json"
+    "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json",
+    "release": "release-it"
   },
   "private": true,
   "dependencies": {
@@ -52,8 +53,8 @@
     "@angular/router": "13.3.2",
     "@fortawesome/angular-fontawesome": "0.10.2",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@nestjs/common": "^8.4.4",
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.4.4",
@@ -106,6 +107,8 @@
     "@nrwl/node": "14.1.1",
     "@nrwl/storybook": "14.1.1",
     "@nrwl/workspace": "14.1.1",
+    "@release-it/bumper": "^4.0.0",
+    "@release-it/conventional-changelog": "^5.0.0",
     "@storybook/addon-docs": "^6.5.4",
     "@storybook/addon-essentials": "^6.5.4",
     "@storybook/angular": "^6.5.4",
@@ -133,6 +136,7 @@
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.10",
     "prisma": "^3.13.0",
+    "release-it": "^15.0.0",
     "tailwindcss": "^3.0.24",
     "ts-jest": "27.1.4",
     "ts-node": "~9.1.1",
