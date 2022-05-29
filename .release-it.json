@@ -1,7 +1,7 @@
 {
   "dry-run": true,
   "git": {
-    "commitMessage": "ci(release): release ${version}",
+    "commitMessage": "ci(release): release ${version} [skip ci]",
     "tagName": "v${version}",
     "requireCleanWorkingDir": false
   },
