@@ -1,9 +1,9 @@
 {
-  "dry-run": true,
+  "dry-run": false,
   "git": {
     "commitMessage": "ci(release): release ${version} [skip ci]",
     "tagName": "v${version}",
-    "requireCleanWorkingDir": false
+    "requireCleanWorkingDir": true
   },
   "npm": {
     "publish": false
