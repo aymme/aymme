@@ -22,3 +22,6 @@ jobs:
       - run: yarn release --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: ./.github/workflows/release-api
+      - uses: ./.github/workflows/release-client
