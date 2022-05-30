@@ -43,8 +43,8 @@ jobs:
         with:
           script: |
             console.log(context);
-            console.log(context.steps);
-            const tagId = context.steps.keydb.outputs.tag_name;
+            console.log(${{ steps.keydb.outputs.tag_name }});
+            const tagId = ${{ steps.keydb.outputs.tag_name }};
             core.setOutput('tagId', tagId.substring(1));
 
       - name: Release version
