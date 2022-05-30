@@ -37,8 +37,16 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Parse latest Tag version
+        uses: actions/github-script@v6
+        id: get-tag-id
+        with:
+          script: |
+            const tagId = context.steps.keydb.outputs.tag_name;
+            core.setOutput('tagId', tagId.substring(1));
+
       - name: Release version
-        run: echo ${{ steps.keydb.outputs.tag_name }}
+        run: echo ${{ steps.get-tag-id.outputs.tagId }}
 
 #      - name: Build Client Code
 #        working-directory: .
