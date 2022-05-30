@@ -23,14 +23,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-        with:
-          images: aymme/client
-          tags: |
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
-
       - name: Get latest release version
         id: keydb
         uses: thebritican/fetch-latest-release@v2.0.0
@@ -42,14 +34,28 @@ jobs:
         id: get-tag-id
         with:
           script: |
-            console.log(context);
-            console.log("${{ steps.keydb.outputs.tag_name }}");
             const tagId = "${{ steps.keydb.outputs.tag_name }}";
             core.setOutput('tagId', tagId.substring(1));
 
       - name: Release version
         run: echo ${{ steps.get-tag-id.outputs.tagId }}
 
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: aymme/client
+          tags:
+            enabled=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+#          tags: |
+#            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+
+        - name: Release version
+            run: echo ${{ steps.meta.outputs.tags }}
 #      - name: Build Client Code
 #        working-directory: .
 #        run: |
