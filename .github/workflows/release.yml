@@ -18,10 +18,15 @@ jobs:
         with:
           node-version: 16
           cache: 'yarn'
-      - run: yarn install --frozen-lockfile
-      - run: yarn release --ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - run: yarn install --frozen-lockfile
+#      - run: yarn release --ci
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/workflows/release-api.yml@main
-      - uses: ./.github/workflows/release-client.yml@main
+  deploy_api_to_docker:
+    uses: ./.github/workflows/release-api.yml
+
+  deploy_client_to_docker:
+    uses: ./.github/workflows/release-client.yml
+
+
