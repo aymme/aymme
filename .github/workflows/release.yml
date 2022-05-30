@@ -23,5 +23,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: ./.github/workflows/release-api.yml
-      - uses: ./.github/workflows/release-client.yml
+      - uses: ./.github/workflows/release-api.yml@main
+      - uses: ./.github/workflows/release-client.yml@main
