@@ -33,12 +33,12 @@ jobs:
 
       - name: Get latest release version
         id: keydb
-        uses: pozetroninc/github-action-get-latest-release@master
+        uses: thebritican/fetch-latest-release@v1
         with:
-          repository: ${{ github.repository }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release version
-        run: echo ${{ steps.keydb.outputs.release }}
+        run: echo ${{ steps.keydb.outputs.tag_name }}
 
 #      - name: Build Client Code
 #        working-directory: .
