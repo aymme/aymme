@@ -11,9 +11,6 @@ const request = new XMLHttpRequest();
 request.onload = async () => {
   const config = (await import('@aymme/client/shared/app-config')).config;
 
-  console.log({ environment });
-  console.log('config.json', request.response);
-
   if (environment.production) {
     Object.assign(config, JSON.parse(request.response));
   }
