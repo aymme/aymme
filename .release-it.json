@@ -3,7 +3,7 @@
   "git": {
     "commitMessage": "ci(release): release ${version} [skip ci]",
     "tagName": "v${version}",
-    "requireCleanWorkingDir": true
+    "requireCleanWorkingDir": false
   },
   "npm": {
     "publish": false
@@ -13,12 +13,7 @@
   },
   "plugins": {
     "@release-it/bumper": {
-      "out": [
-        {
-          "file": "package.json",
-          "path": "version"
-        }
-      ]
+      "out": []
     },
     "@release-it/conventional-changelog": {
       "preset": "angular",
