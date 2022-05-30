@@ -42,6 +42,8 @@ jobs:
         id: get-tag-id
         with:
           script: |
+            console.log(context);
+            console.log(context.steps);
             const tagId = context.steps.keydb.outputs.tag_name;
             core.setOutput('tagId', tagId.substring(1));
 
