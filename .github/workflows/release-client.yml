@@ -37,8 +37,8 @@ jobs:
 #            const tagId = "${{ steps.keydb.outputs.tag_name }}";
 #            core.setOutput('tagId', tagId.substring(1));
 
-      - name: Release version
-        run: echo ${{ steps.get-tag-id.outputs.tagId }}
+#      - name: Release version
+#        run: echo ${{ steps.get-tag-id.outputs.tagId }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
