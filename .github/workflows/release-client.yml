@@ -3,6 +3,11 @@ name: Publish Client Docker Image
 on:
   workflow_dispatch:
   workflow_call:
+    secrets:
+      DOCKER_USERNAME:
+        required: true
+      DOCKER_PASSWORD:
+        required: true
 
 jobs:
   push_to_registry:

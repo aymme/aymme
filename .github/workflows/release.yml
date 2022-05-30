@@ -4,6 +4,7 @@ on: workflow_dispatch
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,9 +25,19 @@ jobs:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy_api_to_docker:
+    name: Deploy API to Docker
     uses: ./.github/workflows/release-api.yml
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    needs: release
 
   deploy_client_to_docker:
+    name: Deploy Client to Docker
     uses: ./.github/workflows/release-client.yml
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    needs: release
 
 
