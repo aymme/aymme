@@ -41,7 +41,7 @@ describe('EndpointFacade', () => {
         ],
         providers: [
           EndpointFacade,
-          getAppConfigProvider({ baseURL: '', production: false }),
+          getAppConfigProvider({ apiUrl: '', production: false }),
           {
             provide: ToastrService,
             useValue: jest.fn(),
@@ -58,7 +58,7 @@ describe('EndpointFacade', () => {
         ],
         providers: [
           EndpointFacade,
-          getAppConfigProvider({ baseURL: '', production: false }),
+          getAppConfigProvider({ apiUrl: '', production: false }),
           {
             provide: ToastrService,
             useValue: jest.fn(),

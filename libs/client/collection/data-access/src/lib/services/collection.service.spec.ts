@@ -10,7 +10,7 @@ describe('CollectionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [getAppConfigProvider({ baseURL: '', production: false })],
+      providers: [getAppConfigProvider({ apiUrl: '', production: false })],
     });
     service = TestBed.inject(CollectionService);
   });

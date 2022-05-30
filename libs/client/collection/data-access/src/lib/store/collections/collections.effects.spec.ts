@@ -20,7 +20,7 @@ describe('CollectionsEffects', () => {
     TestBed.configureTestingModule({
       imports: [NxModule.forRoot(), HttpClientTestingModule],
       providers: [
-        getAppConfigProvider({ baseURL: '', production: false }),
+        getAppConfigProvider({ apiUrl: '', production: false }),
         CollectionsEffects,
         provideMockActions(() => actions),
         provideMockStore(),

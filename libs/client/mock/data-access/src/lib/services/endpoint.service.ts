@@ -9,7 +9,7 @@ import { APP_CONFIG, AppConfig } from '@aymme/client/shared/app-config';
 })
 export class EndpointService {
   private apiFeatureKey = '/projects';
-  private apiURL = this.appConfig.baseURL + this.apiFeatureKey;
+  private apiURL = this.appConfig.apiUrl + this.apiFeatureKey;
 
   constructor(@Inject(APP_CONFIG) private appConfig: AppConfig, private http: HttpClient) {}
 
@@ -26,6 +26,6 @@ export class EndpointService {
   }
 
   addNewResponse(id: string, projectId: string, data: NewResponseDto) {
-    return this.http.post<ResponseEntity>(`${this.appConfig.baseURL}/endpoints/${id}/responses`, data);
+    return this.http.post<ResponseEntity>(`${this.appConfig.apiUrl}/endpoints/${id}/responses`, data);
   }
 }

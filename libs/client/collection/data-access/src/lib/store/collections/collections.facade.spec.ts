@@ -37,7 +37,7 @@ describe('CollectionsFacade', () => {
         ],
         providers: [
           CollectionsFacade,
-          getAppConfigProvider({ baseURL: '', production: false }),
+          getAppConfigProvider({ apiUrl: '', production: false }),
           {
             provide: ToastrService,
             useValue: jest.fn(),

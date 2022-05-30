@@ -29,7 +29,7 @@ const toastrOptions = {
     ToastrModule.forRoot(toastrOptions),
     FontAwesomeModule,
   ],
-  providers: [getAppConfigProvider(environment)],
+  providers: [getAppConfigProvider({ production: environment.production, apiUrl: environment.apiUrl })],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
