@@ -14,15 +14,15 @@ jobs:
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-#      - name: setup node
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: 16
-#          cache: 'yarn'
-#      - run: yarn install --frozen-lockfile
-#      - run: yarn release --ci
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - run: yarn release --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy_api_to_docker:
     name: Deploy API to Docker
