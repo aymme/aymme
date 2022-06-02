@@ -25,7 +25,6 @@ services:
     command: mongod --replSet aymme-rs
     volumes:
       - 'mongodb_master_data:/data/db'
-      - './mongo/data:/data/db'
 
   mongo2:
     environment:
