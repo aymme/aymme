@@ -24,7 +24,7 @@ services:
     restart: always
     command: mongod --replSet aymme-rs
     volumes:
-      - 'mongodb_master_data:/bitnami'
+      - 'mongodb_master_data:/data/db'
       - './mongo/data:/data/db'
 
   mongo2:
@@ -125,5 +125,4 @@ services:
       - api
 
 volumes: 
-  jenkins-data: ~
-  mongodb_master_data: ~
+  mongodb_master_data:
