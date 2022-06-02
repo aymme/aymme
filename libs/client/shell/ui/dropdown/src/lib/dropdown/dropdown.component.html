@@ -4,14 +4,14 @@
     (click)="toggleDropdown()"
   >
     <span class="text-sm">{{ selected[optionValue] }}</span>
-    <i class="fa fa-caret-down ml-auto block"></i>
+    <fa-icon [icon]="['fas', 'caret-down']" class="ml-auto block"></fa-icon>
   </header>
   <section
     class="dark:border-blend-50 left text-gray dark:bg-background absolute top-10 hidden w-full border border-b-0 border-gray-100 bg-white dark:text-white"
     [ngClass]="{ 'dropdown-open': showDropdown$ | async }"
   >
     <ul class="">
-      <li (click)="selectItem(option)" class="block w-full" *ngFor="let option of options; let i = index">
+      <li (click)="select(option)" class="block w-full" *ngFor="let option of options; let i = index">
         <a
           class="hover:dark:bg-blend-50 dark:border-blend-50 block cursor-pointer border-b border-gray-100 px-7 py-3 hover:bg-gray-100"
           >{{ option.statusCode }}</a

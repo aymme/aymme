@@ -164,7 +164,7 @@ describe('ProjectService', () => {
     it('should update a Project', async () => {
       jest.spyOn(service, 'getById').mockResolvedValue({
         ...EXAMPLE_PROJECT,
-        configuration: { id: '', ignoreParams: '', projectId: '' },
+        configuration: { id: '', ignoreParams: '', projectId: '', variables: '' },
       });
       // jest.spyOn(prismaService.project, 'update').mockResolvedValue({ ...result, name: 'New Name', slug: 'new-name' });
 

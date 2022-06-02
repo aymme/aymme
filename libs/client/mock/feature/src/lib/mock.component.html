@@ -12,7 +12,7 @@
               (click)="reloadProject()"
               class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
             >
-              <i class="fas fa-sync"></i>
+              <fa-icon [icon]="['fas', 'sync']" size="lg"></fa-icon>
             </button>
           </ay-tooltip>
           <ay-tooltip [content]="'Project Configuration'">
@@ -20,7 +20,7 @@
               (click)="openProjectConfiguration()"
               class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
             >
-              <i class="fas fa-sliders-h-square"></i>
+              <fa-icon [icon]="['fas', 'sliders-h']" size="lg"></fa-icon>
             </button>
           </ay-tooltip>
           <ay-tooltip [content]="'Create Collection'">
@@ -31,7 +31,7 @@
               class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
               (click)="createCollection()"
             >
-              <i class="fa fa-plus-circle"></i>
+              <fa-icon [icon]="['fas', 'plus-circle']" size="lg"></fa-icon>
             </button>
           </ay-tooltip>
           <ay-tooltip [content]="'Import Collection'">
@@ -42,7 +42,7 @@
               label="Import"
               class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
             >
-              <i class="fa fa-download"></i>
+              <fa-icon [icon]="['fas', 'download']" size="lg"></fa-icon>
             </button>
           </ay-tooltip>
           <ay-tooltip [content]="'Export Collection'">
@@ -53,7 +53,7 @@
               label="Export"
               class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
             >
-              <i class="fa fa-upload"></i>
+              <fa-icon [icon]="['fas', 'upload']" size="lg"></fa-icon>
             </button>
           </ay-tooltip>
         </div>
@@ -113,32 +113,33 @@
           <div class="collection-item-drag-placeholder mb-4" *cdkDragPlaceholder></div>
 
           <header class="flex flex-row items-center p-2">
-            <button cdkDragHandle class="mr-2 cursor-pointer p-2"><i class="fa fa-arrows"></i></button>
-            <h5 class="text-muted text-sm capitalize">{{ collection.name }}</h5>
+            <button cdkDragHandle class="mr-2 cursor-pointer p-2">
+              <fa-icon [icon]="['fas', 'arrows']" size="lg"></fa-icon>
+            </button>
+            <h5 class="dark:text-muted text-sm capitalize">{{ collection.name }}</h5>
 
             <div class="ml-auto flex flex-row">
               <button class="mr-2 cursor-pointer" (click)="toggleCompress(collection)">
-                <i
-                  class="fas fa-compress-alt"
-                  [ngClass]="collection.compressed ? 'fa-expand-alt' : 'fa-compress-alt'"
-                ></i>
+                <fa-icon [icon]="['fas', collection.compressed ? 'expand-alt' : 'compress-alt']" size="lg"></fa-icon>
               </button>
               <section
                 *ngIf="collection.name !== 'default'"
                 data-cy="endpoints-list"
                 class="dropdown-menu relative ml-auto"
               >
-                <button class="cursor-pointer p-2"><i class="fa fa-cog"></i></button>
+                <button class="cursor-pointer p-2"><fa-icon [icon]="['fas', 'cog']" size="lg"></fa-icon></button>
                 <div class="dark:bg-background absolute left-0 top-8 z-10 hidden w-40 rounded-md bg-white">
                   <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
                     <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-b border-gray-100 hover:bg-gray-100">
                       <button (click)="renameCollection(collection)" class="px-6 py-4">
-                        <i class="fa fa-edit mr-2"></i>Rename
+                        <fa-icon [icon]="['fas', 'edit']" class="mr-2" size="1x"></fa-icon>
+                        Rename
                       </button>
                     </li>
                     <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 hover:bg-gray-100">
                       <button (click)="deleteCollection(collection)" class="px-6 py-4">
-                        <i class="fa fa-times mr-2"></i>Remove
+                        <fa-icon [icon]="['fas', 'times']" class="mr-2" size="1x"></fa-icon>
+                        Remove
                       </button>
                     </li>
                   </ul>
@@ -199,7 +200,7 @@
       (click)="reloadProject()"
       class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
     >
-      <i class="fas fa-sync"></i>
+      <fa-icon [icon]="['fas', 'sync']"></fa-icon>
     </button>
   </ay-tooltip>
   <ay-tooltip [content]="'Project Configuration'">
@@ -207,7 +208,7 @@
       (click)="openProjectConfiguration()"
       class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
     >
-      <i class="fas fa-sliders-h-square"></i>
+      <fa-icon [icon]="['fas', 'sliders-h']"></fa-icon>
     </button>
   </ay-tooltip>
   <ay-tooltip [content]="'Create Collection'">
@@ -218,7 +219,7 @@
       class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
       (click)="createCollection()"
     >
-      <i class="fa fa-plus-circle"></i>
+      <fa-icon [icon]="['fas', 'circle-plus']"></fa-icon>
     </button>
   </ay-tooltip>
   <ay-tooltip [content]="'Import Collection'">
@@ -228,7 +229,7 @@
       label="Import"
       class="dark:border-blend-50 hover:dark:bg-blend-100 mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
     >
-      <i class="fa fa-download"></i>
+      <fa-icon [icon]="['fas', 'download']"></fa-icon>
     </button>
   </ay-tooltip>
   <ay-tooltip [content]="'Export Collection'">
@@ -238,7 +239,7 @@
       label="Export"
       class="dark:border-blend-50 hover:dark:bg-blend-100 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
     >
-      <i class="fa fa-upload"></i>
+      <fa-icon [icon]="['fas', 'upload']"></fa-icon>
     </button>
   </ay-tooltip>
 </ng-template>
@@ -252,7 +253,7 @@
       <span class="font-bold">Details</span>
       <button
         data-cy="endpoint-details-update-button"
-        class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white"
+        class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
         label="Update"
         (click)="updateEndpoint()"
       >

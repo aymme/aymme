@@ -88,7 +88,7 @@
 
           <p class="text-right">
             <a (click)="switchContent(contentParts.HOWTOUSE)" class="cursor-pointer"
-              >How to use <i class="fa fa-arrow-right"></i
+              >How to use <fa-icon [icon]="['fas', 'arrow-right']"></fa-icon
             ></a>
           </p>
         </article>
@@ -118,7 +118,9 @@
 
           <p class="mb-4">Start adding a proxy configuration in your Javascript project.</p>
 
-          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-angular mr-2"></i> For Angular:</h6>
+          <h6 class="mb-4 text-lg font-medium">
+            <fa-icon [icon]="['fab', 'angular']" class="mr-2"></fa-icon> For Angular:
+          </h6>
 
           <p class="mb-4">
             You can do this by using the default Angular Proxy Configuration when running "ng serve". Create the a file
@@ -135,7 +137,7 @@
               innerHTML="{{ code }}"
             ></pre>
             <a class="absolute right-3 top-3 dark:text-white" href="#" (click)="copyCode(code)"
-              ><i class="far fa-copy"></i
+              ><fa-icon [icon]="['fas', 'copy']"></fa-icon
             ></a>
           </code>
 
@@ -148,7 +150,7 @@
               innerHTML="{{ angularJSONServiceCode }}"
             ></pre>
             <a class="absolute right-3 top-3 dark:text-white" href="#" (click)="copyCode(angularJSONServiceCode)"
-              ><i class="far fa-copy"></i
+              ><fa-icon [icon]="['fas', 'copy']"></fa-icon
             ></a>
           </code>
 
@@ -161,7 +163,7 @@
               innerHTML="{{ scriptsCode }}"
             ></pre>
             <a class="absolute right-3 top-1 dark:text-white" href="#" (click)="copyCode(scriptsCode)"
-              ><i class="far fa-copy"></i
+              ><fa-icon [icon]="['fas', 'copy']"></fa-icon
             ></a>
           </code>
 
@@ -173,21 +175,23 @@
               innerHTML="{{ terminalCode }}"
             ></pre>
             <a class="absolute right-3 top-1 dark:text-white" href="#" (click)="copyCode(terminalCode)"
-              ><i class="far fa-copy"></i
+              ><fa-icon [icon]="['fas', 'copy']"></fa-icon
             ></a>
           </code>
 
           <hr class="divider mt-6 inline-block pb-8" />
 
-          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-react mr-2"></i> For React:</h6>
+          <h6 class="mb-4 text-lg font-medium">
+            <fa-icon [icon]="['fab', 'react']" class="mr-2"></fa-icon> For React:
+          </h6>
 
           <p class="mb-4"><em>to be updated ..</em></p>
 
-          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-vuejs mr-2"></i> For Vue:</h6>
+          <h6 class="mb-4 text-lg font-medium"><fa-icon [icon]="['fab', 'vuejs']" class="mr-2"></fa-icon> For Vue:</h6>
 
           <p class="mb-4"><em>to be updated ..</em></p>
 
-          <h6 class="mb-4 text-lg font-medium"><i class="fab fa-js mr-2"></i> For other projects:</h6>
+          <h6 class="mb-4 text-lg font-medium"><fa-icon [class]="['fab', 'js']"></fa-icon> For other projects:</h6>
 
           <p><em>to be updated ..</em></p>
         </article>

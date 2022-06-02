@@ -10,6 +10,9 @@ import { CollectionsEffects } from './collections.effects';
 import { CollectionsFacade } from './collections.facade';
 import { CollectionsEntity } from './collections.models';
 import { COLLECTIONS_FEATURE_KEY, reducer, State } from './collections.reducer';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { getAppConfigProvider } from '@aymme/client/shared/app-config';
+import { ToastrService } from 'ngx-toastr';
 
 interface TestSchema {
   collections: State;
@@ -21,16 +24,25 @@ describe('CollectionsFacade', () => {
   const createCollectionsEntity = (id: string, name = ''): CollectionsEntity => ({
     id,
     name: name || `name-${id}`,
+    order: 1,
   });
 
   describe('used in NgModule', () => {
     beforeEach(() => {
       @NgModule({
         imports: [
+          HttpClientTestingModule,
           StoreModule.forFeature(COLLECTIONS_FEATURE_KEY, reducer),
           EffectsModule.forFeature([CollectionsEffects]),
         ],
-        providers: [CollectionsFacade],
+        providers: [
+          CollectionsFacade,
+          getAppConfigProvider({ apiUrl: '', production: false }),
+          {
+            provide: ToastrService,
+            useValue: jest.fn(),
+          },
+        ],
       })
       class CustomFeatureModule {}
 
@@ -60,7 +72,7 @@ describe('CollectionsFacade', () => {
       isLoaded = await readFirst(facade.loaded$);
 
       expect(list.length).toBe(0);
-      expect(isLoaded).toBe(true);
+      expect(isLoaded).toBe(false);
     });
 
     /**

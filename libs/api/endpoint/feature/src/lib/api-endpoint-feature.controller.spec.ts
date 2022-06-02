@@ -43,6 +43,7 @@ const EXAMPLE_PROJECT: Project & { configuration: ProjectConfiguration } = {
     id: '0488661a-2b28-4a24-8c4e-6c2600b927e9',
     ignoreParams: 'refreshToken',
     projectId: '54ee68b8-66e1-467a-8afc-040881ef49c6',
+    variables: '',
   },
 };
 

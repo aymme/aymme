@@ -1,129 +1,38 @@
-version: '3.7'
-
-networks:
-  app-tier:
-    driver: bridge
+version: "3.8"
 
 services:
-
-  mongo1:
+  api:
+    container_name: aymme-be
+    image: aymme/api:latest
     environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongod-rs
+      - DATABASE_URL=mongodb://root:root@mongodb:27017/aymme?authSource=admin
+    depends_on:
+      - mongodb
+    ports:
+      - "3333:3333"
+
+  client:
+    container_name: aymme-fe
+    image: aymme/client:latest
+    environment:
+      - API_URL=http://localhost:3333/api
+    ports:
+      - "7333:80"
+    depends_on:
+      - api
+
+  mongodb:
+    image: 'bitnami/mongodb:5.0'
+    ports:
+      - "27017:27017"
+    volumes:
+      - 'mongo-db:/bitnami/mongodb'
+    environment:
       - MONGODB_REPLICA_SET_MODE=primary
       - MONGODB_ROOT_USER=root
       - MONGODB_ROOT_PASSWORD=root
       - MONGODB_REPLICA_SET_KEY=replicasetkey123
-    hostname: mongo1
-    image: 'mongo'
-    networks:
-      - app-tier
-    expose:
-      - 27017
-    ports:
-      - 27017:27017 
-    restart: always
-    command: mongod --replSet aymme-rs
-    volumes:
-      - 'mongodb_master_data:/bitnami'
-      - './mongo/data:/data/db'
+      - MONGODB_DATABASE=aymme
 
-  mongo2:
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongod-rs
-      - MONGODB_REPLICA_SET_MODE=secondary
-      - MONGODB_ROOT_USER=root
-      - MONGODB_ROOT_PASSWORD=root
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
-    hostname: mongo2
-    image: 'mongo'
-    networks:
-      - app-tier
-    expose:
-      - 27017
-    ports:
-      - 27018:27017
-    restart: always
-    command: mongod --replSet aymme-rs
-  mongo3:
-    environment:
-      - MONGODB_ADVERTISED_HOSTNAME=mongod-rs
-      - MONGODB_REPLICA_SET_MODE=secondary
-      - MONGODB_ROOT_USER=root
-      - MONGODB_ROOT_PASSWORD=root
-      - MONGODB_REPLICA_SET_KEY=replicasetkey123
-    hostname: mongo3
-    image: 'mongo'
-    networks:
-      - app-tier
-    expose:
-      - 27017
-    ports:
-      - 27019:27017
-    restart: always
-    command: mongod --replSet aymme-rs
-
-# finally, we can define the initialization server
-# this runs the `rs.initiate` command to intialize
-# the replica set and connect the three servers to each other
-  mongoinit:
-    image: 'mongo'
-    networks:
-      - app-tier
-    # this container will exit after executing the command
-    restart: "on-failure"
-    depends_on:
-      - mongo1
-      - mongo2
-      - mongo3
-    command: >
-      mongo --host mongod-rs:27017 --eval 
-      '
-      db = (new Mongo("mongo1:27017")).getDB("aymme");
-      config = {
-      "_id" : "aymme-rs",
-      "members" : [
-        {
-          "_id" : 0,
-          "host" : "mongo1:27017"
-        },
-        {
-          "_id" : 1,
-          "host" : "mongo2:27017"
-        },
-        {
-          "_id" : 2,
-          "host" : "mongo3:27017"
-        }
-      ]
-      };
-      rs.initiate(config);
-      '
-
-  api:
-    container_name: aymme-be
-    image: aymme/api:latest
-    networks:
-      - app-tier
-    environment:
-      - DATABASE_URL=mongodb://root:root@mongod-rs:27017/aymme?authSource=admin
-    ports:
-      - "3333:3333"
-    depends_on:
-      - mongo1
-      - mongo2
-      - mongo3
-
-  client:
-    container_name: aymme-fe
-#    image: aymme-fe:0.1
-    image: aymme/client:0.1.3
-    environment:
-      - API_URL=https://aymme.backbasecanada.com:3333/api
-    ports:
-      - "80:80"
-    depends_on:
-      - api
-
-volumes: 
-  jenkins-data: ~
-  mongodb_master_data: ~
+volumes:
+  mongo-db:

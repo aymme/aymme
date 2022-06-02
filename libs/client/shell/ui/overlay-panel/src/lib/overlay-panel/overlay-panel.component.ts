@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Options } from '@nestjs/common';
-import { BehaviorSubject, combineLatest, filter, forkJoin, map, startWith, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, startWith } from 'rxjs';
 import { OverlayOption } from '../overlay-panel.module';
 
 // TODO: in case this component needs to be more dynamic, we need to remove this:

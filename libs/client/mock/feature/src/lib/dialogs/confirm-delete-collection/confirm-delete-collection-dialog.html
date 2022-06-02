@@ -1,10 +1,13 @@
 <article class="dark:bg-background rounded-lg bg-white p-6">
   <header class="dark:border-blend-50 mb-4 flex flex-col items-center border-b border-gray-100 pb-2">
-    <h1>Delete collection</h1>
+    <h1>Delete collection!</h1>
   </header>
 
   <div class="mb-4 text-sm">
-    <p class="mb-4">Are you sure you want to delete the collection <strong>`{{data.name}}`</strong>.</p>
+    <p class="mb-4">
+      Warning: Are you sure you want to <span class="text-red-500">delete</span> the collection
+      <strong>`{{data.name}}`</strong>.
+    </p>
     <p><em>Please note, this will also delete all endpoints inside the collection.</em></p>
   </div>
 

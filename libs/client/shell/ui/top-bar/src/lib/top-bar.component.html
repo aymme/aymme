@@ -1,6 +1,6 @@
 <header class="layout-topbar flex justify-between text-sm">
   <div class="w-2/5 pl-6">
-    <a href="/">
+    <a routerLink="/">
       <ay-logo></ay-logo>
     </a>
   </div>
@@ -9,31 +9,20 @@
       <ul data-cy="main-navigation-list" class="flex h-full flex-row items-center">
         <li class="mr-10">
           <a [routerLink]="['/projects']" class="hover:cursor-pointer hover:pb-2">
-            <i class="fa fa-tasks-alt mr-2 opacity-80"></i>
+            <fa-icon [icon]="['fas', 'tasks-alt']" size="lg" class="mr-2 opacity-80"></fa-icon>
             <span>Projects</span>
           </a>
         </li>
         <li class="mr-10">
           <a [routerLink]="['/how-to-use']" class="hover:cursor-pointer hover:pb-2">
-            <i class="far fa-info-circle mr-2 opacity-80"></i>
+            <fa-icon [icon]="['fas', 'info-circle']" size="lg" class="mr-2 opacity-80"></fa-icon>
+
             <span>How to Use</span>
           </a>
         </li>
-        <!-- <li class="mr-10">
-          <a routerLink="" class="hover:cursor-pointer hover:pb-2">
-            <i class="fa fa-cog mr-2 opacity-80"></i>
-            <span>Settings</span>
-          </a>
-        </li>
         <li class="mr-10">
-          <a routerLink="" class="hover:cursor-pointer hover:pb-2">
-            <i class="fa fa-user mr-2 opacity-80"></i>
-            <span>Profile</span>
-          </a>
-        </li> -->
-        <li class="mr-10">
-          <a routerLink="" class="hover:cursor-pointer hover:pb-2">
-            <i class="fa fa-books mr-2 opacity-80"></i>
+          <a href="https://github.com/aymme/aymme" target="_blank" class="hover:cursor-pointer hover:pb-2">
+            <fa-icon [icon]="['fas', 'book']" size="lg" class="mr-2 opacity-80"></fa-icon>
             <span>Documentation</span>
           </a>
         </li>

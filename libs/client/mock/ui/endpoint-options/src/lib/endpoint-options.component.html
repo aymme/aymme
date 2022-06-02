@@ -34,7 +34,7 @@
         <ay-dropdown
           [selected]="activeStatusCode"
           [options]="availableStatusCodes"
-          (onSelectItem)="setActiveStatusCode($event)"
+          (selectItem)="setActiveStatusCode($event)"
           optionValue="statusCode"
         ></ay-dropdown>
       </div>
@@ -47,7 +47,7 @@
         <input type="checkbox" formControlName="emptyArray" />
       </div>
       <div data-cy="endpoint-details-configuration-forward" class="col-span-1 flex flex-col">
-        <label class="mb-1 block">Forward <i class="fa fa-question-mark"></i></label>
+        <label class="mb-1 block">Forward</label>
         <input type="checkbox" id="forward" formControlName="forward" />
       </div>
     </div>
@@ -64,7 +64,7 @@
         <p class="mb-2 inline text-sm">Active headers</p>
       </ng-container>
       <button data-cy="endpoint-details-configuration-add-new-header" class="ml-auto" (click)="addNewHeader()">
-        <i class="fa fa-plus"></i>
+        <fa-icon [icon]="['fas', 'plus']"></fa-icon>
       </button>
     </header>
     <ng-container *ngFor="let _ of headersControl.controls; index as i">
@@ -88,7 +88,7 @@
           />
         </div>
         <button class="p-2 hover:opacity-90" (click)="removeExistingHeader(i)">
-          <i class="fa fa-minus"></i>
+          <fa-icon [icon]="['fas', 'minus']"></fa-icon>
         </button>
       </div>
     </ng-container>

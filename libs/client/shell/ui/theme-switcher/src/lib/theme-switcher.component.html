@@ -1,7 +1,8 @@
 <div data-cy="theme-switcher" class="theme-switcher">
   <button data-cy="theme-switcher-light" *ngIf="theme === THEMES.Dark" (click)="changeTheme(THEMES.Light)">
-    <i class="fas fa-sun"></i></button
-  ><button data-cy="theme-switcher-dark" *ngIf="theme === THEMES.Light" (click)="changeTheme(THEMES.Dark)">
-    <i class="fas fa-moon"></i>
+    <fa-icon [icon]="['fas', 'sun']" size="lg"></fa-icon>
+  </button>
+  <button data-cy="theme-switcher-dark" *ngIf="theme === THEMES.Light" (click)="changeTheme(THEMES.Dark)">
+    <fa-icon [icon]="['fas', 'moon']" size="lg"></fa-icon>
   </button>
 </div>

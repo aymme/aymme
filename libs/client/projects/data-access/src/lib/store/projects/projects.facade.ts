@@ -18,8 +18,7 @@ export class ProjectsFacade {
   error$ = this.store.pipe(select(ProjectsSelectors.getProjectsError));
   getNewProject$ = this.store.pipe(select(ProjectsSelectors.getNewProject));
 
-  constructor(private readonly store: Store) {
-  }
+  constructor(private readonly store: Store) {}
 
   /**
    * Use the initialization action to perform one
@@ -38,7 +37,7 @@ export class ProjectsFacade {
   }
 
   updateProjectConfiguration(configuration: IProjectConfiguration, onSuccess: () => void) {
-    this.store.dispatch(ProjectsActions.updateSelectedProjectConfiguration({configuration, onSuccess}));
+    this.store.dispatch(ProjectsActions.updateSelectedProjectConfiguration({ configuration, onSuccess }));
   }
 
   selectProject(projectId: string) {

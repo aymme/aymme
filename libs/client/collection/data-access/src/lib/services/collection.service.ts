@@ -9,7 +9,7 @@ import { APP_CONFIG, AppConfig } from '@aymme/client/shared/app-config';
 })
 export class CollectionService {
   private apiFeatureKey = '/projects';
-  private apiURL = this.appConfig.baseURL + this.apiFeatureKey;
+  private apiURL = this.appConfig.apiUrl + this.apiFeatureKey;
 
   constructor(private http: HttpClient, @Inject(APP_CONFIG) private appConfig: AppConfig) {}
 

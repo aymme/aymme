@@ -6,7 +6,7 @@
   >
     <header class="relative mb-4">
       <input class="ng-untouched rounded-md text-sm" type="text" [formControl]="filter" placeholder="filter" />
-      <span class="absolute right-4 top-2"><i class="fa fa-search"></i></span>
+      <span class="absolute right-4 top-2"><fa-icon [icon]="['fas', 'search']"></fa-icon></span>
     </header>
 
     <ul class="" *ngIf="filteredOptions$ | async as listItems">

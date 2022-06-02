@@ -16,6 +16,7 @@ const EXAMPLE_PROJECT: Project & { configuration: ProjectConfiguration } = {
     id: 'e993289e-57c0-44ef-8fa7-8f21e24563c1',
     ignoreParams: 'refreshToken',
     projectId: EXAMPLE_PROJECT_ID,
+    variables: '',
   },
 };
 
@@ -106,7 +107,7 @@ describe('ApiProjectFeatureController', () => {
     it('should update the configuration of existing project', async () => {
       const data = await controller.updateConfiguration(EXAMPLE_PROJECT_ID, { ...EXAMPLE_PROJECT_NEW_CONFIGURATION });
 
-      expect(data.configuration.ignoreParams).toEqual(EXAMPLE_PROJECT_NEW_CONFIGURATION.ignoreParams);
+      expect(data.ignoreParams).toEqual(EXAMPLE_PROJECT_NEW_CONFIGURATION.ignoreParams);
       expect(projectServiceUpdateProjectConfigurationMock).toHaveBeenCalledTimes(1);
     });
   });

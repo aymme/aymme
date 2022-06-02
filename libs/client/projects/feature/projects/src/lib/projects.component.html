@@ -8,10 +8,9 @@
         class="ml-auto"
         type="button"
         (click)="showDialog()"
-        icon="pi pi-plus"
         label="New project"
       >
-        <i class="fas fa-plus"></i>
+        <fa-icon [icon]="['fas', 'plus']" [fixedWidth]="true"></fa-icon>
       </button>
     </header>
 
@@ -21,15 +20,16 @@
   </article>
 
   <article
-    class="dark:bg-background absolute min-h-full w-1/2 rounded-lg bg-white"
+    class="dark:bg-background absolute min-h-full w-1/2 rounded-lg border border-solid bg-white py-4 dark:border-gray-200/5"
     *ngIf="displayAddNewProject$ | async"
     data-cy="add-new-project-form"
   >
     <header class="mb-5 flex flex-col items-center justify-center pb-5">
       <h3 class="mb-5 pt-3 text-lg" data-cy="add-new-project-title">
+        <fa-icon class="mr-2" [icon]="['fas', 'square-plus']"></fa-icon>
         Add a new project
         <button data-cy="add-new-project-close-button" class="absolute right-1 top-0 p-2" (click)="hideDialog()">
-          <i class="fa fa-times"></i>
+          <fa-icon [icon]="['fas', 'times']"></fa-icon>
         </button>
       </h3>
       <p data-cy="add-new-project-intro" class="text-center text-base leading-6">

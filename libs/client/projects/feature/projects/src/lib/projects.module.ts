@@ -6,6 +6,7 @@ import { ProjectsListModule } from '@aymme/client/projects/ui/projects-list';
 
 import { ProjectsComponent } from './projects.component';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { LoaderModule } from '@aymme/client/shell/ui/loader';
     ]),
     ProjectsListModule,
     LoaderModule,
+    FontAwesomeModule,
   ],
   declarations: [ProjectsComponent],
   exports: [ProjectsComponent],

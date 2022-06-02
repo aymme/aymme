@@ -27,8 +27,8 @@
   <div class="tabs dark:border-blend-50 mb-4 border border-gray-100 p-4">
     <ng-container *ngIf="currentTab === 'variables-tab'">
       <h5 class="mb-3 block text-sm font-bold">Variables</h5>
-      <div style='height: 300px'>
-        <ay-editor [(content)]='variables'></ay-editor>
+      <div style="height: 300px">
+        <ay-editor [(content)]="variables"></ay-editor>
       </div>
     </ng-container>
     <ng-container *ngIf="currentTab === 'ignore-query-params-tab'">
@@ -70,7 +70,7 @@
 
   <div class="mb-3 flex flex-row">
     <form [formGroup]="projectConfiguration">
-      <input type="text" id="queryParam" class="mr-1 rounded-md text-sm" formControlName="queryParam" /><button
+      <input type="text" id="ignoreParams" class="mr-1 rounded-md text-sm" formControlName="queryParam" /><button
         (click)="addQueryParam()"
         class="dark:border-blend-50 hover:dark:bg-blend-100 relative mr-2 rounded-md border border-gray-200 p-2 px-3 hover:bg-gray-100"
       >
@@ -91,7 +91,7 @@
         (click)="removeQueryParam(param)"
         class="dark:border-blend-50 hover:dark:bg-blend-100 h-full rounded-r-lg border-l-[1px] border-gray-200 px-3 py-2"
       >
-        <i class="fa fa-times"></i>
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
       </button>
     </li>
   </ul>

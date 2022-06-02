@@ -1,0 +1,23 @@
+{
+  "dry-run": false,
+  "git": {
+    "commitMessage": "ci(release): release ${version} [skip ci]",
+    "tagName": "v${version}",
+    "requireCleanWorkingDir": false
+  },
+  "npm": {
+    "publish": false
+  },
+  "github": {
+    "release": true
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "out": []
+    },
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "CHANGELOG.md"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/client/shell/ui/icons/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shell/ui/icons"],
+      "options": {
+        "jestConfig": "libs/client/shell/ui/icons/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/shell/ui/icons/**/*.ts", "libs/client/shell/ui/icons/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
