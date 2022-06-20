@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProjectsFacade } from '@aymme/client/projects/data-access';
 import { BehaviorSubject } from 'rxjs';
@@ -13,7 +13,7 @@ interface DialogData {
   templateUrl: 'import-project-dialog.html',
 })
 export class ImportProjectDialogComponent {
-  importProjectForm: FormGroup = this.fb.group({
+  importProjectForm: UntypedFormGroup = this.fb.group({
     importFiles: null,
   });
 
@@ -22,7 +22,7 @@ export class ImportProjectDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ImportProjectDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private projectsFacade: ProjectsFacade
   ) {}
 

@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/shared/storybook/src",
   "prefix": "aymme",
@@ -18,14 +19,12 @@
       }
     },
     "storybook": {
-      "executor": "@nrwl/storybook:storybook",
+      "executor": "@storybook/angular:start-storybook",
       "options": {
-        "uiFramework": "@storybook/angular",
         "port": 4400,
-        "config": {
-          "configFolder": "libs/client/shared/storybook/.storybook"
-        },
-        "projectBuildConfig": "client-shared-storybook:build-storybook"
+        "configDir": "libs/client/shared/storybook/.storybook",
+        "browserTarget": "client-shared-storybook:build-storybook",
+        "compodoc": false
       },
       "configurations": {
         "ci": {
@@ -34,15 +33,13 @@
       }
     },
     "build-storybook": {
-      "executor": "@nrwl/storybook:build",
+      "executor": "@storybook/angular:build-storybook",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "uiFramework": "@storybook/angular",
-        "outputPath": "dist/storybook/client-shared-storybook",
-        "config": {
-          "configFolder": "libs/client/shared/storybook/.storybook"
-        },
-        "projectBuildConfig": "client-shared-storybook:build-storybook"
+        "outputDir": "dist/storybook/client-shared-storybook",
+        "configDir": "libs/client/shared/storybook/.storybook",
+        "browserTarget": "client-shared-storybook:build-storybook",
+        "compodoc": false
       },
       "configurations": {
         "ci": {

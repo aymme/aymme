@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProjectsFacade } from '@aymme/client/projects/data-access';
 import { delay, map, Subscription } from 'rxjs';
@@ -30,8 +30,8 @@ export class ProjectConfigurationDialogComponent {
 
   currentTab: 'variables-tab' | 'ignore-query-params-tab' = 'variables-tab';
 
-  projectConfiguration = new FormGroup({
-    queryParam: new FormControl(),
+  projectConfiguration = new UntypedFormGroup({
+    queryParam: new UntypedFormControl(),
   });
 
   variables: string;
@@ -57,7 +57,7 @@ export class ProjectConfigurationDialogComponent {
   }
 
   addQueryParam() {
-    const param: FormArray = this.projectConfiguration.get('queryParam') as FormArray;
+    const param: UntypedFormArray = this.projectConfiguration.get('queryParam') as UntypedFormArray;
 
     this.projectsFacade.addIgnoreParamToConfiguration(param.value);
 

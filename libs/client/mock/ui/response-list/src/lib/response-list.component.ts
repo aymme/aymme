@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ResponseEntity } from '@aymme/client/mock/model';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { availableStatusCodes } from './available-status-codes';
 import { OverlayOption } from '@aymme/client/shell/ui/overlay-panel';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
@@ -13,7 +13,7 @@ import { EndpointFacade } from '@aymme/client/mock/data-access';
 })
 export class ResponseListComponent {
   @Input() activeStatusCode: ResponseEntity | null | undefined;
-  @Input() responseArrayForm: FormArray | undefined;
+  @Input() responseArrayForm: UntypedFormArray | undefined;
 
   @Input()
   set availableStatusCodes(data: ResponseEntity[] | null) {
@@ -46,9 +46,9 @@ export class ResponseListComponent {
     const newBodyContent = '{ "are-you-mocking-me": "yes" }';
 
     this.responseArrayForm?.push(
-      new FormGroup({
-        statusCode: new FormControl(this.selectedStatusCode),
-        body: new FormControl(newBodyContent),
+      new UntypedFormGroup({
+        statusCode: new UntypedFormControl(this.selectedStatusCode),
+        body: new UntypedFormControl(newBodyContent),
       })
     );
 

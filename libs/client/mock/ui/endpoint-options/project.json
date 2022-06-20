@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/mock/ui/endpoint-options/src",
   "prefix": "aymme",
@@ -21,14 +22,12 @@
       }
     },
     "storybook": {
-      "executor": "@nrwl/storybook:storybook",
+      "executor": "@storybook/angular:start-storybook",
       "options": {
-        "uiFramework": "@storybook/angular",
         "port": 4400,
-        "config": {
-          "configFolder": "libs/client/mock/ui/endpoint-options/.storybook"
-        },
-        "projectBuildConfig": "client-mock-ui-endpoint-options:build-storybook"
+        "configDir": "libs/client/mock/ui/endpoint-options/.storybook",
+        "browserTarget": "client-mock-ui-endpoint-options:build-storybook",
+        "compodoc": false
       },
       "configurations": {
         "ci": {
@@ -37,15 +36,13 @@
       }
     },
     "build-storybook": {
-      "executor": "@nrwl/storybook:build",
+      "executor": "@storybook/angular:build-storybook",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "uiFramework": "@storybook/angular",
-        "outputPath": "dist/storybook/client-mock-ui-endpoint-options",
-        "config": {
-          "configFolder": "libs/client/mock/ui/endpoint-options/.storybook"
-        },
-        "projectBuildConfig": "client-mock-ui-endpoint-options:build-storybook"
+        "outputDir": "dist/storybook/client-mock-ui-endpoint-options",
+        "configDir": "libs/client/mock/ui/endpoint-options/.storybook",
+        "browserTarget": "client-mock-ui-endpoint-options:build-storybook",
+        "compodoc": false
       },
       "configurations": {
         "ci": {

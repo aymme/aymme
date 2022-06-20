@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   displayName: 'api-shared-data-access',
 
   globals: {
@@ -11,5 +11,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../../../coverage/libs/api/shared/data-access',
-  preset: '../../../../jest.preset.ts',
+  preset: '../../../../jest.preset.js',
 };

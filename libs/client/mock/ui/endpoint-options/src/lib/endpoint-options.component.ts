@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { EndpointEntity, ResponseEntity } from '@aymme/client/mock/model';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -13,11 +13,11 @@ export class EndpointOptionsComponent {
   @Input() availableStatusCodes: ResponseEntity[] | null = [];
   @Input() activeStatusCode: ResponseEntity | null | undefined;
   @Input() endpoint: EndpointEntity | undefined;
-  @Input() configurationForm: FormGroup | undefined;
+  @Input() configurationForm: UntypedFormGroup | undefined;
 
   activeTab$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   addNewHeader() {
     this.headersControl.push(
@@ -45,7 +45,7 @@ export class EndpointOptionsComponent {
     this.headersControl.removeAt(index);
   }
 
-  get headersControl(): FormArray {
-    return this.configurationForm?.get('headers') as FormArray;
+  get headersControl(): UntypedFormArray {
+    return this.configurationForm?.get('headers') as UntypedFormArray;
   }
 }

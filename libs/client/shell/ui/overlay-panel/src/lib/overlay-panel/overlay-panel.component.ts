@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { BehaviorSubject, combineLatest, map, startWith } from 'rxjs';
 import { OverlayOption } from '../overlay-panel.module';
 
@@ -18,7 +18,7 @@ export class OverlayPanelComponent implements OnInit {
   @Input() isOpen = false;
   @Output() itemSelected = new EventEmitter<OverlayOption>();
 
-  filter = new FormControl('');
+  filter = new UntypedFormControl('');
   filter$ = this.filter.valueChanges.pipe(startWith(''));
 
   @Input() groupedOptions!: groupedOption[];

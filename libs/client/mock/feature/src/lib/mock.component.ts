@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
@@ -33,7 +33,7 @@ export class MockComponent {
   unsubscribe$: Subject<void> = new Subject();
 
   projectId: string = this.route.snapshot.parent?.parent?.params.projectId;
-  form: FormGroup = this.fb.group({
+  form: UntypedFormGroup = this.fb.group({
     configuration: this.fb.group({
       delay: null,
       emptyArray: null,
@@ -65,7 +65,7 @@ export class MockComponent {
     private collectionsFacade: CollectionsFacade,
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public dialog: MatDialog
   ) {
     this.collectionsFacade.init(this.projectId);
@@ -147,12 +147,12 @@ export class MockComponent {
     });
   }
 
-  get configurationForm(): FormGroup {
-    return this.form.get('configuration') as FormGroup;
+  get configurationForm(): UntypedFormGroup {
+    return this.form.get('configuration') as UntypedFormGroup;
   }
 
-  get responseArrayForm(): FormArray {
-    return this.form.get('responses') as FormArray;
+  get responseArrayForm(): UntypedFormArray {
+    return this.form.get('responses') as UntypedFormArray;
   }
 
   private _initializeForm(endpoint: EndpointEntity | undefined) {
@@ -164,10 +164,10 @@ export class MockComponent {
         activeStatusCode: endpoint?.activeStatusCode,
       });
 
-      (this.configurationForm.get('headers') as FormArray).clear();
+      (this.configurationForm.get('headers') as UntypedFormArray).clear();
 
       endpoint?.headers?.forEach((header) =>
-        (this.configurationForm.get('headers') as FormArray).push(
+        (this.configurationForm.get('headers') as UntypedFormArray).push(
           this.fb.group({
             name: [header.name, [Validators.required]],
             value: [header.value, [Validators.required]],
