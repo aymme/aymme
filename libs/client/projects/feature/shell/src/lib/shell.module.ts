@@ -25,7 +25,7 @@ import { ShellComponent } from './shell.component';
         children: [
           {
             path: 'mock',
-            loadChildren: async () => (await import('@aymme/client/mock/feature')).MockModule,
+            loadChildren: async () => (await import('@aymme/client-mock-feature-shell')).MockModule,
           },
         ],
       },
