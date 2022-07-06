@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { IconsModule } from '@aymme/client/shell/ui/icons';
 
 import { webShellRoutes } from './web-shell.routes';
@@ -15,7 +15,9 @@ import { webShellRoutes } from './web-shell.routes';
     RouterModule.forRoot(webShellRoutes, {
       scrollPositionRestoration: 'top',
     }),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({
+      router: routerReducer,
+    }),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),

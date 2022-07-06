@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 interface DialogData {
   name: string;
@@ -7,7 +7,7 @@ interface DialogData {
 
 @Component({
   selector: 'ay-create-new-collection-dialog',
-  templateUrl: 'create-new-collection-dialog.html',
+  templateUrl: 'create-new-collection-dialog.component.html',
 })
 export class CreateNewCollectionDialogComponent {
   constructor(

@@ -7,7 +7,7 @@ interface DeleteCollectionDialogData {
 
 @Component({
   selector: 'ay-confirm-delete-collection-dialog',
-  templateUrl: 'confirm-delete-collection-dialog.html',
+  templateUrl: 'confirm-delete-collection-dialog.component.html',
 })
 export class ConfirmDeleteCollectionDialogComponent {
   constructor(

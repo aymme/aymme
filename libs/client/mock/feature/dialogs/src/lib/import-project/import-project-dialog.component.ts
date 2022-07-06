@@ -10,7 +10,7 @@ interface DialogData {
 
 @Component({
   selector: 'ay-import-project-dialog',
-  templateUrl: 'import-project-dialog.html',
+  templateUrl: 'import-project-dialog.component.html',
 })
 export class ImportProjectDialogComponent {
   importProjectForm: UntypedFormGroup = this.fb.group({

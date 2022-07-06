@@ -23,10 +23,6 @@ export class EndpointFacade {
 
   constructor(private readonly store: Store) {}
 
-  loadEndpoint(endpointId: string) {
-    this.store.dispatch(EndpointActions.loadEndpoint({ endpointId }));
-  }
-
   updateEndpoint(data: UpdateEndpointDto) {
     this.store.dispatch(EndpointActions.updateEndpoint({ data }));
   }

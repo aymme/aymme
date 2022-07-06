@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { EndpointEntity, ResponseEntity, UpdateEndpointDto } from '@aymme/client/mock/model';
 
-export const loadEndpoint = createAction('[Endpoint Page] Load Endpoint ', props<{ endpointId: string }>());
+export const loadEndpoint = createAction('[Endpoint Page] Load Endpoint ');
 export const loadEndpointSuccess = createAction(
   '[Endpoint/API] Load Endpoint Success',
   props<{ endpoint: EndpointEntity }>()

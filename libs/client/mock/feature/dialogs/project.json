@@ -1,0 +1,22 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/client/mock/feature/dialogs/src",
+  "prefix": "aymme",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/mock/feature/dialogs"],
+      "options": {
+        "jestConfig": "libs/client/mock/feature/dialogs/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/mock/feature/dialogs/**/*.ts", "libs/client/mock/feature/dialogs/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

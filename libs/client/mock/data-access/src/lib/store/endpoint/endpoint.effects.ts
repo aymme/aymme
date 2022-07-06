@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, concatLatestFrom, createEffect, ofType } from '@ngrx/effects';
 import { fetch, pessimisticUpdate } from '@nrwl/angular';
 import { Store } from '@ngrx/store';
+import { routerNavigatedAction } from '@ngrx/router-store';
 import { delay, filter, map, tap, withLatestFrom } from 'rxjs';
 
 import { getSelectedId as getSelectedProjectId } from '@aymme/client/projects/data-access';
+import * as RouterSelectors from '@aymme/client/shared/data-access';
 import * as EndpointActions from './endpoint.actions';
 import * as EndpointSelectors from './endpoint.selectors';
 import { EndpointService } from '../../services/endpoint.service';
@@ -13,23 +15,51 @@ import { CollectionsActions } from '@aymme/client/collection/data-access';
 
 @Injectable()
 export class EndpointEffects {
-  init$ = createEffect(() =>
+  // init$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(EndpointActions.loadEndpoint),
+  //     withLatestFrom(this.store.select(getSelectedProjectId)),
+  //     filter(([_, projectId]) => {
+  //       return !!projectId;
+  //     }),
+  //     fetch({
+  //       run: (action, projectId) => {
+  //         return this.endpointService
+  //           .getEndpointDetails(action.endpointId, projectId || '') // TODO: Fix the condition
+  //           .pipe(
+  //             delay(600),
+  //             map((endpoint) => EndpointActions.loadEndpointSuccess({ endpoint }))
+  //           );
+  //       },
+  //       onError: (action: ReturnType<typeof EndpointActions.loadEndpoint>, error) => {
+  //         console.error('Error', error);
+  //         return EndpointActions.loadEndpointFailure({ error });
+  //       },
+  //     })
+  //   )
+  // );
+
+  loadEndpoint$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(EndpointActions.loadEndpoint),
-      withLatestFrom(this.store.select(getSelectedProjectId)),
-      filter(([_, projectId]) => {
-        return !!projectId;
+      ofType(routerNavigatedAction),
+      withLatestFrom(
+        this.store.select(getSelectedProjectId),
+        this.store.select(RouterSelectors.selectRouteParam('endpointId'))
+      ),
+      filter(([_, projectId, endpointId]) => !!endpointId && !!projectId),
+      tap(() => {
+        this.store.dispatch(EndpointActions.loadEndpoint());
       }),
       fetch({
-        run: (action, projectId) => {
+        run: (action, projectId, endpointId) => {
           return this.endpointService
-            .getEndpointDetails(action.endpointId, projectId || '') // TODO: Fix the condition
+            .getEndpointDetails(endpointId || '', projectId || '') // TODO: Fix the condition
             .pipe(
               delay(600),
               map((endpoint) => EndpointActions.loadEndpointSuccess({ endpoint }))
             );
         },
-        onError: (action: ReturnType<typeof EndpointActions.loadEndpoint>, error) => {
+        onError: (action, error) => {
           console.error('Error', error);
           return EndpointActions.loadEndpointFailure({ error });
         },

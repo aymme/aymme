@@ -37,7 +37,7 @@ describe('EndpointEffects', () => {
 
   describe('init$', () => {
     it('should work', () => {
-      actions = hot('-a-|', { a: EndpointActions.loadEndpoint({ endpointId: '123' }) });
+      actions = hot('-a-|', { a: EndpointActions.loadEndpoint() });
 
       // const expected = hot('-a-|', { a: EndpointActions.loadEndpointSuccess({  }) });
 

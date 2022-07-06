@@ -10,7 +10,7 @@ interface ProjectConfiguration {
 
 @Component({
   selector: 'ay-project-configuration',
-  templateUrl: 'project-configuration-dialog.html',
+  templateUrl: 'project-configuration-dialog.component.html',
   styleUrls: ['./project-configuration-dialog.scss'],
 })
 export class ProjectConfigurationDialogComponent {
