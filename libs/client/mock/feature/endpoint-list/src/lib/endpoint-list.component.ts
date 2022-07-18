@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CollectionsEntity, CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsEntity, ProjectsFacade } from '@aymme/client/projects/data-access';
@@ -26,7 +26,7 @@ interface CompressedCollectionsEntity extends CollectionsEntity {
   templateUrl: './endpoint-list.component.html',
   styles: [],
 })
-export class EndpointListComponent implements OnInit {
+export class EndpointListComponent {
   projectId: string = this.route.snapshot.parent?.parent?.parent?.parent?.params['projectId'];
 
   selectedProject$: Observable<ProjectsEntity | undefined> = this.projectsFacade.selectedProject$;
@@ -41,14 +41,7 @@ export class EndpointListComponent implements OnInit {
     private projectsFacade: ProjectsFacade,
     private endpointFacade: EndpointFacade,
     public dialog: MatDialog
-  ) {
-    // this.collectionsFacade.init(this.projectId);
-  }
-
-  ngOnInit(): void {
-    console.log(this.route);
-    console.log(this.route.snapshot.parent?.parent?.parent?.parent?.params['projectId']);
-  }
+  ) {}
 
   removeEndpoint(collectionId: string, endpointId: string) {
     this.endpointFacade.removeEndpoint(collectionId, endpointId);
@@ -104,9 +97,6 @@ export class EndpointListComponent implements OnInit {
     }
 
     this.router.navigate([{ outlets: { details: [id] } }], { relativeTo: this.route });
-
-    // this.selectedEndpoint$.next(id);
-    // this.endpointFacade.loadEndpoint(id);
   }
 
   exportProject(project: ProjectsEntity) {
