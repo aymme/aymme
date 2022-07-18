@@ -1,0 +1,10 @@
+<div data-cy="mock-wrapper" class="xs:container px-10 md:mx-auto">
+  <div class="grid grid-cols-2 gap-6 pt-10" *ngIf="selectedProject$ | async as project">
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="">
+      <router-outlet name="details"></router-outlet>
+    </div>
+  </div>
+</div>
