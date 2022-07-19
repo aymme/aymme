@@ -1,0 +1,22 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/client/shared/ui/button/src",
+  "prefix": "ay",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shared/ui/button"],
+      "options": {
+        "jestConfig": "libs/client/shared/ui/button/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/client/shared/ui/button/**/*.ts", "libs/client/shared/ui/button/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

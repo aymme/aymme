@@ -53,6 +53,7 @@
       "@aymme/client/shared/app-config": ["libs/client/shared/app-config/src/index.ts"],
       "@aymme/client/shared/data-access": ["libs/client/shared/data-access/src/index.ts"],
       "@aymme/client/shared/storybook": ["libs/client/shared/storybook/src/index.ts"],
+      "@aymme/client/shared/ui/button": ["libs/client/shared/ui/button/src/index.ts"],
       "@aymme/client/shared/ui/editor": ["libs/client/shared/ui/editor/src/index.ts"],
       "@aymme/client/shell/feature": ["libs/client/shell/feature/src/index.ts"],
       "@aymme/client/shell/ui": ["libs/client/shell/ui/src/index.ts"],

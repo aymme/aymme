@@ -39,6 +39,7 @@
     "client-shared-app-config": "libs/client/shared/app-config",
     "client-shared-data-access": "libs/client/shared/data-access",
     "client-shared-storybook": "libs/client/shared/storybook",
+    "client-shared-ui-button": "libs/client/shared/ui/button",
     "client-shared-ui-editor": "libs/client/shared/ui/editor",
     "client-shell-feature": "libs/client/shell/feature",
     "client-shell-ui-clickaway": "libs/client/shell/ui/clickaway",
