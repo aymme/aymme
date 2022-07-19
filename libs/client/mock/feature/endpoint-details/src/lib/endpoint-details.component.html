@@ -16,15 +16,10 @@
   <ng-container *ngIf="endpoint$ | async as endpoint">
     <div
       data-cy="endpoint-details-screen"
-      class="dark:border-blend-50 flex flex-row items-center border-b border-gray-100 pb-3"
+      class="dark:border-blend-50 flex flex-row items-center justify-between border-b border-gray-100 pb-3"
     >
       <span class="font-bold">Details</span>
-      <button
-        data-cy="endpoint-details-update-button"
-        class="ml-auto mr-2 rounded bg-blue-500 p-2 px-4 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
-        label="Update"
-        (click)="updateEndpoint()"
-      >
+      <button ayButton data-cy="endpoint-details-update-button" label="Update" (click)="updateEndpoint()">
         Update
       </button>
     </div>

@@ -6,6 +6,7 @@ import { ResponseListModule } from '@aymme/client/mock/ui/response-list';
 import { EndpointOptionsModule } from '@aymme/client/mock/ui/endpoint-options';
 import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
+import { ButtonModule } from '@aymme/client/shared/ui/button';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { LoaderModule } from '@aymme/client/shell/ui/loader';
     EndpointOptionsModule,
     EditorModule,
     LoaderModule,
+    ButtonModule,
   ],
   declarations: [EndpointDetailsComponent],
 })
