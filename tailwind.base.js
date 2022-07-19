@@ -36,15 +36,16 @@ module.exports = {
           50: 'rgba(255, 255, 255, .05)',
         },
         red: {
-          500: 'rgb(239 68 68);',
+          500: colors.red['500'],
         },
         gray: colors.gray,
         orange: {
-          500: '#f97316',
+          500: colors.orange['500'],
         },
         blue: {
-          500: '#3b82f6',
-          700: '#1d4ed8',
+          500: colors.blue['500'],
+          600: colors.blue['600'],
+          700: colors.blue['700'],
         },
       },
     },
