@@ -37,7 +37,8 @@
     "seed:run": "yarn prisma db seed",
     "seed:fresh": "rm ./prisma/db-test.sqlite && yarn run migration:dev && yarn run seed:run",
     "analyze:client": "webpack-bundle-analyzer dist/apps/client/stats.json",
-    "release": "release-it"
+    "release": "release-it",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -93,6 +94,8 @@
     "@angular/cli": "~14.0.0",
     "@angular/compiler-cli": "14.0.2",
     "@angular/language-service": "14.0.2",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@faker-js/faker": "^6.1.2",
     "@nestjs/schematics": "^8.0.10",
     "@nestjs/testing": "^8.4.4",
@@ -129,6 +132,7 @@
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "husky": "^8.0.0",
     "jasmine-marbles": "~0.9.1",
     "jest": "27.5.1",
     "jest-preset-angular": "11.1.2",
