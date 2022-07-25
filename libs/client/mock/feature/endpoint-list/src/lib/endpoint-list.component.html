@@ -105,23 +105,33 @@
                 data-cy="endpoints-list"
                 class="dropdown-menu relative ml-auto"
               >
-                <button class="cursor-pointer p-2"><fa-icon [icon]="['fas', 'cog']" size="lg"></fa-icon></button>
-                <div class="dark:bg-background absolute left-0 top-8 z-10 hidden w-40 rounded-md bg-white">
-                  <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
-                    <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-b border-gray-100 hover:bg-gray-100">
-                      <button (click)="renameCollection(collection)" class="px-6 py-4">
-                        <fa-icon [icon]="['fas', 'edit']" class="mr-2" size="1x"></fa-icon>
-                        Rename
-                      </button>
-                    </li>
-                    <li class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 hover:bg-gray-100">
-                      <button (click)="deleteCollection(collection)" class="px-6 py-4">
-                        <fa-icon [icon]="['fas', 'times']" class="mr-2" size="1x"></fa-icon>
-                        Remove
-                      </button>
-                    </li>
-                  </ul>
-                </div>
+                <button class="cursor-pointer p-2" [cdkMenuTriggerFor]="menu">
+                  <fa-icon [icon]="['fas', 'cog']" size="lg"></fa-icon>
+                </button>
+                <ng-template #menu>
+                  <div class="dark:bg-background absolute left-0 z-10 w-40 rounded-md bg-white" cdkMenu>
+                    <ul class="dark:border-blend-50 mb-0 rounded-md border border-gray-100">
+                      <li
+                        class="dark:border-blend-50 hover:dark:bg-blend-50 border-b border-gray-100 text-sm hover:bg-gray-100"
+                        cdkMenuItem
+                      >
+                        <button (click)="renameCollection(collection)" class="px-6 py-4">
+                          <fa-icon [icon]="['fas', 'edit']" class="mr-2" size="1x"></fa-icon>
+                          Rename
+                        </button>
+                      </li>
+                      <li
+                        class="dark:border-blend-50 hover:dark:bg-blend-50 border-gray-100 text-sm hover:bg-gray-100"
+                        cdkMenuItem
+                      >
+                        <button (click)="deleteCollection(collection)" class="px-6 py-4">
+                          <fa-icon [icon]="['fas', 'times']" class="mr-2" size="1x"></fa-icon>
+                          Remove
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </ng-template>
               </section>
             </div>
           </header>

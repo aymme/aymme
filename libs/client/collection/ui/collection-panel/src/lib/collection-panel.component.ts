@@ -9,8 +9,4 @@ import { CollectionsEntity } from '@aymme/client/collection/data-access';
 export class CollectionPanelComponent {
   @Input() collection!: CollectionsEntity;
   @Output() selectEndpoint = new EventEmitter();
-
-  test(data: any) {
-    // this.selectEndpoint.emit(data);
-  }
 }
