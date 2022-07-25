@@ -30,12 +30,14 @@ module.exports = {
         xl: '2rem',
       },
       colors: {
+        transparent: `transparent`,
         blend: {
           100: 'rgba(255, 255, 255, 0.1)',
           500: 'rgba(255, 255, 255, 0.5)',
           50: 'rgba(255, 255, 255, .05)',
         },
         red: {
+          100: colors.red['100'],
           500: colors.red['500'],
         },
         gray: colors.gray,
