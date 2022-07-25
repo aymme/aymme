@@ -86,7 +86,6 @@
           cdkDrag
           data-cy="collection-item"
           class="collection-item dark:border-blend-50 mb-4 rounded-md border border-dashed border-gray-100 p-2 text-sm"
-          [ngClass]="{ 'is-compressed': collection.compressed }"
         >
           <div class="collection-item-drag-placeholder mb-4" *cdkDragPlaceholder></div>
 
@@ -142,6 +141,7 @@
             (cdkDropListDropped)="onDropEndpoint($event)"
             [cdkDropListData]="collection.endpoints"
             id="{{ collection.id }}"
+            [class.hidden]="collection.compressed"
           >
             <div cdkDrag cdkDragLockAxis="y" *ngFor="let endpoint of collection.endpoints" data-cy="endpoints-list">
               <div class="collection-item-drag-placeholder" *cdkDragPlaceholder></div>

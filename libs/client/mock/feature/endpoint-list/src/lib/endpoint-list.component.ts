@@ -24,7 +24,7 @@ interface CompressedCollectionsEntity extends CollectionsEntity {
 @Component({
   selector: 'aymme-endpoint-list',
   templateUrl: './endpoint-list.component.html',
-  styles: [],
+  styleUrls: ['./endpoint-list.component.scss'],
 })
 export class EndpointListComponent {
   projectId: string = this.route.snapshot.parent?.parent?.parent?.parent?.params['projectId'];
