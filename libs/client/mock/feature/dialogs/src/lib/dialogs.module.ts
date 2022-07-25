@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
 import { EditorModule } from '@aymme/client/shared/ui/editor';
 import { MatInputModule } from '@angular/material/input';
+import { ButtonModule } from '@aymme/client/shared/ui/button';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
     EditorModule,
     FormsModule,
     MatInputModule,
+    ButtonModule,
   ],
   declarations: [
     CreateNewCollectionDialogComponent,

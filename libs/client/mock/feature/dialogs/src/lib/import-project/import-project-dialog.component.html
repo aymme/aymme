@@ -31,17 +31,7 @@
   </div>
 
   <footer class="flex flex-row justify-between">
-    <button
-      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
-      (click)="onCancelClick()"
-    >
-      Bring me back!
-    </button>
-    <button
-      (click)="doImport()"
-      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
-    >
-      Import
-    </button>
+    <button ayButton (click)="onCancelClick()">Bring me back!</button>
+    <button (click)="doImport()" ayButton color="primary">Import</button>
   </footer>
 </article>

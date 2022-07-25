@@ -13,18 +13,7 @@
   </div>
 
   <footer class="flex flex-row justify-between">
-    <button
-      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
-      (click)="onCancelClick()"
-    >
-      Cancel
-    </button>
-    <button
-      class="hover:dark:bg-blend-100 dark:border-blend-50 rounded-md border border-gray-200 px-4 py-2 hover:bg-gray-100"
-      mat-button
-      [mat-dialog-close]="data.name"
-    >
-      Create
-    </button>
+    <button ayButton (click)="onCancelClick()">Cancel</button>
+    <button ayButton color="primary" [mat-dialog-close]="data.name">Create</button>
   </footer>
 </article>
