@@ -13,7 +13,7 @@ ENV NODE_ENV=${NODE_ENV}
 RUN yarn install
 
 # dependencies that nestjs needs
-RUN yarn add reflect-metadata tslib rxjs @nestjs/platform-express prisma
+RUN yarn add reflect-metadata tslib rxjs @nestjs/platform-express prisma@3.15.2
 
 RUN yarn prisma generate
 
