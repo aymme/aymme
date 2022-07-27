@@ -1,5 +1,21 @@
 
 
+# [0.2.0](https://github.com/aymme/aymme/compare/v0.1.3...v0.2.0) (2022-07-27)
+
+
+### Bug Fixes
+
+* **client-mock:** add missing SCSS from the mock component to the endpoint list ([482f5f3](https://github.com/aymme/aymme/commit/482f5f37f91f1b6b5753ef0bf23969dfe30b9106))
+* **shared-ui-buttons:** updated buttons to better show itself in ui ([7ba3717](https://github.com/aymme/aymme/commit/7ba37172faa5098fd589bbfacc3fa436af1e7a04))
+
+
+### Features
+
+* **client-mock:** change the dropdown for collection to use CDK menu ([12f7047](https://github.com/aymme/aymme/commit/12f704722f2864de99cb35bb1d836890842a0d97))
+* **client:** replace hard-coded buttons with the new button directive ([7a956d6](https://github.com/aymme/aymme/commit/7a956d6e24c33184e166764b4091cf49ad863220))
+* **client:** replace old buttons with the new button component ([7baa138](https://github.com/aymme/aymme/commit/7baa1385b324bf778dc7d668c97bc24336d246f1))
+* **ui:** new button component ([07d3cb2](https://github.com/aymme/aymme/commit/07d3cb22b0053312ec34ebd7f9b2925fc094d3e1))
+
 ## [0.1.3](https://github.com/aymme/aymme/compare/v0.1.2...v0.1.3) (2022-05-30)
 
 ## [0.1.2](https://github.com/aymme/aymme/compare/v0.1.1...v0.1.2) (2022-05-30)
