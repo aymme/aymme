@@ -1,5 +1,12 @@
 
 
+## [0.2.1](https://github.com/aymme/aymme/compare/v0.2.0...v0.2.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* **api:** specify the prisma version in the Dockerfile ([#103](https://github.com/aymme/aymme/issues/103)) ([346e346](https://github.com/aymme/aymme/commit/346e3460938c78969386608fb6b86fc56d851177))
+
 # [0.2.0](https://github.com/aymme/aymme/compare/v0.1.3...v0.2.0) (2022-07-27)
 
 
