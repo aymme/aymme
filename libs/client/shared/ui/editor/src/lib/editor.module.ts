@@ -16,7 +16,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  imports: [CommonModule, FormsModule, MonacoEditorModule.forRoot(monacoConfig), FontAwesomeModule],
+  imports: [CommonModule, FormsModule, MonacoEditorModule.forRoot(), FontAwesomeModule],
   declarations: [EditorComponent],
   exports: [EditorComponent],
 })
