@@ -10,6 +10,7 @@ import { CollectionPanelModule } from '@aymme/client/collection/ui/collection-pa
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { ButtonModule } from '@aymme/client/shared/ui/button';
+import { DialogsModule } from '@aymme/client/mock/feature/dialogs';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { ButtonModule } from '@aymme/client/shared/ui/button';
     LoaderModule,
     CdkMenuModule,
     ButtonModule,
+    DialogsModule,
   ],
   declarations: [EndpointListComponent],
 })
