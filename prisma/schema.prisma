@@ -47,19 +47,19 @@ model Header {
 }
 
 model Project {
-  id              String                @id @default(uuid()) @map("_id")
-  name            String                @unique
-  slug            String                @unique
-  configuration   ProjectConfiguration?
-  collections     Collection[]
-  endpoints       Endpoint[]
+  id            String                @id @default(uuid()) @map("_id")
+  name          String                @unique
+  slug          String                @unique
+  configuration ProjectConfiguration?
+  collections   Collection[]
+  endpoints     Endpoint[]
 }
 
 model ProjectConfiguration {
-  id           String   @id @default(uuid()) @map("_id")
+  id           String  @id @default(uuid()) @map("_id")
   ignoreParams String?
-  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  projectId    String
+  project      Project @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  projectId    String  @unique
   variables    String?
 }
 

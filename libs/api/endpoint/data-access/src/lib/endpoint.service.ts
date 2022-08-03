@@ -178,7 +178,7 @@ export class EndpointService {
     }
   }
 
-  private prepareHeadersData(headers: HeaderDto[], id: string): Prisma.HeaderUpdateManyWithoutEndpointInput {
+  private prepareHeadersData(headers: HeaderDto[], id: string): Prisma.HeaderUpdateManyWithoutEndpointNestedInput {
     return {
       deleteMany: {
         endpointId: id,
@@ -202,7 +202,10 @@ export class EndpointService {
     };
   }
 
-  private prepareResponsesData(responses: ResponseDto[], id: string): Prisma.ResponseUpdateManyWithoutEndpointInput {
+  private prepareResponsesData(
+    responses: ResponseDto[],
+    id: string
+  ): Prisma.ResponseUpdateManyWithoutEndpointNestedInput {
     return {
       deleteMany: {
         endpointId: id,
