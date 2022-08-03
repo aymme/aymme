@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import slugify from 'slugify';
-import { Header, Prisma, Project, ProjectConfiguration, Response } from '@prisma/client';
+import { Project, ProjectConfiguration } from '@prisma/client';
 import { PrismaService } from '@aymme/api/database/data-access';
 import { CreateProjectDto, UpdateProjectConfigurationDto, UpdateProjectDto } from './dto';
 import { ProjectWithRelations } from './types';
@@ -340,52 +340,5 @@ export class ProjectService {
 
       throw new InternalServerErrorException();
     }
-  }
-
-  private prepareHeadersData(headers: Header[], id: string): Prisma.HeaderUpdateManyWithoutEndpointInput {
-    return {
-      create: headers.map(({ name, value }) => {
-        return {
-          name,
-          value,
-        };
-      }),
-      upsert: headers.map(({ id, name, value }) => {
-        return {
-          where: {
-            id,
-            name,
-          },
-          update: {
-            name,
-            value,
-          },
-          create: {
-            name,
-            value,
-          },
-        };
-      }),
-    };
-  }
-
-  private prepareResponsesData(responses: Response[], id: string): Prisma.ResponseUpdateManyWithoutEndpointInput {
-    return {
-      upsert: responses.map(({ id, statusCode, body }) => {
-        return {
-          where: {
-            id,
-          },
-          update: {
-            statusCode,
-            body,
-          },
-          create: {
-            statusCode,
-            body,
-          },
-        };
-      }),
-    };
   }
 }

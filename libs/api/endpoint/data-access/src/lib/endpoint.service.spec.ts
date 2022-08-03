@@ -269,7 +269,7 @@ describe('EndpointService', () => {
       const data = serviceProto.prepareHeadersData(
         args,
         EXAMPLE_ENDPOINT_ID
-      ) as Prisma.HeaderUpdateManyWithoutEndpointInput;
+      ) as Prisma.HeaderUpdateManyWithoutEndpointNestedInput;
 
       expect(data.deleteMany['endpointId']).toEqual(EXAMPLE_ENDPOINT_ID);
       expect(data.upsert[0].where.id).toEqual(args[0].id);
@@ -297,7 +297,7 @@ describe('EndpointService', () => {
       const data = serviceProto.prepareResponsesData(
         args,
         EXAMPLE_ENDPOINT_ID
-      ) as Prisma.ResponseUpdateManyWithoutEndpointInput;
+      ) as Prisma.ResponseUpdateManyWithoutEndpointNestedInput;
 
       expect(data.deleteMany['endpointId']).toEqual(EXAMPLE_ENDPOINT_ID);
       expect(data.upsert[0].where.id).toEqual(args[0].id);
