@@ -7,6 +7,7 @@ import { getAppConfigProvider } from '@aymme/client/shared/app-config';
 import { ClientShellFeatureModule } from '@aymme/client/shell/feature';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ const toastrOptions = {
     ClientShellFeatureModule,
     ToastrModule.forRoot(toastrOptions),
     FontAwesomeModule,
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
   ],
   providers: [getAppConfigProvider({ production: environment.production, apiUrl: environment.apiUrl })],
   bootstrap: [AppComponent],
