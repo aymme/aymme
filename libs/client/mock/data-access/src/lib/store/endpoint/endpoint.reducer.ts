@@ -42,16 +42,16 @@ const endpointReducer = createReducer(
   on(EndpointActions.loadEndpointFailure, (state, { error }) => ({ ...state, error })),
   on(EndpointActions.removeResponse, (state, { response }) => {
     if (state.endpoint) {
-      const updatedResponseArray = state.endpoint.responses?.filter((res) => res.id !== response.id);
+      const updatedResponseArray = state.endpoint.responses?.filter((res) => res.statusCode !== response.statusCode);
 
-      const updatedEnpoint = {
+      const updatedEndpoint = {
         ...state.endpoint,
         responses: updatedResponseArray,
       };
 
       return {
         ...state,
-        endpoint: updatedEnpoint,
+        endpoint: updatedEndpoint,
       };
     } else {
       return state;
