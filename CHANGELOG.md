@@ -1,5 +1,14 @@
 
 
+## [0.2.2](https://github.com/aymme/aymme/compare/v0.2.1...v0.2.2) (2022-08-05)
+
+
+### Bug Fixes
+
+* **client-mock:** removing a response should be done by the statusCode instead of ID ([7affd30](https://github.com/aymme/aymme/commit/7affd30009d294451410756d94c85dfbbd7f5e6b))
+* **client:** prevent StoreDevtoolsModule to be loaded in production ([291fa90](https://github.com/aymme/aymme/commit/291fa90dccf6c17c961b7d5f806d6c515b6cc24c))
+* **project-configuration:** correctly load dialogs module ([e14a0d1](https://github.com/aymme/aymme/commit/e14a0d1e29d944c4318a3ab2c3e128526aa86101))
+
 ## [0.2.1](https://github.com/aymme/aymme/compare/v0.2.0...v0.2.1) (2022-07-27)
 
 
