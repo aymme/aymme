@@ -1,4 +1,5 @@
 {
+  "name": "client-mock-ui-response-list",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/mock/ui/response-list/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/mock/ui/response-list"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/mock/ui/response-list"],
       "options": {
         "jestConfig": "libs/client/mock/ui/response-list/jest.config.ts",
         "passWithNoTests": true

@@ -1,4 +1,5 @@
 {
+  "name": "api-endpoint-data-access",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/api/endpoint/data-access/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/endpoint/data-access"],
+      "outputs": ["{workspaceRoot}/coverage/libs/api/endpoint/data-access"],
       "options": {
         "jestConfig": "libs/api/endpoint/data-access/jest.config.ts",
         "passWithNoTests": true

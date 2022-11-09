@@ -1,4 +1,5 @@
 {
+  "name": "api-core-utils",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/api/core/utils/src",
   "projectType": "library",
@@ -12,9 +13,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/core/utils"],
+      "outputs": ["{workspaceRoot}/coverage/libs/api/core/utils"],
       "options": {
-        "jestConfig": "libs/api/core/utils/jest.config.js",
+        "jestConfig": "libs/api/core/utils/jest.config.ts",
         "passWithNoTests": true
       }
     }

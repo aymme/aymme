@@ -1,11 +1,12 @@
 {
+  "name": "client-mock-feature-dialogs",
   "projectType": "library",
   "sourceRoot": "libs/client/mock/feature/dialogs/src",
   "prefix": "aymme",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/mock/feature/dialogs"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/mock/feature/dialogs"],
       "options": {
         "jestConfig": "libs/client/mock/feature/dialogs/jest.config.ts",
         "passWithNoTests": true

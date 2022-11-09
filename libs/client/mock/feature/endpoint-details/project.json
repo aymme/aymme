@@ -1,11 +1,12 @@
 {
+  "name": "client-mock-feature-endpoint-details",
   "projectType": "library",
   "sourceRoot": "libs/client/mock/feature/endpoint-details/src",
   "prefix": "aymme",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/mock/feature/endpoint-details"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/mock/feature/endpoint-details"],
       "options": {
         "jestConfig": "libs/client/mock/feature/endpoint-details/jest.config.ts",
         "passWithNoTests": true

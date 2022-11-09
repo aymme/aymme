@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   displayName: 'client-how-to-use-feature-how-to-use',
 

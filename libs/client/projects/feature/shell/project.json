@@ -1,4 +1,5 @@
 {
+  "name": "client-projects-feature-shell",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/projects/feature/shell/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/projects/feature/shell"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/projects/feature/shell"],
       "options": {
         "jestConfig": "libs/client/projects/feature/shell/jest.config.ts",
         "passWithNoTests": true

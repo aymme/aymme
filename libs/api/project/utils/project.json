@@ -1,4 +1,5 @@
 {
+  "name": "api-project-utils",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/api/project/utils/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/project/utils"],
+      "outputs": ["{workspaceRoot}/coverage/libs/api/project/utils"],
       "options": {
         "jestConfig": "libs/api/project/utils/jest.config.ts",
         "passWithNoTests": true

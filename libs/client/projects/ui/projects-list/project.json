@@ -1,4 +1,5 @@
 {
+  "name": "client-projects-ui-projects-list",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/projects/ui/projects-list/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/projects/ui/projects-list"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/projects/ui/projects-list"],
       "options": {
         "jestConfig": "libs/client/projects/ui/projects-list/jest.config.ts",
         "passWithNoTests": true

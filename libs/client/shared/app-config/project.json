@@ -1,4 +1,5 @@
 {
+  "name": "client-shared-app-config",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/shared/app-config/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/shared/app-config"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/shared/app-config"],
       "options": {
         "jestConfig": "libs/client/shared/app-config/jest.config.ts",
         "passWithNoTests": true

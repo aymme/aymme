@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
-import { NxModule } from '@nrwl/angular';
 import { readFirst } from '@nrwl/angular/testing';
 import { EndpointEffects } from './endpoint.effects';
 import { EndpointFacade } from './endpoint.facade';
@@ -68,13 +67,7 @@ describe('EndpointFacade', () => {
       class CustomFeatureModule {}
 
       @NgModule({
-        imports: [
-          NxModule.forRoot(),
-          StoreModule.forRoot({}),
-          EffectsModule.forRoot([]),
-          CustomFeatureModule,
-          CustomProjectFeatureModule,
-        ],
+        imports: [StoreModule.forRoot({}), EffectsModule.forRoot([]), CustomFeatureModule, CustomProjectFeatureModule],
       })
       class RootModule {}
       TestBed.configureTestingModule({ imports: [RootModule] });

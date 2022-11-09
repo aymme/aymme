@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   displayName: 'client-mock-ui-endpoints-options',
 

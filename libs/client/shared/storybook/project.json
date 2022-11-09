@@ -1,4 +1,5 @@
 {
+  "name": "client-shared-storybook",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/shared/storybook/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/shared/storybook"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/shared/storybook"],
       "options": {
         "jestConfig": "libs/client/shared/storybook/jest.config.ts",
         "passWithNoTests": true

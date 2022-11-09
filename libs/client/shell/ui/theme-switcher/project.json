@@ -1,4 +1,5 @@
 {
+  "name": "client-shell-ui-theme-switcher",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/shell/ui/theme-switcher/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/shell/ui/theme-switcher"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/shell/ui/theme-switcher"],
       "options": {
         "jestConfig": "libs/client/shell/ui/theme-switcher/jest.config.ts",
         "passWithNoTests": true
