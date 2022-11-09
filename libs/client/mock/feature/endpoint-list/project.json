@@ -1,6 +1,5 @@
 {
   "name": "client-mock-feature-endpoint-list",
-  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/mock/feature/endpoint-list/src",
   "prefix": "aymme",
