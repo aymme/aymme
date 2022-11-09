@@ -1,5 +1,6 @@
 {
   "name": "client-mock-feature-dialogs",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/mock/feature/dialogs/src",
   "prefix": "aymme",
