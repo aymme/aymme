@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   displayName: 'client-collection-ui-collection-panel',
 

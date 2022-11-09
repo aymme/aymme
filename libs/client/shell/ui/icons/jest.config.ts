@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   displayName: 'client-shell-ui-icons',
   preset: '../../../../../jest.preset.js',

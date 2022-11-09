@@ -1,4 +1,5 @@
 {
+  "name": "api-intercept-utils",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/api/intercept/utils/src",
   "projectType": "library",
@@ -12,9 +13,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/intercept/utils"],
+      "outputs": ["{workspaceRoot}/coverage/libs/api/intercept/utils"],
       "options": {
-        "jestConfig": "libs/api/intercept/utils/jest.config.js",
+        "jestConfig": "libs/api/intercept/utils/jest.config.ts",
         "passWithNoTests": true
       }
     }

@@ -4,7 +4,6 @@ import { APP_CONFIG } from '@aymme/client/shared/app-config';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { DataPersistence, NxModule } from '@nrwl/angular';
 import { hot } from 'jasmine-marbles';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -18,10 +17,9 @@ describe('EndpointEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NxModule.forRoot(), HttpClientModule],
+      imports: [HttpClientModule],
       providers: [
         EndpointEffects,
-        DataPersistence,
         provideMockActions(() => actions),
         provideMockStore(),
         { provide: APP_CONFIG, useValue: {} },

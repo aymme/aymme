@@ -1,4 +1,5 @@
 {
+  "name": "client-shell-ui-logo",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/shell/ui/logo/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/shell/ui/logo"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/shell/ui/logo"],
       "options": {
         "jestConfig": "libs/client/shell/ui/logo/jest.config.ts",
         "passWithNoTests": true

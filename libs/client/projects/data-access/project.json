@@ -1,4 +1,5 @@
 {
+  "name": "client-projects-data-access",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/projects/data-access/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/projects/data-access"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/projects/data-access"],
       "options": {
         "jestConfig": "libs/client/projects/data-access/jest.config.ts",
         "passWithNoTests": true

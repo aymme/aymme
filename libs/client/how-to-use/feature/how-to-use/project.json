@@ -1,4 +1,5 @@
 {
+  "name": "client-how-to-use-feature-how-to-use",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/how-to-use/feature/how-to-use/src",
@@ -6,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/how-to-use/feature/how-to-use"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/how-to-use/feature/how-to-use"],
       "options": {
         "jestConfig": "libs/client/how-to-use/feature/how-to-use/jest.config.ts",
         "passWithNoTests": true

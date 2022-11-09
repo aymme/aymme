@@ -1,11 +1,13 @@
 {
+  "name": "client-shared-ui-button",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/client/shared/ui/button/src",
   "prefix": "ay",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/shared/ui/button"],
+      "outputs": ["{workspaceRoot}/coverage/libs/client/shared/ui/button"],
       "options": {
         "jestConfig": "libs/client/shared/ui/button/jest.config.ts",
         "passWithNoTests": true

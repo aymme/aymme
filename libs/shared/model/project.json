@@ -1,4 +1,5 @@
 {
+  "name": "shared-model",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/model/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/model"],
+      "outputs": ["{workspaceRoot}/coverage/libs/shared/model"],
       "options": {
         "jestConfig": "libs/shared/model/jest.config.ts",
         "passWithNoTests": true
