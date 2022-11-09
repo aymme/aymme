@@ -29,7 +29,7 @@ async function bootstrap() {
           format: winston.format.combine(
             winston.format.timestamp(),
             winston.format.ms(),
-            nestWinstonModuleUtilities.format.nestLike('AYMME', { prettyPrint: true })
+            nestWinstonModuleUtilities.format.nestLike('AYMME', { prettyPrint: true, colors: true })
           ),
         }),
         // other transports...
