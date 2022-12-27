@@ -6,7 +6,7 @@ import { CollectionsFacade } from '@aymme/client/collection/data-access';
 import { ProjectsFacade } from '@aymme/client/projects/data-access';
 import { EndpointFacade } from '@aymme/client/mock/data-access';
 import { Observable } from 'rxjs';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 
 describe('EndpointListComponent', () => {
   let component: EndpointListComponent;

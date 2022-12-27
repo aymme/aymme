@@ -5,13 +5,13 @@ import { ConfirmDeleteCollectionDialogComponent } from './confirm-delete-collect
 import { RenameCollectionDialogComponent } from './rename-collection/rename-collection-dialog.component';
 import { ImportProjectDialogComponent } from './import-project/import-project-dialog.component';
 import { ProjectConfigurationDialogComponent } from './project-configuration/project-configuration-dialog.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoaderModule } from '@aymme/client/shell/ui/loader';
 import { EditorModule } from '@aymme/client/shared/ui/editor';
-import { MatInputModule } from '@angular/material/input';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { ButtonModule } from '@aymme/client/shared/ui/button';
 
 @NgModule({
