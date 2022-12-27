@@ -1,13 +1,14 @@
-@import '~@angular/material/theming';
+// eslint-disable-next-line
+@use '@angular/material' as mat;
 
 // Base mixin
-@include mat-core();
+@include mat.core();
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import '~ngx-toastr/toastr';
+@import 'ngx-toastr/toastr';
 
 @import './styles/main';
 
