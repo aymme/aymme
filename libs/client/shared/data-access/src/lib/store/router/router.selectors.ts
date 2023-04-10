@@ -14,4 +14,4 @@ export const {
   selectRouteData, // select the current route data
   selectUrl, // select the current url
   selectTitle, // Select the title if available
-} = getSelectors();
+} = getRouterSelectors();
