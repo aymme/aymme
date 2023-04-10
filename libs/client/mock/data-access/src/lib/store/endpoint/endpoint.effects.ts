@@ -51,7 +51,7 @@ export class EndpointEffects {
         this.store.dispatch(EndpointActions.loadEndpoint());
       }),
       fetch({
-        run: (action, projectId, endpointId) => {
+        run: (action, projectId, endpointId: string) => {
           return this.endpointService
             .getEndpointDetails(endpointId || '', projectId || '') // TODO: Fix the condition
             .pipe(
