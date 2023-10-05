@@ -143,7 +143,7 @@
     "lint-staged": "^13.1.0",
     "node-mocks-http": "^1.11.0",
     "nx": "15.9.2",
-    "postcss": "^8.4.20",
+    "postcss": "^8.4.31",
     "prettier": "2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "prisma": "^4.8.0",
